@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="assets/component/modal/style.css">
+
+<div class="modal-mask" v-show="show" transition="modal">
+  <div class="modal-wrapper">
+    <div class="modal-container" :style="{width: width}">
+      <div class="modal-header">
+        <slot name="header">
+        </slot>
+      </div>
+      <div class="modal-body">
+        <slot name="body">
+        </slot>
+      </div>
+      <div class="modal-footer">
+        <slot name="footer">
+          <button class="modal-default-button" @click="show = false">
+            确定
+          </button>
+        </slot>
+      </div>
+    </div>
+  </div>
+</div>

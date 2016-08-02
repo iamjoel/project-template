@@ -1,0 +1,9 @@
+.sub-nav{
+  // display: none;
+  padding-left: 0;
+  line-height: 1.5;
+  &__item{
+    list-style: none;
+  }
+  background: url('language-icon.png') no-repeat;
+}

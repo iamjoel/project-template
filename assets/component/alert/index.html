@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="assets/component/alert/style.css">
+<div class="alert">
+  <modal :show.sync="show">
+    <h3 slot="header">温馨提示</h3>
+    <div slot="body">
+      <slot name="msg"></slot>
+    </div>
+    <div slot="footer">
+      <button class="alert__confirm-btn" @click="show = false">确定</button>
+    </div>
+  </modal>
+</div>
