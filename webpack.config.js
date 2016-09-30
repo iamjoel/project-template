@@ -17,19 +17,14 @@ module.exports = {
     loaders: [
       { test: /\.html$/, loader: "html-loader" }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file?hash=sha512&digest=hex&name=[hash].[ext]'
+        loader: 'url?limit=10000'
       },
       { test: /\.css$/, loader: "css-loader" }
     ]
   },
   resolve: {
     alias: {
-      // 'routes': path.resolve(__dirname, srcPrefix + 'routes'),
-      'vue': path.resolve(__dirname, "node_modules/vue/dist/vue.min.js"),
-      'vuex': path.resolve(__dirname, "node_modules/vuex/dist/vuex.min.js"),
       'store': path.resolve(__dirname, 'assets/js-src/helper/store.js'),
-      'vue-router': path.resolve(__dirname, 'node_modules/vue-router/dist/vue-router.min.js'),
-      'vue-resource': path.resolve(__dirname, 'node_modules/vue-resource/dist/vue-resource.min.js'),
       'route-component': path.resolve(__dirname, 'assets/js-src/helper/route-component.js'),
       'setting': path.resolve(__dirname, 'setting.js'),
       'language-helper': path.resolve(__dirname, 'assets/js-src/helper/language.js'),

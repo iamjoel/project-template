@@ -10,7 +10,7 @@
     "build:js": "node_modules/.bin/webpack -d",
     "start:static": "node_modules/.bin/anywhere 1521",
     "start:develop-server": "node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0 --port 5000",
-    "develop": "node_modules/.bin/npm-run-all --parallel watch:scss watch:scss-component start:develop-server",
+    "dev": "node_modules/.bin/npm-run-all --parallel watch:scss watch:scss-component start:develop-server",
     "preview": "node_modules/.bin/npm-run-all build:js start:static"
   },
   "author": "Joel",
@@ -26,9 +26,9 @@
   "devDependencies": {
     "anywhere": "1.2.0",
     "css-loader": "0.23.1",
-    "file-loader": "0.9.0",
     "html-loader": "0.4.3",
     "json-loader": "0.5.4",
+    "url-loader": "0.5.7",
     "npm-run-all": "1.6.0",
     "raw-loader": "0.5.1",
     "webpack": "1.12.14",
