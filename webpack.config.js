@@ -33,5 +33,5 @@ module.exports = {
       'confirm': path.resolve(__dirname, 'assets/component/confirm/index.js'),
     }
   },
-  plugins: [new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')]
+  // plugins: [new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')]
 };
