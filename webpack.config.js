@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-var srcPrefix = './assets/js-src/';
+var srcPrefix = './assets/public/';
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
@@ -24,13 +24,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'store': path.resolve(__dirname, 'assets/js-src/helper/store.js'),
-      'route-component': path.resolve(__dirname, 'assets/js-src/helper/route-component.js'),
+      'component': path.resolve(__dirname, 'assets/component'),
+      'store': path.resolve(__dirname, `${srcPrefix}helper/store.js`),
+      'route-component': path.resolve(__dirname, `${srcPrefix}helper/route-component.js`),
       'setting': path.resolve(__dirname, 'setting.js'),
-      'language-helper': path.resolve(__dirname, 'assets/js-src/helper/language.js'),
-      'modal': path.resolve(__dirname, 'assets/component/modal/index.js'),
-      'alert': path.resolve(__dirname, 'assets/component/alert/index.js'),
-      'confirm': path.resolve(__dirname, 'assets/component/confirm/index.js'),
+      'language-helper': path.resolve(__dirname, `${srcPrefix}helper/language.js`)
     }
   },
   // plugins: [new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')]

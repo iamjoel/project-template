@@ -1,7 +1,7 @@
 var Vue = require('vue');
-var Modal = require('modal');
+var Modal = require('component/modal');
 module.exports = Vue.component('confirm', {
-  template: require('./index.html'),
+  template: '<style>' + require('./style.css') + '</style>' + require('./index.html'),
   props: {
     show: {
       type: Boolean,

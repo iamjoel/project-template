@@ -16,7 +16,7 @@ Helper.prototype = {
           // routePath:'/music/xxx' => compontPath: /music/index/
           compontPath = compontPath || routePath.match(/^\/?([^/]*)/)[1] + '/index';
           compontPath = compontPath.replace(/\.js$/, '');
-          resolve(require('../../component/' + compontPath + '.js'));
+          resolve(require('../../views/' + compontPath + '.js'));
         });
       }
     }

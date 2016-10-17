@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "watch:scss": "sass --watch assets/scss:assets/css",
-    "watch:scss-component": "sass --watch assets/component",
     "watch:js": "node_modules/.bin/webpack --watch -d",
     "build:js": "node_modules/.bin/webpack -d",
     "start:static": "node_modules/.bin/anywhere 1521",
     "start:develop-server": "node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0 --port 5000",
-    "dev": "node_modules/.bin/npm-run-all --parallel watch:scss watch:scss-component start:develop-server",
+    "dev": "node_modules/.bin/npm-run-all --parallel start:develop-server",
     "preview": "node_modules/.bin/npm-run-all build:js start:static"
   },
   "author": "Joel",

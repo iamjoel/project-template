@@ -1,11 +1,11 @@
 var RouteComponent = require('route-component');
 
-require('modal');
-require('alert');
-require('confirm');
+require('component/modal');
+require('component/alert');
+require('component/confirm');
 
 var Main = RouteComponent.extend({
-  template: require('./index.html'),
+  template: '<style>' + require('./style.css') + '</style>' + require('./index.html'),
   data: function () {
     return {
       showModal:false,

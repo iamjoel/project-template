@@ -1,4 +1,4 @@
-var Vue = require('vue');
+﻿var Vue = require('vue');
 var VueRouter = require('vue-router');
 var VueResource = require('vue-resource');
 
@@ -30,4 +30,4 @@ otherLans.forEach(function (lan) {
 });
 
 // 启动
-router.start(require('../component/layout/index'), '#app');
+router.start(require('component/layout'), '#app');

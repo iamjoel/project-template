@@ -1,6 +1,6 @@
 var Vue = require('vue');
 var Modal = Vue.component('modal', {
-  template: require('./index.html'),
+  template: '<style>' + require('./style.css') + '</style>' + require('./index.html'),
   props: {
     show: {
       type: Boolean,
