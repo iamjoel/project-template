@@ -1,7 +1,7 @@
 // 路由配置
 var routes = [
 {
-  'routePath': '/demo',
+  'routePath': '/demo/index',
   'controllerPath': 'demo/index'
 },
 {
