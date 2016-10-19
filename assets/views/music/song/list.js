@@ -8,7 +8,7 @@ var Main = RouteComponent.extend({
     list:[]
   },
   ready: function () {
-    this.$http.get('/assets/component/music/song/list-data.json').then(function (data) {
+    this.$http.get('/assets/views/music/song/list-data.json').then(function (data) {
       this.$set('list', data.data);
     });
   }

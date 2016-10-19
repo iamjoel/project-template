@@ -1,4 +1,5 @@
-.song-list__title {
-  background-color: #fff; }
-
-/*# sourceMappingURL=list.css.map */
+.song-list{
+  &__title{
+    background-color: #fff;
+  }
+}

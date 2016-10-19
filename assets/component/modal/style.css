@@ -5,14 +5,17 @@
   left: 0;
   width: 100%;
   height: 100%;
+  // background-color: rgba(0, 0, 0, .5);
   display: table;
-  transition: opacity .3s ease; }
+  transition: opacity .3s ease;
+}
 
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 .modal-container {
   width: 4.5rem;
@@ -20,8 +23,9 @@
   padding: .3rem .2rem;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all .3s ease; }
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+}
 
 .modal-header,
 .modal-header h3 {
@@ -29,10 +33,13 @@
   height: .5rem;
   line-height: .5rem;
   font-size: 18px;
-  color: #fd9809; }
+  color: #fd9809;
+}
 
 .modal-body {
-  margin: .5rem 0; }
+  margin: .5rem 0;
+}
+
 
 /*
  * the following styles are auto-applied to elements with
@@ -42,13 +49,14 @@
  * You can easily play with the modal transition by editing
  * these styles.
  */
+
 .modal-enter,
 .modal-leave {
-  opacity: 0; }
+  opacity: 0;
+}
 
 .modal-enter .modal-container,
 .modal-leave .modal-container {
   -webkit-transform: scale(1.1);
-  transform: scale(1.1); }
-
-/*# sourceMappingURL=style.css.map */
+  transform: scale(1.1);
+}

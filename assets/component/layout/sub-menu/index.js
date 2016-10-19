@@ -2,10 +2,10 @@ var Vue = require('vue');
 var modules = require('setting').modules;
 
 var SubMenu = Vue.extend({
-  template: '<style>' + require('./style.css') + '</style>' + require('./index.html'),
+  template: `<style>${require('./style.css')}</style>${require('./index.html')}`,
   props: ['pageRoute'],
   computed: {
-    subModules: function() {
+    subModules() {
       var pageRoute = this.pageRoute;
       if (!pageRoute) {
         return;

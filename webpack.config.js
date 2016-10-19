@@ -1,11 +1,14 @@
-var webpack = require('webpack');
-var path = require('path');
-var srcPrefix = './assets/public/';
+var webpack = require('webpack')
+var path = require('path')
+var srcPrefix = './assets/public/'
+var autoprefixer = require('autoprefixer')
+var precss = require('precss')
+
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
     'app': srcPrefix + 'app',
-    vendors: ['vue','jquery']
+    vendors: ['vue', 'jquery']
   },
   output: {
     'path': 'assets/js',
@@ -19,8 +22,15 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url?limit=10000'
       },
-      { test: /\.css$/, loader: "css-loader" }
+      { test: /\.css$/, loader: "css-loader!postcss-loader" }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
     ]
+  },
+  postcss: function () {
+    return [autoprefixer, precss]
   },
   resolve: {
     alias: {
@@ -31,5 +41,4 @@ module.exports = {
       'language-helper': path.resolve(__dirname, `${srcPrefix}helper/language.js`)
     }
   },
-  // plugins: [new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')]
-};
+}
