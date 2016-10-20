@@ -1,20 +1,20 @@
 var webpack = require('webpack')
 var path = require('path')
-var srcPrefix = './assets/public/'
+var srcPrefix = './src/public/'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
 
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
-    'app': srcPrefix + 'app',
+    'app': './src/app',
     vendors: ['vue', 'jquery']
   },
   output: {
-    'path': 'assets/js',
+    'path': 'src/output',
     filename: '[name].js',
     trunkFilename: '[name].bundle.js',
-    publicPath: '/assets/js/' // 用异步加载模块一定要加这个
+    publicPath: '/src/output/' // 用异步加载模块一定要加这个
   },
   module: {
     loaders: [
@@ -34,7 +34,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'component': path.resolve(__dirname, 'assets/component'),
+      'vue': 'vue/dist/vue.js',// 用 Standalone 版本 https://github.com/vuejs/vue/wiki/Vue-2.0-RC-Starter-Resources#standalone-vs-runtime-builds
+      'component': path.resolve(__dirname, 'src/component'),
+      'views': path.resolve(__dirname, 'src/views'),
       'store': path.resolve(__dirname, `${srcPrefix}helper/store.js`),
       'route-component': path.resolve(__dirname, `${srcPrefix}helper/route-component.js`),
       'setting': path.resolve(__dirname, 'setting.js'),

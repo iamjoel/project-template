@@ -1,10 +1,12 @@
 var Vue = require('vue')
+var route = require('../../../route')
 
 var languageHelper = require('language-helper')
 var defaultLan = require('setting').language.default
 
 module.exports = Vue.extend({
-  template: `<style>${require('./style.css')}</style>${require('./index.html')}`,
+  template: `<div><style>${require('./style.css')}</style>${require('./index.html')}</div>`,
+  route,
   data () {
     return {
       modules: require('setting').modules,
@@ -43,9 +45,9 @@ module.exports = Vue.extend({
   store: require('store'),
   vuex: {
     getters: {
-      pageRoute(state){
-        return state.pageRoute
-      }
+      // pageRoute(state){
+      //   return state.pageRoute
+      // }
     }
   }
 })
