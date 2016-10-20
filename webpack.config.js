@@ -40,7 +40,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.js',// 用 Standalone 版本 https://github.com/vuejs/vue/wiki/Vue-2.0-RC-Starter-Resources#standalone-vs-runtime-builds
       'component': path.resolve(__dirname, 'src/component'),
       'views': path.resolve(__dirname, 'src/views'),
       'store': path.resolve(__dirname, `${srcPrefix}helper/store.js`),
