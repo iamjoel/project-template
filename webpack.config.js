@@ -7,14 +7,13 @@ var precss = require('precss')
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
-    'app': './src/app',
-    vendors: ['vue', 'jquery']
+    'app': './src/app.js'
   },
   output: {
-    'path': 'src/output',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist', // 用异步加载模块一定要加这个
     filename: '[name].js',
-    trunkFilename: '[name].bundle.js',
-    publicPath: '/src/output/' // 用异步加载模块一定要加这个
+    trunkFilename: '[name].bundle.js'
   },
   module: {
     loaders: [
@@ -26,6 +25,13 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue',
+        options: {
+          // vue-loader options go here
+        }
       }
     ]
   },

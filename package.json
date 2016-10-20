@@ -31,11 +31,12 @@
     "css-loader": "0.23.1",
     "html-loader": "0.4.3",
     "json-loader": "0.5.4",
-    "url-loader": "0.5.7",
     "npm-run-all": "1.6.0",
     "postcss-loader": "0.11.0",
     "precss": "1.4.0",
     "raw-loader": "0.5.1",
+    "url-loader": "0.5.7",
+    "vue-loader": "9.7.0",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1"
   }
