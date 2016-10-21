@@ -13,9 +13,9 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul id="menu" class="nav navbar-nav navbar-right">
-            <li><router-link to="/demo">demo页</router-link></li>
-            <li><router-link to="/demo">demo页</router-link></li>
-            <li><router-link to="/demo">demo页</router-link></li>
+            <li v-for="item in menu">
+              <router-link :to="item.path">{{item.showName}}</router-link>
+            </li>
             <li><a href="javascript:void(0);" @click="changeLan">{{lanText}}</a></li>
           </ul>
         </div>
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col-sm-2 sub-menu-wrap">
           <!-- 左侧的二级菜单 -->
-          <!--    <sub-menu :page-route="pageRoute"></sub-menu> -->
+          <sidebar></sidebar>
         </div>
         <div class="col-sm-10">
           <router-view></router-view>
@@ -39,12 +39,15 @@
 // var route = require('./route')
 var languageHelper = require('language-helper')
 var defaultLan = require('setting').language.default
+var Sidebar = require('component/layout/Sidebar.vue')
 export default {
   name: 'app',
-  // route,
+  components: {
+    Sidebar
+  },
   data () {
     return {
-      modules: require('setting').modules,
+      menu: require('./router/menu.js'),
       currLanguage: defaultLan
     }
   },

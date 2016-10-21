@@ -4,22 +4,14 @@ Vue.use(Router) // 路由
 
 var router = new Router({
   routes: [
-    {
-      path: '/',
-      component: require('../views/dashbord.vue'),
-    },
-    {
-      path: '/demo',
-      component: require('../views/demo.vue'),
-    },
+    ...generateRoutes(require('./menu')),
     {
       path: '*',
-      redirect: '/demo'
+      redirect: '/'
     }
   ]
 })
 
-// ...generateRoutes(require('./routes')),
 function generateRoutes (menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {
     let item = menu[i]
