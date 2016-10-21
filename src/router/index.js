@@ -4,22 +4,22 @@ Vue.use(Router) // 路由
 
 var router = new Router({
   routes: [
-    ...generateRoutes(require('./routes'))
+    {
+      path: '/',
+      component: require('../views/dashbord.vue'),
+    },
+    {
+      path: '/demo',
+      component: require('../views/demo.vue'),
+    },
+    {
+      path: '*',
+      redirect: '/demo'
+    }
   ]
 })
 
-// router.redirect({ '*': require('setting').defaultRoute })// 默认路由
-
-// router.beforeEach(function(transition) {
-//   // transition.to.path// 当前路由
-//   // show loading
-//   console.info('show loading')
-//   transition.next()
-// }).afterEach(function(transition) {
-//   console.info('hide loading')
-// })
-
-
+// ...generateRoutes(require('./routes')),
 function generateRoutes (menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {
     let item = menu[i]

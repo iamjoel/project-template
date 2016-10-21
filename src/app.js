@@ -1,5 +1,7 @@
 ﻿var Vue = require('vue')
 var App = require('./App.vue')
+var router = require('./router')
+var store = require('./store')
 // var VueResource = require('vue-resource')
 
 // Vue.use(VueResource) // ajax这块
@@ -15,8 +17,14 @@ var App = require('./App.vue')
 // var Main = require('component/layout/main')
 // const app = (new Main()).$mount('#app')
 
+
+
+
+// debugger
 // 启动
 new Vue({
   el: '#app',
+  router,
+  store,
   render: h => h(App)
 })

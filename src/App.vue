@@ -13,9 +13,9 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul id="menu" class="nav navbar-nav navbar-right">
-            <li v-for="module in modules">
-              <a href="javascript:void(0);">{{lan(module.name)}}</a>
-            </li>
+            <li><router-link to="/demo">demo页</router-link></li>
+            <li><router-link to="/demo">demo页</router-link></li>
+            <li><router-link to="/demo">demo页</router-link></li>
             <li><a href="javascript:void(0);" @click="changeLan">{{lanText}}</a></li>
           </ul>
         </div>
@@ -28,7 +28,7 @@
           <!--    <sub-menu :page-route="pageRoute"></sub-menu> -->
         </div>
         <div class="col-sm-10">
-          <!-- <router-view></router-view> -->
+          <router-view></router-view>
         </div>
       </div>
     </div>

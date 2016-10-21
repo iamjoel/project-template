@@ -1,15 +1,22 @@
 const lazyLoading = (resolve, controllerPath) => {
   require.ensure([], function(require) {
-    resolve(require(`views/${controllerPath}.js`));
+    resolve(require(`views/${controllerPath}.vue`));
   })
 }
 
 // 路由配置
-var routes = [{
+var routes = [
+  {
+    'name': 'dashbord',
+    'path': '/',
+    'component': resolve => {
+      lazyLoading(resolve, 'dashbord')
+    }
+  },{
     'name': 'demo',
     'path': '/demo/index',
     'component': resolve => {
-      lazyLoading(resolve, 'demo/index')
+      lazyLoading(resolve, 'demo')
     }
   },
   // {
