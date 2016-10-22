@@ -1,12 +1,6 @@
 <template>
   <div>
-    <ul>
-      <li>
-        <router-link to="/demo/component">组件</router-link>
-      </li>
-    </ul>
-     <div>
-      <router-view></router-view>
-    </div>
+    <h1>demo 页</h1>
+    <router-view></router-view>
   </div>
 </template>

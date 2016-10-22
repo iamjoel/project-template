@@ -1,8 +1,14 @@
 <template>
   <aside>
-    <h1>子模块</h1>
-    <ul class="sub-nav">
-      <li v-for="item in subMenu" class="sub-nav__item">{{item.showName}}</li>
+    <ul class="menu-list">
+      <li v-for="item in menu">
+        <router-link :to="item.path">{{item.showName}}</router-link>
+        <ul v-show="item.children" class="sub-item" :class="{'unfold': isunfold(item.path)}">
+          <li v-for="subItem in item.children">
+            <router-link :to="item.path + '/'+ subItem.path">{{subItem.showName}}</router-link>
+          </li>
+        </ul>
+      </li>
     </ul>
   </aside>
 </template>
@@ -18,16 +24,29 @@ export default {
   },
   watch: {
     $route (route) {
-      this.subMenu = this.getSubMenu(route.path)
     }
   },
   methods: {
-    getSubMenu(path) {
-      let result = this.menu.filter( item => {
-        return path.indexOf(item.name) > -1
-      })
-      return (result && result[0].children) ? result[0].children : []
+    isunfold(path) {
+      var currPath = this.$route.path
+      return currPath.indexOf(path) === 0
     }
   }
 }
 </script>
+
+<style>
+  .menu-list, .menu-list ul{
+    list-style: none;
+  }
+  .menu-list ul{
+    padding-left: 20px;
+  }
+
+  .sub-item{
+    display: none;
+  }
+  .sub-item.unfold{
+    display: block;
+  }
+</style>
