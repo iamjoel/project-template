@@ -50,7 +50,7 @@
 // }
 </script>
 
-<style>
+<style scoped>
 .navbar{
   border-radius: 0;
 }
