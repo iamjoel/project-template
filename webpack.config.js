@@ -17,8 +17,13 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.html$/, loader: "html-loader" }, {
+      { test: /\.html$/, loader: "html-loader" }, 
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url?limit=10000'
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url?limit=10000'
       },
       { test: /\.css$/, loader: "css-loader!postcss-loader" }, {
