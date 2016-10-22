@@ -28,23 +28,28 @@
   }
 </script>
 <style>
-.confirm__confirm-btn,
-.confirm__cancel-btn{
-  display: inline-block;
-  font-size: 14px;
-  padding: 0 30px;
-  height: 30px;
-  border:none;
-  text-align: center;
-  border-radius: .05rem;
+.confirm{
+  &__btns{
+    font-size: 0;
+  }
+  &__confirm-btn,
+  &__cancel-btn{
+    display: inline-block;
+    font-size: 14px;
+    padding: 0 30px;
+    height: 30px;
+    border:none;
+    text-align: center;
+  }
+  &__confirm-btn{
+    margin-left: 10px;
+    background-color: #fd9809;
+    color: #fff;
+  }
+  &__cancel-btn{
+    background-color: #e8ecf0;
+    color: #333;
+  }
 }
-.confirm__confirm-btn{
-  background-color: #fd9809;
-  color: #fff;
-}
-.confirm__cancel-btn{
-  margin-right: .22rem;
-  background-color: #e8ecf0;
-  color: #333;
-}
+
 </style>

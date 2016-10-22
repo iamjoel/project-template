@@ -43,6 +43,10 @@ module.exports = {
   postcss: function () {
     return [autoprefixer, precss]
   },
+  // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
+  vue: {
+    postcss: [autoprefixer(), precss()]
+  },
   resolve: {
     alias: {
       'component': path.resolve(__dirname, 'src/component'),

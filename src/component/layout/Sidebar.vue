@@ -35,8 +35,10 @@ export default {
 }
 </script>
 
-<style>
-  .menu-list, .menu-list ul{
+<style scoped>
+  ul{
+    margin: 0;
+    padding: 0;
     list-style: none;
   }
   .menu-list ul{
