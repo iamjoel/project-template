@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start:develop-server": "node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0 --port 5000",
+    "start:develop-server": "node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0 --port 5000 --config build/webpack.dev.config.js",
     "dev": "node_modules/.bin/npm-run-all --parallel start:develop-server",
-    "build": "node_modules/.bin/webpack -p",
+    "build": "node_modules/.bin/webpack --config build/webpack.prod.conf.js -p",
     "ph-to-gh-pages": "node build/publish",
     "publish": "npm run build && npm run ph-to-gh-pages"
   },
@@ -27,9 +27,9 @@
     "babel-loader": "6.2.5",
     "babel-polyfill": "6.13.0",
     "babel-preset-es2015": "6.13.2",
+    "cross-env": "3.1.3",
     "css-loader": "0.23.1",
     "file-loader": "0.9.0",
-    "cross-env": "3.1.3",
     "gh-pages": "0.11.0",
     "html-loader": "0.4.3",
     "html-webpack-plugin": "2.24.0",
@@ -41,6 +41,7 @@
     "url-loader": "0.5.7",
     "vue-loader": "9.7.0",
     "webpack": "1.12.14",
-    "webpack-dev-server": "1.14.1"
+    "webpack-dev-server": "1.14.1",
+    "webpack-merge": "0.15.0"
   }
 }
