@@ -3,6 +3,7 @@ var path = require('path')
 var srcPrefix = './src/public/'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -11,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist', // 用异步加载模块一定要加这个
+    publicPath: '', // 用异步加载模块一定要加这个
     filename: '[name].js',
     trunkFilename: '[name].bundle.js'
   },
@@ -47,6 +48,10 @@ module.exports = {
   vue: {
     postcss: [autoprefixer(), precss()]
   },
+  plugins: [new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'index.html'
+  })],
   resolve: {
     alias: {
       'component': path.resolve(__dirname, 'src/component'),
