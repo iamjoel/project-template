@@ -20,12 +20,14 @@ var routes = [{
     lazyLoading(resolve, 'demo', true)
   },
   children: [{
+    'name': 'modal',
     'showName': '模态框',
     'path': 'component',
     'component': resolve => {
       lazyLoading(resolve, 'demo/component')
     },
   },{
+    'name': 'scss-test',
     'showName': 'SCSS 测试',
     'path': 'scss',
     'component': resolve => {

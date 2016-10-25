@@ -14,7 +14,7 @@
 </template>
 
 <script>
-var menu = require('../../router/menu')
+var menu = require('menu')
 export default {
   data() {
     return {

@@ -8,6 +8,7 @@
           <sidebar></sidebar>
         </div>
         <div class="col-sm-10">
+          <levelbar></levelbar>
           <router-view></router-view>
         </div>
       </div>
@@ -21,12 +22,14 @@ window.jQuery = require('jquery')// 给bootstrap用
 require('bootstrap')
 var Sidebar = require('component/layout/Sidebar.vue')
 var Navbar = require('component/layout/Navbar.vue')
+var Levelbar = require('component/layout/Levelbar.vue')
 
 export default {
   name: 'app',
   components: {
     Sidebar,
-    Navbar
+    Navbar,
+    Levelbar
   }
 }
 </script>

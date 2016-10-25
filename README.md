@@ -9,11 +9,15 @@
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) 2.0
+    * [vue-router](https://github.com/vuejs/vue-router) [doc](http://router.vuejs.org/zh-cn/index.html)
 * [Bootstrap](http://getbootstrap.com/) 3
 * [PostCSS](http://postcss.org/)
   * [autoprefixer](https://github.com/postcss/autoprefixer)
   * [precss](https://github.com/jonathantneal/precss)
 * [Webpack](http://webpack.github.io/)
+    * [vue-loader](http://vue-loader.vuejs.org/en/index.html)
+    * [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin) 生成HTML。[HTML Webpack Template](https://github.com/jaketrent/html-webpack-template#html-webpack-template)
+    * [extract text plugin for webpack](https://github.com/webpack/extract-text-webpack-plugin/blob/webpack-1/README.md) 将 Style 变成 独立成 link 标签。
 
 ## 参考
 * [Vue Admin](https://github.com/fundon/vue-admin)

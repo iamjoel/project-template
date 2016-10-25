@@ -1,9 +1,10 @@
 var webpack = require('webpack')
 var path = require('path')
-var srcPrefix = '../src/public/'
+var publicPrefix = '../src/public/'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+// var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -17,7 +18,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.html$/, loader: "html-loader" }, 
+      { test: /\.html$/, loader: "html-loader" },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url?limit=10000'
@@ -35,7 +36,6 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue',
         options: {
-          // vue-loader options go here
         }
       }
     ]
@@ -45,20 +45,28 @@ module.exports = {
   },
   // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
   vue: {
-    postcss: [autoprefixer(), precss()]
+    postcss: [autoprefixer(), precss()],
+    loaders: {
+      // not work http://vue-loader.vuejs.org/en/configurations/extract-css.html
+      // css: ExtractTextPlugin.extract("css")
+      // sass: ExtractTextPlugin.extract("sass!less")
+    }
   },
-  plugins: [new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: 'index.html'
-  })],
+  plugins: [
+      new HtmlWebpackPlugin({
+        title: '娱乐空间',
+        filename: 'index.html',
+        template: '!!ejs!index.html'
+      }),
+      // new ExtractTextPlugin("style.css")
+  ],
   resolve: {
     alias: {
       'component': path.resolve(__dirname, '../src/component'),
       'views': path.resolve(__dirname, '../src/views'),
-      'store': path.resolve(__dirname, `${srcPrefix}helper/store.js`),
-      'route-component': path.resolve(__dirname, `${srcPrefix}helper/route-component.js`),
       'setting': path.resolve(__dirname, '../setting.js'),
-      'language-helper': path.resolve(__dirname, `${srcPrefix}helper/language.js`)
+      'menu': path.resolve(__dirname, `../src/router/menu.js`),
+      'language-helper': path.resolve(__dirname, `${publicPrefix}helper/language.js`)
     }
   },
 }

@@ -18,7 +18,8 @@ $orange: #f60;
   color: $orange;
   .inner{
     display: block;
-    line-height: ;
+    $h1: 100px;
+    line-height: $h1/2;/*不支持...*/
     @mixin size 100px 100px;
     color: blue;
   }
