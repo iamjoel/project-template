@@ -5,7 +5,7 @@
           <router-link :to="demoMenu.path + '/' + item.path">
             <div class="jumbotron">
               <div class="container">
-                <div class="demo-name">{{item.showName}}</div>
+                <div class="demo-name">{{item.meta.showName}}</div>
               </div>
             </div>
           </router-link>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       demoMenu: menu.filter((item) => {
-        return item.name === 'demo'
+        return item.name === 'component'
       })[0]
     }
   },
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     showNav() {
-      // 是demo首页
+      // 首页
       return this.$route.matched.length === 1
     }
   }

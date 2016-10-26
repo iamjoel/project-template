@@ -4,34 +4,46 @@ const lazyLoading = (resolve, name, index = false) => {
   })
 }
 
+const CHANNEL = {
+
+}
 // 路由配置
 var routes = [{
-  'name': 'dashbord',
-  'showName': 'Dashboard',
-  'path': '/',
+  name: 'dashbord',
+  path: '/dashboard',
   'component': resolve => {
     lazyLoading(resolve, 'dashboard')
+  },
+  meta: {
+    showName: '仪表盘'
   }
 }, {
-  'name': 'demo',
-  'showName': '示例',
-  'path': '/demo',
+  name: 'component',
+  path: '/component',
   'component': resolve => {
-    lazyLoading(resolve, 'demo', true)
+    lazyLoading(resolve, 'component', true)
+  },
+  meta: {
+    showName: '组件',
+    expanded: false
   },
   children: [{
-    'name': 'modal',
-    'showName': '模态框',
-    'path': 'component',
+    name: 'modal',
+    path: 'modal',
+    meta: {
+        showName: '模态框',
+    },
     'component': resolve => {
-      lazyLoading(resolve, 'demo/component')
+      lazyLoading(resolve, 'component/modal')
     },
   },{
-    'name': 'scss-test',
-    'showName': 'SCSS 测试',
-    'path': 'scss',
+    name: 'scss-test',
+    path: 'scss',
     'component': resolve => {
-      lazyLoading(resolve, 'demo/scss')
+      lazyLoading(resolve, 'component/scss')
+    },
+    meta: {
+        showName: 'SCSS 测试',
     },
   }]
 }];

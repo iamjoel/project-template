@@ -7,7 +7,7 @@ var router = new Router({
     ...generateRoutes(require('./menu')),
     {
       path: '*',
-      redirect: '/'
+      redirect: '/dashboard'
     }
   ]
 })

@@ -26,7 +26,7 @@ export default {
 
   computed: {
     name () {
-      return this.$route.name
+      return this.$route.meta.showName
     }
   },
 
@@ -47,14 +47,14 @@ export default {
           return item.name === paths[0].name
         })[0]
         if(firstMenuInfo) {
-          paths[0].name = firstMenuInfo.showName || paths[0].name
+          paths[0].name = firstMenuInfo.meta.showName || paths[0].name
           if(paths[1] && firstMenuInfo.children) {
             let secMenuInfo
             secMenuInfo = firstMenuInfo.children.filter((item)=>{
               return item.name === paths[1].name
             })[0]
             if(secMenuInfo) {
-              paths[1].name = secMenuInfo.showName || paths[1].name
+              paths[1].name = secMenuInfo.meta.showName || paths[1].name
             }
           }
         }
@@ -81,6 +81,6 @@ export default {
     margin: 0;
   }
   .levelbar{
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 </style>
