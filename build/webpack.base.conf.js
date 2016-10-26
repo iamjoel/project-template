@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '', // 用异步加载模块一定要加这个
-    filename: '[name].js',
+    filename: '[name].[hash].js', // 服务器可以开强缓存
     trunkFilename: '[name].bundle.js'
   },
   module: {
