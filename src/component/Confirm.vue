@@ -16,10 +16,9 @@
     </alert>
   </transition>
 </template>
-  
 
 <script>
-  var Alert = require('component/Alert.vue')
+  import Alert from 'component/Alert.vue'
 
   export default {
     components: {

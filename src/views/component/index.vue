@@ -16,7 +16,7 @@
 </template>
 
 <script>
-var menu = require('menu')
+import menu from 'menu'
 export default {
   data() {
     return {

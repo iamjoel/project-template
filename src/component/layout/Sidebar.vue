@@ -18,8 +18,8 @@
 </template>
 
 <script>
-var menu = require('menu')
-var Expanding = require('component/Expanding.vue')
+import menu from 'menu'
+import Expanding from 'component/Expanding.vue'
 export default {
   data() {
     return {

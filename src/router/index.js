@@ -1,10 +1,11 @@
-var Vue = require('vue')
-var Router = require('vue-router')
+import Vue from 'vue'
+import Router from 'vue-router'
+import menu from 'menu'
 Vue.use(Router) // 路由
 
 var router = new Router({
   routes: [
-    ...generateRoutes(require('./menu')),
+    ...generateRoutes(menu),
     {
       path: '*',
       redirect: '/dashboard'

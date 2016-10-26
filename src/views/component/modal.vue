@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  var Alert = require('component/Alert.vue')
-  var Confirm = require('component/Confirm.vue')
+  import Alert from 'component/Alert.vue'
+  import Confirm from 'component/Confirm.vue'
 
   export default {
     components: {
@@ -36,6 +36,3 @@
     }
   }
 </script>
-<style>
-  
-</style>

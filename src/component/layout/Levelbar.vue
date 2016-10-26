@@ -8,8 +8,8 @@
 </template>
 
 <script>
-var Breadcrumb = require('./Breadcrumb.vue')
-var menu = require('menu')
+import Breadcrumb from './Breadcrumb.vue'
+import menu from  'menu'
 export default {
   components: {
     Breadcrumb
