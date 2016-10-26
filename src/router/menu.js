@@ -18,6 +18,26 @@ var routes = [{
     showName: '仪表盘'
   }
 }, {
+  name: 'music',
+  path: '/music',
+  'component': resolve => {
+    lazyLoading(resolve, 'music', true)
+  },
+  meta: {
+    showName: '音乐',
+    expanded: false
+  },
+  children: [{
+    name: 'modal',
+    path: 'song',
+    meta: {
+        showName: '歌曲',
+    },
+    'component': resolve => {
+      lazyLoading(resolve, 'music/song/list')
+    },
+  }]
+}, {
   name: 'component',
   path: '/component',
   'component': resolve => {

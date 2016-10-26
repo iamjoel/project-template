@@ -10,6 +10,7 @@
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) 2.0
     * [vue-router](https://github.com/vuejs/vue-router) [doc](http://router.vuejs.org/zh-cn/index.html)
+    * [vuex](https://github.com/vuejs/vuex) [doc](http://vuex.vuejs.org/en/index.html)
 * [Bootstrap](http://getbootstrap.com/) 3
 * [PostCSS](http://postcss.org/)
   * [autoprefixer](https://github.com/postcss/autoprefixer)
