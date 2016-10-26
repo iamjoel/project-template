@@ -57,3 +57,16 @@ export function isPromise (val) {
 export function assert (condition, msg) {
   if (!condition) throw new Error(`[vuex] ${msg}`)
 }
+
+export function filterList(arr, searchObj) {
+  var res = [...arr]
+  for(var key in searchObj) {
+    let value = searchObj[key]
+    if(value !== '' && res.length > 0) {
+      res = res.filter((item) => {
+        return item[key].indexOf(value) > -1
+      })
+    }
+  }
+  return res
+}

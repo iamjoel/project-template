@@ -1,7 +1,7 @@
-﻿var Vue = require('vue')
-var App = require('./App.vue')
-var router = require('./router')
-var store = require('./store')
+﻿import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
 // var VueResource = require('vue-resource')
 
 // Vue.use(VueResource) // ajax这块
