@@ -26,7 +26,7 @@ export default {
 
   computed: {
     name () {
-      return this.$route.meta.showName
+      return this.$route.meta && this.$route.meta.showName || this.$route.name
     }
   },
 
@@ -35,32 +35,9 @@ export default {
       let matched = this.$route.matched
       let first = matched[0]
       if (first && (first.name !== '首页' || first.path !== '')) {
-        matched = [{ name: '首页', path: '/' }].concat(this.formatName(matched))
+        matched = [{ name: '首页', path: '/' }].concat(matched)
       }
       this.list = matched
-    },
-    formatName (matched) {
-      let paths = [...matched]
-      if(paths[0]) {
-        let firstMenuInfo
-        firstMenuInfo = menu.filter((item)=>{
-          return item.name === paths[0].name
-        })[0]
-        if(firstMenuInfo) {
-          paths[0].name = firstMenuInfo.meta.showName || paths[0].name
-          if(paths[1] && firstMenuInfo.children) {
-            let secMenuInfo
-            secMenuInfo = firstMenuInfo.children.filter((item)=>{
-              return item.name === paths[1].name
-            })[0]
-            if(secMenuInfo) {
-              paths[1].name = secMenuInfo.meta.showName || paths[1].name
-            }
-          }
-        }
-
-      }
-      return paths
     }
   },
 

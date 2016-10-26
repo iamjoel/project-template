@@ -11,7 +11,7 @@ const CHANNEL = {
 var routes = [{
   name: 'dashbord',
   path: '/dashboard',
-  'component': resolve => {
+  component: resolve => {
     lazyLoading(resolve, 'dashboard')
   },
   meta: {
@@ -20,7 +20,7 @@ var routes = [{
 }, {
   name: 'music',
   path: '/music',
-  'component': resolve => {
+  component: resolve => {
     lazyLoading(resolve, 'music', true)
   },
   meta: {
@@ -28,19 +28,19 @@ var routes = [{
     expanded: false
   },
   children: [{
-    name: 'modal',
+    name: 'song',
     path: 'song',
     meta: {
-        showName: '歌曲',
+      showName: '歌曲',
     },
-    'component': resolve => {
+    component: resolve => {
       lazyLoading(resolve, 'music/song/list')
     },
   }]
 }, {
   name: 'component',
   path: '/component',
-  'component': resolve => {
+  component: resolve => {
     lazyLoading(resolve, 'component', true)
   },
   meta: {
@@ -51,19 +51,19 @@ var routes = [{
     name: 'modal',
     path: 'modal',
     meta: {
-        showName: '模态框',
+      showName: '模态框',
     },
-    'component': resolve => {
+    component: resolve => {
       lazyLoading(resolve, 'component/modal')
     },
   },{
     name: 'scss-test',
     path: 'scss',
-    'component': resolve => {
+    component: resolve => {
       lazyLoading(resolve, 'component/scss')
     },
     meta: {
-        showName: 'SCSS 测试',
+      showName: 'SCSS 测试',
     },
   }]
 }];
