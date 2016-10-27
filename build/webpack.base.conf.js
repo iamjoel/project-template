@@ -37,6 +37,10 @@ module.exports = {
         loader: 'vue',
         options: {
         }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
       }
     ]
   },
@@ -64,11 +68,12 @@ module.exports = {
     alias: {
       'api': path.resolve(__dirname, '../src/api'),
       'component': path.resolve(__dirname, '../src/component'),
+      'plugin': path.resolve(__dirname, '../src/plugin'),
       'views': path.resolve(__dirname, '../src/views'),
       'utils': path.resolve(__dirname, '../src/utils'),
       'setting': path.resolve(__dirname, '../setting.js'),
       'menu': path.resolve(__dirname, `../src/router/menu.js`),
-      'language-helper': path.resolve(__dirname, `${publicPrefix}helper/language.js`)
+      'i18n': path.resolve(__dirname, `../src/i18n`)
     }
   },
 }

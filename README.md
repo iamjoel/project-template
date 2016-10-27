@@ -11,6 +11,7 @@
 * [Vue](http://vuejs.org/) 2.0
     * [vue-router](https://github.com/vuejs/vue-router) [doc](http://router.vuejs.org/zh-cn/index.html)
     * [vuex](https://github.com/vuejs/vuex) [doc](http://vuex.vuejs.org/en/index.html)
+    * [vue-resource](https://github.com/vuejs/vue-resource) [doc](https://github.com/vuejs/vue-resource/tree/master/docs)
 * [Bootstrap](http://getbootstrap.com/) 3
 * [PostCSS](http://postcss.org/)
   * [autoprefixer](https://github.com/postcss/autoprefixer)
@@ -22,3 +23,4 @@
 
 ## 参考
 * [Vue Admin](https://github.com/fundon/vue-admin)
+* [vue-smart-table](https://github.com/gurghet/vue-smart-table)

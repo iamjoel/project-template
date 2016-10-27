@@ -11,43 +11,15 @@
           <a class="navbar-brand" href="#">Joy</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul id="menu" class="nav navbar-nav navbar-right">
-            
-            <!-- <li><a href="javascript:void(0);" @click="changeLan">{{lanText}}</a></li> -->
-          </ul>
+          <!-- <ul id="menu" class="nav navbar-nav navbar-right">
+            <li><a href="javascript:void(0);" @click="$changeLan('Ch')">中文</a></li>
+            <li><a href="javascript:void(0);" @click="$changeLan('En')">English</a></li>
+          </ul> -->
         </div>
       </div>
     </nav>
 </template>
 <script>
-// var languageHelper = require('language-helper')
-// var defaultLan = require('setting').language.default
-// export default {
-//   data () {
-//     return {
-//       currLanguage: defaultLan
-//     }
-//   },
-//   computed: {
-//     lanText () {
-//       return this.currLanguage === 'Ch' ? '中文' : 'English'
-//     }
-//   },
-//   methods: {
-//     lan (key) {
-//       var currLanguage = this.currLanguage
-//       return currLanguage === defaultLan ?
-//         key : (languageHelper.get(currLanguage)[key] || key)
-//     },
-//     changeLan () {
-//       if(this.currLanguage === 'Ch'){
-//         this.currLanguage = 'En'
-//       } else {
-//         this.currLanguage = 'Ch'
-//       }
-//     }
-//   }
-// }
 </script>
 
 <style scoped>

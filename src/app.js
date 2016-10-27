@@ -2,26 +2,15 @@
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// var VueResource = require('vue-resource')
 
-// Vue.use(VueResource) // ajax这块
+// ajax
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 
-// 多语言
-// var setting = require('setting')
-// var otherLans = setting.language.others
-// otherLans.forEach(function (lan) {
-//   var languageData = JSON.stringify(require('json!./language/' + lan + '.json'))
-//   localStorage.setItem('lan-' + lan, languageData)
-// })
+// 国际化 目前还有问题
+// import i18n from 'plugin/i18n'
+// Vue.use(i18n)
 
-// var Main = require('component/layout/main')
-// const app = (new Main()).$mount('#app')
-
-
-
-
-// debugger
-// 启动
 new Vue({
   el: '#app',
   router,
