@@ -31,7 +31,8 @@
   </div>
 
   <div class="result">
-    <grid :data="list" :cols="cols"></grid>
+    <grid :data="list" :cols="cols" :operates="operates" @edit="edit" @x="x">
+    </grid>
     <!-- <pager :total="" :curr="" @pageTo=""></pager> -->
   </div>
 </div>
@@ -42,22 +43,31 @@
   import SearchCondition from 'component/SearchCondition.vue'
   import Grid from 'component/Grid.vue'
 
-  const COLS = [{
+  // 结果类别
+  const cols = [{
     name: 'name',
-    label: '歌名',
+    label: '歌名'
+  },{
+    name: 'singer',
+    label: '歌手',
+    html(singer, rowData) {
+      return singer ? `<a target="_blank" href="">${singer}</a>` : singer
+    },
     click(rowData, scope) {
       console.log(rowData.name, scope.$route)
       // scope.$route 做页面跳转之类的
     }
-  },{
-    name: 'singer',
-    label: '歌手'
   },{
     name: 'url',
     label: '播放',
     html(url, rowData) {
       return url ? `<a target="_blank" href="${url}">播放</a>` : '无来源'
     }
+  }]
+  // 对数据的操作
+  const operates = ['edit', 'delete', {
+    html: `<button>自定义操作</button>`,
+    event: 'x'
   }]
   export default {
     data() {
@@ -67,7 +77,8 @@
           singer: '',
           type: ''
         },
-        cols: COLS
+        cols,
+        operates
       }
     },
     components: {
@@ -77,6 +88,12 @@
     methods: {
       search() {
         this.$store.dispatch('fetchSongList', this.searchObj)
+      },
+      edit(rowData) {
+        console.log(`${rowData.name} 被编辑`)
+      },
+      x(rowData) {
+        console.log(`${rowData.name}： 自定义操作`)
       }
     },
     computed: mapGetters({

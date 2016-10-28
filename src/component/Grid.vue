@@ -1,10 +1,15 @@
 <!-- Compile dynamic template and bind vue event listeners https://github.com/vuejs/vue/issues/3863 -->
+<!--
+代加特性
+加checkbox。全选
+ -->
 <template>
   <table class="table-grid table table-hover table-striped table-bordered table-center table-hover">
     <thead>
       <tr>
         <th>序号</th>
         <th v-for="col in cols">{{col.label}}</th>
+        <th v-if="operates.length>0">操作</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +21,12 @@
               {{item[col.name]}}
             </template>
 
+          </td>
+          <td v-if="operates.length>0">
+            <button v-if="hasEdit" @click="$emit('edit', item)">编辑</button>
+            <button v-if="hasDelete" @click="$emit('delete', item)">删除</button>
+            <span v-for="op in userDefineOperates" v-html="op.html(item)" @click="$emit(op.event, item)">
+            </span>
           </td>
         </tr>
       </tbody>
@@ -32,10 +43,29 @@
       cols: {
         type: Array,
         require: true
+      },
+      operates: {
+        default: []
       }
     },
-    created() {
-
+    computed: {
+      hasEdit() {
+        return this.operates.filter(item => item === 'edit').length > 0
+      },
+      hasDelete() {
+        return this.operates.filter(item => item === 'delete').length > 0
+      },
+      userDefineOperates() {
+        var ops =  this.operates.filter(item => typeof item === 'object' && item.html)
+        ops = ops.map(item => {
+          if(typeof item.html === 'string') {
+            var html = item.html
+            item.html = () => html
+          }
+          return item
+        })
+        return ops
+      }
     },
     methods: {
       compile(html) {
