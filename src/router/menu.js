@@ -6,8 +6,8 @@ const lazyLoading = (resolve, name, index = false) => {
 
 const CHANNEL = {
 
-}
-// 路由配置
+  }
+  // 路由配置
 var routes = [{
   name: 'dashbord',
   path: '/dashboard',
@@ -35,7 +35,17 @@ var routes = [{
     },
     component: resolve => {
       lazyLoading(resolve, 'music/song/list')
+    }
+  }, {
+    name: 'song-edit',
+    path: 'song-edit/:id',
+    meta: {
+      showName: '歌曲编辑',
+      inMenu: false
     },
+    component: resolve => {
+      lazyLoading(resolve, 'music/song/edit')
+    }
   }]
 }, {
   name: 'component',
@@ -56,7 +66,7 @@ var routes = [{
     component: resolve => {
       lazyLoading(resolve, 'component/modal')
     },
-  },{
+  }, {
     name: 'scss-test',
     path: 'scss',
     component: resolve => {

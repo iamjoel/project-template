@@ -7,7 +7,7 @@
         </div>
         <expanding  v-if="item.children && item.children.length">
           <ul v-show="item.children" class="menu-level2">
-            <li v-for="subItem in item.children">
+            <li v-for="subItem in inMenuItems(item.children)">
               <router-link :to="item.path + '/'+ subItem.path">{{subItem.meta && subItem.meta.showName || subItem.name}}</router-link>
             </li>
           </ul>
@@ -67,6 +67,15 @@ export default {
       let matched = this.$route.matched
       let lastMatched = matched[matched.length - 1]
       return lastMatched && path === lastMatched.path
+    },
+    inMenuItems(items) {
+      return items.filter(item => {
+        var res = true
+        if(item.meta && item.meta.inMenu === false) {
+          res = false
+        }
+        return res
+      })
     }
   },
   mounted () {

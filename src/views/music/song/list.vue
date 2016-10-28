@@ -3,24 +3,18 @@
   <div class="form">
     <div class="row">
       <search-condition name="歌名">
-        <slot>
-          <input class="form-control" type="text" v-model="searchObj.name">
-        </slot>
+        <input class="form-control" type="text" v-model="searchObj.name">
       </search-condition>
       <search-condition name="演唱者">
-        <slot>
-          <input class="form-control" type="text" v-model="searchObj.singer">
-        </slot>
+        <input class="form-control" type="text" v-model="searchObj.singer">
       </search-condition>
       <search-condition name="风格">
-        <slot>
-            <select v-model="searchObj.type" style="width:100%">
-              <option value="">不限</option>
-              <option value="rock">摇滚</option>
-              <option value="pop">流行</option>
-              <option value="folk">民谣</option>
-            </select>
-        </slot>
+        <select v-model="searchObj.type" style="width:100%">
+          <option value="">不限</option>
+          <option value="rock">摇滚</option>
+          <option value="pop">流行</option>
+          <option value="folk">民谣</option>
+        </select>
       </search-condition>
     </div>
   </div>
@@ -55,6 +49,7 @@
     },
     click(rowData, scope) {
       console.log(rowData.name, scope.$route)
+      scope.$route.router.go(`song/song-edit/1`)
       // scope.$route 做页面跳转之类的
     }
   },{
@@ -90,7 +85,9 @@
         this.$store.dispatch('fetchSongList', this.searchObj)
       },
       edit(rowData) {
-        console.log(`${rowData.name} 被编辑`)
+        // console.log(`${rowData.name} 被编辑`)
+        // this.$route.router.go(`song/song-edit/1`)
+        // this.$route.router.go(`song/song-edit/1`)
       },
       x(rowData) {
         console.log(`${rowData.name}： 自定义操作`)
