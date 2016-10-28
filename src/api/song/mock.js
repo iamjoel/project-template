@@ -7,7 +7,8 @@ Mock.mock(urls.fetchList , [{
   id: 1,
   name: '北京,北京',
   singer: '汪峰',
-  type: 'rock,folk'
+  type: 'rock,folk',
+  url: 'http://www.xiami.com/song/53864'
 },{
   id: 2,
   name: '绿光',

@@ -66,6 +66,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
+      'vue$': 'vue/dist/vue.js',// standalone version。 想用 complie 方法
       'api': path.resolve(__dirname, '../src/api'),
       'component': path.resolve(__dirname, '../src/component'),
       'plugin': path.resolve(__dirname, '../src/plugin'),

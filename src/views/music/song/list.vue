@@ -31,20 +31,8 @@
   </div>
 
   <div class="result">
-    <table class="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th>歌名</th>
-          <th>歌手</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in list">
-          <td>{{item.name}}</td>
-          <td>{{item.singer}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <grid :data="list" :cols="cols"></grid>
+    <!-- <pager :total="" :curr="" @pageTo=""></pager> -->
   </div>
 </div>
 </template>
@@ -52,6 +40,25 @@
 <script>
   import { mapGetters } from 'vuex'
   import SearchCondition from 'component/SearchCondition.vue'
+  import Grid from 'component/Grid.vue'
+
+  const COLS = [{
+    name: 'name',
+    label: '歌名',
+    click(rowData, scope) {
+      console.log(rowData.name, scope.$route)
+      // scope.$route 做页面跳转之类的
+    }
+  },{
+    name: 'singer',
+    label: '歌手'
+  },{
+    name: 'url',
+    label: '播放',
+    html(url, rowData) {
+      return url ? `<a target="_blank" href="${url}">播放</a>` : '无来源'
+    }
+  }]
   export default {
     data() {
       return {
@@ -59,11 +66,13 @@
           name: '',
           singer: '',
           type: ''
-        }
+        },
+        cols: COLS
       }
     },
     components: {
-      SearchCondition
+      SearchCondition,
+      Grid
     },
     methods: {
       search() {
@@ -88,5 +97,9 @@
     &-btn{
 
     }
+  }
+
+  .result{
+    margin-top: 10px;
   }
 </style>
