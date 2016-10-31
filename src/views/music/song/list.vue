@@ -25,7 +25,7 @@
   </div>
 
   <div class="result">
-    <super-grid :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @search="search"></super-grid>
+    <super-grid :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" :pager= "pager" @edit="edit" @search="search"></super-grid>
   </div>
 
 
@@ -89,8 +89,9 @@
     },
     methods: {
       search(condition) {
-        fetchList(condition).then(function (list) {
-          this.list = list
+        fetchList(condition).then(function (data) {
+          this.list = data.data
+          this.pager = data.pager
         }.bind(this))
       },
       edit(rowData) {

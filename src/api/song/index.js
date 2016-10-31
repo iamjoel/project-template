@@ -1,4 +1,4 @@
-import {filterList} from 'utils'
+
 import setting from 'setting'
 import Vue from 'vue'
 let isDebugger = true
@@ -10,8 +10,7 @@ var urls = setting.urls.song
 export const fetchList = ({searchCondition, pager}) => {
   return new Promise((resolve, reject) => {
     Vue.http.get(urls.list).then(({body})=> {
-      body = JSON.parse(body)
-      var res = filterList(body, searchCondition)
+      var res = JSON.parse(body)
       resolve(res)
     })
   })

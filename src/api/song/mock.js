@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
 import setting from 'setting'
+import {filterList} from 'utils'
 
 var urls = setting.urls.song
 var songList = [{
@@ -23,7 +24,20 @@ var songList = [{
 }, ...makeMockListData(5)]
 
 
-Mock.mock(urls.list, songList)
+Mock.mock(urls.list, ({ url }) => {
+  // var res = filterList(body, searchCondition)
+  // 拿查询条件
+  return {
+    data: songList,
+    pager: {
+      current: 1,
+      // total: songList.length / 5,
+      total: 5,
+      limit: 5
+    }
+  }
+})
+
 Mock.mock(new RegExp(`${urls.detail}\\?id=\\d+`), ({ url }) => {
   let id = /id=(\d+)/.exec(url)[1]
   return songList.filter((each) => each.id == id)[0] || {
@@ -39,7 +53,7 @@ function makeMockListData(len = 10) {
       id: Mock.mock('@integer(0)'),
       name: Mock.mock('@ctitle(1,7)'),
       singer: {
-          name: Mock.mock('@cname()'),
+        name: Mock.mock('@cname()'),
       },
       detail: Mock.mock('@cparagraph')
 
