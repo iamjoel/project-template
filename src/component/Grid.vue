@@ -70,7 +70,6 @@
     methods: {
       compile(html) {
         // html = Vue.compile(html).render()
-        // debugger
         return html
       },
       clickItem(col, item) {

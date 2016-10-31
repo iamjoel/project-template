@@ -3,13 +3,13 @@
   <div class="form">
     <div class="row">
       <search-condition name="歌名">
-        <input class="form-control" type="text" v-model="searchObj.name">
+        <input class="form-control" type="text" v-model="searchCondition.name">
       </search-condition>
       <search-condition name="演唱者">
-        <input class="form-control" type="text" v-model="searchObj.singer">
+        <input class="form-control" type="text" v-model="searchCondition.singer">
       </search-condition>
       <search-condition name="风格">
-        <select v-model="searchObj.type" style="width:100%">
+        <select v-model="searchCondition.type" style="width:100%">
           <option value="">不限</option>
           <option value="rock">摇滚</option>
           <option value="pop">流行</option>
@@ -25,10 +25,10 @@
   </div>
 
   <div class="result">
-    <grid :data="list" :cols="cols" :operates="operates" @edit="edit" @play="play">
-    </grid>
-    <pager :total="pager.total" :current="pager.current" @pageTo="pageTo"></pager>
+    <super-grid :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @search="search"></super-grid>
   </div>
+
+
 </div>
 </template>
 
@@ -37,7 +37,9 @@
   import SearchCondition from 'component/SearchCondition.vue'
   import Grid from 'component/Grid.vue'
   import Pager from 'component/Pager.vue'
+  import SuperGrid from 'component/SuperGrid.vue'
   import router from 'router'
+  import {fetchList} from 'api/song'
 
   // 结果类别
   const cols = [{
@@ -65,7 +67,7 @@
   export default {
     data() {
       return {
-        searchObj: {
+        searchCondition: {
           name: '',
           singer: '',
           type: ''
@@ -75,18 +77,21 @@
           total: 10,
           limit: 5
         },
-        cols,
-        operates
+        gridConfig: {
+          cols, operates
+        },
+        list: []
       }
     },
     components: {
       SearchCondition,
-      Grid,
-      Pager
+      SuperGrid
     },
     methods: {
-      search() {
-        this.$store.dispatch('fetchSongList', {searchCondition: this.searchObj, pager:this.pager})
+      search(condition) {
+        fetchList(condition).then(function (list) {
+          this.list = list
+        }.bind(this))
       },
       edit(rowData) {
         router.push({name: 'song-edit', params: { id: rowData.id }})
@@ -97,12 +102,6 @@
       pageTo(pageNum){
         this.pager.current = pageNum
       }
-    },
-    computed: mapGetters({
-      list: 'songList'
-    }),
-    created() {
-      this.search()
     }
   }
 </script>

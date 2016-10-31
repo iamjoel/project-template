@@ -1,16 +1,16 @@
 
 <template>
-  <nav class="pagination-wrap" :class="classList">
-  <ul class="pagination">
-    <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">首页</a></li>
-    <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(current - 1)">上一页</a></li>
+  <nav class="pagination-wrap" :class="classList" v-if="total > 1">
+    <ul class="pagination">
+      <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">首页</a></li>
+      <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(current - 1)">上一页</a></li>
 
-    <li v-for="i in shouldDisplayPages" :class="{active: current === i}">
-        <a href="javascript:void(0)" @click="pageTo(i)">{{i}}</a>
-    </li>
-    <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(current + 1)">下一页</a></li>
-    <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(total)">末页</a></li>
-  </ul>
+      <li v-for="i in shouldDisplayPages" :class="{active: current === i}">
+          <a href="javascript:void(0)" @click="pageTo(i)">{{i}}</a>
+      </li>
+      <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(current + 1)">下一页</a></li>
+      <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(total)">末页</a></li>
+    </ul>
   </nav>
 </template>
 <script>
