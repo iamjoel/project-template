@@ -7,11 +7,11 @@ isDebugger &&  require('./mock')
 
 var urls = setting.urls.song
 
-export const fetchList = (searchObj) => {
+export const fetchList = ({searchCondition, pager}) => {
   return new Promise((resolve, reject) => {
     Vue.http.get(urls.list).then(({body})=> {
       body = JSON.parse(body)
-      var res = filterList(body, searchObj)
+      var res = filterList(body, searchCondition)
       resolve(res)
     })
   })

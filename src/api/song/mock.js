@@ -20,7 +20,7 @@ var songList = [{
   },
   type: 'pop',
   detail: '绿光 的详细介绍'
-}, ...makeMockListData()]
+}, ...makeMockListData(5)]
 
 
 Mock.mock(urls.list, songList)

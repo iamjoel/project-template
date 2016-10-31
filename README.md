@@ -28,3 +28,4 @@
 * [Vue Admin](https://github.com/fundon/vue-admin)
 * [vue-smart-table](https://github.com/gurghet/vue-smart-table)
 * [Awesome Vue.js](https://github.com/vuejs/awesome-vue)
+* [vue-strap](https://github.com/yuche/vue-strap)

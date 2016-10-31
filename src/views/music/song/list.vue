@@ -27,7 +27,7 @@
   <div class="result">
     <grid :data="list" :cols="cols" :operates="operates" @edit="edit" @play="play">
     </grid>
-    <!-- <pager :total="" :curr="" @pageTo=""></pager> -->
+    <pager :total="pager.total" :current="pager.current" @pageTo="pageTo"></pager>
   </div>
 </div>
 </template>
@@ -36,6 +36,7 @@
   import { mapGetters } from 'vuex'
   import SearchCondition from 'component/SearchCondition.vue'
   import Grid from 'component/Grid.vue'
+  import Pager from 'component/Pager.vue'
   import router from 'router'
 
   // 结果类别
@@ -69,23 +70,32 @@
           singer: '',
           type: ''
         },
+        pager:{
+          current: 1,
+          total: 10,
+          limit: 5
+        },
         cols,
         operates
       }
     },
     components: {
       SearchCondition,
-      Grid
+      Grid,
+      Pager
     },
     methods: {
       search() {
-        this.$store.dispatch('fetchSongList', this.searchObj)
+        this.$store.dispatch('fetchSongList', {searchCondition: this.searchObj, pager:this.pager})
       },
       edit(rowData) {
         router.push({name: 'song-edit', params: { id: rowData.id }})
       },
       play({url}) {
         url && (location.href = url)
+      },
+      pageTo(pageNum){
+        this.pager.current = pageNum
       }
     },
     computed: mapGetters({
