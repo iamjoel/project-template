@@ -25,7 +25,7 @@
   </div>
 
   <div class="result">
-    <grid :data="list" :cols="cols" :operates="operates" @edit="edit" @x="x">
+    <grid :data="list" :cols="cols" :operates="operates" @edit="edit" @play="play">
     </grid>
     <!-- <pager :total="" :curr="" @pageTo=""></pager> -->
   </div>
@@ -36,6 +36,7 @@
   import { mapGetters } from 'vuex'
   import SearchCondition from 'component/SearchCondition.vue'
   import Grid from 'component/Grid.vue'
+  import router from 'router'
 
   // 结果类别
   const cols = [{
@@ -45,24 +46,20 @@
     name: 'singer',
     label: '歌手',
     html(singer, rowData) {
-      return singer ? `<a target="_blank" href="">${singer}</a>` : singer
+      return singer.id ? `<a target="_blank" href="javascript:void(0)">${singer.name}</a>` : singer.name
     },
-    click(rowData, scope) {
-      console.log(rowData.name, scope.$route)
-      scope.$route.router.go(`song/song-edit/1`)
-      // scope.$route 做页面跳转之类的
-    }
-  },{
-    name: 'url',
-    label: '播放',
-    html(url, rowData) {
-      return url ? `<a target="_blank" href="${url}">播放</a>` : '无来源'
+    click(rowData) {
+      if(rowData.singer.id) {
+
+      }
     }
   }]
   // 对数据的操作
   const operates = ['edit', 'delete', {
-    html: `<button>自定义操作</button>`,
-    event: 'x'
+    html(rowData) {
+      return rowData.url ? `<button>播放</button>` : ''
+    },
+    event: 'play'
   }]
   export default {
     data() {
@@ -85,12 +82,10 @@
         this.$store.dispatch('fetchSongList', this.searchObj)
       },
       edit(rowData) {
-        // console.log(`${rowData.name} 被编辑`)
-        // this.$route.router.go(`song/song-edit/1`)
-        // this.$route.router.go(`song/song-edit/1`)
+        router.push({name: 'song-edit', params: { id: rowData.id }})
       },
-      x(rowData) {
-        console.log(`${rowData.name}： 自定义操作`)
+      play({url}) {
+        url && (location.href = url)
       }
     },
     computed: mapGetters({

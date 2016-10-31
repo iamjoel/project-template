@@ -1,6 +1,6 @@
 import * as types from '../mutation-types'
 const state = {
-  list: [],
+  list: []
 }
 
 const mutations = {

@@ -28,4 +28,4 @@ function generateRoutes (menu = [], routes = []) {
 
 
 
-module.exports = router
+export default router

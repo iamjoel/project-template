@@ -1,6 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
-var publicPrefix = '../src/public/'
+const SRC = '../src'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -67,14 +67,15 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.js',// standalone version。 想用 complie 方法
-      'api': path.resolve(__dirname, '../src/api'),
-      'component': path.resolve(__dirname, '../src/component'),
-      'plugin': path.resolve(__dirname, '../src/plugin'),
-      'views': path.resolve(__dirname, '../src/views'),
-      'utils': path.resolve(__dirname, '../src/utils'),
+      'api': path.resolve(__dirname, `${SRC}/api`),
+      'router': path.resolve(__dirname, `${SRC}/router`),
+      'component': path.resolve(__dirname, `${SRC}/component`),
+      'plugin': path.resolve(__dirname, `${SRC}/plugin`),
+      'views': path.resolve(__dirname, `${SRC}/views`),
+      'utils': path.resolve(__dirname, `${SRC}/utils`),
       'setting': path.resolve(__dirname, '../setting.js'),
-      'menu': path.resolve(__dirname, `../src/router/menu.js`),
-      'i18n': path.resolve(__dirname, `../src/i18n`)
+      'menu': path.resolve(__dirname, `${SRC}/router/menu.js`),
+      'i18n': path.resolve(__dirname, `${SRC}/i18n`)
     }
   },
 }

@@ -22,7 +22,7 @@
             </template>
 
           </td>
-          <td v-if="operates.length>0">
+          <td v-if="operates.length>0" class="operate-col">
             <button v-if="hasEdit" @click="$emit('edit', item)">编辑</button>
             <button v-if="hasDelete" @click="$emit('delete', item)">删除</button>
             <span v-for="op in userDefineOperates" v-html="op.html(item)" @click="$emit(op.event, item)">
@@ -95,5 +95,10 @@
   }
   .table-grid th:first-child{
     width: 60px;
+  }
+  .operate-col{
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    text-align: left !important;
   }
 </style>

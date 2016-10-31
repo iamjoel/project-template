@@ -1,8 +1,9 @@
-const SERVER_PREFIX = '127.0.0.1:3003/api/'
+const SERVER_PREFIX = 'http://127.0.0.1:3003/api'
 export default {
   urls: {
     song: {
-      fetchList: `${SERVER_PREFIX}fetchList`
+      list: `${SERVER_PREFIX}/song/fetchList`,
+      detail: `${SERVER_PREFIX}/song/fetchDetail`
     }
   },
   language: {

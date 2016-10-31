@@ -9,10 +9,19 @@ var urls = setting.urls.song
 
 export const fetchList = (searchObj) => {
   return new Promise((resolve, reject) => {
-    Vue.http.get(urls.fetchList).then(({body})=> {
+    Vue.http.get(urls.list).then(({body})=> {
       body = JSON.parse(body)
       var res = filterList(body, searchObj)
       resolve(res)
+    })
+  })
+}
+
+export const fetchDetail = (id) => {
+  return new Promise((resolve, reject) => {
+    Vue.http.get(urls.detail, {params:{id}}).then(({body})=> {
+      body = JSON.parse(body)
+      resolve(body)
     })
   })
 }

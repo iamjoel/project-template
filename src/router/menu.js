@@ -20,6 +20,7 @@ var routes = [{
 }, {
   name: 'music',
   path: '/music',
+  // redirect: { name: 'song' },
   component: resolve => {
     lazyLoading(resolve, 'music', true)
   },
@@ -39,6 +40,7 @@ var routes = [{
   }, {
     name: 'song-edit',
     path: 'song-edit/:id',
+
     meta: {
       showName: '歌曲编辑',
       inMenu: false

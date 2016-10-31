@@ -20,9 +20,9 @@
 <script>
 window.jQuery = require('jquery')// 给bootstrap用
 require('bootstrap')
-var Sidebar = require('component/layout/Sidebar.vue')
-var Navbar = require('component/layout/Navbar.vue')
-var Levelbar = require('component/layout/Levelbar.vue')
+import Sidebar from 'component/layout/Sidebar.vue'
+import Navbar from 'component/layout/Navbar.vue'
+import Levelbar from 'component/layout/Levelbar.vue'
 
 export default {
   name: 'app',
