@@ -3,7 +3,12 @@
     <ul class="menu-list">
       <li v-for="item in menu" class="menu-level1" :class="{'has-chlidren': item.children && item.children.length, 'unfold': item.meta.expanded }">
         <div @click="toggle(item)">
-          <router-link :to="item.path" :class="{'is-active': isActive(item.path)}">{{item.meta.showName}}</router-link>
+          <template v-if="!item.redirect">
+            <router-link :to="item.path" :class="{'is-active': isActive(item.path)}">{{item.meta.showName}}</router-link>
+          </template>
+          <template v-else>
+            <a href="javascript:void(0)">{{item.meta.showName}}</a>
+          </template>
         </div>
         <expanding  v-if="item.children && item.children.length">
           <ul v-show="item.children" class="menu-level2">

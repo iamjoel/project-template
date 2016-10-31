@@ -20,7 +20,7 @@ var routes = [{
 }, {
   name: 'music',
   path: '/music',
-  // redirect: { name: 'song' },
+  redirect: { name: 'song' },
   component: resolve => {
     lazyLoading(resolve, 'music', true)
   },
