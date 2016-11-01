@@ -98,8 +98,8 @@
         this.showConfirm = false
         this.$emit('delete', this.deleteData)
       },
-      otherOpers(){
-
+      otherOpers({name, data}){
+        this.$emit(name, data)
       },
       pageTo(pageNum) {
         this.pager.current = pageNum

@@ -25,7 +25,7 @@
   </div>
 
   <div class="result">
-    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @delete="deleteIt" @search="search"></super-grid>
+    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
   </div>
 
 
