@@ -5,7 +5,7 @@
     <alert>
       <h3 slot="header">温馨提示</h3>
       <div slot="body">
-        <slot name="body"></slot>
+        <slot></slot>
       </div>
       <div slot="footer">
         <div class="confirm__btns">

@@ -1,14 +1,18 @@
 <template>
-  <div class="super-grid">
-    <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @edit="edit" @otherOpers="otherOpers">
-      </grid>
-    <pager :id="id" @updatePager="search"></pager>
+  <div>
+    <div class="super-grid">
+      <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
+        </grid>
+      <pager :id="id" @updatePager="search"></pager>
+    </div>
+    <confirm v-show="showConfirm" @close="showConfirm=false" @confirm="deleteIt">确定删除?</confirm>
   </div>
 </template>
 
 <script>
   import Grid from 'component/Grid.vue'
   import Pager from 'component/Pager.vue'
+  import Confirm from 'component/Confirm.vue'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -54,6 +58,12 @@
         type: Number
       }
     },
+    data() {
+      return {
+        showConfirm: false,
+        deleteData: {}
+      }
+    },
     computed: {
       ...mapGetters(['pagers']),
       pager() {
@@ -80,6 +90,14 @@
       edit(rowData){
         this.$emit('edit', rowData)
       },
+      showDeleteConfirm(rowData) {
+        this.showConfirm = true
+        this.deleteData = rowData
+      },
+      deleteIt(rowData){
+        this.showConfirm = false
+        this.$emit('delete', this.deleteData)
+      },
       otherOpers(){
 
       },
@@ -95,7 +113,8 @@
     },
     components: {
       Grid,
-      Pager
+      Pager,
+      Confirm
     }
 
   }

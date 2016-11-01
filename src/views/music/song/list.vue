@@ -25,7 +25,7 @@
   </div>
 
   <div class="result">
-    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @search="search"></super-grid>
+    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @delete="deleteIt" @search="search"></super-grid>
   </div>
 
 
@@ -106,6 +106,10 @@
       },
       edit(rowData) {
         router.push({name: 'song-edit', params: { id: rowData.id }})
+      },
+      deleteIt(rowData) {
+        // Just for Test
+        this.list = this.list.filter(item=> item.id !== rowData.id)
       },
       play({url}) {
         url && (location.href = url)
