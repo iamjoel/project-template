@@ -35,7 +35,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .modal-mask {
   position: fixed;
   z-index: 999;

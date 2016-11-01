@@ -25,8 +25,11 @@
   </div>
 
   <div class="result">
-    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
+    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
   </div>
+  <modal v-if="showSingerModal" title="歌手简介" @hide="showSingerModal = false" @confirm="showSingerModal = false" >
+    {{singerInfo.discribe}}
+  </modal>
 
 
 </div>
@@ -35,9 +38,8 @@
 <script>
   import { mapGetters } from 'vuex'
   import SearchCondition from 'component/SearchCondition.vue'
-  import Grid from 'component/Grid.vue'
-  import Pager from 'component/Pager.vue'
   import SuperGrid from 'component/SuperGrid.vue'
+  import Modal from 'component/Modal.vue'
   import router from 'router'
   import {fetchList} from 'api/song'
 
@@ -50,12 +52,7 @@
     name: 'singer',
     label: '歌手',
     html(singer, rowData) {
-      return singer.id ? `<a target="_blank" href="javascript:void(0)">${singer.name}</a>` : singer.name
-    },
-    click(rowData) {
-      if(rowData.singer.id) {
-
-      }
+      return singer.discribe ? `<a target="_blank" href="javascript:void(0)">${singer.name}</a>` : singer.name
     }
   }]
   // 对数据的操作
@@ -82,12 +79,15 @@
         gridConfig: {
           cols, operates
         },
-        list: []
+        list: [],
+        showSingerModal: false,
+        singerInfo: {}
       }
     },
     components: {
       SearchCondition,
-      SuperGrid
+      SuperGrid,
+      Modal
     },
     methods: {
       search(isResetPager) {
@@ -103,6 +103,14 @@
             pager: data.pager
           })
         }.bind(this))
+      },
+      clickItem({name, data}) {
+        if(name === 'col-singer'){
+           if(data.singer.discribe) {
+            this.showSingerModal = true
+            this.singerInfo = data.singer
+          }
+        }
       },
       edit(rowData) {
         router.push({name: 'song-edit', params: { id: rowData.id }})

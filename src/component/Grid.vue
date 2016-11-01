@@ -73,9 +73,10 @@
         return html
       },
       clickItem(col, item) {
-        if(typeof col.click === 'function') {
-          col.click(item, this)
-        }
+        this.$emit('clickItem', {
+          name: 'col-' + col.name,
+          data: item
+        })
       }
     }
 

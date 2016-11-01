@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="super-grid">
-      <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
+      <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @clickItem="clickItem" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
         </grid>
       <pager :id="id" @updatePager="search"></pager>
     </div>
@@ -87,6 +87,9 @@
       }
     },
     methods: {
+      clickItem(data) {
+        this.$emit('clickItem', data)
+      },
       edit(rowData){
         this.$emit('edit', rowData)
       },
