@@ -6,3 +6,7 @@ export const fetchSongList = ({ commit }, {searchCondition, pager}) => {
     commit(types.FETCH_SONG_LIST, songList)
   })
 }
+
+export const updatePager = ({ commit }, {id, pager}) => {
+  commit(types.PAGER_UPDATE, {id, pager})
+}

@@ -20,12 +20,12 @@
   </div>
   <div class="row">
     <div class="col-md-1 col-md-offset-11">
-      <button type="button" class="btn btn-primary search-btn pull-right" @click="search()">搜索</button>
+      <button type="button" class="btn btn-primary search-btn pull-right" @click="search(true)">搜索</button>
     </div>
   </div>
 
   <div class="result">
-    <super-grid :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" :pager= "pager" @edit="edit" @search="search"></super-grid>
+    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @edit="edit" @search="search"></super-grid>
   </div>
 
 
@@ -41,6 +41,7 @@
   import router from 'router'
   import {fetchList} from 'api/song'
 
+  const id = Date.now()
   // 结果类别
   const cols = [{
     name: 'name',
@@ -67,6 +68,7 @@
   export default {
     data() {
       return {
+        id: id,
         searchCondition: {
           name: '',
           singer: '',
@@ -88,10 +90,18 @@
       SuperGrid
     },
     methods: {
-      search(condition) {
-        fetchList(condition).then(function (data) {
+      search(isResetPager) {
+        var searchCondition = this.searchCondition
+        var pager = Object.assign({}, this.$store.state.pagers[this.id])
+        if(isResetPager){
+          pager.current = 1
+        }
+        fetchList({searchCondition, pager}).then(function (data) {
           this.list = data.data
-          this.pager = data.pager
+          this.$store.dispatch('updatePager', {
+            id: this.id,
+            pager: data.pager
+          })
         }.bind(this))
       },
       edit(rowData) {

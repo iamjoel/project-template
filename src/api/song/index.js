@@ -9,7 +9,7 @@ var urls = setting.urls.song
 
 export const fetchList = ({searchCondition, pager}) => {
   return new Promise((resolve, reject) => {
-    Vue.http.get(urls.list).then(({body})=> {
+    Vue.http.get(urls.list, {body:{where:searchCondition,pager}}).then(({body})=> {
       var res = JSON.parse(body)
       resolve(res)
     })

@@ -1,33 +1,30 @@
 
 <template>
-  <nav class="pagination-wrap" :class="classList" v-if="total > 1">
+  <nav class="pagination-wrap" :class="classList" v-if="pager.total > 0">
     <ul class="pagination">
-      <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">首页</a></li>
-      <li :class="{disabled: current === 1}"><a href="javascript:void(0)" @click="pageTo(current - 1)">上一页</a></li>
+      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">首页</a></li>
+      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(pager.current - 1)">上一页</a></li>
 
-      <li v-for="i in shouldDisplayPages" :class="{active: current === i}">
+      <li v-for="i in shouldDisplayPages" :class="{active: pager.current === i}">
           <a href="javascript:void(0)" @click="pageTo(i)">{{i}}</a>
       </li>
-      <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(current + 1)">下一页</a></li>
-      <li :class="{disabled: current === total}"><a href="javascript:void(0)" @click="pageTo(total)">末页</a></li>
+      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.current + 1)">下一页</a></li>
+      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.total)">末页</a></li>
     </ul>
   </nav>
 </template>
 <script>
+  const defaultPagerConfig = {total: 5, current:1, limit: 5}
+  import { mapGetters } from 'vuex'
   export default {
       props: {
+        id: {
+          required: true
+        },
         classList: {
           default() {
             return []
           }
-        },
-        total: {
-          required: true,
-          type: Number
-        },
-        current: {
-          required: true,
-          type: Number
         },
         displayPages: {
           default: 5,
@@ -39,17 +36,18 @@
           let start
           let end
           let res = []
-          if(this.total <= this.displayPages) {
+          var pager = this.pager
+          if(pager.total <= this.displayPages) {
             start = 1
-            end = this.total
+            end = pager.total
           } else {
-            start = this.current - Math.floor(this.displayPages/2)
+            start = pager.current - Math.floor(this.displayPages/2)
             if(start < 1) {
               start = 1
             }
             end = start + this.displayPages - 1
-            if(end > this.total) {
-              end = this.total
+            if(end > pager.total) {
+              end = pager.total
               start = end - this.displayPages + 1
             }
           }
@@ -58,14 +56,32 @@
             res.push(i)
           }
           return res
+        },
+        ...mapGetters(['pagers']),
+        pager() {
+          var pager = (this.pagers && this.pagers[this.id])
+          if(!pager){
+            pager = Object.assign(defaultPagerConfig)
+            this.$store.dispatch('updatePager', {
+              id: this.id,
+              pager: pager
+            })
+          }
+          return pager
         }
       },
       methods: {
         pageTo(pageNum) {
-          if(pageNum === this.current || pageNum < 1 || pageNum > this.total){
+          var pager = Object.assign({}, this.pager)
+          if(pageNum === pager.current || pageNum < 1 || pageNum > pager.total){
             return
           }
-          this.$emit('pageTo', pageNum)
+          pager.current = pageNum
+          this.$store.dispatch('updatePager', {
+            id: this.id,
+            pager: pager
+          })
+          this.$emit('updatePager')
         }
       }
   }

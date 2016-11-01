@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 import setting from 'setting'
-import {filterList} from 'utils'
+import { filterList } from 'utils'
 
 var urls = setting.urls.song
 var songList = [{
@@ -21,19 +21,29 @@ var songList = [{
   },
   type: 'pop',
   detail: '绿光 的详细介绍'
-}, ...makeMockListData(5)]
+}, ...makeMockListData(40)]
 
 
-Mock.mock(urls.list, ({ url }) => {
-  // var res = filterList(body, searchCondition)
+Mock.mock(urls.list, ({ url, body }) => {
   // 拿查询条件
+  var { where, pager } = JSON.parse(body)
+  var total
+  var res
+  if (where.name !== '' || where.singer !== '' || where.type !== '') {
+    total = Mock.mock('@integer(0, 20)')
+    res = makeMockListData(total)
+  } else {
+    res = songList
+    total = res.length
+  }
+  var start = (pager.current - 1) * pager.limit
+  var end = start + pager.limit
   return {
-    data: songList,
+    data: res.slice(start, end),
     pager: {
-      current: 1,
-      // total: songList.length / 5,
-      total: 5,
-      limit: 5
+      current: pager.current,
+      total: Math.ceil(total / pager.limit),
+      limit: pager.limit
     }
   }
 })

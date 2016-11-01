@@ -2,16 +2,20 @@
   <div class="super-grid">
     <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @edit="edit" @otherOpers="otherOpers">
       </grid>
-    <pager :total="pager.total" :current="pager.current" @pageTo="pageTo"></pager>
+    <pager :id="id" @updatePager="search"></pager>
   </div>
 </template>
 
 <script>
   import Grid from 'component/Grid.vue'
   import Pager from 'component/Pager.vue'
+  import { mapGetters } from 'vuex'
 
   export default {
     props: {
+      id: {
+        required: true
+      },
       autoSearch: {
         default: true,
         type: Boolean
@@ -37,27 +41,37 @@
         },
         type: Array
       },
-      pager:{
-        default(){
-          return {
-            current: 1,
-            total: 1,
-            limit: 5
-          }
-        },
-        type: Object
+      current: {
+        default: 1,
+        type: Number
       },
+      total: {
+        default: 0,
+        type: Number
+      },
+      limit: {
+        default: 5,
+        type: Number
+      }
     },
-    // data() {
-    //   return {
-    //     pager:{
-    //       current: 1,
-    //       total: 1,
-    //       limit: 5
-    //     }
-    //   }
-    // },
+    computed: {
+      ...mapGetters(['pagers']),
+      pager() {
+        var pagers = this.$store.state.pagers
+        var pager = (pagers && pagers[this.id]) || false
+        return pager
+      }
+    },
     created() {
+      var pager = {
+        current: this.current,
+        total: this.total,
+        limit: this.limit
+      }
+      this.$store.dispatch('updatePager', {
+        id: this.id,
+        pager: pager
+      })
       if(this.autoSearch) {
         this.search()
       }
@@ -74,9 +88,9 @@
         this.search()
       },
       search(){
-        var searchCondition = this.searchCondition
-        var pager = this.pager
-        this.$emit('search', {searchCondition, pager})
+        if(this.pager){
+          this.$emit('search')
+        }
       }
     },
     components: {
