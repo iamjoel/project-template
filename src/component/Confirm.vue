@@ -2,14 +2,14 @@
 <!-- 为了用 alert 的动画，必须copy <transition name="modal">
 ，有些撮啊 -->
   <transition name="modal">
-    <alert>
+    <alert @hide="$emit('hide')">
       <h3 slot="header">温馨提示</h3>
-      <div slot="body">
+      <div slot="">
         <slot></slot>
       </div>
       <div slot="footer">
         <div class="confirm__btns">
-          <button class="confirm__cancel-btn" @click="$emit('close')">取消</button>
+          <button class="confirm__cancel-btn" @click="$emit('hide')">取消</button>
           <button class="confirm__confirm-btn" @click="$emit('confirm')">确定</button>
         </div>
       </div>

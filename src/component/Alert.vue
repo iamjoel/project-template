@@ -1,19 +1,19 @@
 <template>
 <transition name="modal">
-  <div class="modal-mask">
+  <div class="modal-mask" @click="$emit('hide')">
     <div class="modal-wrapper">
-      <div class="modal-container" :style="{width: width}">
+      <div class="modal-container" :style="{width: width}" @click.stop="">
         <div class="modal-header">
           <h3>
             <slot name="header">温馨提示</slot>
           </h3>
         </div>
         <div class="modal-body">
-          <slot name="body"></slot>
+          <slot></slot>
         </div>
         <div class="modal-footer">
           <slot name="footer">
-            <button class="modal-default-button" @click="$emit('close')">
+            <button class="modal-default-button" @click="$emit('hide')">
               确定
             </button>
           </slot>
@@ -38,7 +38,7 @@
 <style>
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
@@ -56,6 +56,8 @@
 }
 
 .modal-container {
+  position: relative;
+  z-index: 1000;
   width: 200px;
   margin: 0px auto;
   padding: 0 10px;

@@ -5,7 +5,7 @@
         </grid>
       <pager :id="id" @updatePager="search"></pager>
     </div>
-    <confirm v-show="showConfirm" @close="showConfirm=false" @confirm="deleteIt">确定删除?</confirm>
+    <confirm v-show="showConfirm" @hide="showConfirm=false" @confirm="deleteIt">确定删除?</confirm>
   </div>
 </template>
 
