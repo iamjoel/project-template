@@ -59,7 +59,7 @@ Mock.mock(urls.list, ({ url, body }) => {
 Mock.mock(new RegExp(`${urls.detail}\\?id=\\d+`), ({ url }) => {
   let id = /id=(\d+)/.exec(url)[1]
   return songList.filter((each) => each.id == id)[0] || {
-    errMsg: 'not Found'
+    errorCode: 8
   }
 
 })

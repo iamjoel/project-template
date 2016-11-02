@@ -21,6 +21,8 @@
     * [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin) 生成HTML。[HTML Webpack Template](https://github.com/jaketrent/html-webpack-template#html-webpack-template)
     * [extract text plugin for webpack](https://github.com/webpack/extract-text-webpack-plugin/blob/webpack-1/README.md) 将 Style 变成 独立成 link 标签。
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
+* UI
+  * [toastr](https://github.com/CodeSeven/toastr)
 
 
 

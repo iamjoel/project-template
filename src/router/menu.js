@@ -23,7 +23,7 @@ var routes = [{
   },
   meta: {
     showName: '音乐',
-    expanded: false
+    expanded: true
   },
   children: [{
     name: 'song',
@@ -37,7 +37,6 @@ var routes = [{
   }, {
     name: 'song-edit',
     path: 'song-edit/:id',
-
     meta: {
       showName: '歌曲编辑',
       inMenu: false
@@ -64,6 +63,15 @@ var routes = [{
     },
     component: resolve => {
       lazyLoading(resolve, 'component/modal')
+    },
+  },{
+    name: 'ui',
+    path: 'ui',
+    meta: {
+      showName: 'UI 组件',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/ui')
     },
   }, {
     name: 'scss-test',

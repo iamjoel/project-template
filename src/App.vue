@@ -33,5 +33,7 @@ export default {
   }
 }
 </script>
+
 <style src="bootstrap/dist/css/bootstrap.min.css"></style>
+<style src="toastr/build/toastr.min.css"></style>
 

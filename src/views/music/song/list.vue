@@ -42,6 +42,7 @@
   import Modal from 'component/Modal.vue'
   import router from 'router'
   import {fetchList} from 'api/song'
+  import toastr from 'toastr'
 
   const id = Date.now()
   // 结果类别
@@ -118,6 +119,7 @@
       deleteIt(rowData) {
         // Just for Test
         this.list = this.list.filter(item=> item.id !== rowData.id)
+        toastr.success('删除成功')
       },
       play({url}) {
         url && (location.href = url)
