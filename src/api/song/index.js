@@ -10,9 +10,9 @@ import http from 'utils/http-wrap'
 
 var urls = setting.urls.song
 
-export const fetchList = ({searchCondition, pager}) => {
+export const fetchList = ({searchCondition, pager, order}) => {
   return new Promise((resolve, reject) => {
-    http.get(urls.list, {body:{where:searchCondition,pager}}).then( data => {
+    http.get(urls.list, {body:{where:searchCondition,pager,order}}).then( data => {
       resolve(data)
     })
   })

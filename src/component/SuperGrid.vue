@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="super-grid">
-      <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @clickItem="clickItem" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
+      <grid :id="id" :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @updateOrder="search" @clickItem="clickItem" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
         </grid>
       <pager :id="id" @updatePager="search"></pager>
     </div>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import Grid from 'component/Grid.vue'
   import Pager from 'component/Pager.vue'
   import Confirm from 'component/Confirm.vue'
@@ -110,7 +111,10 @@
       },
       search(){
         if(this.pager){
-          this.$emit('search')
+          // 避免创建时，因为分页和排序都变化而导致的两次search
+          Vue.nextTick(function () {
+            this.$emit('search')
+          }.bind(this))
         }
       }
     },

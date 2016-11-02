@@ -34,7 +34,7 @@ var songList = [{
 
 Mock.mock(urls.list, ({ url, body }) => {
   // 拿查询条件
-  var { where, pager } = JSON.parse(body)
+  var { where, pager, order } = JSON.parse(body)
   var total
   var res
   if (where.name !== '' || where.singer !== '' || where.type !== '') {
@@ -46,8 +46,13 @@ Mock.mock(urls.list, ({ url, body }) => {
   }
   var start = (pager.current - 1) * pager.limit
   var end = start + pager.limit
+  var data = res.slice(start, end)
+  // 模拟排序
+  if(order && order.type) {
+    data.sort((a, b) => Math.random() - 0.5)
+  }
   return {
-    data: res.slice(start, end),
+    data,
     pager: {
       current: pager.current,
       total: Math.ceil(total / pager.limit),

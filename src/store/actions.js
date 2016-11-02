@@ -10,3 +10,7 @@ export const fetchSongList = ({ commit }, {searchCondition, pager}) => {
 export const updatePager = ({ commit }, {id, pager}) => {
   commit(types.PAGER_UPDATE, {id, pager})
 }
+
+export const updateOrder = ({ commit }, {id, order}) => {
+  commit(types.ORDER_UPDATE, {id, order})
+}

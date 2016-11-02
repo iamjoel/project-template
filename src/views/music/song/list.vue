@@ -48,12 +48,26 @@
   // 结果类别
   const cols = [{
     name: 'name',
-    label: '歌名'
+    label: '歌名',
+    order: {
+      name:'name',
+    }
   },{
     name: 'singer',
     label: '歌手',
+    order: {
+      name:'singer',
+      type:'asc',// desc
+      default: true
+    },
     html(singer, rowData) {
       return singer.discribe ? `<a target="_blank" href="javascript:void(0)">${singer.name}</a>` : singer.name
+    }
+  }, {
+    name: 'type',
+    label: '风格',
+    html(type, rowData) {
+      return type
     }
   }]
   // 对数据的操作
@@ -90,18 +104,22 @@
       SuperGrid,
       Modal
     },
+    computed:{
+      ...mapGetters(['pagers', 'orders']),
+    },
     methods: {
       search(isResetPager) {
         var searchCondition = this.searchCondition
-        var pager = Object.assign({}, this.$store.state.pagers[this.id])
+        var pager = Object.assign({}, this.pagers[this.id])
         if(isResetPager){
           pager.current = 1
         }
-        fetchList({searchCondition, pager}).then(function (data) {
+        var order = this.orders[this.id]
+        fetchList({searchCondition, pager, order}).then(function (data) {
           this.list = data.data
           this.$store.dispatch('updatePager', {
             id: this.id,
-            pager: data.pager
+            pager: data.pager,
           })
         }.bind(this))
       },

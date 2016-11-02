@@ -8,19 +8,21 @@
     <thead>
       <tr>
         <th>序号</th>
-        <th v-for="col in cols">{{col.label}}</th>
+        <th v-for="col in formatedCols" @click="order(col)" :class="getOrderClass(col)">
+          {{col.label}}
+          <span class="order-icon" ></span>
+        </th>
         <th v-if="operates.length>0">操作</th>
       </tr>
     </thead>
     <tbody>
         <tr v-for="(item, index) in data">
           <td>{{index + 1}}</td>
-          <td v-for="col in cols" @click="clickItem(col, item)">
+          <td v-for="col in formatedCols" @click="clickItem(col, item)">
             <span v-if="col.html" v-html="compile(col.html(item[col.name], item))"></span>
             <template v-if="!col.html">
               {{item[col.name]}}
             </template>
-
           </td>
           <td v-if="operates.length>0" class="operate-col">
             <button v-if="hasEdit" @click="$emit('edit', item)">编辑</button>
@@ -35,8 +37,12 @@
 
 <script>
   import Vue from 'vue'
+  import { mapGetters } from 'vuex'
   export default {
     props: {
+      id: {
+        require: true
+      },
       data: {
         type: Array
       },
@@ -46,6 +52,12 @@
       },
       operates: {
         default: []
+      }
+    },
+    data() {
+      return {
+        currentOrder: false,
+        formatedCols: []
       }
     },
     computed: {
@@ -65,6 +77,32 @@
           return item
         })
         return ops
+      },
+      ...mapGetters(['orders']),
+      currentOrder() {
+        return this.orders[this.id]
+      }
+    },
+    created() {
+      var firstOrder = false
+      this.formatedCols = [...this.cols].map((item) => {
+        var each = Object.assign({}, item)
+        if(each.order && !each.order.type) {
+          each.order.type = ''
+        }
+        return each
+      })
+
+      var currentOrder;
+      var defaultOrder = this.formatedCols.filter((each) => each.order && each.order.default)[0]
+      if(defaultOrder) {
+        currentOrder = defaultOrder
+      } else {
+        currentOrder = this.formatedCols.filter((each) => each.order)[0]
+      }
+      if(currentOrder) {
+        currentOrder = currentOrder.order
+        this.notifyCurrOrderUpdate(currentOrder)
       }
     },
     methods: {
@@ -77,6 +115,54 @@
           name: 'col-' + col.name,
           data: item
         })
+      },
+      getOrderClass(col) {
+        var res
+        if(col.order) {
+          res = 'order-default'
+          if(col.order.name === this.currentOrder.name) {
+            if(['asc', 'desc'].indexOf(this.currentOrder.type) !== -1) {
+              res = 'order-' + this.currentOrder.type
+            }
+          }
+        }
+        return res
+      },
+      order(col) {
+        var scope = this
+        var currentOrder
+        if(col.order) {
+          if(col.order.name !== this.currentOrder.name) {
+            currentOrder = col.order
+          } else {
+            currentOrder = Object.assign({}, this.currentOrder)
+          }
+          // 重置为default
+          this.formatedCols = this.formatedCols.map((each) => {
+            if(each.order && each.order.name !== scope.currentOrder.name) {
+              each.order.type = ''
+            }
+            return each
+          })
+          var type = currentOrder.type
+          // asc：升序；desc：降序
+          if(type === '' || type === undefined) {
+            type = 'asc'
+          } else if(type === 'asc') {
+            type = 'desc'
+          } else if(type === 'desc') {
+            type = ''
+          }
+          currentOrder.type = type
+          this.notifyCurrOrderUpdate(currentOrder)
+        }
+      },
+      notifyCurrOrderUpdate(currentOrder){
+        this.$store.dispatch('updateOrder', {
+            id: this.id,
+            order: currentOrder
+        })
+        this.$emit('updateOrder')
       }
     }
 
@@ -100,5 +186,47 @@
     padding-left: 20px !important;
     padding-right: 20px !important;
     text-align: left !important;
+  }
+  %caret{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+  .order-asc,.order-desc,.order-default{
+    cursor: pointer;
+  }
+  .order-asc .order-icon{
+    @extend %caret;
+    position: relative;
+    top: -4px;
+    transform: rotate(180deg);
+  }
+  .order-desc .order-icon{
+    @extend %caret;
+  }
+  .order-default .order-icon{
+    position: relative;
+    display: inline-block;
+    width: 8px;
+
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      @extend %caret;
+      border-top-color: #999;
+    }
+    &:before{
+      top: -9px;
+      transform: rotate(180deg);
+    }
+    &:after{
+      top: -2px;
+    }
   }
 </style>

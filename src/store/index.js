@@ -11,7 +11,8 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-  pagers: {}
+  pagers: {},
+  orders: {}
 }
 
 export default new Vuex.Store({
