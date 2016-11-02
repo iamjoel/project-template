@@ -25,7 +25,7 @@
   </div>
 
   <div class="result">
-    <super-grid :id="id" :searchCondition="searchCondition" :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
+    <super-grid :id="id" :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
   </div>
   <modal v-if="showSingerModal" title="歌手简介" @hide="showSingerModal = false" @confirm="showSingerModal = false" >
     {{singerInfo.discribe}}

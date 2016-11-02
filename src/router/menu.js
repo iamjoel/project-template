@@ -4,10 +4,7 @@ const lazyLoading = (resolve, name, index = false) => {
   })
 }
 
-const CHANNEL = {
-
-  }
-  // 路由配置
+// 路由配置
 var routes = [{
   name: 'dashbord',
   path: '/dashboard',
@@ -21,8 +18,8 @@ var routes = [{
   name: 'music',
   path: '/music',
   redirect: { name: 'song' },
-  component: resolve => {
-    lazyLoading(resolve, 'music', true)
+  component: {
+    template: '<router-view></router-view>'
   },
   meta: {
     showName: '音乐',
