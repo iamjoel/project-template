@@ -1,11 +1,14 @@
-# 娱乐空间
+# Joy
+后台管理系统。踩框架的坑用。
+
 ## 运行
 1. `npm i`
 1. `npm run dev`
 1. 在浏览器中输入地址 `127.0.0.1:5000`
 
 ## 构建
-`npm run build`。在打开 `dist` 下的 `index.html` 看效果。
+1. `npm run build`
+1. 打开 `dist` 下的 `index.html`
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) 2.0
