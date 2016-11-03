@@ -1,5 +1,5 @@
 # Joy
-后台管理系统。踩框架的坑用。
+后台管理系统。用来踩框架的坑。
 
 ## 运行
 1. `npm i`
@@ -13,7 +13,7 @@
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) 2.0
     * [vue-router](https://github.com/vuejs/vue-router) [doc](http://router.vuejs.org/zh-cn/index.html)
-    * [vuex](https://github.com/vuejs/vuex) [doc](http://vuex.vuejs.org/en/index.html) 目前 [vue-devtools](https://github.com/vuejs/vue-devtools) 还支持 Vue 2。
+    * [vuex](https://github.com/vuejs/vuex) [doc](http://vuex.vuejs.org/en/index.html) 目前 [vue-devtools](https://github.com/vuejs/vue-devtools) 还不支持 Vue 2。
     * [vue-resource](https://github.com/vuejs/vue-resource) [doc](https://github.com/vuejs/vue-resource/tree/master/docs)
     * [vue-i18n](https://github.com/kazupon/vue-i18n) [doc](https://kazupon.github.io/vue-i18n/) 多语言；国际化
 * [Bootstrap](http://getbootstrap.com/) 3

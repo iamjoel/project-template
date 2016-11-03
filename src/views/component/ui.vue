@@ -1,5 +1,14 @@
 <template>
   <div>
+    <h3>弹出框</h3>
+    <button @click="showAlert=true">弹出 Alert框</button>
+    <alert v-if="showAlert" width="250px" @hide="showAlert = false">
+      自定义内容
+    </alert>
+    <button @click="showConfirm=true">弹出 Confirm框</button>
+    <confirm v-if="showConfirm" @hide="showConfirm = false" @confirm="confirmed()">准备好了？</confirm>
+    <button @click="showModal=true">弹出模态框</button>
+    <modal v-if="showModal" @hide="showModal = false" @confirm="modalConfirm">我是模态框~</modal>
     <h3>显示提示信息</h3>
     <button @click="showToast('success')">success</button>
     <button @click="showToast('error')">error</button>
@@ -22,12 +31,19 @@
 
 </template>
 <script>
+  import Alert from 'component/Alert.vue'
+  import Confirm from 'component/Confirm.vue'
+  import Modal from 'component/Modal.vue'
   import toastr from 'toastr'
   import Select2 from 'component/Select2.vue'
+
   var i = 0
   export default {
     data(){
       return {
+        showAlert: false,
+        showConfirm: false,
+        showModal: false,
         fruit: 'apple',
         fruits: '',
         allFruits: [
@@ -39,6 +55,14 @@
       }
     },
     methods: {
+      confirmed() {
+        console.log('confirmed!')
+        this.showConfirm = false
+      },
+      modalConfirm() {
+        console.log('modal confirmed!')
+        this.showModal = false
+      },
       showToast(type) {
         toastr[type](`${type}信息：xxx`)
       },
@@ -57,6 +81,9 @@
       }
     },
     components: {
+      Alert,
+      Confirm,
+      Modal,
       Select2
     },
   }

@@ -56,15 +56,6 @@ var routes = [{
     expanded: false
   },
   children: [{
-    name: 'modal',
-    path: 'modal',
-    meta: {
-      showName: '模态框',
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'component/modal')
-    },
-  },{
     name: 'ui',
     path: 'ui',
     meta: {
@@ -72,6 +63,15 @@ var routes = [{
     },
     component: resolve => {
       lazyLoading(resolve, 'component/ui')
+    },
+  },{
+    name: 'icon',
+    path: 'icon',
+    meta: {
+      showName: '图标',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/icon')
     },
   }, {
     name: 'scss-test',
