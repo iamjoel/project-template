@@ -7,8 +7,7 @@ export default {
     }
   },
   language: {
-    default: 'Ch', // 默认语言
-    others: ['En'] // 其他语言
+    default: 'ch' // 默认语言
   },
   errorCode: {
     7: '数据库错误',

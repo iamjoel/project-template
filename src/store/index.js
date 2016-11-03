@@ -12,7 +12,8 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   pagers: {},
-  orders: {}
+  orders: {},
+  currLan: ''
 }
 
 export default new Vuex.Store({

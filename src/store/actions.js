@@ -11,6 +11,10 @@ export const updatePager = ({ commit }, {id, pager}) => {
   commit(types.PAGER_UPDATE, {id, pager})
 }
 
+export const updateCurrLan = ({ commit }, lan) => {
+  commit(types.LANGUAGE_UPDATE, lan)
+}
+
 export const updateOrder = ({ commit }, {id, order}) => {
   commit(types.ORDER_UPDATE, {id, order})
 }

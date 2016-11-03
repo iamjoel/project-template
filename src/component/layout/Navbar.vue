@@ -8,18 +8,33 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Joy</a>
+          <a class="navbar-brand" href="#">{{ $t('title') }}</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <!-- <ul id="menu" class="nav navbar-nav navbar-right">
-            <li><a href="javascript:void(0);" @click="$changeLan('Ch')">中文</a></li>
-            <li><a href="javascript:void(0);" @click="$changeLan('En')">English</a></li>
-          </ul> -->
+          <ul id="menu" class="nav navbar-nav navbar-right">
+            <li><a href="javascript:void(0);" @click="toggleLan">语言/language: {{showLanName}}</a></li>
+          </ul>
         </div>
       </div>
     </nav>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
+export default {
+  methods: {
+    toggleLan() {
+      var nextLan = this.currLan === 'ch' ? 'en' : 'ch'
+      this.$store.dispatch('updateCurrLan', nextLan)
+    }
+  },
+  computed: {
+    ...mapGetters(['currLan']),
+    showLanName(){
+      return this.currLan === 'ch' ? 'English' : '中文'
+    }
+  }
+}
 </script>
 
 <style scoped>
