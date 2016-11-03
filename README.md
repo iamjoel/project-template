@@ -22,7 +22,8 @@
     * [extract text plugin for webpack](https://github.com/webpack/extract-text-webpack-plugin/blob/webpack-1/README.md) 将 Style 变成 独立成 link 标签。
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
 * UI
-  * [toastr](https://github.com/CodeSeven/toastr)
+  * [toastr](https://github.com/CodeSeven/toastr) 显示提示消息
+  * [select2](https://github.com/select2/select2) 下拉框
 
 
 

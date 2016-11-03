@@ -9,12 +9,8 @@
         <input class="form-control" type="text" v-model="searchCondition.singer">
       </search-condition>
       <search-condition name="风格">
-        <select v-model="searchCondition.type" style="width:100%">
-          <option value="">不限</option>
-          <option value="rock">摇滚</option>
-          <option value="pop">流行</option>
-          <option value="folk">民谣</option>
-        </select>
+        <select2 :options="musicTypes" @change="musicTypeChange">
+        </select2>
       </search-condition>
     </div>
   </div>
@@ -40,6 +36,7 @@
   import SearchCondition from 'component/SearchCondition.vue'
   import SuperGrid from 'component/SuperGrid.vue'
   import Modal from 'component/Modal.vue'
+  import Select2 from 'component/Select2.vue'
   import router from 'router'
   import {fetchList} from 'api/song'
   import toastr from 'toastr'
@@ -96,18 +93,28 @@
         },
         list: [],
         showSingerModal: false,
-        singerInfo: {}
+        singerInfo: {},
+        musicTypes: [
+          {id: '', text: '不限'},
+          {id: 'rock', text: '摇滚'},
+          {id: 'pop', text: '流行'},
+          {id: 'folk', text: '民谣'},
+        ]
       }
     },
     components: {
       SearchCondition,
       SuperGrid,
-      Modal
+      Modal,
+      Select2
     },
     computed:{
       ...mapGetters(['pagers', 'orders']),
     },
     methods: {
+      musicTypeChange(type) {
+        this.searchCondition.type = type
+      },
       search(isResetPager) {
         var searchCondition = this.searchCondition
         var pager = Object.assign({}, this.pagers[this.id])
@@ -115,7 +122,9 @@
           pager.current = 1
         }
         var order = this.orders[this.id]
-        fetchList({searchCondition, pager, order}).then(function (data) {
+        var queryObj = {searchCondition, pager, order}
+        console.log(`查询歌曲列表中...条件：${JSON.stringify(queryObj)}`)
+        fetchList(queryObj).then(function (data) {
           this.list = data.data
           this.$store.dispatch('updatePager', {
             id: this.id,

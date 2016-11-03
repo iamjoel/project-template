@@ -19,6 +19,7 @@
 
 <script>
 window.jQuery = require('jquery')// 给bootstrap用
+window.$ = window.jQuery
 require('bootstrap')
 import Sidebar from 'component/layout/Sidebar.vue'
 import Navbar from 'component/layout/Navbar.vue'
