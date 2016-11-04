@@ -14,6 +14,7 @@
   "dependencies": {
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",
+    "moment": "^2.15.2",
     "select2": "4.0.3",
     "toastr": "2.1.2",
     "vue": "2.0.3",

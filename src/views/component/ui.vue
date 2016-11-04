@@ -27,6 +27,13 @@
     </label>
     <div>选中值：{{fruits}}</div>
     <button @click="addFruit">增加下拉框选项</button>
+
+    <h3>日历选择框</h3>
+    <datepicker @change="updateDate" :value="date" :option="{timepicker:false, format: 'Y/m/d'}"></datepicker><br>
+    选中日期：{{date}}
+    <h3>时间选择框</h3>
+    <datepicker @change="updateTime" :value="time"></datepicker><br>
+    选中时间：{{time}}
   </div>
 
 </template>
@@ -36,7 +43,8 @@
   import Modal from 'component/Modal.vue'
   import toastr from 'toastr'
   import Select2 from 'component/Select2.vue'
-
+  import Datepicker from 'component/Datepicker.vue'
+  import moment from 'moment'
   var i = 0
   export default {
     data(){
@@ -52,6 +60,8 @@
           { id: 'water melon', text: '西瓜'},
           { id: 'pineapple', text: '菠萝'},
         ],
+        date: '2008-8-8',
+        time: '2016-8-8 15:30:31',
       }
     },
     methods: {
@@ -78,13 +88,20 @@
           id: 'fruit' + i,
           text: '新增水果' + i
         })
+      },
+      updateDate(val){
+        this.date = moment(val).format('YYYY-MM-DD')
+      },
+      updateTime(val){
+        this.time = moment(val).format('YYYY-MM-DD hh:mm:ss')
       }
     },
     components: {
       Alert,
       Confirm,
       Modal,
-      Select2
+      Select2,
+      Datepicker
     },
   }
 </script>
