@@ -12,6 +12,7 @@
   * 下拉框。在 [select2](https://github.com/select2/select2) 上做的封装。
   * 日期选中框。在 [datetimepicker](http://xdsoft.net/jqplugins/datetimepicker/) 上做的封装。
   * 树形控件。在 [ztree](https://github.com/select2/select2) 上做的封装。
+  * 展开合拢的渐变效果
 
 ## 运行
 1. `npm i`

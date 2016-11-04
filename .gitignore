@@ -39,3 +39,5 @@ jspm_packages
 .sass-cache
 
 dist
+
+.DS_Store

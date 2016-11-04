@@ -3,10 +3,10 @@
   <div class="form">
     <div class="row">
       <search-condition name="歌名">
-        <input class="form-control" type="text" v-model="searchCondition.name">
+        <input class="form-control" type="text" v-model.lazy.trim="searchCondition.name">
       </search-condition>
       <search-condition name="演唱者">
-        <input class="form-control" type="text" v-model="searchCondition.singer">
+        <input class="form-control" type="text" v-model.lazy.trim="searchCondition.singer">
       </search-condition>
       <search-condition name="风格">
         <select2 :options="musicTypes" @change="musicTypeChange">

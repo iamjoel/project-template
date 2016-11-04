@@ -35,14 +35,22 @@ SOFTWARE. -->
 export default {
   methods: {
     beforeEnter (el) {
+      el.style.visibility = 'hidden'
       el.classList.remove('collapse')
       el.style.display = 'block'
-      el.classList.add('collapsing')
-      el.style.height = `${el.scrollHeight}px`
+      var height = `${el.scrollHeight}px`
+      el.style.height = 0
+
+      setTimeout(()=>{
+        el.style.visibility = 'visible'
+        el.classList.add('collapsing')
+        el.style.height = height
+      }, 0)
     },
     afterEnter (el) {
       el.classList.remove('collapsing')
       el.classList.add('collapse', 'in')
+
     },
     beforeLeave (el) {
       el.classList.add('collapsing')
@@ -53,6 +61,7 @@ export default {
       el.classList.remove('collapsing')
       el.classList.add('collapse')
       el.style.display = 'none'
+      el.style.height = ''
     }
   }
 }
@@ -65,10 +74,19 @@ export default {
     display: block;
   }
 }
+
 .collapsing {
   position: relative;
   height: 0;
   overflow: hidden;
   transition: height .377s ease;
 }
+
+.cal-height{
+  display: block;
+  position: absolute;
+  visibility: hidden;
+  height: auto !important;
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <h3>弹出框</h3>
     <button @click="showAlert=true">弹出 Alert框</button>
     <alert v-if="showAlert" width="250px" @hide="showAlert = false">
@@ -38,6 +38,12 @@
     <h2>树形控件</h2>
     <tree @click="treeClick" @check="treeUpdate" @ready="treeInit"></tree>
     选中节点：{{selectedTreeNode}}
+    <h2>收起展开效果</h2>
+    <expanding> 
+      <div v-show="isExpand" class="block"></div>
+    </expanding>{{isExpand}}
+    <button @click="toggle">收起/展开</button>
+    
   </div>
 
 </template>
@@ -50,6 +56,8 @@
   import Datepicker from 'component/Datepicker.vue'
   import moment from 'moment'
   import Tree from 'component/Tree.vue'
+  import Expanding from 'component/Expanding.vue'
+
   var i = 0
   export default {
     data(){
@@ -68,7 +76,8 @@
         date: '2008-8-8',
         time: '2016-8-8 15:30:31',
         tree: {},
-        selectedTreeNode: []
+        selectedTreeNode: [],
+        isExpand: false
       }
     },
     methods: {
@@ -110,6 +119,9 @@
       },
       treeClick() {
         console.log(`treeClick ${arguments}`)
+      },
+      toggle() {
+        this.isExpand = !this.isExpand
       }
     },
     components: {
@@ -119,6 +131,17 @@
       Select2,
       Datepicker,
       Tree,
+      Expanding
     },
   }
 </script>
+<style scoped>
+  .wrap {
+    padding-bottom: 100px;
+  }
+  .block{
+    height:200px;
+    width:200px;
+    background:#f60;
+  }
+</style>

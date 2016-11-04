@@ -11,7 +11,7 @@
           </template>
         </div>
         <expanding  v-if="item.children && item.children.length">
-          <ul v-show="item.children" class="menu-level2">
+          <ul v-show="item.children && item.meta.expanded" class="menu-level2">
             <li v-for="subItem in inMenuItems(item.children)">
               <router-link :to="item.path + '/'+ subItem.path">{{subItem.meta && subItem.meta.showName || subItem.name}}</router-link>
             </li>
@@ -146,19 +146,15 @@ export default {
         transition: transform .5s ease-in;
       }
       .menu-level2{
-        display: none;
+        padding-left: 40px;
+        a{
+            padding-left: 10px;
+            margin-right: 10px;
+          }
       }
       &.unfold{
         &:after{
           transform: rotate(90deg);
-        }
-        .menu-level2{
-          display: block;
-          padding-left: 40px;
-          a{
-            padding-left: 10px;
-            margin-right: 10px;
-          }
         }
       }
     }
