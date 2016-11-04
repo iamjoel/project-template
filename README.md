@@ -1,6 +1,16 @@
 # Joy
 后台管理系统。用来踩框架的坑。
 
+## 目前支持的功能
+* 左侧导航展开，合拢；根据路由高亮项目。
+* 动态生成的面包屑。
+* 多语言。用的 [vue-i18n](https://github.com/kazupon/vue-i18n) [doc](https://kazupon.github.io/vue-i18n/)。
+* 对 Ajax 的封装。主要是用来处理通用错误。
+* UI 组件
+  * 带分页DataGrid 组件。支持排序，搜索等。
+  * 信息提示框。 用的 [toastr](https://github.com/CodeSeven/toastr)
+  * 下拉框。在 [select2](https://github.com/select2/select2) 上做的封装。
+
 ## 运行
 1. `npm i`
 1. `npm run dev`

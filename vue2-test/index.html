@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <button v-on:click="clickMe('hello', $event)">点击</button>
+    <button v-on:click="clickMe">无参数的简写</button>
+    <li v-for="(item, index) in items"> 第{{ index }}条:{{ item }}</li>
+    <span v-for="n in 10">{{ n }} </span>
+    <div :class="classArr"></div>
+    <div v-html="html"></div>
+    <!-- <img :src="src" alt=""> -->
+  </div>
+  <script src="vendor/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue.js!',
+        items: ['x', 'xx'],
+        classArr: ['a', 'b'],
+        html: '<a href="###">xxx</a>'
+        // src: 'xxxxx'
+      },
+      methods: {
+        clickMe: function(msg, event){
+          console.log(arguments)
+        },
+      }
+    });
+  </script>
+</body>
+</html>
