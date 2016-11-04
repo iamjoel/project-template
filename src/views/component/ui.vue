@@ -34,6 +34,10 @@
     <h3>时间选择框</h3>
     <datepicker @change="updateTime" :value="time"></datepicker><br>
     选中时间：{{time}}
+
+    <h2>树形控件</h2>
+    <tree @click="treeClick" @check="treeUpdate" @ready="treeInit"></tree>
+    选中节点：{{selectedTreeNode}}
   </div>
 
 </template>
@@ -45,6 +49,7 @@
   import Select2 from 'component/Select2.vue'
   import Datepicker from 'component/Datepicker.vue'
   import moment from 'moment'
+  import Tree from 'component/Tree.vue'
   var i = 0
   export default {
     data(){
@@ -62,6 +67,8 @@
         ],
         date: '2008-8-8',
         time: '2016-8-8 15:30:31',
+        tree: {},
+        selectedTreeNode: []
       }
     },
     methods: {
@@ -94,6 +101,15 @@
       },
       updateTime(val){
         this.time = moment(val).format('YYYY-MM-DD hh:mm:ss')
+      },
+      treeInit(tree){
+        this.tree = tree
+      },
+      treeUpdate() {
+        this.selectedTreeNode = this.tree.getCheckedNodes().map(each => each.name)
+      },
+      treeClick() {
+        console.log(`treeClick ${arguments}`)
       }
     },
     components: {
@@ -101,7 +117,8 @@
       Confirm,
       Modal,
       Select2,
-      Datepicker
+      Datepicker,
+      Tree,
     },
   }
 </script>

@@ -10,6 +10,8 @@
   * 带分页DataGrid 组件。支持排序，搜索等。
   * 信息提示框。 用的 [toastr](https://github.com/CodeSeven/toastr)
   * 下拉框。在 [select2](https://github.com/select2/select2) 上做的封装。
+  * 日期选中框。在 [datetimepicker](http://xdsoft.net/jqplugins/datetimepicker/) 上做的封装。
+  * 树形控件。在 [ztree](https://github.com/select2/select2) 上做的封装。
 
 ## 运行
 1. `npm i`
@@ -35,9 +37,6 @@
     * [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin) 生成HTML。[HTML Webpack Template](https://github.com/jaketrent/html-webpack-template#html-webpack-template)
     * [extract text plugin for webpack](https://github.com/webpack/extract-text-webpack-plugin/blob/webpack-1/README.md) 将 Style 变成 独立成 link 标签。
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
-* UI
-  * [toastr](https://github.com/CodeSeven/toastr) 显示提示消息
-  * [select2](https://github.com/select2/select2) 下拉框
 
 
 
