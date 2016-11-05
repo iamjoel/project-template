@@ -4,7 +4,7 @@ const SRC = '../src'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-// var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -47,22 +47,22 @@ module.exports = {
   postcss: function () {
     return [autoprefixer, precss]
   },
-  // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
   vue: {
-    postcss: [autoprefixer(), precss()],
+    postcss: [autoprefixer(), precss()],// 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
     loaders: {
-      // not work http://vue-loader.vuejs.org/en/configurations/extract-css.html
-      // css: ExtractTextPlugin.extract("css")
+      css: ExtractTextPlugin.extract("css")
       // sass: ExtractTextPlugin.extract("sass!less")
     }
   },
   plugins: [
+      new ExtractTextPlugin('style.[contenthash].css', {
+        allChunks: true // https://github.com/webpack/extract-text-webpack-plugin/issues/208
+      }),
       new HtmlWebpackPlugin({
         title: '娱乐空间',
         filename: 'index.html',
         template: '!!ejs!index.html'
       }),
-      // new ExtractTextPlugin("style.css")
   ],
   resolve: {
     alias: {
