@@ -8,7 +8,7 @@ module.exports = merge(baseWebpackConfig, {
     // 去除warning 提示
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production'
+        NODE_ENV: "'production'"// 注意这里:双引号里一定单引号
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
