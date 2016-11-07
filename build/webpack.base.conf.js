@@ -6,6 +6,9 @@ var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
+// Cannot use 'chunkhash' in webpack dev server. https://github.com/webpack/webpack/issues/2393
+var hashType = process.env.NODE_ENV === 'production' ? 'chunkhash' : 'hash'
+
 module.exports = {
   entry: {
     'app': './src/app.js'
@@ -13,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '', // 用异步加载模块一定要加这个
-    filename: '[name].[hash].js', // 服务器可以开强缓存
+    filename: `[name].[${hashType}].js`, // 服务器可以开强缓存
     trunkFilename: '[name].bundle.js'
   },
   module: {
