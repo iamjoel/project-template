@@ -10,7 +10,8 @@ var hashType = process.env.NODE_ENV === 'production' ? 'chunkhash' : 'hash'
 
 module.exports = {
   entry: {
-    'app': './src/app.js'
+    'app': './src/app.js',
+    'login': './src/login.js',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -20,12 +21,10 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.html$/, loader: "html-loader" },
-      {
+      { test: /\.html$/, loader: "html-loader" }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url?limit=10000'
-      },
-      {
+      }, {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url?limit=10000'
       },
@@ -33,35 +32,38 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
-      {
+      }, {
         test: /\.vue$/,
         loader: 'vue',
-        options: {
-        }
-      },
-      {
+        options: {}
+      }, {
         test: /\.json$/,
         loader: 'json-loader',
       }
     ]
   },
-  postcss: function () {
+  postcss: function() {
     return [autoprefixer, precss]
   },
   vue: {
-    postcss: [autoprefixer(), precss()],// 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
+    postcss: [autoprefixer(), precss()], // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
   },
   plugins: [
-      new HtmlWebpackPlugin({
-        title: '娱乐空间',
-        filename: 'index.html',
-        template: '!!ejs!index.html'
-      }),
+    new HtmlWebpackPlugin({
+      title: '管理后台',
+      filename: 'index.html',
+      template: '!!ejs!index.html',
+      excludeChunks: ['login']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: '!!ejs!login.html',
+      excludeChunks: ['app']
+    })
   ],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.js',// standalone version。 想用 complie 方法
+      'vue$': 'vue/dist/vue.js', // standalone version。 想用 complie 方法
       'api': path.resolve(__dirname, `${SRC}/api`),
       'router': path.resolve(__dirname, `${SRC}/router`),
       'component': path.resolve(__dirname, `${SRC}/component`),

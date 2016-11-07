@@ -12,6 +12,7 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul id="menu" class="nav navbar-nav navbar-right">
+            <li><a href="./login.html">登出</a></li>
             <li><a href="javascript:void(0);" @click="toggleLan">语言/language: {{showLanName}}</a></li>
           </ul>
         </div>
