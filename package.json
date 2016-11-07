@@ -17,14 +17,13 @@
     "moment": "^2.15.2",
     "select2": "4.0.3",
     "toastr": "2.1.2",
-    "vue": "2.0.3",
+    "vue": "2.0.5",
     "vue-i18n": "4.7.1",
     "vue-resource": "1.0.3",
     "vue-router": "2.0.1",
     "vuex": "2.0.0"
   },
   "devDependencies": {
-    "anywhere": "1.2.0",
     "autoprefixer": "6.4.0",
     "babel-core": "6.13.2",
     "babel-loader": "6.2.5",
@@ -47,7 +46,7 @@
     "precss": "1.4.0",
     "raw-loader": "0.5.1",
     "url-loader": "0.5.7",
-    "vue-loader": "9.7.0",
+    "vue-loader": "9.8.1",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
     "webpack-merge": "0.15.0"

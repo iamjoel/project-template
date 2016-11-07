@@ -4,7 +4,6 @@ const SRC = '../src'
 var autoprefixer = require('autoprefixer')
 var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 // Cannot use 'chunkhash' in webpack dev server. https://github.com/webpack/webpack/issues/2393
 var hashType = process.env.NODE_ENV === 'production' ? 'chunkhash' : 'hash'
@@ -52,15 +51,8 @@ module.exports = {
   },
   vue: {
     postcss: [autoprefixer(), precss()],// 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
-    loaders: {
-      css: ExtractTextPlugin.extract("css")
-      // sass: ExtractTextPlugin.extract("sass!less")
-    }
   },
   plugins: [
-      new ExtractTextPlugin('style.[contenthash].css', {
-        allChunks: true // https://github.com/webpack/extract-text-webpack-plugin/issues/208
-      }),
       new HtmlWebpackPlugin({
         title: '娱乐空间',
         filename: 'index.html',

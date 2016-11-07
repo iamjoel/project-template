@@ -4,5 +4,4 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 module.exports = merge(baseWebpackConfig, {
   devtool: 'inline-source-map',
-  // devtool: '#eval-source-map',
 })
