@@ -60,9 +60,6 @@
         }
       },
       methods: {
-        created(){
-          this
-        },
         pageTo(pageNum) {
           var pager = this.pager
           if(pageNum === pager.current || pageNum < 1 || pageNum > pager.total){
