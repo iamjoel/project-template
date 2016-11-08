@@ -21,7 +21,7 @@
   </div>
 
   <div class="result">
-    <super-grid :id="id" :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play"></super-grid>
+    <super-grid :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play" ref="grid"></super-grid>
   </div>
   <modal v-if="showSingerModal" title="歌手简介" @hide="showSingerModal = false" @confirm="showSingerModal = false" >
     {{singerInfo.discribe}}
@@ -41,7 +41,6 @@
   import {fetchList} from 'api/song'
   import toastr from 'toastr'
 
-  const id = Date.now()
   // 结果类别
   const cols = [{
     name: 'name',
@@ -77,7 +76,6 @@
   export default {
     data() {
       return {
-        id: id,
         searchCondition: {
           name: '',
           singer: '',
@@ -108,28 +106,25 @@
       Modal,
       Select2
     },
-    computed:{
-      ...mapGetters(['pagers', 'orders']),
-    },
     methods: {
       musicTypeChange(type) {
         this.searchCondition.type = type
       },
       search(isResetPager) {
+        var grid = this.$refs.grid
         var searchCondition = this.searchCondition
-        var pager = Object.assign({}, this.pagers[this.id])
+        var pager = Object.assign({}, grid.getPagerInfo())
         if(isResetPager){
           pager.current = 1
         }
-        var order = this.orders[this.id]
+
+        var order = grid.getOrder()
+        // debugger
         var queryObj = {searchCondition, pager, order}
         console.log(`查询歌曲列表中...条件：${JSON.stringify(queryObj)}`)
         fetchList(queryObj).then(function (data) {
           this.list = data.data
-          this.$store.dispatch('updatePager', {
-            id: this.id,
-            pager: data.pager,
-          })
+          grid.setPagerInfo(data.pager)
         }.bind(this))
       },
       clickItem({name, data}) {
@@ -150,9 +145,6 @@
       },
       play({url}) {
         url && (location.href = url)
-      },
-      pageTo(pageNum){
-        this.pager.current = pageNum
       }
     }
   }

@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="super-grid">
-      <grid :id="id" :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @updateOrder="search" @clickItem="clickItem" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers">
+      <grid :data="list" :cols="gridConfig.cols" :operates="gridConfig.operates" @updateOrder="search" @clickItem="clickItem" @edit="edit" @delete="showDeleteConfirm" @otherOpers="otherOpers" ref="grid">
         </grid>
-      <pager :id="id" @updatePager="search"></pager>
+      <pager @updatePager="search" ref="pager"></pager>
     </div>
     <confirm v-show="showConfirm" @hide="showConfirm=false" @confirm="deleteIt">确定删除?</confirm>
   </div>
@@ -14,13 +14,9 @@
   import Grid from 'component/Grid.vue'
   import Pager from 'component/Pager.vue'
   import Confirm from 'component/Confirm.vue'
-  import { mapGetters } from 'vuex'
 
   export default {
     props: {
-      id: {
-        required: true
-      },
       autoSearch: {
         default: true,
         type: Boolean
@@ -65,23 +61,11 @@
         deleteData: {}
       }
     },
-    computed: {
-      ...mapGetters(['pagers']),
-      pager() {
-        var pagers = this.$store.state.pagers
-        var pager = (pagers && pagers[this.id]) || false
-        return pager
-      }
-    },
-    created() {
-      var pager = {
+    mounted() {
+      this.setPagerInfo({
         current: this.current,
         total: this.total,
         limit: this.limit
-      }
-      this.$store.dispatch('updatePager', {
-        id: this.id,
-        pager: pager
       })
       if(this.autoSearch) {
         this.search()
@@ -105,18 +89,22 @@
       otherOpers({name, data}){
         this.$emit(name, data)
       },
-      pageTo(pageNum) {
-        this.pager.current = pageNum
-        this.search()
-      },
       search(){
-        if(this.pager){
-          // 避免创建时，因为分页和排序都变化而导致的两次search
-          Vue.nextTick(function () {
-            this.$emit('search')
-          }.bind(this))
-        }
+        // 避免创建时，因为分页和排序都变化而导致的两次search
+        Vue.nextTick(function () {
+          this.$emit('search')
+        }.bind(this))
+      },
+      getOrder() {
+        return this.$refs.grid.getOrder()
+      },
+      getPagerInfo() {
+        return this.$refs.pager.getPagerInfo()
+      },
+      setPagerInfo() {
+        return this.$refs.pager.setPagerInfo(...arguments)
       }
+
     },
     components: {
       Grid,

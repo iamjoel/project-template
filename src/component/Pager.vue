@@ -15,12 +15,8 @@
 </template>
 <script>
   const defaultPagerConfig = {total: 5, current:1, limit: 5}
-  import { mapGetters } from 'vuex'
   export default {
       props: {
-        id: {
-          required: true
-        },
         classList: {
           default() {
             return []
@@ -29,6 +25,11 @@
         displayPages: {
           default: 5,
           type: Number
+        }
+      },
+      data() {
+        return {
+          pager: Object.assign(defaultPagerConfig)
         }
       },
       computed: {
@@ -56,32 +57,25 @@
             res.push(i)
           }
           return res
-        },
-        ...mapGetters(['pagers']),
-        pager() {
-          var pager = (this.pagers && this.pagers[this.id])
-          if(!pager){
-            pager = Object.assign(defaultPagerConfig)
-            this.$store.dispatch('updatePager', {
-              id: this.id,
-              pager: pager
-            })
-          }
-          return pager
         }
       },
       methods: {
+        created(){
+          this
+        },
         pageTo(pageNum) {
-          var pager = Object.assign({}, this.pager)
+          var pager = this.pager
           if(pageNum === pager.current || pageNum < 1 || pageNum > pager.total){
             return
           }
           pager.current = pageNum
-          this.$store.dispatch('updatePager', {
-            id: this.id,
-            pager: pager
-          })
           this.$emit('updatePager')
+        },
+        getPagerInfo() {
+          return this.pager
+        },
+        setPagerInfo(pager){
+          this.pager = Object.assign(pager)
         }
       }
   }

@@ -37,12 +37,8 @@
 
 <script>
   import Vue from 'vue'
-  import { mapGetters } from 'vuex'
   export default {
     props: {
-      id: {
-        require: true
-      },
       data: {
         type: Array
       },
@@ -58,6 +54,13 @@
       return {
         currentOrder: false,
         formatedCols: []
+      }
+    },
+    watch: {
+      currentOrder(curr, prev) {
+        if(prev !== false) {// false 为第一次变化，不处理
+          this.$emit('updateOrder')
+        }
       }
     },
     computed: {
@@ -77,10 +80,6 @@
           return item
         })
         return ops
-      },
-      ...mapGetters(['orders']),
-      currentOrder() {
-        return this.orders[this.id]
       }
     },
     created() {
@@ -102,7 +101,7 @@
       }
       if(currentOrder) {
         currentOrder = currentOrder.order
-        this.notifyCurrOrderUpdate(currentOrder)
+        this.currentOrder = currentOrder
       }
     },
     methods: {
@@ -154,15 +153,11 @@
             type = ''
           }
           currentOrder.type = type
-          this.notifyCurrOrderUpdate(currentOrder)
+          this.currentOrder = currentOrder
         }
       },
-      notifyCurrOrderUpdate(currentOrder){
-        this.$store.dispatch('updateOrder', {
-            id: this.id,
-            order: currentOrder
-        })
-        this.$emit('updateOrder')
+      getOrder() {
+        return this.currentOrder
       }
     }
 
