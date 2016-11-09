@@ -105,7 +105,7 @@ export default {
     left: 0;
     top: 52px;
     bottom: 0;
-    width: inherit;
+    width: 16.66%;
     border-right: 1px solid #e7e7e7;
     background-color: #f8f8f8;
     padding-top: 20px;

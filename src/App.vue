@@ -1,17 +1,11 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2 sub-menu-wrap">
-          <!-- 左侧的二级菜单 -->
-          <sidebar></sidebar>
-        </div>
-        <div class="col-sm-10">
-          <levelbar></levelbar>
-          <router-view></router-view>
-        </div>
-      </div>
+    <!-- 左侧的二级菜单 -->
+    <sidebar></sidebar>
+    <div id="app-main">
+      <levelbar></levelbar>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -42,4 +36,11 @@ export default {
 
 <style src="bootstrap/dist/css/bootstrap.min.css"></style>
 <style src="toastr/build/toastr.min.css"></style>
+<style>
+  #app-main{
+    margin-left: 16.67%;
+    margin-top: 70px;
+    padding-left: 20px;
+  }
+</style>
 
