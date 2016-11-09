@@ -1,5 +1,16 @@
 <template>
   <div class="wrap">
+    <h3>按钮</h3>
+    <h4>颜色</h4>
+    <ui-button>默认按钮</ui-button>
+    <ui-button type="success">Success</ui-button>
+    <ui-button type="danger">Danger</ui-button>
+    <h4>尺寸</h4>
+    <ui-button type="success" size="large">large</ui-button>
+    <ui-button type="success" size="small">small</ui-button>
+    <h4>禁用</h4>
+    <ui-button type="success" disabled>large</ui-button>
+  
     <h3>弹出框</h3>
     <button @click="showAlert=true">弹出 Alert框</button>
     <alert v-if="showAlert" width="250px" @hide="showAlert = false">
@@ -48,6 +59,7 @@
 
 </template>
 <script>
+  import Button from 'component/Button.vue'
   import Alert from 'component/Alert.vue'
   import Confirm from 'component/Confirm.vue'
   import Modal from 'component/Modal.vue'
@@ -125,6 +137,7 @@
       }
     },
     components: {
+      uiButton: Button,
       Alert,
       Confirm,
       Modal,
