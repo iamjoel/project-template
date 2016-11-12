@@ -36,7 +36,8 @@ export default {
 
 <style src="bootstrap/dist/css/bootstrap.min.css"></style>
 <style src="toastr/build/toastr.min.css"></style>
-<style>
+<style lang="sass">
+  @import 'assets/scss/layout';
   #app-main{
     margin-left: 16.67%;
     margin-top: 70px;

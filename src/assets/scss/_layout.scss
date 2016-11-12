@@ -1,0 +1,59 @@
+$modern-browser: true;
+@if $modern-browser {
+  // http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+  .ly {
+    display: flex;
+    &--center {
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+    &--right {
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+    }
+    &--justify {
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+    &__item {
+      &--fill {
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+      }
+    }
+  }
+} @else {
+  // inspired by Kite http://hiloki.github.io/kitecss/
+  .ly {
+    display: table; // For Android: Android doesn't fill in `inline-block` gaps. `display: table;` magic fills in them.
+    width: 100%;
+    font-size: 0 !important;
+    &--center {
+      text-align: center;
+    }
+    &--right {
+      text-align: right;
+    }
+    &--justify {
+      display: block;
+      text-align: justify;
+      &:after {
+        content: '';
+        width: 100%;
+        display: inline-block;
+      }
+    }
+    &--fill>&__item {
+      display: table-cell;
+    }
+    &__item {
+      display: inline-block;
+      vertical-align: top;
+      font-size: medium;
+      /* default font size */
+      &--fill {
+        width: 100%;
+      }
+    }
+  }
+}

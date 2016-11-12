@@ -54,19 +54,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: '管理后台',
       filename: 'index.html',
-      template: '!!ejs!index.html',
+      template: '!!ejs!src/views/index.html',
       excludeChunks: ['login']
     }),
     new HtmlWebpackPlugin({
       filename: 'login.html',
-      template: '!!ejs!login.html',
+      template: '!!ejs!src/views/login.html',
       excludeChunks: ['app']
     })
   ],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.js', // standalone version。 想用 complie 方法
+      // 'vue$': 'vue/dist/vue.js', // standalone version。 想用 complie 方法
       'api': path.resolve(__dirname, `${SRC}/api`),
+      'assets': path.resolve(__dirname, `${SRC}/assets`),
       'router': path.resolve(__dirname, `${SRC}/router`),
       'component': path.resolve(__dirname, `${SRC}/component`),
       'plugin': path.resolve(__dirname, `${SRC}/plugin`),

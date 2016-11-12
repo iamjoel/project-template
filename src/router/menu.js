@@ -65,6 +65,15 @@ var routes = [{
       lazyLoading(resolve, 'component/ui')
     },
   },{
+    name: 'layout',
+    path: 'layout',
+    meta: {
+      showName: 'CSS 布局',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/layout')
+    },
+  },{
     name: 'icon',
     path: 'icon',
     meta: {
