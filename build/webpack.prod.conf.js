@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 var path = require('path')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin")
 
 module.exports = merge(baseWebpackConfig, {
   vue: {
@@ -27,18 +27,35 @@ module.exports = merge(baseWebpackConfig, {
     new ExtractTextPlugin('style.[contenthash].css', {
       allChunks: true // https://github.com/webpack/extract-text-webpack-plugin/issues/208
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   minChunks(module, count) {
-    //     // any required modules inside node_modules are extracted to vendor
-    //     return (
-    //       module.resource &&
-    //       /\.js$/.test(module.resource) &&
-    //       module.resource.indexOf(
-    //         path.join(__dirname, '../node_modules')
-    //       ) === 0
-    //     )
-    //   }
-    // })
+    new CommonsChunkPlugin({
+      name: 'setting',
+      minChunks(module, count) {
+        return extractChunk({
+          filePath: 'setting.js',
+          module,
+          count
+        })
+      }
+    }),
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module, count) {
+        return extractChunk({
+          filePath: 'node_modules',
+          module,
+          count
+        })
+      }
+    })
   ]
 })
+
+function extractChunk({ filePath, module, count }) {
+  return (
+    module.resource &&
+    /\.js$/.test(module.resource) &&
+    module.resource.indexOf(
+      path.join(__dirname, `../${filePath}`)
+    ) === 0
+  )
+}

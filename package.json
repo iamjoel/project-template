@@ -5,9 +5,10 @@
   "main": "index.html",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0 --port 5000 --config build/webpack.dev.config.js --open",
+    "clean": "node_modules/.bin/rimraf dist",
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.prod.conf.js -p",
     "ph-to-gh-pages": "node build/publish",
-    "publish": "npm run build && npm run ph-to-gh-pages"
+    "publish": "npm run clean && npm run build && npm run ph-to-gh-pages"
   },
   "author": "Joel",
   "license": "MIT",
@@ -44,6 +45,7 @@
     "npm-run-all": "1.6.0",
     "postcss-loader": "0.11.0",
     "raw-loader": "0.5.1",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "url-loader": "0.5.7",
     "vue-loader": "9.8.1",

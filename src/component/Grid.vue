@@ -164,7 +164,7 @@
   }
 </script>
 
-<style>
+<style lang="sass">
   .table-center th, .table-center td {
       text-align: center;
   }
