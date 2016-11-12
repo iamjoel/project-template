@@ -98,7 +98,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
   .menu{
     position: fixed;
     z-index: 1;

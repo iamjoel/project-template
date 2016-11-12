@@ -8,8 +8,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = merge(baseWebpackConfig, {
   vue: {
     loaders: {
-      css: ExtractTextPlugin.extract("css")
-      // sass: ExtractTextPlugin.extract("sass!less")
+      css: ExtractTextPlugin.extract("css"),
+      sass: ExtractTextPlugin.extract("css!sass")
     }
   },
   plugins: [

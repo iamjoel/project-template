@@ -73,15 +73,6 @@ var routes = [{
     component: resolve => {
       lazyLoading(resolve, 'component/icon')
     },
-  }, {
-    name: 'scss-test',
-    path: 'scss',
-    component: resolve => {
-      lazyLoading(resolve, 'component/scss')
-    },
-    meta: {
-      showName: 'SCSS 测试',
-    },
   }]
 }];
 

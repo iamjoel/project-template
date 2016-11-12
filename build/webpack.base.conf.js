@@ -2,7 +2,6 @@ var webpack = require('webpack')
 var path = require('path')
 const SRC = '../src'
 var autoprefixer = require('autoprefixer')
-var precss = require('precss')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // Cannot use 'chunkhash' in webpack dev server. https://github.com/webpack/webpack/issues/2393
@@ -28,7 +27,10 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url?limit=10000'
       },
-      { test: /\.css$/, loader: "css-loader!postcss-loader" }, {
+      { test: /\.css$/, 
+        loader: "css-loader!postcss-loader" 
+      }, 
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
@@ -43,10 +45,10 @@ module.exports = {
     ]
   },
   postcss: function() {
-    return [autoprefixer, precss]
+    return [autoprefixer]
   },
   vue: {
-    postcss: [autoprefixer(), precss()], // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
+    postcss: [autoprefixer()], // 让 vue-loader 支持 postcss。 http://vue-loader.vuejs.org/en/features/postcss.html
   },
   plugins: [
     new HtmlWebpackPlugin({
