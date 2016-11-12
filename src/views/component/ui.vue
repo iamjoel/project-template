@@ -2,7 +2,7 @@
   <div class="wrap">
     <h3>按钮</h3>
     <h4>颜色</h4>
-    <ui-button>默认按钮</ui-button>
+    <ui-button @click="clickBtn">默认按钮</ui-button>
     <ui-button type="success">Success</ui-button>
     <ui-button type="danger">Danger</ui-button>
     <h4>尺寸</h4>
@@ -134,6 +134,9 @@
       },
       toggle() {
         this.isExpand = !this.isExpand
+      },
+      clickBtn() {
+        toastr.info(`Button clicked`)
       }
     },
     components: {
