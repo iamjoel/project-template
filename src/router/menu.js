@@ -56,13 +56,76 @@ var routes = [{
     expanded: false
   },
   children: [{
-    name: 'ui',
-    path: 'ui',
+    name: 'button',
+    path: 'button',
     meta: {
-      showName: 'UI 组件',
+      showName: '按钮',
     },
     component: resolve => {
-      lazyLoading(resolve, 'component/ui')
+      lazyLoading(resolve, 'component/button')
+    },
+  },{
+    name: 'icon',
+    path: 'icon',
+    meta: {
+      showName: '图标',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/icon')
+    },
+  },{
+    name: 'select',
+    path: 'select',
+    meta: {
+      showName: '下拉框',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/select')
+    },
+  },{
+    name: 'datepicker',
+    path: 'datepicker',
+    meta: {
+      showName: '日期选择',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/datepicker')
+    },
+  },{
+    name: 'tree',
+    path: 'tree',
+    meta: {
+      showName: '树形控件',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/tree')
+    },
+  },{
+    name: 'effect',
+    path: 'effect',
+    meta: {
+      showName: '动画效果',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/effect')
+    },
+  },{
+    name: 'toast',
+    path: 'toast',
+    meta: {
+      showName: '提示信息',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/toast')
+    },
+  },{
+    name: 'popup',
+    path: 'popup',
+    meta: {
+      showName: '弹出框',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/popup')
     },
   },{
     name: 'grid',
@@ -82,16 +145,7 @@ var routes = [{
     component: resolve => {
       lazyLoading(resolve, 'component/layout')
     },
-  },{
-    name: 'icon',
-    path: 'icon',
-    meta: {
-      showName: '图标',
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'component/icon')
-    },
-  }]
+  },]
 }];
 
 module.exports = routes;
