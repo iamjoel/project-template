@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul id="menu" class="nav navbar-nav navbar-right">
-            <li><a href="./login.html">登出</a></li>
+            <li><a @click="loginout" href="javascript:void(0);">登出</a></li>
             <li><a href="javascript:void(0);" @click="toggleLan">语言/language: {{showLanName}}</a></li>
           </ul>
         </div>
@@ -21,12 +21,17 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import store from 'store'
 
 export default {
   methods: {
     toggleLan() {
       var nextLan = this.currLan === 'ch' ? 'en' : 'ch'
       this.$store.dispatch('updateCurrLan', nextLan)
+    },
+    loginout() {
+      store.remove('sessionid')
+      location.href = './login.html'
     }
   },
   computed: {

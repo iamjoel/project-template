@@ -38,6 +38,7 @@
 <script>
   import Vue from 'vue'
   export default {
+    name: 'Grid',
     props: {
       data: {
         type: Array

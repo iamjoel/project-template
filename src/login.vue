@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import store from 'store'
   export default {
     data() {
       return {
@@ -42,6 +43,7 @@
           return
         }
         if(this.userName === '1' && this.password=== '1') {
+          store.set('sessionid', Math.random())
           location.href = './'
         } else {
           this.errMsg = '错误的用户名或密码'

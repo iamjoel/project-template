@@ -19,6 +19,7 @@ import Sidebar from 'component/layout/Sidebar.vue'
 import Navbar from 'component/layout/Navbar.vue'
 import Levelbar from 'component/layout/Levelbar.vue'
 import setting from 'setting'
+import store from 'store'
 
 export default {
   name: 'app',
@@ -28,7 +29,7 @@ export default {
     Levelbar
   },
   created() {
-    var currLan = localStorage.getItem('currLan') || setting.language.default
+    var currLan = store.get('currLan') || setting.language.default
     this.$store.dispatch('updateCurrLan', currLan)
   }
 }

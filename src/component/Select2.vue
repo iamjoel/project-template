@@ -21,7 +21,6 @@
         type: Boolean
       },
     },
-    template: '#select2-template',
     mounted: function () {
       var vm = this
       var $select = $(this.$el)

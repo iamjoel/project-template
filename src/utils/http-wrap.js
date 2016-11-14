@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import toastr from 'toastr'
 import setting from 'setting'
+import store from 'store'
 
 /*
 vue-resource 的api
@@ -38,6 +39,12 @@ export default {
 
 // 为了减少复杂度，body参数要放在 options，不支持单独的参数
 function handler(method, url, options, otherOptions) {
+  var sessionid = store.get('sessionid')
+  if(!sessionid) {
+    location.href = './login.html'
+    return
+  }
+  options.body.sessionid = sessionid
   return new Promise((resolve, reject) => {
     if(['get', 'head', 'delete', 'jsonp', 'post', 'put', 'patch'].indexOf(method) === -1) {
       reject('unsuport methods')
