@@ -1,1 +1,0 @@
-webpackJsonp([4,1],{6:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a="http://127.0.0.1:3003/api";t["default"]={urls:{song:{list:a+"/song/fetchList",detail:a+"/song/fetchDetail"}},language:{"default":"ch"},errorCode:{7:"数据库错误",8:"未查到结果",101:"更新失败",102:"删除失败"}}}});
