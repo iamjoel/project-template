@@ -1,28 +1,29 @@
-$modern-browser: true;
+$modern-browser: true !default;
 @if $modern-browser {
   // http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
   .ly {
     display: flex;
     &--center {
-      -ms-flex-pack: center;
       justify-content: center;
     }
     &--right {
-      -ms-flex-pack: end;
       justify-content: flex-end;
     }
     &--justify {
-      -ms-flex-pack: justify;
       justify-content: space-between;
     }
     &__item {
       &--fill {
-        -ms-flex-positive: 1;
         flex-grow: 1;
       }
     }
+    &--middle {
+      align-items: center;
+    }
   }
-} @else {
+}
+
+@else {
   // inspired by Kite http://hiloki.github.io/kitecss/
   .ly {
     display: table; // For Android: Android doesn't fill in `inline-block` gaps. `display: table;` magic fills in them.
@@ -54,6 +55,15 @@ $modern-browser: true;
       &--fill {
         width: 100%;
       }
+    }
+    &--middle:after {
+      display: inline-block;
+      content: "";
+      height: 100%;
+      vertical-align: middle;
+    }
+    &--middle>.ly__item{
+      vertical-align: middle;
     }
   }
 }

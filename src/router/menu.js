@@ -65,6 +65,15 @@ var routes = [{
       lazyLoading(resolve, 'component/ui')
     },
   },{
+    name: 'grid',
+    path: 'grid',
+    meta: {
+      showName: '网格系统',
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'component/grid')
+    },
+  },{
     name: 'layout',
     path: 'layout',
     meta: {
