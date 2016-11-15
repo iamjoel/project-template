@@ -1,7 +1,7 @@
 <template>
   <aside class="menu">
     <ul class="menu-list">
-      <li v-for="item in menu" class="menu-level1" :class="{'has-chlidren': item.children && item.children.length, 'unfold': item.meta.expanded }">
+      <li v-for="item in menu" class="menu-level1" :class="{'has-chlidren': item.children && item.children.length, 'expand': !item.meta.expanded }">
         <div @click="toggle(item)">
           <template v-if="!item.redirect">
             <router-link :to="item.path" :class="{'is-active': isActive(item.path)}">{{item.meta.showName}}</router-link>
@@ -36,7 +36,7 @@ export default {
     Expanding
   },
   methods: {
-    shouldExpandMatchItem (route) {
+    expandMatchItem (route) {
       let matched = route.matched
       let lastMatched = matched[matched.length - 1]
       let parent = lastMatched.parent || lastMatched
@@ -86,13 +86,12 @@ export default {
   mounted () {
     let route = this.$route
     if (route.name) {
-      this.isReady = true
-      this.shouldExpandMatchItem(route)
+      this.expandMatchItem(route)
     }
   },
   watch: {
     $route (route) {
-      this.shouldExpandMatchItem(route)
+      this.expandMatchItem(route)
     }
   }
 }
@@ -143,6 +142,7 @@ export default {
         position: absolute;
         top: 0;
         right: 10px;
+        transform: rotate(90deg);
         transition: transform .5s ease-in;
       }
       .menu-level2{
@@ -152,9 +152,9 @@ export default {
             margin-right: 10px;
           }
       }
-      &.unfold{
+      &.expand{
         &:after{
-          transform: rotate(90deg);
+          transform: rotate(0);
         }
       }
     }
