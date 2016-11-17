@@ -12,7 +12,10 @@ var routes = [{
     lazyLoading(resolve, 'dashboard')
   },
   meta: {
-    showName: '仪表盘'
+    showName: {
+      ch: '仪表盘',
+      en: 'Dashboard'
+    }
   }
 }, {
   name: 'music',
@@ -22,14 +25,20 @@ var routes = [{
     template: '<router-view></router-view>'
   },
   meta: {
-    showName: '音乐',
+    showName: {
+      ch: '音乐',
+      en: 'Music'
+    },
     expanded: true
   },
   children: [{
     name: 'song',
     path: 'song',
     meta: {
-      showName: '歌曲',
+      showName: {
+        ch: '歌曲',
+        en: 'Song'
+      },
     },
     component: resolve => {
       lazyLoading(resolve, 'music/song/list')
@@ -38,7 +47,10 @@ var routes = [{
     name: 'song-edit',
     path: 'song-edit/:id',
     meta: {
-      showName: '歌曲编辑',
+      showName: {
+        ch: '歌曲编辑',
+        en: 'Edit Song'
+      },
       inMenu: false
     },
     component: resolve => {
@@ -52,14 +64,20 @@ var routes = [{
     lazyLoading(resolve, 'component', true)
   },
   meta: {
-    showName: '组件',
+    showName: {
+      ch: '组件',
+      en: 'Component'
+    },
     expanded: false
   },
   children: [{
     name: 'button',
     path: 'button',
     meta: {
-      showName: '按钮',
+      showName: {
+        ch: '按钮',
+        en: 'Button'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/button')
@@ -68,7 +86,10 @@ var routes = [{
     name: 'icon',
     path: 'icon',
     meta: {
-      showName: '图标',
+      showName: {
+        ch: '图标',
+        en: 'Icon'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/icon')
@@ -77,7 +98,10 @@ var routes = [{
     name: 'select',
     path: 'select',
     meta: {
-      showName: '下拉框',
+      showName: {
+        ch: '下拉框',
+        en: 'Select'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/select')
@@ -86,7 +110,10 @@ var routes = [{
     name: 'datepicker',
     path: 'datepicker',
     meta: {
-      showName: '日期选择',
+      showName: {
+        ch: '日期选择',
+        en: 'Date Picker'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/datepicker')
@@ -95,7 +122,10 @@ var routes = [{
     name: 'tree',
     path: 'tree',
     meta: {
-      showName: '树形控件',
+      showName: {
+        ch: '树形控件',
+        en: 'Tree'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/tree')
@@ -104,7 +134,10 @@ var routes = [{
     name: 'effect',
     path: 'effect',
     meta: {
-      showName: '动画效果',
+      showName: {
+        ch: '动画效果',
+        en: 'Anim Effect'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/effect')
@@ -113,7 +146,10 @@ var routes = [{
     name: 'toast',
     path: 'toast',
     meta: {
-      showName: '提示信息',
+      showName: {
+        ch: '提示信息',
+        en: 'Toast'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/toast')
@@ -122,7 +158,10 @@ var routes = [{
     name: 'popup',
     path: 'popup',
     meta: {
-      showName: '弹出框',
+      showName: {
+        ch: '弹出框',
+        en: 'Popup'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/popup')
@@ -131,7 +170,10 @@ var routes = [{
     name: 'grid',
     path: 'grid',
     meta: {
-      showName: '网格系统',
+      showName: {
+        ch: '网格系统',
+        en: 'Grid'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/grid')
@@ -140,7 +182,10 @@ var routes = [{
     name: 'layout',
     path: 'layout',
     meta: {
-      showName: 'CSS 布局',
+      showName: {
+        ch: 'CSS 布局',
+        en: 'CSS Layout'
+      }
     },
     component: resolve => {
       lazyLoading(resolve, 'component/layout')

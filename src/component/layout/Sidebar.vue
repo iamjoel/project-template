@@ -4,16 +4,16 @@
       <li v-for="item in menu" class="menu-level1" :class="{'has-chlidren': item.children && item.children.length, 'expand': !item.meta.expanded }">
         <div @click="toggle(item)">
           <template v-if="!item.redirect">
-            <router-link :to="item.path" :class="{'is-active': isActive(item.path)}">{{item.meta.showName}}</router-link>
+            <router-link :to="item.path" :class="{'is-active': isActive(item.path)}">{{toName(item)}}</router-link>
           </template>
           <template v-else>
-            <a href="javascript:void(0)">{{item.meta.showName}}</a>
+            <a href="javascript:void(0)">{{toName(item)}}</a>
           </template>
         </div>
         <expanding  v-if="item.children && item.children.length">
           <ul v-show="item.children && item.meta.expanded" class="menu-level2">
             <li v-for="subItem in inMenuItems(item.children)">
-              <router-link :to="item.path + '/'+ subItem.path">{{subItem.meta && subItem.meta.showName || subItem.name}}</router-link>
+              <router-link :to="item.path + '/'+ subItem.path">{{toName(subItem)}}</router-link>
             </li>
           </ul>
         </expanding>
@@ -25,12 +25,17 @@
 <script>
 import menu from 'menu'
 import Expanding from 'component/Expanding.vue'
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       menu,
       subMenu: []
     }
+  },
+  computed: {
+    ...mapGetters(['currLan']),
   },
   components: {
     Expanding
@@ -81,6 +86,12 @@ export default {
         }
         return res
       })
+    },
+    toName(item) {
+      if(item.meta && item.meta.showName) {
+        return this.$options.filters.toI18nName(item.meta.showName, this.currLan)
+      }
+      return item.name
     }
   },
   mounted () {
