@@ -2,14 +2,14 @@
 <template>
   <nav class="pagination-wrap" :class="classList" v-if="pager.total > 0">
     <ul class="pagination">
-      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">首页</a></li>
-      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(pager.current - 1)">上一页</a></li>
+      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(1)">{{$t('first')}}</a></li>
+      <li :class="{disabled: pager.current === 1}"><a href="javascript:void(0)" @click="pageTo(pager.current - 1)">{{$t('prev')}}</a></li>
 
       <li v-for="i in shouldDisplayPages" :class="{active: pager.current === i}">
           <a href="javascript:void(0)" @click="pageTo(i)">{{i}}</a>
       </li>
-      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.current + 1)">下一页</a></li>
-      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.total)">末页</a></li>
+      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.current + 1)">{{$t('next')}}</a></li>
+      <li :class="{disabled: pager.current === pager.total}"><a href="javascript:void(0)" @click="pageTo(pager.total)">{{$t('last')}}</a></li>
     </ul>
   </nav>
 </template>
@@ -72,8 +72,15 @@
           return this.pager
         },
         setPagerInfo(pager){
-          this.pager = Object.assign(pager)
+          if(!pager.limit) {
+            delete pager.limit
+          }
+          this.pager = Object.assign({}, defaultPagerConfig, pager)
         }
+      },
+      locales: {
+        ch:{first: '首 页', prev: '上一页', last: '末 页', next:'下一页'},
+        en:{first: 'First', prev: 'Prev', last: 'Last', next:'Next'}
       }
   }
 </script>

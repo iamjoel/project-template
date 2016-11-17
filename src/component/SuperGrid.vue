@@ -51,7 +51,6 @@
         type: Number
       },
       limit: {
-        default: 5,
         type: Number
       }
     },

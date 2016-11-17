@@ -44,13 +44,19 @@
   // 结果类别
   const cols = [{
     name: 'name',
-    label: '歌名',
+    label: {
+      ch: '歌名',
+      en: 'Song Name'
+    },
     order: {
       name:'name',
     }
   },{
     name: 'singer',
-    label: '歌手',
+    label: {
+      ch: '歌手',
+      en: 'Singer'
+    },
     order: {
       name:'singer',
       type:'asc',// desc
@@ -61,7 +67,10 @@
     }
   }, {
     name: 'type',
-    label: '风格',
+    label: {
+      ch: '风格',
+      en: 'Style'
+    },
     html(type, rowData) {
       return type
     }

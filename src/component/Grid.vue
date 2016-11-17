@@ -7,12 +7,12 @@
   <table class="table-grid table table-hover table-striped table-bordered table-center table-hover">
     <thead>
       <tr>
-        <th>序号</th>
+        <th>{{$t('index')}}</th>
         <th v-for="col in formatedCols" @click="order(col)" :class="getOrderClass(col)">
-          {{col.label}}
+          {{toLabelName(col.label)}}
           <span class="order-icon" ></span>
         </th>
-        <th v-if="operates.length>0">操作</th>
+        <th v-if="operates.length>0">{{$t('operate')}}</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +37,8 @@
 
 <script>
   import Vue from 'vue'
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'Grid',
     props: {
@@ -65,6 +67,7 @@
       }
     },
     computed: {
+      ...mapGetters(['currLan']),
       hasEdit() {
         return this.operates.filter(item => item === 'edit').length > 0
       },
@@ -159,7 +162,18 @@
       },
       getOrder() {
         return this.currentOrder
+      },
+      toLabelName(label) {
+        if(typeof label === 'object') {
+          return label[this.currLan]
+        } else {
+          return label
+        }
       }
+    },
+    locales: {
+      ch:{index: '序号', operate: '操作'},
+      en:{index: 'Index', operate: 'Operate'}
     }
 
   }
