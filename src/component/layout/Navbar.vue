@@ -12,22 +12,38 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul id="menu" class="nav navbar-nav navbar-right">
-            <li><a @click="loginout" href="javascript:void(0);">登出</a></li>
-            <li><a href="javascript:void(0);" @click="toggleLan">语言/language: {{showLanName}}</a></li>
+            <li><a @click="loginout" href="javascript:void(0);">{{$t('loginout')}}</a></li>
+            <li class="lan-wrap"><a href="javascript:void(0);" @click="showChooseLan = true">{{showLanName}}<span class="caret"></span></a>
+              <expanding>
+                <ul class="dropdown-menu" v-show="showChooseLan">
+                  <li><a href="javascript:;" @click="updateLan('ch')">中文</a></li>
+                  <li><a href="javascript:;" @click="updateLan('en')">English</a></li>
+                </ul>
+              </expanding>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 </template>
 <script>
+import Expanding from 'component/Expanding.vue'
 import { mapGetters } from 'vuex'
 import store from 'store'
 
 export default {
+  data() {
+    return {
+      showChooseLan: false
+    }
+  },
+  components: {
+    Expanding
+  },
   methods: {
-    toggleLan() {
-      var nextLan = this.currLan === 'ch' ? 'en' : 'ch'
-      this.$store.dispatch('updateCurrLan', nextLan)
+    updateLan(lan) {
+      this.$store.dispatch('updateCurrLan', lan)
+      this.showChooseLan = false
     },
     loginout() {
       store.remove('sessionid')
@@ -37,13 +53,17 @@ export default {
   computed: {
     ...mapGetters(['currLan']),
     showLanName(){
-      return this.currLan === 'ch' ? 'English' : '中文'
+      return this.currLan === 'ch' ? '中文' : 'English'
     }
+  },
+  locales: {
+    ch: {loginout: '登出'},
+    en: {loginout: 'Login out'},
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
 .navbar{
   position: fixed;
   top: 0;
@@ -52,5 +72,8 @@ export default {
   border-radius: 0;
   margin-bottom: 0;
   box-shadow: 0 1px 0 hsla(0,0%,86%,.3);
+}
+.dropdown-menu{
+  display: block;
 }
 </style>

@@ -35,6 +35,7 @@ SOFTWARE. -->
 export default {
   methods: {
     beforeEnter (el) {
+      el.style.overflow = 'hidden'
       el.style.visibility = 'hidden'
       el.classList.remove('collapse')
       el.style.display = 'block'
@@ -76,17 +77,10 @@ export default {
 }
 
 .collapsing {
-  position: relative;
   height: 0;
   overflow: hidden;
   transition: height .377s ease;
 }
 
-.cal-height{
-  display: block;
-  position: absolute;
-  visibility: hidden;
-  height: auto !important;
-}
 
 </style>

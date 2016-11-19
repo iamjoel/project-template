@@ -42,7 +42,7 @@ export default {
   #app-main{
     margin-left: 16.67%;
     margin-top: 70px;
-    padding-left: 20px;
+    padding: 0 20px;
   }
 </style>
 
