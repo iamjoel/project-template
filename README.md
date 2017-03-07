@@ -45,5 +45,6 @@
 ## 参考
 * [Vue Admin](https://github.com/fundon/vue-admin)
 * [vue-smart-table](https://github.com/gurghet/vue-smart-table)
+* [element](https://github.com/ElemeFE) 饿了么做的。
 * [Awesome Vue.js](https://github.com/vuejs/awesome-vue)
 * [vue-strap](https://github.com/yuche/vue-strap)
