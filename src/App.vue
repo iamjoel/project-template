@@ -1,48 +1,64 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-    <!-- 左侧的二级菜单 -->
-    <sidebar></sidebar>
-    <div id="app-main">
-      <levelbar></levelbar>
-      <router-view></router-view>
-    </div>
+    <j-topbar v-if="!isMainFillAll"></j-topbar>
+    <el-row :gutter="20">
+      <el-col :span="4" v-if="!isMainFillAll">
+        <j-siderbar :menu="menu"></j-siderbar>
+      </el-col>
+      <el-col :span="isMainFillAll ? 24 : 20">
+        <j-breadcrumb :menu="menu" v-if="!isMainFillAll"></j-breadcrumb>
+        <router-view id="main-content"></router-view>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
-
 <script>
-window.jQuery = require('jquery')// 给bootstrap用
-window.$ = window.jQuery
-require('bootstrap')
-import Sidebar from 'component/layout/Sidebar.vue'
-import Navbar from 'component/layout/Navbar.vue'
-import Levelbar from 'component/layout/Levelbar.vue'
-import setting from 'setting'
-import store from 'store'
+import Sidebar from '@/components/siderbar'
+import Topbar from '@/components/topbar'
+import Breadcrumb from '@/components/breadcrumb'
+// require('@/assets/assets/utils/ajax') // 对ajax 加拦截器
+import Mock from 'mockjs'
+var Random = Mock.Random
+
 
 export default {
   name: 'app',
   components: {
-    Sidebar,
-    Navbar,
-    Levelbar
+    'j-siderbar': Sidebar,
+    'j-topbar': Topbar,
+    'j-breadcrumb': Breadcrumb,
   },
-  created() {
-    var currLan = store.get('currLan') || setting.language.default
-    this.$store.dispatch('updateCurrLan', currLan)
+  data() {
+    return {
+      isMainFillAll: false,
+      menu: [{
+        "innerid": Random.guid(),
+        "name": "音乐",
+        "icon": 'message',
+        children: [{
+            "innerid": Random.guid(),
+            "name": "歌曲",
+            path: 'music/song/list',
+        },]
+      }]
+    }
+  },
+  watch: {
+    // 登录页，
+    '$router.path': function () {
+      if(this.$router.path === '/login') {
+        this.isMainFillAll = true
+      } else {
+        this.isMainFillAll = false
+      }
+    }
+  },
+  mounted() {
+
   }
 }
 </script>
 
-<style src="bootstrap/dist/css/bootstrap.min.css"></style>
-<style src="toastr/build/toastr.min.css"></style>
-<style lang="sass">
-  @import 'assets/scss/layout';
-  #app-main{
-    margin-left: 16.67%;
-    margin-top: 70px;
-    padding: 0 20px;
-  }
+<style>
 </style>
-

@@ -1,176 +1,74 @@
 <template>
-<div class="search">
-  <div class="form">
-    <div class="row">
-      <search-condition name="歌名">
-        <input class="form-control" type="text" v-model.lazy.trim="searchCondition.name">
-      </search-condition>
-      <search-condition name="演唱者">
-        <input class="form-control" type="text" v-model.lazy.trim="searchCondition.singer">
-      </search-condition>
-      <search-condition name="风格">
-        <select2 :options="musicTypes" @change="musicTypeChange">
-        </select2>
-      </search-condition>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-1 col-md-offset-11">
-      <button type="button" class="btn btn-primary search-btn pull-right" @click="search(true)">搜索</button>
-    </div>
-  </div>
+<div class="main">
+  <!-- 员工列表 -->
+  <sc-search-condition @search="search">
+    <sc-edit-item
+    label="歌曲名称">
+      <el-input v-model="searchConditions.name"></el-input>
+    </sc-edit-item>
+    <sc-edit-item
+    label="歌手">
+      <el-input v-model="searchConditions.singer"></el-input>
+    </sc-edit-item>
+  </sc-search-condition>
 
-  <div class="result">
-    <super-grid :gridConfig="gridConfig" :list="list" @clickItem="clickItem" @edit="edit" @delete="deleteIt" @search="search" @play="play" ref="grid"></super-grid>
-  </div>
-  <modal v-if="showSingerModal" title="歌手简介" @hide="showSingerModal = false" @confirm="showSingerModal = false" >
-    {{singerInfo.discribe}}
-  </modal>
+  <el-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span style="line-height: 30px;">帐号列表</span>
+      <el-button type="success" icon="plus" style="float:right" @click="$router.push('/hr/account/update/-1')">新增</el-button>
+    </div>
 
+    <el-table
+      :data="tableData"
+      border
+      stripe>
+      <el-table-column
+        type="index"
+        label="序列"
+        align="center"
+        width="80">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="歌曲名称"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="singer"
+        label="歌手"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="op"
+        label="操作"
+        width="350"
+        >
+        <template scope="scope">
+          <el-button type="info" size="small" @click="$router.push('/music/song/update/' + scope.row.id)" v-if="isShowEdit('user')">编辑</el-button>
+          <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShowDelete('user')">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-row type="flex" justify="end">
+      <el-pagination
+          @current-change="handleCurrentChange"
+          :current-page="pager.current"
+          :page-size="10"
+          layout="total, prev, pager, next, jumper"
+          :total="pager.total"
+          class="right">
+        </el-pagination>
+    </el-row>
+  </el-card>
 
 </div>
 </template>
 
-<script>
-  import { mapGetters } from 'vuex'
-  import SearchCondition from 'component/SearchCondition.vue'
-  import SuperGrid from 'component/SuperGrid.vue'
-  import Modal from 'component/Modal.vue'
-  import Select2 from 'component/Select2.vue'
-  import router from 'router'
-  import {fetchList} from 'api/song'
-  import toastr from 'toastr'
+<script src="./list.js">
 
-  // 结果类别
-  const cols = [{
-    name: 'name',
-    label: {
-      ch: '歌名',
-      en: 'Song Name'
-    },
-    order: {
-      name:'name',
-    }
-  },{
-    name: 'singer',
-    label: {
-      ch: '歌手',
-      en: 'Singer'
-    },
-    order: {
-      name:'singer',
-      type:'asc',// desc
-      default: true
-    },
-    html(singer, rowData) {
-      return singer.discribe ? `<a target="_blank" href="javascript:void(0)">${singer.name}</a>` : singer.name
-    }
-  }, {
-    name: 'type',
-    label: {
-      ch: '风格',
-      en: 'Style'
-    },
-    html(type, rowData) {
-      return type
-    }
-  }]
-  // 对数据的操作
-  const operates = ['edit', 'delete', {
-    html(rowData) {
-      return rowData.url ? `<button>播放</button>` : ''
-    },
-    event: 'play'
-  }]
-  export default {
-    data() {
-      return {
-        searchCondition: {
-          name: '',
-          singer: '',
-          type: ''
-        },
-        pager:{
-          current: 1,
-          total: 10,
-          limit: 5
-        },
-        gridConfig: {
-          cols, operates
-        },
-        list: [],
-        showSingerModal: false,
-        singerInfo: {},
-        musicTypes: [
-          {id: '', text: '不限'},
-          {id: 'rock', text: '摇滚'},
-          {id: 'pop', text: '流行'},
-          {id: 'folk', text: '民谣'},
-        ]
-      }
-    },
-    components: {
-      SearchCondition,
-      SuperGrid,
-      Modal,
-      Select2
-    },
-    methods: {
-      musicTypeChange(type) {
-        this.searchCondition.type = type
-      },
-      search(isResetPager) {
-        var grid = this.$refs.grid
-        var searchCondition = this.searchCondition
-        var pager = Object.assign({}, grid.getPagerInfo())
-        if(isResetPager){
-          pager.current = 1
-        }
-
-        var order = grid.getOrder()
-        // debugger
-        var queryObj = {searchCondition, pager, order}
-        console.log(`查询歌曲列表中...条件：${JSON.stringify(queryObj)}`)
-        fetchList(queryObj).then(function (data) {
-          this.list = data.data
-          grid.setPagerInfo(data.pager)
-        }.bind(this))
-      },
-      clickItem({name, data}) {
-        if(name === 'col-singer'){
-           if(data.singer.discribe) {
-            this.showSingerModal = true
-            this.singerInfo = data.singer
-          }
-        }
-      },
-      edit(rowData) {
-        router.push({name: 'song-edit', params: { id: rowData.id }})
-      },
-      deleteIt(rowData) {
-        // Just for Test
-        this.list = this.list.filter(item=> item.id !== rowData.id)
-        toastr.success('删除成功')
-      },
-      play({url}) {
-        url && (location.href = url)
-      }
-    }
-  }
 </script>
 
-<style scoped>
-  .search{
-    label{
-      text-align: right;
-      line-height: 32px;
-    }
-    &-btn{
+<style>
 
-    }
-  }
-
-  .result{
-    margin-top: 10px;
-  }
 </style>

@@ -1,31 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import menu from 'menu'
-Vue.use(Router) // 路由
+import menu from './menu'
 
-var router = new Router({
+Vue.use(Router)
+
+
+export default new Router({
   routes: [
-    ...generateRoutes(menu),
+    ...menu,
+    // 出错的默认地址
     {
       path: '*',
-      redirect: '/dashboard'
+      redirect: '/'
     }
   ]
 })
 
-function generateRoutes (menu = [], routes = []) {
-  for (let i = 0, l = menu.length; i < l; i++) {
-    let item = menu[i]
-    if (item.path) {
-      routes.push(item)
-    }
-    if (!item.component) {
-      generateRoutes(item.children, routes)
-    }
-  }
-  return routes
-}
 
-
-
-export default router
