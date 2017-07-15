@@ -28,7 +28,7 @@ export default {
       var allMenu = this.menu
       if (pathArr.length >= 3 && allMenu.length > 0) {
         allMenu.forEach(menu=> {
-          if(!name && menu.children.length > 0) {
+          if(!currMenu && menu.children.length > 0) {
             var subMenu = menu.children[0]
             if(!subMenu.path) {
               console.error(subMenu)
