@@ -5,8 +5,8 @@
 1. 安装依赖
   1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
   1. `yarn install`
-1. `npm run dev`
-1. 在浏览器中输入地址 `127.0.0.1:5000`
+1. `npm run dev` 。项目运行起来后，浏览器会自动打开：`127.0.0.1:5000` 。
+
 
 ## 构建
 1. `npm run build`
