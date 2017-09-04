@@ -8,7 +8,7 @@ var routes = [
   {
     path: '/',
     component: resolve => {
-      lazyLoading(resolve, 'Dashboard', false)
+      lazyLoading(resolve, 'dashboard', false)
     },
   },
   // 登录
@@ -34,7 +34,8 @@ function addPageGroup (name, parent, types=['list', 'update', 'view']){
     if(type === 'view') {
       fileName = 'update'
     }
-    fileName = fileName.charAt(0).toUpperCase() + fileName.substr(1)
+    // fileName = fileName.charAt(0).toUpperCase() + fileName.substr(1)
+    // debugger
     return {
       path,
       component: resolve => {

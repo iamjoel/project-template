@@ -3,7 +3,7 @@
   <!-- 员工列表 -->
   <sc-search-condition @search="search">
     <sc-edit-item
-    label="歌曲名称">
+    label="歌曲名称1">
       <el-input v-model="searchConditions.name"></el-input>
     </sc-edit-item>
     <sc-edit-item
@@ -37,6 +37,9 @@
         prop="singer"
         label="歌手"
         >
+        <template scope="scope">
+            {{scope.row.singer + '@' + '很流行'}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="op"

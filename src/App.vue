@@ -59,6 +59,13 @@ export default {
   }
 }
 </script>
-
+<style src="@/assets/reset.css"></style>
 <style>
+.el-menu {
+  border-radius: 0;
+}
+.el-menu-item a{
+  color: inherit;
+  text-decoration: none;
+}
 </style>
