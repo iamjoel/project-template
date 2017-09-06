@@ -39,7 +39,6 @@ export default {
         .then(function({ data }) {
           if(!data.errorCode) {
             data = data.msgbody
-            // console.log(data.data)
             this.pager.total = data.total
             this.tableData = data.data
           }
@@ -76,7 +75,7 @@ export default {
     },
     // 按钮的权限控制
     isShow (type) {
-      return true // 测试
+      return true
     },
     
   }

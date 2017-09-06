@@ -1,6 +1,5 @@
 <template>
 <div class="main">
-  <!-- 员工列表 -->
   <j-search-condition @search="search">
     <j-edit-item
     label="歌曲名称">
@@ -53,10 +52,5 @@
 </div>
 </template>
 
-<script src="./list.js">
+<script src="./list.js"></script>
 
-</script>
-
-<style>
-
-</style>
