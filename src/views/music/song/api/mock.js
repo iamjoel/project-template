@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 import {urls} from '@/setting'
-var currUrl = urls.music
+var currUrl = urls.song
 
 var Random = Mock.Random
 Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {

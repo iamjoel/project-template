@@ -1,6 +1,6 @@
 import SCEditItem from '@/components/edit-item'
 
-import { fetchList, addModel, editModel, fetchModel } from './api'
+import { fetchList, addModel, editModel, fetchModel } from '@/assets/utils/ajax-crud'
 
 export default {
   components: {

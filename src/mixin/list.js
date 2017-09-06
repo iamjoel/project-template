@@ -1,20 +1,83 @@
+import { fetchList, deleteModel } from '@/assets/utils/ajax-crud'
+import JSearchCondition from '@/components/search-condition'
+import JEditItem from '@/components/edit-item'
+import JGridBox from '@/components/grid-box'
+
 export default {
-  methods: {
-    isShowView (limitkey, auditStatus) {
-      return true // 测试
-      // return ((limit & LIMIT_KEY.QUERY) !== 0)
-    },
-    isShowEdit (limitkey, auditStatus) {
-      return true
-    },
-    isShowAduit (limitkey, auditStatus) {
-      return true
-    },
-    isShowAduitAgain (limitkey, auditStatus, isLastPerson) {
-      return true
-    },
-    isShowDelete (limitkey, auditStatus) {
-      return true
+  components: {
+    'j-search-condition': JSearchCondition,
+    'j-edit-item': JEditItem,
+    'j-grid-box': JGridBox
+  },
+  data() {
+    return {
+      tableData: [],
+      pager: {
+        current: 1,
+        total: 1
+      },
     }
+  },
+  computed: {
+    addPagePath() {
+      return `${this.PAGE_PATH_PREFIX}/update/-1`
+    },
+  },
+  mounted() {
+    if(!this.KEY) {
+      console.error('请设置KEY')
+      return
+    } else if(!this.PAGE_PATH_PREFIX) {
+      console.error('请设置PAGE_PATH_PREFIX')
+      return
+    }
+    this.search()
+  },
+  methods: {
+    fetchList(searchConditions = this.searchConditions) {
+      fetchList(this.KEY, searchConditions, this.pager)
+        .then(function({ data }) {
+          if(!data.errorCode) {
+            data = data.msgbody
+            // console.log(data.data)
+            this.pager.total = data.total
+            this.tableData = data.data
+          }
+        }.bind(this))
+    },
+    handleCurrentChange(currentPage) {
+      this.pager.current = currentPage
+      this.fetch()
+    },
+    search() {
+      this.pager.current = 1
+      this.fetch()
+    },
+    remove(id) {
+      this.$confirm('确认删除?',  {
+        type: 'warning'
+      }).then(() => {
+        deleteModel(this.KEY, id).then(function ({data}) {
+          if(!data.errcode) {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+            this.search()
+          }
+        }.bind(this))
+      }).catch(() => {})
+    },
+    editPagePath(id) {
+      return `${this.PAGE_PATH_PREFIX}/update/${id}`
+    },
+    viewPagePath(id) {
+      return `${this.PAGE_PATH_PREFIX}/view/${id}`
+    },
+    // 按钮的权限控制
+    isShow (type) {
+      return true // 测试
+    },
+    
   }
 }

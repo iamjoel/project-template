@@ -1,7 +1,7 @@
 const SERVER_PREFIX = 'http://amusement.com/api'
 
 export const urls = {
-  music: addUrlGroup(`${SERVER_PREFIX}/music`)
+  song: addUrlGroup(`${SERVER_PREFIX}/song`)
 }
 
 // 权限值

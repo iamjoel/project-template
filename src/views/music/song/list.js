@@ -1,63 +1,22 @@
-import Vue from 'vue'
-import SCSearchCondition from '@/components/search-condition'
-import SCEditItem from '@/components/edit-item'
-import { fetchList, deleteModel } from './api'
 import listMixin from '@/mixin/list'
 
+require('./api/mock.js')
+
 export default {
-  components: {
-    'sc-search-condition': SCSearchCondition,
-    'sc-edit-item': SCEditItem
-  },
   mixins: [listMixin],
   data () {
     return {
+      KEY: 'song',
+      PAGE_PATH_PREFIX: '/music/song', 
       searchConditions: {
-        name: '',
-        staff_id: ''
-      },
-      tableData: [],
-      pager: {
-        current: 1,
-        total: 1
+        name: null,
       },
     }
   },
   methods: {
-    handleCurrentChange(currentPage) {
-      this.pager.current = currentPage
-      this.fetch()
-    },
-    search() {
-      this.pager.current = 1
-      this.fetch()
-    },
     fetch() {
-      fetchList(this.searchConditions, this.pager).then(function({ data }) {
-        if(!data.errcode) {
-          data = data.msgbody
-          this.pager.total = data.total
-          this.tableData = data.data
-        }
-      }.bind(this))
+      this.fetchList()
     },
-    remove(id) {
-      this.$confirm('确认删除?',  {
-        type: 'warning'
-      }).then(() => {
-        deleteModel(id).then(function ({data}) {
-          if(!data.errcode) {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-            this.search()
-          }
-        }.bind(this))
-      }).catch(() => {})
-    },
-  },
-  mounted() {
-    this.search()
   }
 }
+

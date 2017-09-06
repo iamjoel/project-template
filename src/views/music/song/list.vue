@@ -1,23 +1,19 @@
 <template>
 <div class="main">
   <!-- 员工列表 -->
-  <sc-search-condition @search="search">
-    <sc-edit-item
-    label="歌曲名称1">
+  <j-search-condition @search="search">
+    <j-edit-item
+    label="歌曲名称">
       <el-input v-model="searchConditions.name"></el-input>
-    </sc-edit-item>
-    <sc-edit-item
+    </j-edit-item>
+    <j-edit-item
     label="歌手">
       <el-input v-model="searchConditions.singer"></el-input>
-    </sc-edit-item>
-  </sc-search-condition>
+    </j-edit-item>
+  </j-search-condition>
 
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span style="line-height: 30px;">帐号列表</span>
-      <el-button type="success" icon="plus" style="float:right" @click="$router.push('/hr/account/update/-1')">新增</el-button>
-    </div>
-
+  
+  <j-grid-box :is-show-add-btn="isShow('add')" :add-url="addPagePath" :pager="pager" @pageChange="handleCurrentChange">
     <el-table
       :data="tableData"
       border
@@ -47,23 +43,12 @@
         width="350"
         >
         <template scope="scope">
-          <el-button type="info" size="small" @click="$router.push('/music/song/update/' + scope.row.id)" v-if="isShowEdit('user')">编辑</el-button>
-          <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShowDelete('user')">删除</el-button>
+          <el-button type="info" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
+          <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-
-    <el-row type="flex" justify="end">
-      <el-pagination
-          @current-change="handleCurrentChange"
-          :current-page="pager.current"
-          :page-size="10"
-          layout="total, prev, pager, next, jumper"
-          :total="pager.total"
-          class="right">
-        </el-pagination>
-    </el-row>
-  </el-card>
+  </j-grid-box>
 
 </div>
 </template>
