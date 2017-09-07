@@ -21,7 +21,7 @@ Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {
   }
 })
 
-Mock.mock(new RegExp(currUrl.query), ({ url, body }) => {
+Mock.mock(new RegExp(currUrl.detail), ({ url, body }) => {
   return {
     msgbody: {
       data: makeItem(),

@@ -21,7 +21,7 @@ export const fetchModel = (key, id) => {
 
 export const addModel = (key, data) => {
   var url = urls[key].add
-  return axios.post(url.add, Object.assign({}, data, {
+  return axios.post(url, Object.assign({}, data, {
   }) )
 }
 

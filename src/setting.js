@@ -18,7 +18,7 @@ export const ERROR_CODE_MAP = {
   19: '没有权限'
 }
 
-function addUrlGroup (prefix, types = ['list', 'query', 'del', 'add', 'edit']) {
+function addUrlGroup (prefix, types = ['list', 'detail', 'del', 'add', 'edit']) {
   var res = {}
   types.forEach(type => {
     res[type] = `${prefix}/${type}`
