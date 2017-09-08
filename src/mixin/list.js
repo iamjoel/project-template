@@ -36,13 +36,13 @@ export default {
   methods: {
     fetchList(searchConditions = this.searchConditions) {
       fetchList(this.KEY, searchConditions, this.pager)
-        .then(function({ data }) {
+        .then(({ data }) => {
           if(!data.errorCode) {
             data = data.msgbody
             this.pager.total = data.total
             this.tableData = data.data
           }
-        }.bind(this))
+        })
     },
     handleCurrentChange(currentPage) {
       this.pager.current = currentPage
@@ -56,7 +56,7 @@ export default {
       this.$confirm('确认删除?',  {
         type: 'warning'
       }).then(() => {
-        deleteModel(this.KEY, id).then(function ({data}) {
+        deleteModel(this.KEY, id).then(({data}) => {
           if(!data.errcode) {
             this.$message({
               type: 'success',
@@ -64,7 +64,7 @@ export default {
             });
             this.search()
           }
-        }.bind(this))
+        })
       }).catch(() => {})
     },
     editPagePath(id) {

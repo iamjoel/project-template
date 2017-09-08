@@ -3,11 +3,11 @@
   <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right" >
     <el-row type="flex" justify="start" class="multi-line">
       <j-edit-item
-        label="歌曲名称" prop="name">
+        label="歌曲名称" prop="name" :is-view="isView" :view-value="model.name">
         <el-input v-model="model.name"></el-input>
       </j-edit-item>
       <j-edit-item
-        label="歌手" prop="singer">
+        label="歌手" prop="singer" :is-view="isView" :view-value="model.singer">
         <el-input v-model="model.singer"></el-input>
       </j-edit-item>
     </el-row>

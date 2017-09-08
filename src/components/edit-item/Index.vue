@@ -10,7 +10,8 @@
     </label>
 
     <el-form-item :label="label" :prop="prop" v-if="prop">
-      <slot></slot>
+      <slot v-if="!isView"></slot>
+      <div v-if="isView">{{viewValue}}</div>
     </el-form-item>
   </el-col>
 </template>
@@ -19,7 +20,9 @@
     props: {
       label: String,
       prop: String,
-      fill: Boolean
+      fill: Boolean,
+      isView: Boolean,
+      viewValue: String
     }
   }
 </script>

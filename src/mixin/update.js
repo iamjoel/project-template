@@ -19,12 +19,17 @@ export default {
     },
   },
   methods: {
+    formatFetchData(data) {
+      return data
+    },
+    formatSaveData() {
+      return this.model
+    },
     save() {
       var method = this.isAdd ? addModel : editModel
-      var vm = this
       return new Promise((resolve, reject) => {
         this.valid().then(function(){
-          method(this.KEY, this.model).then(function({data}){
+          method(this.KEY, this.model).then(({data}) => {
             if(!data.errcode) {
                 this.$message({
                   showClose: true,
@@ -35,8 +40,8 @@ export default {
             } else {
               reject()
             }
-          }.bind(this))
-        }.bind(vm)).catch(error=>{
+          })
+        }).catch(error=>{
           console.log(error)
         })
       })
