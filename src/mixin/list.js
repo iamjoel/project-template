@@ -34,6 +34,9 @@ export default {
     this.search()
   },
   methods: {
+    fetch() {
+      this.fetchList()
+    },
     fetchList(searchConditions = this.searchConditions) {
       fetchList(this.KEY, searchConditions, this.pager)
         .then(({ data }) => {

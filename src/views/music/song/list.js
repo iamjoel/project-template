@@ -14,9 +14,7 @@ export default {
     }
   },
   methods: {
-    fetch() {
-      this.fetchList()
-    },
+    
   }
 }
 
