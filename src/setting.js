@@ -1,4 +1,10 @@
-const SERVER_PREFIX = 'http://amusement.com/api'
+var SERVER_PREFIX
+
+if (process.env.NODE_ENV === 'development') { // 开发环境
+  HOST = 'http://127.0.0.1:8001' 
+} else { // 线上环境
+  HOST = 'http://amusement.com/api' 
+}
 
 export const urls = {
   song: addUrlGroup(`${SERVER_PREFIX}/song`)
