@@ -1,5 +1,2 @@
 export const USER_INFO = 'user/fetch'
 export const MENU_LIMIT = 'member-and-limit'
-export const SELECT_ORG = 'select-org'
-export const SELECT_ROLE = 'select-role'
-export const CODES = 'codes'
