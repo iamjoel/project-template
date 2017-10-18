@@ -11,8 +11,6 @@ const mutations = {
   [types.MENU_LIMIT] (state, menuAndLimit) {
     state.menu = menuAndLimit.data.menu
     state.limit = menuAndLimit.data.limit
-    state.user.role_type = ROLE_MAP[menuAndLimit.data.role] || `unknow member:${menuAndLimit.data.role}`
-    localStorage.setItem('sc-user-info', JSON.stringify(state.user))
   },
 }
 

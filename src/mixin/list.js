@@ -2,6 +2,7 @@ import { fetchList, deleteModel } from '@/assets/utils/ajax-crud'
 import JSearchCondition from '@/components/search-condition'
 import JEditItem from '@/components/edit-item'
 import JGridBox from '@/components/grid-box'
+import {LIMIT_KEY} from '@/setting'
 
 export default {
   components: {
@@ -16,6 +17,8 @@ export default {
         current: 1,
         total: 1
       },
+      params: false,
+      limitKey: null // 页面权限key
     }
   },
   computed: {
@@ -30,6 +33,9 @@ export default {
     } else if(!this.PAGE_PATH_PREFIX) {
       console.error('请设置PAGE_PATH_PREFIX')
       return
+    }
+    if(!this.limitKey) {
+      this.limitKey = this.KEY
     }
     this.search()
   },
@@ -78,7 +84,8 @@ export default {
     },
     // 按钮的权限控制
     isShow (type) {
-      return true
+      var limit = this.$store.state.limit[this.limitKey]
+      return (limit && limit[type]) || true // 测试
     },
     
   }

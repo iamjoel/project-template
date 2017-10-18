@@ -13,8 +13,8 @@ const state = {
     id: null,
     name: null,
   },
-  menu: {}, // 所有有权限的菜单
-  limit: [], // 权限
+  menu: [], // 所有有权限的菜单
+  limit: {}, // 权限
 }
 
 export default new Vuex.Store({

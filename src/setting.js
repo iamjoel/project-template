@@ -11,6 +11,11 @@ export const urls = {
   song: addUrlGroup(`${SERVER_PREFIX}/song`)
 }
 
+export const oauth2 = {
+  appid: 'xxx',
+  appsecret: 'xxx'
+}
+
 // 权限值
 export const LIMIT_KEY = {
   'ADD': 1,
