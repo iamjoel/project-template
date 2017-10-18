@@ -48,7 +48,7 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           localStorage.setItem('j-sessionid', Math.random())
-          location.href= "/"
+          location.href= "index.html"
         } else {
           return false;
         }
