@@ -8,9 +8,9 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: {
-    app: './src/main.js'
-  },
+  // https://github.com/jarvan4dev/vue-multi-page/blob/master/build/webpack.base.conf.js
+  // 获取多入口, 注意这个路径， 至于为什么是 ./src仍然需要了解，我觉得应该是 ../src  
+  entry: utils.getEntries('./src/pages/**/*.js'),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

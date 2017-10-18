@@ -1,4 +1,5 @@
 var SERVER_PREFIX
+var HOST
 
 if (process.env.NODE_ENV === 'development') { // 开发环境
   HOST = 'http://127.0.0.1:8001' 

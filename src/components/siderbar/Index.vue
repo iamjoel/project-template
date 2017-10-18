@@ -1,8 +1,6 @@
 <template>
-<div class="sc-siderbar">
-
-  
-  <el-menu theme="dark" :default-openeds="[currMenuId]" :default-active="currSubMenuId">
+<div class="j-siderbar">
+  <el-menu theme="dark" :default-openeds="[currMenuId]" :default-active="currSubMenuId" style="height: 100%; overflow-y: auto">
     <el-submenu :index="item.innerid" v-for="item in menu" :key="item.innerid">
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>{{item.name}}
@@ -20,6 +18,15 @@
 <script src="./main.js"></script>
 
 <style scoped>
+.j-siderbar{
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 60px;
+  width: 16.66667%;
+  bottom: 0;
+  background-color: #324157;
+}
 .el-menu-item:hover{
   border-bottom: none !important;
   background: none !important;

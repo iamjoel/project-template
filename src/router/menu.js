@@ -11,14 +11,7 @@ var routes = [
       lazyLoading(resolve, 'dashboard', false)
     },
   },
-  // 登录
-  // {
-  //   path: `/login`,
-  //   component: resolve => {
-  //     lazyLoading(resolve, 'system/bind-dingding', true)
-  //   },
-  // },
-  ...addPageGroup('song', 'music'), //项目点客户管理
+  ...addPageGroup('song', 'music'), //音乐
   
 ]
 

@@ -11,6 +11,12 @@
 1. `npm run build`
 1. 打开 `dist` 下的 `index.html` 来查看效果。
 
+## 功能
+* 登录页
+* 登录成功后的一系列页面
+  * 列表页。
+  * 新建，编辑和详情页。是一个页面。
+
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
 * [Element](http://element.eleme.io/#/zh-CN) 基于 Vue 的组件库。

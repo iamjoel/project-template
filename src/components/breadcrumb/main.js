@@ -2,11 +2,6 @@ var pathNameMap = {
   'list': '列表',
   'update': '编辑',
   'view': '详情',
-  'audit': '审核',
-  'audit-again': '反核',
-  'relate-list': '关联项目点',
-  'relate-update': '关联项目点编辑',
-  'relate-audit': '关联项目点审核',
   // 其他類型
 }
 export default {
@@ -44,7 +39,7 @@ export default {
       return currMenu
     },
     menuName() {
-      return this.currMenu ? this.currMenu.chname : ''
+      return this.currMenu ? this.currMenu.name : ''
     },
     subMenuName() {
       var name
@@ -56,7 +51,7 @@ export default {
         currMenu.children.forEach(subMenu=> {
           var pathArr = subMenu.path.split('/')
           if(pathArr[2] === currPathArr[1]) {
-            subMenuNamePrefix = subMenu.chname
+            subMenuNamePrefix = subMenu.name
           }
         })
         
