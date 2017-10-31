@@ -28,7 +28,7 @@ export default {
     save() {
       var method = this.isAdd ? addModel : editModel
       return new Promise((resolve, reject) => {
-        this.valid().then(function(){
+        this.valid().then(() =>{
           method(this.KEY, this.model).then(({data}) => {
             if(!data.errcode) {
                 this.$message({

@@ -1,6 +1,6 @@
 import listMixin from '@/mixin/list'
 
-require('./api/mock.js')
+// require('./api/mock.js')
 
 export default {
   mixins: [listMixin],
