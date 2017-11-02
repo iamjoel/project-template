@@ -76,6 +76,8 @@ limit: {
 
 第6步：将 list.vue,list.js, update.vue, update.js 放入文件夹： `src/一级菜单/页面值` 中。
 
+第7步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
+
 ## 功能
 * 登录页
 * 登录成功后的一系列页面
@@ -93,8 +95,10 @@ limit: {
 
 ## 工具
 * [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
+* [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
 * [vue-devtools](https://github.com/vuejs/vue-devtools)
+* 生成项目框架代码 开发中...
 
 ## 本项目需要背景知识
 * npm scripts 的使用。
