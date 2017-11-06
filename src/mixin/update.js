@@ -64,7 +64,7 @@ export default {
         if (!data.errcode) {
           console.log(data)
           // debugger
-          this.model = Object.assign({}, this.model, data.msgbody.data)
+          this.model = Object.assign({}, this.model, data.data)
         }
       })
     }

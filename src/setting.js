@@ -2,10 +2,12 @@ var SERVER_PREFIX
 var HOST
 
 if (process.env.NODE_ENV === 'development') { // 开发环境
-  HOST = 'http://127.0.0.1:8001/api' 
+  HOST = 'http://127.0.0.1:5000' 
 } else { // 线上环境
-  HOST = 'http://amusement.com/api' 
+  HOST = 'http://amusement.com' 
 }
+
+SERVER_PREFIX = `${HOST}/api`
 
 export const urls = {
   song: addUrlGroup(`${SERVER_PREFIX}/song`)

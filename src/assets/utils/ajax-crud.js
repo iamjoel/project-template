@@ -26,15 +26,13 @@ export const addModel = (key, data) => {
 }
 
 export const editModel = (key, data) => {
-  var url = urls[key].edit
+  var url = `${urls[key].edit}/${data.id}`
   return axios.post(url, Object.assign({}, data, {
   }))
 }
 
 export const deleteModel = (key, id) => {
   var url = urls[key].del
-  return axios.post(url, {
-    id: id,
-  })
+  return axios.post(`${url}/${id}`)
 }
 

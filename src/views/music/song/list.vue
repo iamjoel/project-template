@@ -33,7 +33,7 @@
         label="歌手"
         >
         <template scope="scope">
-            {{scope.row.singer + '@' + '很流行'}}
+            {{scope.row.singer.name + '@' + '很流行'}}
         </template>
       </el-table-column>
       <el-table-column

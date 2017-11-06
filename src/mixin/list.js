@@ -47,9 +47,8 @@ export default {
       fetchList(this.KEY, searchConditions, this.pager)
         .then(({ data }) => {
           if(!data.errorCode) {
-            data = data.msgbody
-            this.pager.total = data.total
-            this.tableData = data.data
+            this.pager.total = data.pager.total
+            this.tableData = data.data.list
           }
         })
     },
