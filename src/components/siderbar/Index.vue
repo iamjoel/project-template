@@ -3,10 +3,10 @@
   <el-menu theme="dark" :default-openeds="[currMenuId]" :default-active="currSubMenuId" style="height: 100%; overflow-y: auto">
     <el-submenu :index="item.innerid" v-for="item in menu" :key="item.innerid">
       <template slot="title">
-        <i :class="'el-icon-' + item.icon"></i>{{item.name}}
+        <!-- <i :class="'el-icon-' + item.icon"></i> -->{{item.name}}
       </template>
       <el-menu-item-group title="">
-        <el-menu-item :index="subMenu.innerid" v-for="subMenu in item.children" :key="subMenu.innerid">
+        <el-menu-item :index="subMenu.innerid" v-for="subMenu in item.children" :key="subMenu.innerid" @click="$router.push(subMenu.path)">
           <router-link :to="subMenu.path">{{subMenu.name}}</router-link>
         </el-menu-item>
       </el-menu-item-group>
