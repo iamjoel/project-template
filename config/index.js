@@ -1,7 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
-module.exports = {
+var config = {
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
@@ -27,12 +27,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: { //根多配置： https://github.com/chimurai/http-proxy-middleware
-      '/api': {
-        target: 'http://127.0.0.1:10010',
-        changeOrigin: true,
-      }
-    },
+    proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
@@ -41,3 +36,18 @@ module.exports = {
     cssSourceMap: false
   }
 }
+
+// 用 mock 服务器的数据
+if (process.env.NODE_ENV === 'mock'){
+  config.dev = Object.assign(config.dev, {
+    proxyTable: { //根多配置： https://github.com/chimurai/http-proxy-middleware
+      '/api': {
+        target: 'http://127.0.0.1:10010',
+        changeOrigin: true,
+      }
+    }
+  })
+}
+
+module.exports = config
+

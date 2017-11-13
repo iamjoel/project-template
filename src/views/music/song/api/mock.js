@@ -12,22 +12,18 @@ Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {
     data.push(makeItem())
   }
   return {
-    msgbody: {
-      data,
-      total: randomNum * 10 + 10,
+    data: {
+      list: data,
     },
-    'errcode': 0,
-    'errmsg': ''
+    pager: {
+      total: randomNum * 10 + 10,
+    }
   }
 })
 
 Mock.mock(new RegExp(currUrl.detail), ({ url, body }) => {
   return {
-    msgbody: {
-      data: makeItem(),
-    },
-    'errcode': 0,
-    'errmsg': ''
+    data: makeItem(),
   }
 })
 

@@ -1,11 +1,17 @@
 var SERVER_PREFIX
 var HOST
+var useFEMock = false
 
-if (process.env.NODE_ENV === 'development') { // 开发环境
-  HOST = 'http://127.0.0.1:5000' 
+if (process.env.NODE_ENV === 'mock') { // 用 Mock Server mock数据
+  HOST = 'http://127.0.0.1:5000'
+} else if (process.env.NODE_ENV === 'development') { // 与后端联调
+  HOST = 'http://127.0.0.1:3000'
 } else { // 线上环境
-  HOST = 'http://amusement.com' 
+  useFEMock = true // GitHub 不支持部署后端，所以Mock
+  HOST = 'http://amusement.com'
 }
+
+export var isMock = useFEMock
 
 SERVER_PREFIX = `${HOST}/api`
 
