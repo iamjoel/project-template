@@ -2,10 +2,25 @@
 用来踩框架的坑。
 
 ## 运行
-1. 安装依赖
-  1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
-  1. `yarn install`
-1. `npm run dev` 。项目运行起来后，浏览器会自动打开：`127.0.0.1:5000` 。
+1 安装依赖  
+
+1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
+1. `yarn install`
+
+
+2 在后端接口还没开发完成前  
+
+1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
+1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
+1. `npm run mock`。
+
+
+3 后端接口开发好后
+
+1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
+1. `npm run dev`
+
+项目运行起来后，浏览器会自动打开：`127.0.0.1:5000` 。
 
 ## 构建
 1. `npm run build`
