@@ -2,6 +2,8 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var webpack = require('webpack')
+
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +12,10 @@ function resolve (dir) {
 module.exports = {
   // https://github.com/jarvan4dev/vue-multi-page/blob/master/build/webpack.base.conf.js
   // 获取多入口, 注意这个路径， 至于为什么是 ./src仍然需要了解，我觉得应该是 ../src  
-  entry: utils.getEntries('./src/pages/**/*.js'),
+  entry: Object.assign({
+    vue: ['vue'],
+    element: ['element-ui']
+  }, utils.getEntries('./src/pages/**/*.js')),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -18,6 +23,13 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  plugins: [
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   // The order of this array matters
+    //   names: ["common", "vue", "element"],
+    //   minChunks: 2
+    // })
+  ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
