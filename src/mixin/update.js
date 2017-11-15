@@ -62,9 +62,7 @@ export default {
     if (!this.isAdd) {
       fetchModel(this.KEY, this.id).then(({data})=>{
         if (!data.errcode) {
-          console.log(data)
-          // debugger
-          this.model = Object.assign({}, this.model, data.data)
+          this.model = this.formatFetchData(Object.assign({}, this.model, data.data))
         }
       })
     }
