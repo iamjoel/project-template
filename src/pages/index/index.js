@@ -17,6 +17,7 @@ Vue.prototype.developing = function(type = 'backend') {
     type: 'info'
   })
 }
+require('@/assets/utils/ajax') // axios 拦截器，做通用报错等
 
 import store from '@/store'
 

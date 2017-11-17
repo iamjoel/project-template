@@ -1,9 +1,9 @@
 <template>
-  <el-col :md="{span:fill? 24 : 8}" class="sc-edit-item" :class="{'sc-edit-item--fill': fill}">
+  <el-col :md="{span:fill? 24 : 8}" class="j-edit-item" :class="{'j-edit-item--fill': fill}">
     <label v-if="!prop">
       <el-row>
-        <el-col :md="{span:fill? 2:8}" class="sc-edit-item__label">{{label}}</el-col>
-        <el-col :md="{span:fill? 22:16}" class="sc-edit-item__input" >
+        <el-col :md="{span:fill? 2:8}" class="j-edit-item__label">{{label}}</el-col>
+        <el-col :md="{span:fill? 22:16}" class="j-edit-item__input" >
           <slot></slot>
         </el-col>
       </el-row>
@@ -22,12 +22,12 @@
       prop: String,
       fill: Boolean,
       isView: Boolean,
-      viewValue: String
+      viewValue: null // 对值的类型不做限制
     }
   }
 </script>
-<style scoped>
-  .sc-edit-item {
+<style>
+  .j-edit-item {
     flex-shrink: 0;
     margin-bottom: 10px;
     line-height: 37px;
@@ -44,17 +44,24 @@
   .el-form-item__content {
     width: 66.66667%;
   }
-  .sc-edit-item__label {
+  .j-edit-item__label {
     padding-right: 10px;
     text-align: right;
   }
   @media all and (max-width:992px) {
-    &__label {
+    .j-edit-item__label {
       text-align: left;
     }
   }
   .el-select {
     width: 100%;
+  }
+
+  .j-edit-item--fill .el-form-item__label{
+    width: 11%;
+  }
+  .j-edit-item--fill .el-form-item__content{
+    width: 89%;
   }
 </style>
 

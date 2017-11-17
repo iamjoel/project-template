@@ -5,6 +5,7 @@ var useFEMock = false
 if (process.env.NODE_ENV === 'mock') { // 用 Mock Server mock数据
   HOST = 'http://127.0.0.1:5000'
 } else if (process.env.NODE_ENV === 'development') { // 与后端联调
+  useFEMock = true
   HOST = 'http://127.0.0.1:3000'
 } else { // 线上环境
   useFEMock = true // GitHub 不支持部署后端，所以Mock
@@ -17,11 +18,6 @@ SERVER_PREFIX = `${HOST}/api`
 
 export const urls = {
   song: addUrlGroup(`${SERVER_PREFIX}/song`)
-}
-
-export const oauth2 = {
-  appid: 'xxx',
-  appsecret: 'xxx'
 }
 
 // 权限值

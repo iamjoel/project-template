@@ -22,14 +22,20 @@ export default {
     formatFetchData(data) {
       return data
     },
+    afterFectch() { // 做一些初始化组件的事情
+    },
     formatSaveData() {
       return this.model
+    },
+    beforeSave() {
     },
     save() {
       var method = this.isAdd ? addModel : editModel
       return new Promise((resolve, reject) => {
         this.valid().then(() =>{
-          method(this.KEY, this.model).then(({data}) => {
+          var saveData = this.formatSaveData()
+          this.beforeSave()
+          method(this.KEY, saveData).then(({data}) => {
             if(!data.errcode) {
                 this.$message({
                   showClose: true,
@@ -63,6 +69,7 @@ export default {
       fetchModel(this.KEY, this.id).then(({data})=>{
         if (!data.errcode) {
           this.model = this.formatFetchData(Object.assign({}, this.model, data.data))
+          this.afterFectch()
         }
       })
     }

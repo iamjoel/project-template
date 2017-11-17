@@ -10,6 +10,10 @@
         label="歌手" prop="singer" :is-view="isView" :view-value="model.singer">
         <el-input v-model="model.singer"></el-input>
       </j-edit-item> -->
+      <j-edit-item :fill="true"
+        label="简介" prop="describe" :is-view="isView" :view-value="model.describe">
+        <el-input v-model="model.describe" type="textarea" style="width:100%" autosize></el-input>
+      </j-edit-item>
     </el-row>
   </el-form>
   
