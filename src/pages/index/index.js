@@ -21,6 +21,14 @@ require('@/assets/utils/ajax') // axios 拦截器，做通用报错等
 
 import store from '@/store'
 
+// 获取资源服务器的图片
+import {IMGS_PREFIX, BASIC_CONFIG} from '@/setting'
+Vue.filter('img', function (value, size) {
+  return `${IMGS_PREFIX}/${size === 'small' ? 'thumb_img/' : ''}${value}`
+})
+
+document.title = BASIC_CONFIG.title
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

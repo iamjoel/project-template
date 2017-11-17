@@ -1,3 +1,7 @@
+export const BASIC_CONFIG = {
+  title: 'Admin Template ^-^'
+}
+
 var SERVER_PREFIX
 var HOST
 var useFEMock = false
@@ -34,8 +38,11 @@ export const ERROR_CODE_MAP = {
   19: '没有权限'
 }
 
-function addUrlGroup (prefix, types = ['list', 'detail', 'del', 'add', 'edit']) {
+function addUrlGroup (prefix, types = ['list', 'detail', 'del', 'add', 'edit'], others) {
   var res = {}
+  if(others && others.length > 0) {
+    types = [...types, ...others]
+  }
   types.forEach(type => {
     res[type] = `${prefix}/${type}`
   })
