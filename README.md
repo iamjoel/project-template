@@ -109,11 +109,11 @@ limit: {
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
 
 ## 工具
+* [生成项目框架代码](https://github.com/iamjoel/vue-cli-template-admin)
 * [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
 * [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
 * [vue-devtools](https://github.com/vuejs/vue-devtools)
-* 生成项目框架代码 开发中...
 
 ## 本项目需要背景知识
 * npm scripts 的使用。
