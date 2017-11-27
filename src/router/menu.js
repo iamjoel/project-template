@@ -25,12 +25,9 @@ function addPageGroup (name, parent, types=['list', 'update', 'view']){
   return types.map(type => {
     var path = `/${parent}/${name}/${type === 'list' ? 'list' : (type+'/:id')}`
     var fileName = type
-    // 编辑和查看共用一个页面
     if(type === 'view') {
       fileName = 'update'
     }
-    // fileName = fileName.charAt(0).toUpperCase() + fileName.substr(1)
-    // debugger
     return {
       path,
       component: resolve => {
@@ -47,17 +44,3 @@ const lazyLoading = (resolve, name, index = false) => {
 }
 
 export default routes
-
-
-
-
-
-
-// 权限
-// {
-//   path: '/limit',
-//   name: 'limit',
-//   component: resolve => {
-//     lazyLoading(resolve, 'demo/Limit')
-//   },
-// },

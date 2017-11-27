@@ -44,7 +44,7 @@ export const PAGES = [
   children: [{ // 页面
     id: 'song',
     name: '歌曲',
-    pageTypes: ['list', 'detail'], // 默认是 ['list', 'detail', 'add', 'edit'] 对应 列表，详情，新增和编辑页。
+    pageTypes: ['list', 'detail'], // 默认是 ['list', 'detail', 'edit'] 对应 列表(/list)，详情(/detail/:id)，新建页(/edit/-1)，编辑页(/edit/:id)。 
     pageKey: null, // 默认值为 id
     limitKey: null // 默认值为 pageKey,
     menuPath: 'detail/-1' // 菜单的入口。默认是 list
