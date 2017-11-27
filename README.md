@@ -5,30 +5,29 @@
 1 安装依赖  
 
 1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
-1. `yarn install`
+1. `yarn install`。
 
+注：不想折腾Yarn，用 `npm install` 也是可以的。
 
-2 在后端接口还没开发完成前  
+2 在后端接口还没开发完成前:  
 
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
 
 
-3 后端接口开发好后
+3 后端接口开发好后  
 
 1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
 1. `npm run dev`
 
-项目运行起来后，浏览器会自动打开：`127.0.0.1:5000` 。
+项目运行起来后，浏览器会自动打开：`127.0.0.1:5000`。
 
 ## 构建
 1. `npm run build`
 1. 打开 `dist` 下的 `index.html` 来查看效果。
 
 ## 做页面的步骤
-第2，3步的代码可以由工具生成,点[这里](https://iamjoel.github.io/admin-fe-generator/src/)。
-
 第1步：配置页面 
 打开 `src/setting.js`。 修改 `PAGES` 的值。配置新的页面:
 ```
@@ -52,6 +51,8 @@ export const PAGES = [
 第2步：制作列表页。
 
 第3步：制作新增，编辑，详情页。
+
+第2，3步的代码可以由工具生成,点[这里](https://iamjoel.github.io/admin-fe-generator/src/)。
 
 第4步：将 list.vue,list.js, update.vue, update.js 放入文件夹： `src/一级菜单/页面值` 中。
 
