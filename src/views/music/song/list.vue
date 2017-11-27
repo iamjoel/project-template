@@ -32,7 +32,7 @@
         prop="singer"
         label="歌手"
         >
-        <template scope="scope">
+        <template slot-scope="scope">
             {{scope.row.singer.name + '@' + '很流行'}}
         </template>
       </el-table-column>
@@ -41,7 +41,7 @@
         label="操作"
         width="350"
         >
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('view')">详情</el-button>
           <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
           <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
