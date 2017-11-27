@@ -1,22 +1,28 @@
 # 后台管理系统模板
-用来踩框架的坑。
 
 ## 运行
-1 安装依赖  
+1 生成项目代码结构：
 
-1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
+1. `npm install -g vue-cli`
+1. `vue init iamjoel/vue-cli-template-admin`
+
+
+2 安装依赖：  
+
+1. `npm install`
+
+推荐用[Yarn](https://yarnpkg.com/en/docs/install):
+1. 安装 [Yarn](https://yarnpkg.com/en/docs/install)。
 1. `yarn install`。
 
-注：不想折腾Yarn，用 `npm install` 也是可以的。
-
-2 在后端接口还没开发完成前:  
+3 在后端接口还没开发完成前:  
 
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
 
 
-3 后端接口开发好后  
+4 后端接口开发好后：  
 
 1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
 1. `npm run dev`
@@ -38,7 +44,7 @@ export const PAGES = [
   children: [{ // 页面
     id: 'song',
     name: '歌曲',
-    pageTypes: ['list', 'detail'], // 默认是 ['list', 'detail', , 'add', 'edit'] 对应 列表，详情，新增和编辑页。
+    pageTypes: ['list', 'detail'], // 默认是 ['list', 'detail', 'add', 'edit'] 对应 列表，详情，新增和编辑页。
     pageKey: null, // 默认值为 id
     limitKey: null // 默认值为 pageKey,
     menuPath: 'detail/-1' // 菜单的入口。默认是 list
@@ -58,6 +64,10 @@ export const PAGES = [
 
 第5步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
 
+## 约定
+* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
+* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 list.vue 和 list.js ；详情，新增和编辑页共用 update.vue 和 update.js。
+
 ## 功能
 * 登录页
 * 登录成功后的一系列页面
@@ -74,7 +84,6 @@ export const PAGES = [
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
 
 ## 工具
-* [生成项目框架代码](https://github.com/iamjoel/vue-cli-template-admin)
 * [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
 * [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)

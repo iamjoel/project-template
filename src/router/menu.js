@@ -1,8 +1,3 @@
-const MENU_PREFIXS = {
-  system: 'system', // 系统管理
-  music: 'music', // 音乐
-}
-
 import {PAGES} from '@/setting'
 
 // 路由配置
@@ -28,7 +23,7 @@ function addPageGroup (name, parent, types=['list', 'update', 'view']){
     throw 'type should be array'
   }
   return types.map(type => {
-    var path = `/${MENU_PREFIXS[parent]}/${name}/${type === 'list' ? 'list' : (type+'/:id')}`
+    var path = `/${parent}/${name}/${type === 'list' ? 'list' : (type+'/:id')}`
     var fileName = type
     // 编辑和查看共用一个页面
     if(type === 'view') {
@@ -39,7 +34,7 @@ function addPageGroup (name, parent, types=['list', 'update', 'view']){
     return {
       path,
       component: resolve => {
-        lazyLoading(resolve, `${MENU_PREFIXS[parent]}/${name}/${fileName}`)
+        lazyLoading(resolve, `${parent}/${name}/${fileName}`)
       }
     }
   })
