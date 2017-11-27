@@ -2,8 +2,6 @@ import * as types from './mutation-types'
 import { urls } from '@/setting'
 import axios from 'axios'
 
-import Mock from 'mockjs'
-
 export const setUser = ({ commit }, user) => {
   commit(types.USER_INFO, user)
 }
