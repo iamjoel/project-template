@@ -32,7 +32,7 @@ export default {
       return currMenu
     },
     currMenuId() {
-      return this.currMenu ? this.currMenu.innerid : ''
+      return this.currMenu ? this.currMenu.id : ''
     },
     currSubMenuId() {
       var id
@@ -43,7 +43,7 @@ export default {
         currMenu.children.forEach(subMenu=> {
           var pathArr = subMenu.path.split('/')
           if(pathArr[2] === currPathArr[1]) {
-            id = subMenu.innerid
+            id = subMenu.id
           }
         })
       }

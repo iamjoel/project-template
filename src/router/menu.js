@@ -3,6 +3,8 @@ const MENU_PREFIXS = {
   music: 'music', // 音乐
 }
 
+import {PAGES} from '@/setting'
+
 // 路由配置
 var routes = [
   {
@@ -11,11 +13,16 @@ var routes = [
       lazyLoading(resolve, 'dashboard', false)
     },
   },
-  ...addPageGroup('song', 'music'), //音乐
-  
 ]
 
-// 
+// 常规页面的路由
+PAGES.forEach(item => {
+  var parentId = item.id
+  item.children.forEach(child => {
+    routes.push(...addPageGroup(child.id, parentId))
+  })
+})
+
 function addPageGroup (name, parent, types=['list', 'update', 'view']){
   if(!Array.isArray(types)) {
     throw 'type should be array'
