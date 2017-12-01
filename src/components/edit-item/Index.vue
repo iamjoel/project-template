@@ -11,7 +11,16 @@
 
     <el-form-item :label="label" :prop="prop" v-if="prop">
       <slot v-if="!isView"></slot>
-      <div v-if="isView">{{viewValue}}</div>
+      <div v-if="!isView && tip" style="color: #666">
+        {{tip}}
+      </div>
+      <div v-if="isView">
+        <div v-if="!isImg">{{viewValue}}</div>
+        <img v-if="isImg && !isMultiImg(viewValue)" :src="viewValue | img" style="max-width:100px">
+        <div v-if="isImg && isMultiImg(viewValue)">
+          <img :src="item | img" style="max-width:100px;margin-right: 5px;width: 30px;" v-for = "item in viewValue.split(',')">
+        </div>
+      </div>
     </el-form-item>
   </el-col>
 </template>
@@ -22,7 +31,21 @@
       prop: String,
       fill: Boolean,
       isView: Boolean,
-      viewValue: null // 对值的类型不做限制
+      viewValue: null,
+      isImg: {
+        type: null,
+        default: false
+      },
+      tip: String
+    },
+    methods: {
+      isMultiImg(viewValue) {
+        var res = false
+        if(res && typeof viewValue === 'string') {
+          res = viewValue.split('').indexOf(',') !== -1
+        }
+        return res
+      }
     }
   }
 </script>
