@@ -37,6 +37,7 @@ exports.cssLoaders = function (options) {
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
+        publicPath: '../../',// 解决部署在非根路径，CSS中引用图片路径出错的问题。
         use: loaders,
         fallback: 'vue-style-loader'
       })
