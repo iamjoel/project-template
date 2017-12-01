@@ -36,11 +36,6 @@ export default {
   },
   methods: {
     fetch(name) {
-      // debugger
-    //   this.list = [{
-    //     uuid: '1',
-    //     name: 'test'
-    //   }]
       var otherQuery
       if(typeof this.otherQuery === 'function') {
         otherQuery = this.otherQuery()
