@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable="true">
+    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable>
       <el-option
         v-for="item in list"
         :key="item.id"
