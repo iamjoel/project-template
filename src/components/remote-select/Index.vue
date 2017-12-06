@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')">
+    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable="true">
       <el-option
         v-for="item in list"
         :key="item.id"
@@ -36,6 +36,11 @@ export default {
   },
   methods: {
     fetch(name) {
+      // debugger
+    //   this.list = [{
+    //     uuid: '1',
+    //     name: 'test'
+    //   }]
       var otherQuery
       if(typeof this.otherQuery === 'function') {
         otherQuery = this.otherQuery()
@@ -46,7 +51,7 @@ export default {
         current: 1,
         limit: 20
       }, null).then(res => {
-        this.list = res.data.data.list
+        this.list = res.data.data
       })
     },
     setVal(value) {
