@@ -6,5 +6,5 @@ https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-
 
 3 发布项目试下 [使用fjpublish发布前端项目（基础篇）](https://juejin.im/post/59f48fa36fb9a0452724d9ab) 。说白了，就是替代ftp的功能，传到指定位置。
 
-4 示例页面做成ant design 那样。
+4 示例页面优化。参考 ant design 和 iview admin。
 
