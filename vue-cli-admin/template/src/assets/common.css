@@ -1,0 +1,22 @@
+.multi-line{
+  flex-wrap: wrap;
+}
+.el-menu {
+  border-radius: 0;
+}
+.el-menu-item a{
+  color: inherit;
+  text-decoration: none;
+}
+.el-card {
+  margin-bottom: 20px;
+}
+.el-card__header{
+  box-sizing: content-box !important;
+  height: 32px;
+  line-height: 32px;
+}
+#main-content {
+  padding-left:30px;
+  padding-right: 20px !important;
+}
