@@ -1,0 +1,28 @@
+{
+  "name": "front-end-template",
+  "version": "1.0.0",
+  "description": "* 管理后台   * [源码](admin)   * [脚手架](vue-cli-admin) * [移动端](mobile)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamjoel/front-end-template.git"
+  },
+  "keywords": [
+    "front-end",
+    "template"
+  ],
+  "author": "Joel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamjoel/front-end-template/issues"
+  },
+  "homepage": "https://github.com/iamjoel/front-end-template#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.6.1"
+  }
+}

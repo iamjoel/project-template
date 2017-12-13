@@ -5,17 +5,17 @@
     </div>
     <div class="upload-btn-wrap">
       <el-button>选择图片</el-button>
-      <input type="file" id="file-upload" @change="uploadPic" accept="image/png, image/jpeg, image/gif">
+      <input type="file" class="file-upload" :id="id" @change="uploadPic" accept="image/png, image/jpeg, image/gif">
     </div>
   </div>
 </template>
 
 <script>
+var id = 1
 import {urls} from '@/setting'
 import $ from 'jquery'
-
 export default {
-  prop: {
+  props: {
     value: null, // v-model
     isSingle: {// 是否只能上传一张
       default: true,
@@ -24,13 +24,14 @@ export default {
   },
   data() {
     return {
-      imgId: []
+      imgId: [],
+      id
     }
   },
   methods: {
     uploadPic() {
       var vm = this
-      var $file = $('#file-upload')
+      var $file = $('#' + this.id)
       var formData = new FormData();
       formData.append('file', $file[0].files.item(0));
       $.ajax({
@@ -53,29 +54,31 @@ export default {
 
     },
     getImgId() {
-      return this.isSingle ? this.imgId[0] : this.imgId
+      return this.imgId.join(',')
     },
     setImgId(value) {
       if(value) {
         if(this.isSingle) {
           this.imgId = [value]
         } else {
-          this.imgId = [...value]
+          if(typeof value === 'string') {
+            this.imgId = value.split(',')
+          } else {
+            this.imgId = [...value]
+          }
         }
       }
     }
   },
   mounted() {
-    if(this.isSingle === undefined) {
-      this.isSingle = true // 设置默认值无效。。。
-    }
+    this.id = 'file-upload-' + id++
     this.setImgId(this.value)
   },
 
 }
 </script>
 
-<style>
+<style scoped>
 .imgs{
   display: inline-block;
   margin-right: 5px;
@@ -88,7 +91,7 @@ export default {
   display: inline-block;
   position: relative;
 }
-#file-upload{
+.file-upload{
   position: absolute;
   top: 0;
   left: 0;

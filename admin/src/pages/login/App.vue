@@ -9,7 +9,7 @@
             <el-input v-model="model.name"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="model.password" type="password"></el-input>
+            <el-input v-model="model.password" type="password" @keyup.enter.native="login"></el-input>
             <p style="font-size:12px;color: #666">输入任意用户名和密码即可</p>
           </el-form-item>
       </el-form>

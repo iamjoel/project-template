@@ -9,7 +9,8 @@
             <el-input v-model="model.name"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="model.password" type="password"></el-input>
+            <el-input v-model="model.password" type="password" @keyup.enter.native="login"></el-input>
+            <p style="font-size:12px;color: #666">输入任意用户名和密码即可</p>
           </el-form-item>
       </el-form>
       <div class="login__btn-wrap">
@@ -66,10 +67,11 @@ export default {
 <style>
   body {
     padding-top: 100px;
-    background-color: #324157;
+    background: url(./bg.jpg) center top no-repeat #324157;
+    background-size: cover;
   }
   .login{
-    width: 500px;
+    width: 300px;
     margin: 0 auto;
   }
   .login__title {

@@ -1,98 +1,72 @@
-# {{ name }}
-
-> {{ description }}
+# 后台管理系统模板
 
 ## 运行
-1 安装依赖  
+1 生成项目代码结构：
 
-1. 安装 Node.js, [Yarn](https://yarnpkg.com/en/docs/install)。
-1. `yarn install`
+1. `npm install -g vue-cli`
+1. `vue init iamjoel/vue-cli-template-admin`
 
 
-2 在后端接口还没开发完成前  
+2 安装依赖：  
+
+1. `npm install`
+
+推荐用[Yarn](https://yarnpkg.com/en/docs/install):
+1. 安装 [Yarn](https://yarnpkg.com/en/docs/install)。
+1. `yarn install`。
+
+3 在后端接口还没开发完成前:  
 
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
 
 
-3 后端接口开发好后
+4 后端接口开发好后：  
 
 1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
 1. `npm run dev`
 
-项目运行起来后，浏览器会自动打开：`127.0.0.1:5000` 。
+项目运行起来后，浏览器会自动打开：`127.0.0.1:5000`。
 
 ## 构建
 1. `npm run build`
 1. 打开 `dist` 下的 `index.html` 来查看效果。
 
 ## 做页面的步骤
-第4，5步的代码可以由工具生成,点[这里](https://iamjoel.github.io/admin-fe-generator/src/)。
-
-第1步：加路由  
-打开 `src/router/menu.js`。
-
-如果是新增的一级菜单，要加配置  
+第1步：配置页面 
+打开 `src/setting.js`。 修改 `PAGES` 的值。配置新的页面:
 ```
-const MENU_PREFIXS = {
-  ...
-  菜单key: 一级菜单值 // 这里是新增一级菜单
-}
-```
-
-加页面路由配置    
-```
-// 路由配置
-var routes = [
-  // 配一组路由：列表页，新建，更新，查看详情页。
-  ...addPageGroup(页面值, 一级菜单值),
-  // 加一个页面
-  {
-    path: 页面路径,
-    component: resolve => {
-      lazyLoading(resolve, '一级菜单值/页面值/list|view/:id|update/:id')
-    }
-  }
-  
+export const PAGES = [
+{ // 一级菜单
+  id: 'music', 
+  name: '音乐',
+  children: [{ // 页面
+    id: 'song',
+    name: '歌曲',
+    pageTypes: ['list', 'detail'], // 默认是 ['list', 'detail', 'edit'] 对应 列表(/list)，详情(/detail/:id)，新建页(/edit/-1)，编辑页(/edit/:id)。 
+    pageKey: null, // 默认值为 id
+    limitKey: null // 默认值为 pageKey,
+    menuPath: 'detail/-1' // 菜单的入口。默认是 list
+  }]
+},
+// ... 更多菜单和页面
 ]
 ```
 
-第2步：侧栏菜单加新增的页面和数据权限 
-如果菜单数据和权限是调接口的，让后端改。
+第2步：制作列表页。
 
+第3步：制作新增，编辑，详情页。
 
-如果菜单数据是存在前端的，改 `src/store/actions.js` 的 `fetchMenuAndLimit` 方法：
-```
-menu: [...,{
-  "innerid": Random.guid(),
-  "name": "一级菜单名",
-  "icon": 'message',
-  children: [{
-      "innerid": Random.guid(),
-      "name": "页面名",
-      path: '/xxx/xxx/list',
-  },]
-}],
-limit: {
-  'limitKey1': 值,
-  ...
-}
-```
+第2，3步的代码可以由工具生成,点[这里](https://iamjoel.github.io/admin-fe-generator/src/)。
 
-第3步：后台接口配置  
-在 setting.js 增加。
-```
-接口地址Key: addUrlGroup(`${SERVER_PREFIX}/xxx`)
-```
+第4步：将 list.vue,list.js, update.vue, update.js 放入文件夹： `src/一级菜单/页面值` 中。
 
-第4步：列表页。
+第5步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
 
-第5步：新增，编辑，详情页。
-
-第6步：将 list.vue,list.js, update.vue, update.js 放入文件夹： `src/一级菜单/页面值` 中。
-
-第7步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
+## 约定
+* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
+* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 list.vue 和 list.js ；详情，新增和编辑页共用 update.vue 和 update.js。
 
 ## 功能
 * 登录页
@@ -114,7 +88,6 @@ limit: {
 * [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
 * [vue-devtools](https://github.com/vuejs/vue-devtools)
-* 生成项目框架代码 开发中...
 
 ## 本项目需要背景知识
 * npm scripts 的使用。

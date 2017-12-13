@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')">
+    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable>
       <el-option
         v-for="item in list"
         :key="item.id"
@@ -51,7 +51,7 @@ export default {
         current: 1,
         limit: 20
       }, null).then(res => {
-        this.list = res.data.data.list
+        this.list = res.data.data
       })
     },
     setVal(value) {

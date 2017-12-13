@@ -27,7 +27,6 @@ Vue.filter('img', function (value, size) {
   return `${IMGS_PREFIX}/${size === 'small' ? 'thumb_img/' : ''}${value}`
 })
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
