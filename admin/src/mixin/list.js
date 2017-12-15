@@ -17,6 +17,7 @@ export default {
         current: 1,
         total: 1
       },
+      isShowDetailDialog: false,
       params: false,
       limitKey: null // 页面权限key
     }

@@ -96,3 +96,28 @@ export const PAGES = [
 * 框架的使用。主要是 Vue。
 * 了解单页应用。
 
+## 一级菜单，页面和二级菜单页面的配置
+* 通用
+  * id: 唯一标识。
+  * role: 角色。如果左侧菜单的数据输出不是调用接口的，通过改字段来过滤当前角色能看到的页面。
+  * 一组页面。一组页面会有一个页面在左侧菜单中显示。
+    * main: 左侧菜单中的页面。值是pages的type。默认值是 list(列表页)，如果没有list, 则取 pages 的第一个值。
+    * name: 这组页面的名称。会显示在左侧菜单中。main 对应的页面也有 name 值，则 左侧菜单 会显示那页面。
+    * ajaxKey: 这组页面 url 前缀。根据该前缀，结合 pages 的 type 在 setting.js 的 urls 上配置地址。默认值是 id。
+    * limitKey: 这组页面的权限值。根据该值从权限对象中拿具体的权限值，判断有哪些权限。默认值是 id。
+    * pages: 包含的页面。具体页面的配置如下
+      * type 页面类型。 常见的有 'list', 'update',也可以自定义
+      * filePath: 处理文件所在目录。默认值是 `src/views[/一级菜单id]/二级菜单id/${type}`。
+      * routePath: 路由地址。默认值是 `[/一级菜单id]/二级菜单id/${type}`
+* 一级菜单
+  * children: 配置二级菜单。可选。
+
+## 新项目需要修改的点
+* ajax 地址格式 setting.js -> addUrlGroup
+* 增上改查 ajax 
+  * assets/utils/ajax-crud.js
+  * 搜索，分页，排序写法: assets/utils/wrap-fetch-query.js
+* ajax 的拦截器。处理如：接口的错误提示，登录(可能是加token),登录过期的写法 assets/utils/ajax.js
+* 获取菜单
+
+

@@ -14,17 +14,27 @@ export default {
       var allMenu = this.menu
       var currMenu = false
       var pathArr = this.pathArr
-      if (pathArr.length >= 3 && allMenu.length > 0) {
+      // debugger
+      if (pathArr.length >= 1 && allMenu.length > 0) {
         allMenu.forEach(menu=> {
-          if(!currMenu && menu.children.length > 0) {
-            var subMenu = menu.children[0]
-            if(!subMenu.path) {
-              console.error(subMenu)
-              return
-            }
-            var menuPath = subMenu.path.split('/')[1]
-            if(menuPath === pathArr[0]) {
-              currMenu = menu
+          if(!currMenu) { // 未找到
+            if(menu.children) {
+              if(menu.children.length > 0) {
+                var subMenu = menu.children[0]
+                if(!subMenu.path) {
+                  console.error(subMenu)
+                  return
+                }
+                var menuPath = subMenu.path.split('/')[1]
+                if(menuPath === pathArr[0]) {
+                  currMenu = menu
+                }
+              }
+            } else {
+              var menuPath = menu.path.split('/')[1]
+              if(menuPath === pathArr[0]) {
+                currMenu = menu
+              }
             }
           }
         })
@@ -35,6 +45,10 @@ export default {
       return this.currMenu ? this.currMenu.id : ''
     },
     currSubMenuId() {
+      // 一级菜单
+      if(!this.currMenu.children) {
+        return ''
+      }
       var id
       var currMenu = this.currMenu
       var currPathArr = this.pathArr

@@ -1,41 +1,40 @@
-import {PAGES} from '@/setting'
+import {menuConfig} from '@/setting'
 
 // 路由配置
 var routes = [
   {
     path: '/',
     component: resolve => {
-      lazyLoading(resolve, 'dashboard', false)
+      lazyLoading(resolve, 'Dashboard', false)
     },
   },
 ]
 
-// 常规页面的路由
-PAGES.forEach(item => {
-  var parentId = item.id
-  item.children.forEach(child => {
-    routes.push(...addPageGroup(child.id, parentId))
-  })
+// 页面的路由的定义
+menuConfig.forEach(menu => {
+  var parentId = menu.id
+  if(menu.children) { // 二级菜单
+    menu.children.forEach(pageGroup => {
+      pageGroup.pages.forEach(page => {
+        addRoute(page.filePath, page.routePath)
+      })
+    })
+  } else { // 一级路由
+    menu.pages.forEach(page => {
+      addRoute(page.filePath, page.routePath)
+    })
+  }
 })
 
-function addPageGroup (name, parent, types=['list', 'update', 'view']){
-  if(!Array.isArray(types)) {
-    throw 'type should be array'
-  }
-  return types.map(type => {
-    var path = `/${parent}/${name}/${type === 'list' ? 'list' : (type+'/:id')}`
-    var fileName = type
-    if(type === 'view') {
-      fileName = 'update'
-    }
-    return {
-      path,
-      component: resolve => {
-        lazyLoading(resolve, `${parent}/${name}/${fileName}`)
-      }
+function addRoute(filePath, routePath) {
+  routes.push({
+    path: routePath,
+    component: resolve => {
+      lazyLoading(resolve, filePath)
     }
   })
 }
+
 
 const lazyLoading = (resolve, name, index = false) => {
   require.ensure([], function(require) {
