@@ -19,7 +19,7 @@
   
   <el-row type="flex" justify="center">
     <el-button @click="$router.go(-1)">返回</el-button>
-    <el-button type="success" @click="save">保存</el-button>
+    <el-button type="success" @click="save" v-if="!isView">保存</el-button>
   </el-row>
 </div>
 </template>

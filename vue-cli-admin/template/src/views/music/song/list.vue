@@ -42,13 +42,34 @@
         width="350"
         >
         <template slot-scope="scope">
-          <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('view')">详情</el-button>
+          <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('view')">详情(跳页面)</el-button>
+          <el-button type="success" size="small" @click="showDetail(scope.row)" v-if="isShow('view')">详情(弹出框)</el-button>
           <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
           <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
   </j-grid-box>
+
+  <el-dialog title="详情" :visible.sync="isShowDetailDialog">
+      <div class="detail-item-wrap">
+        <div class="detail-item">
+          <div class="detail-item__label">歌曲名称</div>
+          <div class="detail-item__val">\{{model.name}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-item__label">歌手</div>
+          <div class="detail-item__val">\{{model.singer && model.singer.name}}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-item__label">简介</div>
+          <div class="detail-item__val">\{{model.describe}}</div>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="isShowDetailDialog=false">关 闭</el-button>
+      </span>
+    </el-dialog>
 
 </div>
 </template>

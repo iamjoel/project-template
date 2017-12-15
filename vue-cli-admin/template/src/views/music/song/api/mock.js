@@ -49,7 +49,10 @@ function makeItem() {
   return {
     id: Math.floor(Math.random() * 10000),
     name: Random.cword(5),
-    singer: Random.cname(),
+    singer: {
+      name:Random.cname()
+    },
+    describe: Random.sentence()
   }
 }
 

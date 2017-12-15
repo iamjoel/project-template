@@ -17,6 +17,7 @@ export default {
         current: 1,
         total: 1
       },
+      model: {},// 详情的model
       isShowDetailDialog: false,
       params: false,
       limitKey: null // 页面权限key
@@ -87,6 +88,9 @@ export default {
       var limit = this.$store.state.limit[this.limitKey]
       return (limit && limit[type]) || true // 测试
     },
-    
+    showDetail(detail) {
+      this.model = detail
+      this.isShowDetailDialog = true
+    }
   }
 }
