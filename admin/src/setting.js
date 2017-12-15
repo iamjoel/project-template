@@ -1,3 +1,4 @@
+import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var SERVER_PREFIX
 var HOST
 var useFEMock = false
@@ -18,7 +19,16 @@ export var isMock = useFEMock
 SERVER_PREFIX = `${HOST}/api`
 
 // 页面
-export const PAGES = [
+var _menuConfig = [
+  {
+    id: 'dashboard',
+    name: '仪表盘',
+    pages: [{
+      type: 'dashboard',
+      filePath: 'dashboard',
+      routePath: 'dashboard'
+    }]
+  },
   {
     id: 'music',
     name: '音乐',
@@ -29,16 +39,22 @@ export const PAGES = [
   }
 ]
 
-// 接口地址
 export const urls = {}
 
-// 添加常规的页面对应的地址
-PAGES.forEach(item => {
-  item.children.forEach(child => {
-    var pageKey = child.pageKey || child.id
-    urls[pageKey] = addUrlGroup(`${SERVER_PREFIX}/${pageKey}`, child.pageTypes, child.otherTypes)
-  })
-})
+const DEFAULT_PAGES = [{
+  type: 'list'
+},{
+  type: 'update'
+},{
+  type: 'view'
+},]
+
+
+// 标准化
+export var menuConfig = standardizeMenu(_menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX)
+console.log(menuConfig)
+
+// 接口地址
 
 // 权限值
 export const LIMIT_KEY = {

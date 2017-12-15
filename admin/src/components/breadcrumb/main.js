@@ -21,19 +21,28 @@ export default {
       var pathArr = this.pathArr
       // console.log(pathArr)
       var allMenu = this.menu
-      if (pathArr.length >= 3 && allMenu.length > 0) {
+      if (pathArr.length >= 1 &&  allMenu.length > 0) {
         allMenu.forEach(menu=> {
-          if(!currMenu && menu.children.length > 0) {
-            var subMenu = menu.children[0]
-            if(!subMenu.path) {
-              console.error(subMenu)
-              return
+          if(!currMenu) {
+            if(menu.children) {
+              if(menu.children.length > 0) {
+                var subMenu = menu.children[0]
+                if(!subMenu.path) {
+                  console.error(subMenu)
+                  return
+                }
+                var menuPath = subMenu.path.split('/')[1]
+                if(menuPath === pathArr[0]) {
+                  currMenu = menu
+                }
+              }
+            } else {
+              var menuPath = menu.path.split('/')[1]
+              if(menuPath === pathArr[0]) {
+                currMenu = menu
+              }
             }
-            var menuPath = subMenu.path.split('/')[1]
-            if(menuPath === pathArr[0]) {
-              currMenu = menu
-            }
-          }
+          } 
         })
       }
       return currMenu
@@ -42,6 +51,10 @@ export default {
       return this.currMenu ? this.currMenu.name : ''
     },
     subMenuName() {
+      // 一级菜单
+      if(!this.currMenu.children) {
+        return ''
+      }
       var name
       var currMenu = this.currMenu
       var currPathArr = this.pathArr
