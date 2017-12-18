@@ -1,5 +1,4 @@
 import standardizeMenu from '@/assets/utils/standardize-menu-config'
-var SERVER_PREFIX
 var HOST
 var useFEMock = false
 
@@ -16,7 +15,7 @@ if (process.env.NODE_ENV === 'mock') { // 用 Mock Server mock数据
 export const IMGS_PREFIX = `${HOST}/imgs`
 export var isMock = useFEMock
 
-SERVER_PREFIX = `${HOST}/api`
+export var SERVER_PREFIX = `${HOST}/api`
 
 // 页面
 var _menuConfig = [
