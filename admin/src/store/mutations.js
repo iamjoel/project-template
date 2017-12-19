@@ -4,9 +4,11 @@ import Vue from 'vue'
 
 
 const mutations = {
+  [types.ROLE] (state, role) {
+    state.role = role
+  },
   [types.USER_INFO] (state, user) {
     state.user = user
-    localStorage.setItem('sc-user-info', JSON.stringify(state.user))
   },
   [types.MENU_LIMIT] (state, menuAndLimit) {
     state.menu = menuAndLimit.data.menu

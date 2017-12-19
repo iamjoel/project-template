@@ -16,18 +16,21 @@ menuConfig.forEach(menu => {
       return {
         "id": item.id,
         "name": item.name,
-        path: item.mainPage.routePath
+        role: item.role,
+        path: item.mainPage.routePath,
       }
     })
     return menus.push({
       id: parent.id,
       name: parent.name,
+      role: parent.role,
       children: subMenu
     })
   } else { // 一级菜单
     return menus.push({
       id: parent.id,
       name: parent.name,
+      role: parent.role,
       path: menu.mainPage.routePath
     })
   }
@@ -36,10 +39,29 @@ menuConfig.forEach(menu => {
 console.log(menus)
 
 export const fetchMenuAndLimit = ({ commit, state, getters }) => {
+  var role = state.role
+  var currentMenus = menus.filter(menu => {
+    if(menu.role) {
+      if(menu.role !== role) {
+        return false
+      } else {
+        if(menu.children) {
+          menu.children = menu.children.filter(item => {
+            if(item.role) {
+              return item.role === role
+            }
+            return true
+          })
+        }
+        return true
+      }
+    }
+    return true
+  })
   // 可以根据 process.env.NODE_ENV 来判断拿的值
   commit(types.MENU_LIMIT, {
       data: {
-        menu: menus,
+        menu: currentMenus,
         limit: {}
       }
   })
