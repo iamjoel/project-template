@@ -56,7 +56,7 @@ const DEFAULT_PAGES = [{
 
 // 标准化
 export var menuConfig = standardizeMenu(_menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX)
-
+console.log(menuConfig)
 // 接口地址
 
 // 权限值

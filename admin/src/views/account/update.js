@@ -6,7 +6,6 @@ export default {
   mixins: [updateMixin],
   data () {
     return {
-      KEY: 'account',
       model: {
         name: null,
         password: null,

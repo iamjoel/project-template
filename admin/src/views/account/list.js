@@ -9,8 +9,6 @@ export default {
   mixins: [listMixin],
   data () {
     return {
-      KEY: 'account',
-      PAGE_PATH_PREFIX: '/account', 
       searchConditions: {
         name: null,
       },

@@ -12,6 +12,9 @@ export default {
   },
   data() {
     return {
+      KEY: null,
+      PAGE_PATH_PREFIX: null,
+      limitKey: null,
       tableData: [],
       pager: {
         current: 1,
@@ -29,16 +32,22 @@ export default {
     },
   },
   mounted() {
-    if(!this.KEY) {
-      console.error('请设置KEY')
-      return
-    } else if(!this.PAGE_PATH_PREFIX) {
-      console.error('请设置PAGE_PATH_PREFIX')
-      return
+    var pathArr = this.$route.path.split('/').filter(item => item !== '')
+    if(!this.KEY) { // 用 KEY 来调用 Ajax
+      // 形如 ['account', 'list'], ['music', 'song', 'list']
+      this.KEY = pathArr[pathArr.length - 2]
+    } 
+    if(!this.PAGE_PATH_PREFIX) { // 用 PAGE_PATH_PREFIX 来跳转详情编辑新增页
+      if(pathArr.length === 2) { // 形如 ['account', 'list']
+        this.PAGE_PATH_PREFIX = '/' + pathArr[0]
+      } else {// 形如 ['music', 'song', 'list']
+        this.PAGE_PATH_PREFIX = '/' + pathArr[0] + '/' + pathArr[1]
+      }
     }
     if(!this.limitKey) {
       this.limitKey = this.KEY
     }
+    console.log(`KEY: ${this.KEY};PAGE_PATH_PREFIX: ${this.PAGE_PATH_PREFIX},limitKey: ${this.limitKey}`)
     this.search()
   },
   methods: {

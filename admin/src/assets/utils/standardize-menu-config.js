@@ -9,7 +9,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
     if(menu.children) { // 二级菜单的页面
       menu.children.forEach(pageGroup => {
         if(!pageGroup.pages) {
-          pageGroup.pages = [...DEFAULT_PAGES]
+          pageGroup.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
         }
         pageGroup.pages = pageGroup.pages.map(page => {
           var pageInfo = getPageInfo(page, parentId, pageGroup.id)
@@ -20,7 +20,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
       })
     } else { // 一级菜单的页面
       if(!menu.pages) {
-        menu.pages = [...DEFAULT_PAGES]
+        menu.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
       }
       menu.pages = menu.pages.map(page => {
         var pageInfo = getPageInfo(page, undefined, menu.id)
