@@ -29,6 +29,11 @@ var _menuConfig = [
     }]
   },
   {
+    id: 'account',
+    name: '帐号',
+    role: 'admin', // 只有管理员才能看
+  },
+  {
     id: 'music',
     name: '音乐',
     children: [{
@@ -52,7 +57,6 @@ const DEFAULT_PAGES = [{
 // 标准化
 export var menuConfig = standardizeMenu(_menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX)
 console.log(menuConfig)
-
 // 接口地址
 
 // 权限值

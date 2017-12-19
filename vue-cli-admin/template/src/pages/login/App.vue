@@ -10,7 +10,10 @@
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input v-model="model.password" type="password" @keyup.enter.native="login"></el-input>
-            <p style="font-size:12px;color: #666">输入任意用户名和密码即可</p>
+            <p style="font-size:12px;color: #666">
+              超级管理员: admin 密码: 1<br>
+              普通用户: user 密码: 1
+            </p>
           </el-form-item>
       </el-form>
       <div class="login__btn-wrap">
@@ -22,7 +25,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'app',
   components: {
@@ -31,8 +33,8 @@ export default {
   data() {
     return {
       model: {
-        name: null,
-        password: null,
+        name: 'admin',
+        password: '1',
       },
       rules: {
         name: [
@@ -49,6 +51,9 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           localStorage.setItem('j-sessionid', Math.random())
+          // 仅供测试
+          var role = this.model.name === 'admin' ? 'admin' : 'user'
+          localStorage.setItem('j-role', role)
           location.href= "index.html"
         } else {
           return false;

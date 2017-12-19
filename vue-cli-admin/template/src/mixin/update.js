@@ -7,6 +7,7 @@ export default {
   },
   data() {
     return {
+      KEY: null,
       id: this.$route.params.id,
     }
   },
@@ -65,6 +66,10 @@ export default {
     }
   },
   mounted () {
+    var pathArr = this.$route.path.split('/').filter(item => item !== '')
+    if(!this.KEY) { // 用 KEY 来调用 Ajax
+      this.KEY = pathArr[pathArr.length - 3]
+    }
     if (!this.isAdd) {
       fetchModel(this.KEY, this.id).then(({data})=>{
         if (!data.errcode) {

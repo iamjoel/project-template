@@ -18,7 +18,7 @@
 import Sidebar from '@/components/siderbar'
 import Topbar from '@/components/topbar'
 import Breadcrumb from '@/components/breadcrumb'
-// require('@/assets/assets/utils/ajax') // 对ajax 加拦截器
+import * as types from '@/store/mutation-types'
 
 export default {
   name: 'app',
@@ -28,6 +28,8 @@ export default {
     'j-breadcrumb': Breadcrumb,
   },
   mounted() {
+    var role = localStorage.getItem('j-role') || 'user'
+    this.$store.commit(types.ROLE, role)
     this.$store.dispatch('fetchMenuAndLimit')
   }
 }

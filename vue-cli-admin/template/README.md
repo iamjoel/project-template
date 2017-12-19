@@ -73,6 +73,7 @@ export const PAGES = [
 * 登录成功后的一系列页面
   * 列表页。
   * 新建，编辑和详情页。是一个页面。
+* 不同角色显示不同菜单。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。

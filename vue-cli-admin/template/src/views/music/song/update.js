@@ -1,12 +1,11 @@
 import updateMixin from '@/mixin/update'
 
-// require('./api/mock.js')
+require('./api/mock.js')
 
 export default {
   mixins: [updateMixin],
   data () {
     return {
-      KEY: 'song',
       model: {
         name: null,
         describe: null,
