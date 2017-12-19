@@ -8,5 +8,3 @@ https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-
 
 4 示例页面优化。参考 ant design 和 iview admin。
 
-5 详情页，内容有点向上。
-

@@ -1,6 +1,6 @@
 import updateMixin from '@/mixin/update'
 
-// require('./api/mock.js')
+require('./api/mock.js')
 
 export default {
   mixins: [updateMixin],

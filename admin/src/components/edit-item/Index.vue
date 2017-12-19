@@ -14,7 +14,7 @@
       <div v-if="!isView && tip" style="color: #666">
         {{tip}}
       </div>
-      <div v-if="isView">
+      <div v-if="isView" class="view-content-value">
         <div v-if="!isImg">{{viewValue}}</div>
         <img v-if="isImg && !isMultiImg(viewValue)" :src="viewValue | img" style="max-width:100px">
         <div v-if="isImg && isMultiImg(viewValue)">
@@ -85,6 +85,10 @@
   }
   .j-edit-item--fill .el-form-item__content{
     width: 89%;
+  }
+
+  .view-content-value {
+    line-height: 41px;
   }
 </style>
 
