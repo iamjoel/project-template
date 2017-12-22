@@ -55,8 +55,17 @@ export const fetchMenuAndLimit = ({ commit, state, getters }) => {
         }
         return true
       }
+    } else {
+      if(menu.children) {
+        menu.children = menu.children.filter(item => {
+          if(item.role) {
+            return item.role === role
+          }
+          return true
+        })
+      }
+      return true
     }
-    return true
   })
   // 可以根据 process.env.NODE_ENV 来判断拿的值
   commit(types.MENU_LIMIT, {
