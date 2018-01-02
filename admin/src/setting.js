@@ -12,6 +12,9 @@ if (process.env.NODE_ENV === 'mock') { // 用 Mock Server mock数据
   HOST = 'http://127.0.0.1:3000'
 }
 
+// 全栈JavaScript错误监控 https://fundebug.com/
+export const fundebugAPIKey = 'b3899a382b2a7117d2d479959a07a18b3d92d6a7a5ebd6ef14d14eac699be95d'
+
 export const IMGS_PREFIX = `${HOST}/imgs`
 export var isMock = useFEMock
 

@@ -83,6 +83,7 @@ export const PAGES = [
   * [autoprefixer](https://github.com/postcss/autoprefixer)
 * [Webpack](http://webpack.github.io/)
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
+* [FunDebug](https://fundebug.com/) 全栈JavaScript错误监控工具。
 
 ## 工具
 * [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
