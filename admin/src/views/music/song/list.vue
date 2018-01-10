@@ -40,6 +40,7 @@
         prop="op"
         label="操作"
         width="350"
+        fixed="right"
         >
         <template slot-scope="scope">
           <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('view')">详情(跳页面)</el-button>
