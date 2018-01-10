@@ -8,13 +8,7 @@
 * Mock 后端数据。
 
 ## 运行
-1 生成项目代码结构：
-
-1. `npm install -g vue-cli`
-1. `vue init iamjoel/vue-cli-template-admin`
-
-
-2 安装依赖：  
+1 安装依赖：  
 
 1. `npm install`
 
@@ -22,13 +16,13 @@
 1. 安装 [Yarn](https://yarnpkg.com/en/docs/install)。
 1. `yarn install`。
 
-3 在后端接口还没开发完成前:  
+2 在后端接口还没开发完成前:  
 
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
 
-4 后端接口开发好后：  
+3 后端接口开发好后：  
 
 1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
 1. `npm run dev`
@@ -89,35 +83,12 @@ export const PAGES = [
 └── static 静态资源
 ```
 
-## 开发约定
-* `.vue` 必须大写
-* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
-* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 List.vue 和 list.js ；详情，新增和编辑页共用 Update.vue 和 update.js。
-
-
-
 ## 本项目需要背景知识
 * npm scripts 的使用。
 * yarn 的使用。常用的是 `yarn install` 和 `yarn add` 。
 * CommonJS 和 import 的使用。
 * 框架的使用。主要是 Vue。
 * 了解单页应用。
-
-## 一级菜单，页面和二级菜单页面的配置
-* 通用
-  * id: 唯一标识。
-  * role: 角色。如果左侧菜单的数据输出不是调用接口的，通过改字段来过滤当前角色能看到的页面。
-  * 一组页面。一组页面会有一个页面在左侧菜单中显示。
-    * main: 左侧菜单中的页面。值是pages的type。默认值是 list(列表页)，如果没有list, 则取 pages 的第一个值。
-    * name: 这组页面的名称。会显示在左侧菜单中。main 对应的页面也有 name 值，则 左侧菜单 会显示那页面。
-    * ajaxKey: 这组页面 url 前缀。根据该前缀，结合 pages 的 type 在 setting.js 的 urls 上配置地址。默认值是 id。
-    * limitKey: 这组页面的权限值。根据该值从权限对象中拿具体的权限值，判断有哪些权限。默认值是 id。
-    * pages: 包含的页面。具体页面的配置如下
-      * type 页面类型。 常见的有 'list', 'update',也可以自定义
-      * filePath: 处理文件所在目录。默认值是 `src/views[/一级菜单id]/二级菜单id/${type}`。
-      * routePath: 路由地址。默认值是 `[/一级菜单id]/二级菜单id/${type}`
-* 一级菜单
-  * children: 配置二级菜单。可选。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
@@ -134,6 +105,28 @@ export const PAGES = [
 * [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
 * [vue-devtools](https://github.com/vuejs/vue-devtools)
+
+## 开发约定
+* `.vue` 文件必须大写。
+* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
+* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 List.vue 和 list.js ；详情，新增和编辑页共用 Update.vue 和 update.js。
+
+
+## 一级菜单，页面和二级菜单页面的配置
+* 通用
+  * id: 唯一标识。
+  * role: 角色。如果左侧菜单的数据输出不是调用接口的，通过改字段来过滤当前角色能看到的页面。
+  * 一组页面。一组页面会有一个页面在左侧菜单中显示。
+    * main: 左侧菜单中的页面。值是pages的type。默认值是 list(列表页)，如果没有list, 则取 pages 的第一个值。
+    * name: 这组页面的名称。会显示在左侧菜单中。main 对应的页面也有 name 值，则 左侧菜单 会显示那页面。
+    * ajaxKey: 这组页面 url 前缀。根据该前缀，结合 pages 的 type 在 setting.js 的 urls 上配置地址。默认值是 id。
+    * limitKey: 这组页面的权限值。根据该值从权限对象中拿具体的权限值，判断有哪些权限。默认值是 id。
+    * pages: 包含的页面。具体页面的配置如下
+      * type 页面类型。 常见的有 'list', 'update',也可以自定义
+      * filePath: 处理文件所在目录。默认值是 `src/views[/一级菜单id]/二级菜单id/${type}`。
+      * routePath: 路由地址。默认值是 `[/一级菜单id]/二级菜单id/${type}`
+* 一级菜单
+  * children: 配置二级菜单。可选。
 
 ## 新项目需要修改的点
 * ajax 地址格式 setting.js -> addUrlGroup
