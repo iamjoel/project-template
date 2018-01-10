@@ -114,12 +114,29 @@ export const PAGES = [
 * 一级菜单
   * children: 配置二级菜单。可选。
 
+## 项目结构
+├── build 构建流程代码
+├── config 构建相关的配置
+├── dist 构建过上线的代码
+├── src
+│   ├── assets 
+│   │   └── utils 工具方法
+│   ├── components 组件
+│   ├── mixin
+│   ├── pages 页面
+│   ├── router 路由
+│   ├── service 与服务器端的交互
+│   ├── store 全局数据
+│   ├── setting 业务相关的配置
+│   └── views 路由对于的内容
+└── static 静态资源
+
 ## 新项目需要修改的点
 * ajax 地址格式 setting.js -> addUrlGroup
 * 增上改查 ajax 
   * assets/utils/ajax-crud.js
   * 搜索，分页，排序写法: assets/utils/wrap-fetch-query.js
 * ajax 的拦截器。处理如：接口的错误提示，登录(可能是加token),登录过期的写法 assets/utils/ajax.js
-* 获取菜单
+
 
 
