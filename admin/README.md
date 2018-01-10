@@ -1,4 +1,11 @@
 # 后台管理系统模板
+## 功能
+* 登录页
+* 登录成功后的一系列页面
+  * 列表页。
+  * 新建，编辑和详情页。
+* 不同角色显示不同菜单。
+* Mock 后端数据。
 
 ## 运行
 1 生成项目代码结构：
@@ -20,7 +27,6 @@
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
-
 
 4 后端接口开发好后：  
 
@@ -64,32 +70,31 @@ export const PAGES = [
 
 第5步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
 
-## 约定
+## 项目结构
+```
+├── build 构建流程代码
+├── config 构建相关的配置
+├── dist 构建过上线的代码
+├── src
+│   ├── assets 
+│   │   └── utils 工具方法
+│   ├── components 组件
+│   ├── mixin 一些组件的混入
+│   ├── pages 页面
+│   ├── router 路由
+│   ├── service 与后端的交互
+│   ├── store 全局数据
+│   ├── setting 业务相关的配置
+│   └── views 路由对于的内容
+└── static 静态资源
+```
+
+## 开发约定
+* `.vue` 必须大写
 * 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
-* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 list.vue 和 list.js ；详情，新增和编辑页共用 update.vue 和 update.js。
+* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 List.vue 和 list.js ；详情，新增和编辑页共用 Update.vue 和 update.js。
 
-## 功能
-* 登录页
-* 登录成功后的一系列页面
-  * 列表页。
-  * 新建，编辑和详情页。是一个页面。
-* 不同角色显示不同菜单。
 
-## 用的主要的框架
-* [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
-* [Element](http://element.eleme.io/#/zh-CN) 基于 Vue 的组件库。
-* [axios](https://github.com/mzabriskie/axios) 用来发 HTTP 请求的。
-* [PostCSS](http://postcss.org/)
-  * [autoprefixer](https://github.com/postcss/autoprefixer)
-* [Webpack](http://webpack.github.io/)
-* [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
-* [FunDebug](https://fundebug.com/) 全栈JavaScript错误监控工具。
-
-## 工具
-* [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
-* [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
-* [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
-* [vue-devtools](https://github.com/vuejs/vue-devtools)
 
 ## 本项目需要背景知识
 * npm scripts 的使用。
@@ -114,24 +119,21 @@ export const PAGES = [
 * 一级菜单
   * children: 配置二级菜单。可选。
 
-## 项目结构
-```
-├── build 构建流程代码
-├── config 构建相关的配置
-├── dist 构建过上线的代码
-├── src
-│   ├── assets 
-│   │   └── utils 工具方法
-│   ├── components 组件
-│   ├── mixin 一些组件的混入
-│   ├── pages 页面
-│   ├── router 路由
-│   ├── service 与服务器端的交互
-│   ├── store 全局数据
-│   ├── setting 业务相关的配置
-│   └── views 路由对于的内容
-└── static 静态资源
-```
+## 用的主要的框架
+* [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
+* [Element](http://element.eleme.io/#/zh-CN) 基于 Vue 的组件库。
+* [axios](https://github.com/mzabriskie/axios) 用来发 HTTP 请求的。
+* [PostCSS](http://postcss.org/)
+  * [autoprefixer](https://github.com/postcss/autoprefixer)
+* [Webpack](http://webpack.github.io/)
+* [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
+* [FunDebug](https://fundebug.com/) 全栈JavaScript错误监控工具。
+
+## 工具
+* [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
+* [生成接口模拟数据和文档](https://github.com/iamjoel/mock-server)
+* [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
+* [vue-devtools](https://github.com/vuejs/vue-devtools)
 
 ## 新项目需要修改的点
 * ajax 地址格式 setting.js -> addUrlGroup
@@ -139,6 +141,4 @@ export const PAGES = [
   * assets/utils/ajax-crud.js
   * 搜索，分页，排序写法: assets/utils/wrap-fetch-query.js
 * ajax 的拦截器。处理如：接口的错误提示，登录(可能是加token),登录过期的写法 assets/utils/ajax.js
-
-
 
