@@ -7,6 +7,10 @@ https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-
 
 4 示例页面优化。参考 ant design 和 iview admin。
 
+造点正常的测试数据
+setting.js 放在目录中，里面放dict.js 
+
+
 操作栏如何自适应宽度？
 
 ## 需同步到工具

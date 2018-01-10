@@ -29,11 +29,16 @@
         >
       </el-table-column>
       <el-table-column
-        prop="singer"
+        prop="singer.name"
         label="歌手"
         >
+      </el-table-column>
+      <el-table-column
+        prop="singer"
+        label="创作时间"
+        >
         <template slot-scope="scope">
-            {{scope.row.singer.name + '@' + '很流行'}}
+            {{scope.row.singer.createdAt | time}}
         </template>
       </el-table-column>
       <el-table-column

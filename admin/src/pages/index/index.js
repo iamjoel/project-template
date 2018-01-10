@@ -26,11 +26,8 @@ Vue.prototype.$http = axios
 
 import store from '@/store'
 
-// 获取资源服务器的图片
-import {IMGS_PREFIX, BASIC_CONFIG} from '@/setting'
-Vue.filter('img', function (value, size) {
-  return `${IMGS_PREFIX}/${size === 'small' ? 'thumb_img/' : ''}${value}`
-})
+// 过滤器
+require('@/filters')
 
 new Vue({
   el: '#app',
