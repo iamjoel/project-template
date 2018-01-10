@@ -115,6 +115,7 @@ export const PAGES = [
   * children: 配置二级菜单。可选。
 
 ## 项目结构
+```
 ├── build 构建流程代码
 ├── config 构建相关的配置
 ├── dist 构建过上线的代码
@@ -122,7 +123,7 @@ export const PAGES = [
 │   ├── assets 
 │   │   └── utils 工具方法
 │   ├── components 组件
-│   ├── mixin
+│   ├── mixin 一些组件的混入
 │   ├── pages 页面
 │   ├── router 路由
 │   ├── service 与服务器端的交互
@@ -130,6 +131,7 @@ export const PAGES = [
 │   ├── setting 业务相关的配置
 │   └── views 路由对于的内容
 └── static 静态资源
+```
 
 ## 新项目需要修改的点
 * ajax 地址格式 setting.js -> addUrlGroup
