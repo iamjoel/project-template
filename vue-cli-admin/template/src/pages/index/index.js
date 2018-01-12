@@ -18,17 +18,16 @@ Vue.prototype.developing = function(type = 'backend') {
   })
 }
 
+import '@/assets/utils/errorHandler'
+
 import axios from 'axios'
-require('@/assets/utils/ajax') // axios 拦截器，做通用报错等
+require('@/service/interceptor') // axios 拦截器，做通用报错等
 Vue.prototype.$http = axios
 
 import store from '@/store'
 
-// 获取资源服务器的图片
-import {IMGS_PREFIX, BASIC_CONFIG} from '@/setting'
-Vue.filter('img', function (value, size) {
-  return `${IMGS_PREFIX}/${size === 'small' ? 'thumb_img/' : ''}${value}`
-})
+// 过滤器
+require('@/filters')
 
 new Vue({
   el: '#app',

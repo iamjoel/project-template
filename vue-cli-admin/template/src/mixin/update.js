@@ -1,4 +1,4 @@
-import { fetchList, addModel, editModel, fetchModel } from '@/assets/utils/ajax-crud'
+import { fetchList, addModel, editModel, fetchModel } from '@/service/api'
 import JEditItem from '@/components/edit-item'
 
 export default {

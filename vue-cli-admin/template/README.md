@@ -1,13 +1,14 @@
 # 后台管理系统模板
+## 功能
+* 登录页
+* 登录成功后的一系列页面
+  * 列表页。
+  * 新建，编辑和详情页。
+* 不同角色显示不同菜单。
+* Mock 后端数据。
 
 ## 运行
-1 生成项目代码结构：
-
-1. `npm install -g vue-cli`
-1. `vue init iamjoel/vue-cli-template-admin`
-
-
-2 安装依赖：  
+1 安装依赖：  
 
 1. `npm install`
 
@@ -15,14 +16,13 @@
 1. 安装 [Yarn](https://yarnpkg.com/en/docs/install)。
 1. `yarn install`。
 
-3 在后端接口还没开发完成前:  
+2 在后端接口还没开发完成前:  
 
 1. 前端用 Mock 服务器模拟接口。做法参考[这里](https://github.com/iamjoel/mock-server)。
 1. 在 `config/index.js` 的 `proxyTable` 中设置 Mock 服务器的地址。
 1. `npm run mock`。
 
-
-4 后端接口开发好后：  
+3 后端接口开发好后：  
 
 1. 在 `src/setting.js` 的分支 `process.env.NODE_ENV === 'development'`下设置后端地址。
 1. `npm run dev`
@@ -64,16 +64,31 @@ export const PAGES = [
 
 第5步：生成接口的 mock。可以参考[mock server](https://github.com/iamjoel/mock-server)。
 
-## 约定
-* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
-* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 list.vue 和 list.js ；详情，新增和编辑页共用 update.vue 和 update.js。
+## 项目结构
+```
+├── build 构建流程代码
+├── config 构建相关的配置
+├── dist 构建过上线的代码
+├── src
+│   ├── assets 
+│   │   └── utils 工具方法
+│   ├── components 组件
+│   ├── mixin 一些组件的混入
+│   ├── pages 页面
+│   ├── router 路由
+│   ├── service 与后端的交互
+│   ├── store 全局数据
+│   ├── setting 业务相关的配置
+│   └── views 路由对于的内容
+└── static 静态资源
+```
 
-## 功能
-* 登录页
-* 登录成功后的一系列页面
-  * 列表页。
-  * 新建，编辑和详情页。是一个页面。
-* 不同角色显示不同菜单。
+## 本项目需要背景知识
+* npm scripts 的使用。
+* yarn 的使用。常用的是 `yarn install` 和 `yarn add` 。
+* CommonJS 和 import 的使用。
+* 框架的使用。主要是 Vue。
+* 了解单页应用。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
@@ -83,6 +98,7 @@ export const PAGES = [
   * [autoprefixer](https://github.com/postcss/autoprefixer)
 * [Webpack](http://webpack.github.io/)
 * [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。
+* [FunDebug](https://fundebug.com/) 全栈JavaScript错误监控工具。
 
 ## 工具
 * [前端代码生成工具](https://github.com/iamjoel/admin-fe-generator)
@@ -90,12 +106,11 @@ export const PAGES = [
 * [Sublime 的前端代码片段](https://github.com/iamjoel/util-sublime-snippent/tree/master/fe/vue)
 * [vue-devtools](https://github.com/vuejs/vue-devtools)
 
-## 本项目需要背景知识
-* npm scripts 的使用。
-* yarn 的使用。常用的是 `yarn install` 和 `yarn add` 。
-* CommonJS 和 import 的使用。
-* 框架的使用。主要是 Vue。
-* 了解单页应用。
+## 开发约定
+* `.vue` 文件必须大写。
+* 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
+* 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 List.vue 和 list.js ；详情，新增和编辑页共用 Update.vue 和 update.js。
+
 
 ## 一级菜单，页面和二级菜单页面的配置
 * 通用
@@ -119,6 +134,4 @@ export const PAGES = [
   * assets/utils/ajax-crud.js
   * 搜索，分页，排序写法: assets/utils/wrap-fetch-query.js
 * ajax 的拦截器。处理如：接口的错误提示，登录(可能是加token),登录过期的写法 assets/utils/ajax.js
-* 获取菜单
-
 

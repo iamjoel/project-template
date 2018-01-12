@@ -27,7 +27,8 @@
       <el-table-column
         prop="op"
         label="操作"
-        width="350"
+        width="180"
+        fixed="right"
         >
         <template slot-scope="scope">
           <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
