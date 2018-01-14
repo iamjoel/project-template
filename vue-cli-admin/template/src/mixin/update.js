@@ -29,13 +29,17 @@ export default {
       return this.model
     },
     beforeSave() {
+      return true
     },
     save() {
       var method = this.isAdd ? addModel : editModel
       return new Promise((resolve, reject) => {
         this.valid().then(() =>{
           var saveData = this.formatSaveData()
-          this.beforeSave()
+          var isSave = this.beforeSave()
+          if(isSave === false) {
+            return
+          }
           method(this.KEY, saveData).then(({data}) => {
             if(!data.errcode) {
                 this.$message({

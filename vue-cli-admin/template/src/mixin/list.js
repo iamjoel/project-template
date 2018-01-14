@@ -47,14 +47,11 @@ export default {
     if(!this.limitKey) {
       this.limitKey = this.KEY
     }
-    console.log(`KEY: ${this.KEY};PAGE_PATH_PREFIX: ${this.PAGE_PATH_PREFIX},limitKey: ${this.limitKey}`)
+    // console.log(`KEY: ${this.KEY};PAGE_PATH_PREFIX: ${this.PAGE_PATH_PREFIX},limitKey: ${this.limitKey}`)
     this.search()
   },
   methods: {
-    fetch() {
-      this.fetchList()
-    },
-    fetchList(searchConditions = this.searchConditions) {
+    fetch(searchConditions = this.searchConditions) {
       fetchList(this.KEY, searchConditions, this.pager)
         .then(({ data }) => {
           if(!data.errorCode) {

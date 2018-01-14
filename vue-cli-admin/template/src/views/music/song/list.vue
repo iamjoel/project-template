@@ -35,6 +35,14 @@
       </el-table-column>
       <el-table-column
         prop="singer"
+        label="类型"
+        >
+        <template slot-scope="scope">
+            \{{scope.row.type | dict('musicTypes')}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="singer"
         label="创作时间"
         >
         <template slot-scope="scope">
