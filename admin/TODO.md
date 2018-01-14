@@ -8,8 +8,10 @@ https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-
 4 示例页面优化。参考 ant design 和 iview admin。
 
 造点正常的测试数据
+
 setting.js 放在目录中，里面放dict.js 
 
+vue 的 keep-alive 做优化。
 
 操作栏如何自适应宽度？
 

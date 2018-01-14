@@ -76,10 +76,12 @@ export const PAGES = [
 │   ├── mixin 一些组件的混入
 │   ├── pages 页面
 │   ├── router 路由
-│   ├── service 与后端的交互
+│   ├── service 与后端的交互。公共的放这，非公共放 views/具体页面 下。
 │   ├── store 全局数据
-│   ├── setting 业务相关的配置
-│   └── views 路由对于的内容
+│   ├── setting.js 业务相关的配置
+│   ├── dict.js 字典。如性别之类的键值对。
+│   ├── filters.js 全局过滤器
+│   └── views 路由对应的视图
 └── static 静态资源
 ```
 

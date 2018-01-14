@@ -18,3 +18,12 @@ Vue.filter('money', function (value) {
   var res = value / 100
   return isNaN(res) ? '非法金额' : res
 })
+
+import * as dict from '@/dict'
+Vue.filter('dict', function (value, key) {
+  if(!dict[key]) {
+    return `未知key: ${key}`
+  }
+  var res = dict[key].filter(item => item.id == value)[0]
+  return res ? res.name : `未知id: ${value}`
+})
