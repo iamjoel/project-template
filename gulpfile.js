@@ -18,7 +18,7 @@ gulp.task('generator-admin:mv', ['generator-admin:clean'], function() {
 })
 
 gulp.task('generator-admin:replace', ['generator-admin:mv'], function() {
-  return replace('admin')
+  return replaceContent('admin')
 })
 
 gulp.task('generator-admin', ['generator-admin:replace'])
@@ -34,7 +34,7 @@ gulp.task('generator-mobile:mv', ['generator-mobile:clean'], function() {
 })
 
 gulp.task('generator-mobile:replace', ['generator-mobile:mv'], function() {
-  return replace('mobile')
+  return replaceContent('mobile')
 })
 gulp.task('generator-mobile', ['generator-mobile:replace'])
 
@@ -61,7 +61,7 @@ function mv(type) {
     .pipe(gulp.dest(`${distRootPath}/template`))
 }
 
-function replace(type) {
+function replaceContent(type) {
   var srcRootPath = type === 'admin' ? adminRoot : mobileRoot
   var distRootPath = type === 'admin' ? vueCliAdminRoot : vueCliMobileRoot
   return gulp.src([
