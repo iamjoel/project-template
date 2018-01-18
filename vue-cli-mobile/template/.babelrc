@@ -8,10 +8,7 @@
     }],
     "stage-2"
   ],
-  "plugins": [
-    "transform-runtime",
-    ["import", [{ "libraryName": "vant", "style": true }]]
-  ],
+  "plugins": ["transform-runtime"],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
