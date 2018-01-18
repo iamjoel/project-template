@@ -1,8 +1,8 @@
 {
-  "name": "{{ name }}",
+  "name": "moblie",
   "version": "1.0.0",
-  "description": "{{ description }}",
-  "author": "{{ author }}",
+  "description": "moblie template",
+  "author": "author }}",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -13,6 +13,7 @@
     "axios": "^0.16.2",
     "jquery": "^3.2.1",
     "vant": "^0.10.0",
+    "mint-ui": "2.2.13",
     "moment": "^2.18.1",
     "moment": "^2.18.1",
     "vant-css": "^0.10.0",
