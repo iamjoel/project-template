@@ -52,11 +52,12 @@ function mv(type) {
   var distRootPath = type === 'admin' ? vueCliAdminRoot : vueCliMobileRoot
   return gulp.src([
     `${srcRootPath}/**/*`,
-    `${srcRootPath}/.*`, // 不这么写竟然未移动隐藏文件。。。
+    `${srcRootPath}/**/.*`, // 不这么写竟然未移动隐藏文件。。。
     `!${srcRootPath}/src/**/*.vue`, // 会在 replace 中做替换
     `!${srcRootPath}/node_modules/**/*`,
     `!${srcRootPath}/dist/**/*`,
     `!${srcRootPath}/TODO.md`,
+    `!${srcRootPath}/stats.json`,
     ])
     .pipe(gulp.dest(`${distRootPath}/template`))
 }

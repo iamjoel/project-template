@@ -4,6 +4,11 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var webpack = require('webpack')
 
+var entries = Object.assign({
+    vue: ['vue'],
+    element: ['element-ui'],
+}, utils.getEntries('./src/pages/**/*.js'))
+var chunks = Object.keys(entries)
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -12,10 +17,7 @@ function resolve (dir) {
 module.exports = {
   // https://github.com/jarvan4dev/vue-multi-page/blob/master/build/webpack.base.conf.js
   // 获取多入口, 注意这个路径， 至于为什么是 ./src仍然需要了解，我觉得应该是 ../src  
-  entry: Object.assign({
-    vue: ['vue'],
-    element: ['element-ui']
-  }, utils.getEntries('./src/pages/**/*.js')),
+  entry: entries,
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -24,11 +26,14 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   // The order of this array matters
-    //   names: ["common", "vue", "element"],
-    //   minChunks: 2
-    // })
+    
+    // 提取公共模块
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendors', // 公共模块的名称
+      chunks: chunks,  // chunks是需要提取的模块
+      minChunks: 2 //公共模块被使用的最小次数。比如配置为3，也就是同一个模块只有被3个以外的页面同时引用时才会被提取出来作为common chunks。
+
+    }),
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],

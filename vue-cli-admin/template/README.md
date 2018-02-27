@@ -33,6 +33,10 @@
 1. `npm run build`
 1. 打开 `dist` 下的 `index.html` 来查看效果。
 
+webpack 构建优化
+1. `npm run `
+1. 删除生成的 `states.json` 文件中头部乱七把糟的东西。将该文件放到 [webpack analyze](https://webpack.github.io/analyse/) 上分析。
+
 ## 做页面的步骤
 第1步：配置页面 
 打开 `src/setting.js`。 修改 `PAGES` 的值。配置新的页面:
@@ -129,6 +133,7 @@ export const PAGES = [
       * routePath: 路由地址。默认值是 `[/一级菜单id]/二级菜单id/${type}`
 * 一级菜单
   * children: 配置二级菜单。可选。
+
 
 ## 新项目需要修改的点
 * ajax 地址格式 setting.js -> addUrlGroup

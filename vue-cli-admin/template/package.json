@@ -9,7 +9,8 @@
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "analyse": "NODE_ENV=production webpack --config build/webpack.prod.conf.js --json --profile > stats.json"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -63,6 +64,7 @@
     "vue-template-compiler": "^2.5.8",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.2.1",
+    "webpack-cli": "^2.0.9",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
