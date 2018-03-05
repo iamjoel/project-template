@@ -9,6 +9,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -21,11 +22,10 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   // The order of this array matters
-    //   names: ["common", "vue", "element"],
-    //   minChunks: 2
-    // })
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      minChunks: 2
+    })
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],

@@ -1,6 +1,6 @@
 import { Toast } from 'mint-ui'
 import axios from 'axios'
-import {urls, ROLE} from '@/settings'
+import {urls} from '@/settings'
  
 export default {
 
