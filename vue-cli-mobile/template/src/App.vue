@@ -9,12 +9,12 @@
     />
     <router-view></router-view>
     <van-tabbar v-model="activeTypeIndex" v-show="$store.state.isShowFooter">
-        <van-tabbar-item icon="wap-home" url="#/">首页
-        </van-tabbar-item>
-        <van-tabbar-item icon="wap-nav" url="#/classify-list">分类</van-tabbar-item>
-        <van-tabbar-item icon="gift" url="#/cart">购物车</van-tabbar-item>
-        <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
-      </van-tabbar>
+      <van-tabbar-item icon="wap-home" url="#/">首页
+      </van-tabbar-item>
+      <van-tabbar-item icon="wap-nav" url="#/classify-list">分类</van-tabbar-item>
+      <van-tabbar-item icon="gift" url="#/cart">购物车</van-tabbar-item>
+      <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -67,6 +67,6 @@ export default {
 };
 </script>
 <style src="@/assets/vendor/reset.css"></style>
-<style src="@/assets/vendor/layout-flex.css"></style>
+<style src="css-utils-collection"></style>
 <style src="@/assets/common.css"></style>
 

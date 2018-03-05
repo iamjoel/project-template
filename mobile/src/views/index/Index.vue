@@ -1,6 +1,14 @@
 <template>
   <div class="main">
-    首页
+    <div class="swipe">
+      <van-swipe :autoplay="3000" class="h-100per ta-c">
+        <van-swipe-item>1</van-swipe-item>
+        <van-swipe-item>2</van-swipe-item>
+        <van-swipe-item>3</van-swipe-item>
+        <van-swipe-item>4</van-swipe-item>
+      </van-swipe>
+    </div>
+    
   </div>
 </template>
 
@@ -17,4 +25,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .swipe {
+    height: 2rem;
+  }
+</style>
