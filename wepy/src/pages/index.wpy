@@ -17,10 +17,45 @@
 </style>
 <template>
   <view class="container">
+    <swiper indicator-dots="{{true}}"
+      autoplay interval="{{3000}}" duration="{{1000}}" style="width:100%">
+      <repeat for="{{imgUrls}}" key="index" index="index" item="item">
+        <block>
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+      </repeat>
+    </swiper>
+    <block>Icons</block>
+    <view class="group">
+      <block wx:for="{{iconSize}}">
+        <icon type="success" size="{{item}}"/>
+      </block>
+    </view>
+
+    <view class="group">
+      <block wx:for="{{iconType}}">
+        <icon type="{{item}}" size="40"/>
+      </block>
+    </view>
+
+
+    <view class="group">
+      <block wx:for="{{iconColor}}">
+        <icon type="success" size="40" color="{{item}}"/>
+      </block>
+    </view>
     <view class="userinfo" @tap="handleViewTap">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
+    <text>Scroll View 无限加载</text>
+    <scroll-view style="height: 200px;" bindscrolltolower="loadMore" scroll-y>
+      <repeat for="{{list}}" key="index" index="index" item="item">
+        <view>{{item}}</view>
+      </repeat>
+    </scroll-view>
 
     <panel>
       <view class="title" slot="title">测试数据绑定</view>
@@ -106,6 +141,25 @@
     mixins = [testMixin]
 
     data = {
+      list: (()=> {
+        var res = []
+        for(var i = 0; i < 10; i++) {
+          res.push(`测试数据${i+1}`)
+        }
+        return res
+      })(),
+      imgUrls: [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ],
+      iconSize: [20, 30, 40, 50, 60, 70],
+      iconColor: [
+        'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
+      ],
+      iconType: [
+        'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
+      ],
       mynum: 20,
       userInfo: {
         nickName: '加载中...'
@@ -167,6 +221,14 @@
     }
 
     methods = {
+      loadMore() {
+        var len = this.list.length
+        var res = []
+        for(var i = 1; i < 4; i++) {
+          res.push(`测试数据${len + i}`)
+        }
+        this.list = [...this.list, ...res]
+      },
       plus () {
         this.mynum++
       },
