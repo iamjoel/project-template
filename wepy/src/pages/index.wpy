@@ -56,7 +56,8 @@
         <view>{{item}}</view>
       </repeat>
     </scroll-view>
-
+    
+    <progress percent="20" show-info stroke-width="12"/>
     <panel>
       <view class="title" slot="title">测试数据绑定</view>
 

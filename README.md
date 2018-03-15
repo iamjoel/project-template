@@ -6,3 +6,5 @@
 * [移动端](mobile)
   * [源码](mobile)
   * [脚手架](vue-cli-mobile)。同步源码到脚手架: `gulp generator-mobile`
+* 小程序
+  * [WePY](wepy)
