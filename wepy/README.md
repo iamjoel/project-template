@@ -27,7 +27,9 @@ wepy.request('xxxx').then()
 ```
 
 ## 一些坑
-* wepy中的methods仅可用于页面事件绑定，其他自定义方法都要放在外层，而VUE中所有方法均放在 methods下。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
+* wepy 只支持少量的 HTML 标签。
+* wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
+* 在属性中要用变量，还是要用 `{{}}`。不是 Vue 的 `:属性名` 这种写法。
 * 支持小程序的生命周期：onLoad、onReady
 
 ## 文档&工具

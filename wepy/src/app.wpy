@@ -11,6 +11,7 @@ export default class extends wepy.app {
       'pages/index',
       'pages/native-component/swiper',
       'pages/native-component/scroll-view',
+      'pages/native-component/icon',
     ],
     window: {
       backgroundTextStyle: 'light',

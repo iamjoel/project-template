@@ -22,24 +22,12 @@
       <wxc-icon size="25" type="arrow-right" class="margin_right color_gray"></wxc-icon>
     </view>
     <block>Icons</block>
-    <view class="group">
-      <block wx:for="{{iconSize}}">
-        <icon type="success" size="{{item}}"/>
-      </block>
-    </view>
+   
 
-    <view class="group">
-      <block wx:for="{{iconType}}">
-        <icon type="{{item}}" size="40"/>
-      </block>
-    </view>
+    
 
 
-    <view class="group">
-      <block wx:for="{{iconColor}}">
-        <icon type="success" size="40" color="{{item}}"/>
-      </block>
-    </view>
+    
     <view class="userinfo" @tap="handleViewTap">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
@@ -133,13 +121,7 @@
     data = {
       
       
-      iconSize: [20, 30, 40, 50, 60, 70],
-      iconColor: [
-        'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
-      ],
-      iconType: [
-        'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
-      ],
+      
       mynum: 20,
       userInfo: {
         nickName: '加载中...'

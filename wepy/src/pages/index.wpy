@@ -7,10 +7,14 @@
   }
 </style>
 <template>
-  <view class="ly">
-    <repeat for="{{nativeComponentList}}" key="index" item="item">
-      <text class="item" @tap="to({{'./native-component/' + item.path}})">{{item.name}}</text>
-    </repeat>
+  <view>
+    <block>内置组件</block>
+    <view class="ly">
+      <repeat for="{{nativeComponentList}}" key="index" item="item">
+        <text class="item" @tap="to({{'./native-component/' + item.path}})">{{item.name}}</text>
+      </repeat>
+    </view>
+    
   </view>
 </template>
 
@@ -21,7 +25,11 @@
     {
       name: '无限加载',
       path: 'scroll-view'
-    }
+    },
+    {
+      name: '图标',
+      path: 'icon'
+    },
   ]
   export default class Index extends wepy.page {
     config = {

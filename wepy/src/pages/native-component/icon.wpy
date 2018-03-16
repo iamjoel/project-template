@@ -1,0 +1,44 @@
+<style>
+</style>
+<template>
+  <view>
+    <view class="group">
+      <repeat for="{{iconSize}}" key="index" index="index" item="item">
+        <icon type="success" size="{{item}}"/>
+      </repeat>
+    </view>
+
+    <view class="group">
+      <repeat for="{{iconType}}" key="index" index="index" item="item">
+        <icon type="{{item}}" size="40"/>
+      </repeat>
+    </view>
+
+    <view class="group">
+      <repeat for="{{iconColor}}" key="index" index="index" item="item">
+        <icon type="success" size="40" color="{{item}}"/>
+      </repeat>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '图标'
+  }
+  data = {
+    iconSize: [20, 30, 40, 50, 60, 70],
+    iconColor: [
+      'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
+    ],
+    iconType: [
+      'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
+    ],
+  }
+  onLoad() {
+  }
+}
+</script>
