@@ -34,6 +34,10 @@
       name: '进度条',
       path: 'progress'
     },
+    {
+      name: '按钮',
+      path: 'button'
+    },
   ]
   export default class Index extends wepy.page {
     config = {
@@ -63,7 +67,7 @@
     }
 
     onLoad() {
-      
+      this.$navigate('./native-component/button')
     }
   }
 

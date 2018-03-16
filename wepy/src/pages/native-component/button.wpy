@@ -1,0 +1,43 @@
+<style>
+</style>
+<template>
+  <view>
+    <block>大小</block>
+    <view class="ly">
+      <button>默认大小</button>
+      <button size="mini" style="align-self: flex-start;">小按钮</button>
+    </view>
+    <block>类型</block>
+    <view class="ly">
+      <button type="primary">primary</button>
+      <button type="warn">warn</button>
+      <button plain>幽灵按钮</button>
+    </view>
+    <block>状态</block>
+    <view class="ly">
+      <button disabled>禁用</button>
+    </view>
+    <block>open-type</block>
+    <view class="ly">
+      <button open-type="contact">进入客服会话</button>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '按钮'
+  }
+  data = {
+   
+  }
+  methods = {
+    
+  }
+  onLoad() {
+  }
+}
+</script>

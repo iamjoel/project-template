@@ -13,6 +13,7 @@ export default class extends wepy.app {
       'pages/native-component/scroll-view',
       'pages/native-component/icon',
       'pages/native-component/progress',
+      'pages/native-component/button',
     ],
     window: {
       backgroundTextStyle: 'light',
