@@ -1,0 +1,42 @@
+<style lang="less">
+</style>
+<template>
+  <view class="container">
+    <scroll-view style="height: 200px;" bindscrolltolower="loadMore" scroll-y>
+      <repeat for="{{list}}" key="index" index="index" item="item">
+        <view>{{item}}</view>
+      </repeat>
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '无限加载'
+  }
+  data = {
+    list: (()=> {
+      var res = []
+      for(var i = 0; i < 10; i++) {
+        res.push(`测试数据${i+1}`)
+      }
+      return res
+    })(),
+  }
+  methods = {
+    loadMore() {
+      var len = this.list.length
+      var res = []
+      for(var i = 1; i < 4; i++) {
+        res.push(`测试数据${len + i}`)
+      }
+      this.list = [...this.list, ...res]
+    },
+  }
+  onLoad() {
+  }
+}
+</script>

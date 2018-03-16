@@ -1,0 +1,40 @@
+<style lang="less">
+</style>
+<template>
+  <view class="container">
+    <swiper indicator-dots="{{true}}"
+      autoplay interval="{{3000}}" duration="{{1000}}" style="width:100%">
+      <repeat for="{{imgUrls}}" key="index" index="index" item="item">
+        <block>
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+      </repeat>
+    </swiper>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'swiper页'
+  }
+  data = {
+   imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+  }
+  methods = {
+    
+  }
+  onLoad() {
+    console.log('onLoad')
+  }
+}
+</script>
+

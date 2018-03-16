@@ -17,7 +17,9 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/native-component/swiper',
+      'pages/native-component/scroll-view',
     ],
     window: {
       backgroundTextStyle: 'light',
