@@ -9,7 +9,7 @@
 <template>
   <view>
     <block>内置组件</block>
-    <view class="ly">
+    <view class="ly ly-multi">
       <repeat for="{{nativeComponentList}}" key="index" item="item">
         <text class="item" @tap="to({{'./native-component/' + item.path}})">{{item.name}}</text>
       </repeat>
@@ -37,6 +37,10 @@
     {
       name: '按钮',
       path: 'button'
+    },
+    {
+      name: '表单元素',
+      path: 'form'
     },
   ]
   export default class Index extends wepy.page {
@@ -67,7 +71,7 @@
     }
 
     onLoad() {
-      this.$navigate('./native-component/button')
+      this.$navigate('./native-component/form')
     }
   }
 

@@ -19,6 +19,11 @@ this.$navigate(`./相对路径`)
 
 页面一定要在 `app.wpy` 的 `pages` 中注册。
 
+### 表单元素 change 时，获得值
+```
+event.detail.value
+```
+
 ### 组件通信
 
 ### 调用接口
@@ -29,6 +34,7 @@ wepy.request('xxxx').then()
 ## 一些坑
 * wepy 只支持少量的 HTML 标签。
 * wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
+* 表单元素，不支持 v-model。 需要用 value 和 @change 来自己实现实时绑定。
 * 在属性中要用变量，还是要用 `{{}}`。不是 Vue 的 `:属性名` 这种写法。
 * 支持小程序的生命周期：onLoad、onReady
 
