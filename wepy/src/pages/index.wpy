@@ -11,7 +11,7 @@
     <block>内置组件</block>
     <view class="ly ly-multi">
       <repeat for="{{nativeComponentList}}" key="index" item="item">
-        <text class="item" @tap="to({{'./native-component/' + item.path}})">{{item.name}}</text>
+        <navigator class="item" url="{{'./native-component/' + item.path}}">{{item.name}}</navigator>
       </repeat>
     </view>
     
@@ -62,16 +62,14 @@
     }
 
     methods = {
-      to(path){
-        this.$navigate(path)
-      },
+      
     }
 
     events = {
     }
 
     onLoad() {
-      this.$navigate('./native-component/form')
+      // this.$navigate('./native-component/form')
     }
   }
 

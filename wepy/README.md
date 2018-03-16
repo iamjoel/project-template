@@ -13,8 +13,15 @@
 ### 条件渲染
 
 ### 页面跳转
+模板写法
+```
+<navigator url="./相对路径"></navigator>
+```
+
+js 写法
 ```
 this.$navigate(`./相对路径`)
+
 ```
 
 页面一定要在 `app.wpy` 的 `pages` 中注册。
