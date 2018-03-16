@@ -1,0 +1,28 @@
+<style>
+</style>
+<template>
+  <view>
+    <progress percent="20" show-info class="mb-10" />
+    <progress percent="40" stroke-width="12" class="mb-10" />
+    <progress percent="60" color="pink" class="mb-10" />
+    <progress percent="80" active class="mb-10" />
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '进度条'
+  }
+  data = {
+   
+  }
+  methods = {
+    
+  }
+  onLoad() {
+  }
+}
+</script>

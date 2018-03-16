@@ -21,7 +21,6 @@
       <text class="margin_left">swiper</text>
       <wxc-icon size="25" type="arrow-right" class="margin_right color_gray"></wxc-icon>
     </view>
-    <block>Icons</block>
    
 
     
@@ -34,7 +33,6 @@
     </view>
     
     
-    <progress percent="20" show-info stroke-width="12"/>
     <panel>
       <view class="title" slot="title">测试数据绑定</view>
 

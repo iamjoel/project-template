@@ -30,6 +30,10 @@
       name: '图标',
       path: 'icon'
     },
+    {
+      name: '进度条',
+      path: 'progress'
+    },
   ]
   export default class Index extends wepy.page {
     config = {
