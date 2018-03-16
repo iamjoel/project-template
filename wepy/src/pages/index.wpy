@@ -7,7 +7,7 @@
   }
 </style>
 <template>
-  <view>
+  <view class="ly">
     <repeat for="{{nativeComponentList}}" key="index" item="item">
       <text class="item" @tap="to({{'./native-component/' + item.path}})">{{item.name}}</text>
     </repeat>
