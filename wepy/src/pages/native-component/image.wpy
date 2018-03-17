@@ -2,10 +2,6 @@
 </style>
 <template>
   <view>
-    <view class="page__hd">
-      <text class="page__title">image</text>
-      <text class="page__desc">图片</text>
-    </view>
     <view class="page__bd">
       <view class="section section_gap" wx:for="{{array}}" wx:for-item="item">
         <view class="section__title">{{item.text}}</view>
