@@ -42,6 +42,10 @@
       name: '表单元素',
       path: 'form'
     },
+    {
+      name: '图片缩放处理',
+      path: 'image'
+    },
   ]
   export default class Index extends wepy.page {
     config = {

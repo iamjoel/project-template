@@ -15,6 +15,7 @@ export default class extends wepy.app {
       'pages/native-component/progress',
       'pages/native-component/button',
       'pages/native-component/form',
+      'pages/native-component/image',
     ],
     window: {
       backgroundTextStyle: 'light',
