@@ -1,0 +1,24 @@
+<style>
+</style>
+<template>
+  <view>
+    
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Com extends wepy.component {
+  
+  data = {
+   
+  }
+  methods = {
+    
+  }
+  onLoad() {
+    this.$emit('fetchedMsg', 'Hello! Cowboy!')
+  }
+}
+</script>

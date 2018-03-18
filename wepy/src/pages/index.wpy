@@ -22,6 +22,7 @@
     </view>
     <block>其他</block>
     <block><navigator class="item" url="./layout">布局</navigator></block>
+    <block><navigator class="item" url="./communicate/index">组件间传递信息</navigator></block>
     
   </view>
 </template>

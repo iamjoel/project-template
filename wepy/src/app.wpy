@@ -19,6 +19,7 @@ export default class extends wepy.app {
       'pages/native-component/map',
       'pages/api/ajax',
       'pages/layout',
+      'pages/communicate/index',
     ],
     window: {
       backgroundTextStyle: 'light',

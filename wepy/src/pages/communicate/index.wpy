@@ -1,0 +1,32 @@
+<style>
+</style>
+<template>
+  <view>
+    <!-- 获取来自子组件的事件 -->
+    <Child @fetchedMsg.user="log"/>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Child from './child'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '组件间传递信息'
+  }
+  components = {
+    Child
+  }
+  data = {
+   
+  }
+  methods = {
+    log(msg) {
+      console.log(msg)
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

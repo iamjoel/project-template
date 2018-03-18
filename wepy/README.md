@@ -36,11 +36,37 @@ event.detail.value
 ```
 
 ### 组件通信
+子组件向父组件传信息
+```
+this.$emit(eventName, data)
+
+```
+
+父组件处理信息
+```
+<Child @eventName.user="handleFn"/>
+```
+
+页面调用组件的方法  
+$invoke是一个页面或组件对另一个组件中的方法的直接调用，通过传入组件路径找到相应的组件，然后再调用其方法。
+```
+this.$invoke('ComA', 'someMethod', 'someArgs')
+```
+
+
+父组件向子组件发信息
+```
+this.$broadcast(eventName, data)
+```
 
 ### 调用接口
 ```
 wepy.request('xxxx').then()
 ```
+
+注意：
+* 请求的域名需要添加到合法域名列表中。
+* 线上小程序的接口请求必须是 `https`。
 
 ## 一些坑
 * wepy 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
