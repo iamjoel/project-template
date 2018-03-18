@@ -43,7 +43,7 @@ wepy.request('xxxx').then()
 ```
 
 ## 一些坑
-* wepy 只支持少量的 HTML 标签。
+* wepy 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
 * wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
 * 表单元素，不支持 v-model。 需要用 value 和 @change 来自己实现实时绑定。
 * 在属性中要用变量，还是要用 `{{}}`。不是 Vue 的 `:属性名` 这种写法。

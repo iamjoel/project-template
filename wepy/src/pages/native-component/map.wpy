@@ -1,0 +1,32 @@
+<style>
+</style>
+<template>
+  <view>
+    <map id="map" longitude="113.324520" latitude="23.099994" scale="14" show-location markers="{{markers}}" style="width: 100%; height: 300px;" />
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '地图'
+  }
+  data = {
+    markers: [{
+      iconPath: "/assets/location.png",
+      id: 0,
+      latitude: 23.099994,
+      longitude: 113.324520,
+      width: 30,
+      height: 30
+    }],
+  }
+  methods = {
+    
+  }
+  onLoad() {
+  }
+}
+</script>

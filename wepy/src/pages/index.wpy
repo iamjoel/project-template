@@ -48,6 +48,10 @@
       name: '图片缩放处理',
       path: 'image'
     },
+    {
+      name: '地图',
+      path: 'map'
+    },
   ]
   export default class Index extends wepy.page {
     config = {
@@ -75,7 +79,7 @@
     }
 
     onLoad() {
-      // this.$navigate('./native-component/form')
+      this.$navigate('./native-component/map')
     }
   }
 

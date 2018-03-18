@@ -80,7 +80,7 @@ import wepy from 'wepy'
 
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '标题'
+    navigationBarTitleText: '布局'
   }
   data = {
    
