@@ -14,7 +14,13 @@
         <navigator class="item" url="{{'./native-component/' + item.path}}">{{item.name}}</navigator>
       </repeat>
     </view>
-
+    <block>API</block>
+    <view class="ly ly-multi">
+      <repeat for="{{apiList}}" key="index" item="item">
+        <navigator class="item" url="{{'./api/' + item.path}}">{{item.name}}</navigator>
+      </repeat>
+    </view>
+    <block>其他</block>
     <block><navigator class="item" url="./layout">布局</navigator></block>
     
   </view>
@@ -23,7 +29,10 @@
 <script>
   import wepy from 'wepy'
   const nativeComponentList = [
-    'swiper',
+    {
+      name: '轮播',
+      path: 'swiper'
+    },
     {
       name: '无限加载',
       path: 'scroll-view'
@@ -53,6 +62,10 @@
       path: 'map'
     },
   ]
+  const apiList = [{
+    name: '调接口',
+    path: 'ajax'
+  }] 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '首页'
@@ -60,15 +73,8 @@
     
 
     data = {
-      nativeComponentList: nativeComponentList.map(item => {
-        if(typeof item === 'string') {
-          return {
-            name: item,
-            path: item
-          }
-        }
-        return item
-      })
+      nativeComponentList,
+      apiList
     }
 
     methods = {
@@ -79,12 +85,8 @@
     }
 
     onLoad() {
-      this.$navigate('./native-component/map')
+      // this.$navigate('./api/ajax')
     }
   }
 
-  function getName(item) {
-    debugger
-    return typeof item === 'string' ? item : item.name
-  }
 </script>

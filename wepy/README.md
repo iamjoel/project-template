@@ -47,9 +47,13 @@ wepy.request('xxxx').then()
 * wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
 * 表单元素，不支持 v-model。 需要用 value 和 @change 来自己实现实时绑定。
 * 在属性中要用变量，还是要用 `{{}}`。不是 Vue 的 `:属性名` 这种写法。
+* 调用接口
+  * 调用接口时，接口必须，在后台设置中，将请求的域名添加到合法域名列表中。否则会报错： `xxx 不在以下 request 合法域名列表中`。
+  * 线上小程序的接口请求必须是 `https`。
 * 支持小程序的生命周期：onLoad、onReady
 
 ## 文档&工具
 * [WePY 文档](https://tencent.github.io/wepy/index.html)
 * [小程序组件](https://mp.weixin.qq.com/debug/wxadoc/dev/component/)
+* [小程序API](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
 * [微信小程序wepy开发资源汇总](https://github.com/aben1188/awesome-wepy)

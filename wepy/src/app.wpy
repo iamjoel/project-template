@@ -17,6 +17,7 @@ export default class extends wepy.app {
       'pages/native-component/form',
       'pages/native-component/image',
       'pages/native-component/map',
+      'pages/api/ajax',
       'pages/layout',
     ],
     window: {

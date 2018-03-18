@@ -1,0 +1,30 @@
+<style>
+</style>
+<template>
+  <view>
+    
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '调接口'
+  }
+  data = {
+   
+  }
+  methods = {
+    
+  }
+  onLoad() {
+    // 需要配置
+    wepy.request('https://jsonplaceholder.typicode.com/posts/1')
+    // .then((d) => {
+    //   debugger
+    // })
+  }
+}
+</script>
