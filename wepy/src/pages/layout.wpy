@@ -1,0 +1,94 @@
+<style>
+.wrap {
+  margin: 10px;
+  background-color: red;
+}
+.item {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background-color: green;
+}
+
+.header,.footer {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #eee;
+}
+</style>
+<template>
+  <view>
+    <block>水平居中</block>
+    <view class="wrap ly ly-c">
+      <view class="item"></view>
+      <view class="item" style="margin-left: 10px"></view>
+      <view class="item" style="margin-left: 10px"></view>
+    </view>
+
+    <block>水平两端对齐</block>
+    <view class="wrap ly ly-j">
+      <view class="item"></view>
+      <view class="item" style="margin-left: 10px"></view>
+      <view class="item" style="margin-left: 10px"></view>
+    </view>
+      
+    <block>垂直居中</block>
+    <view class="wrap ly ly-m" style="height: 200px">
+      <view class="item"></view>
+      <view class="item" style="margin-left: 10px"></view>
+      <view class="item" style="margin-left: 10px"></view>
+    </view>
+    
+    <block>垂直方向对齐</block>
+    <view class="wrap ly lyd-c ly-j" style="height: 200px">
+      <view class="item"></view>
+      <view class="item" style="margin-top: 10px"></view>
+      <view class="item" style="margin-top: 10px"></view>
+    </view>
+
+    <block>垂直水平居中</block>
+    <view class="wrap ly ly-c ly-m" style="height: 200px">
+      <view class="item"></view>
+      <view class="item" style="margin-left: 10px"></view>
+      <view class="item" style="margin-left: 10px"></view>
+    </view>
+
+    <block>圣杯/双飞燕布局</block>
+    <view class="header">header</view>
+    <view class="ly">
+      <view class="item" style="width: 200px">left</view>
+      <view class="item lyi-f" style="background: blue">main</view>
+      <view class="item" style="width: 200px">right</view>
+    </view>
+    <view class="footer">footer</view>
+
+    <block>宽度不固定的绝对定位元素水平居中</block>
+    <view class="wrap pos-r" style="height: 200px;width: 200px">
+      <view class="item ly-abs-c" style="top: 0"></view>
+    </view>
+
+    <block>宽度不固定的绝对定位元素垂直居中</block>
+    <view class="wrap pos-r" style="height: 200px;width: 200px">
+      <view class="item ly-abs-m" style="left: 0"></view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '标题'
+  }
+  data = {
+   
+  }
+  methods = {
+    
+  }
+  onLoad() {
+  }
+}
+</script>

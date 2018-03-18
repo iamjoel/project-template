@@ -14,6 +14,8 @@
         <navigator class="item" url="{{'./native-component/' + item.path}}">{{item.name}}</navigator>
       </repeat>
     </view>
+
+    <block><navigator class="item" url="./layout">布局</navigator></block>
     
   </view>
 </template>
