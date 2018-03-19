@@ -1,4 +1,4 @@
-# 微信小程序
+# WePY 微信小程序
 ## 常用命令
 * `npm run dev` 启动。 微信开发者工具-->添加项目，项目目录请选择dist目录。
 
@@ -69,7 +69,10 @@ wepy.request('xxxx').then()
 * 线上小程序的接口请求必须是 `https`。
 
 ## 一些坑
-* wepy 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
+* 小程序 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
+* 布置成 window 对象。
+* 样式表不支持级联选择器。
+* 一个应用同时只能打开5个页面。当已经打开了5个页面之后，wx.navigateTo不能正常打开新页面。请避免多层级的交互方式，或者使用wx.redirectTo。
 * wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
 * 表单元素，不支持 v-model。 需要用 value 和 @change 来自己实现实时绑定。
 * 在属性中要用变量，还是要用 `{{}}`。不是 Vue 的 `:属性名` 这种写法。
@@ -83,3 +86,9 @@ wepy.request('xxxx').then()
 * [小程序组件](https://mp.weixin.qq.com/debug/wxadoc/dev/component/)
 * [小程序API](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
 * [微信小程序wepy开发资源汇总](https://github.com/aben1188/awesome-wepy)
+* [微信小程序免费SSL证书Https 申请（阿里云申请）](https://www.cnblogs.com/jianxuanbing/p/8205042.html)
+
+## 其他
+* 微信开发者工具中
+  * 点预览可以生成二维码，在真机上看效果。
+  * 点上传可以上传代码。然后需要登录后台提交审核。 
