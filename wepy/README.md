@@ -1,4 +1,4 @@
-# WePY 微信小程序
+# WePY
 ## 常用命令
 * `npm run dev` 启动。 微信开发者工具-->添加项目，项目目录请选择dist目录。
 
@@ -69,7 +69,7 @@ wepy.request('xxxx').then()
 * 线上小程序的接口请求必须是 `https`。
 
 ## 一些坑
-* 小程序 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
+* 微信小程序 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
 * 布置成 window 对象。
 * 样式表不支持级联选择器。
 * 一个应用同时只能打开5个页面。当已经打开了5个页面之后，wx.navigateTo不能正常打开新页面。请避免多层级的交互方式，或者使用wx.redirectTo。
@@ -85,6 +85,7 @@ wepy.request('xxxx').then()
 * [WePY 文档](https://tencent.github.io/wepy/index.html)
 * [小程序组件](https://mp.weixin.qq.com/debug/wxadoc/dev/component/)
 * [小程序API](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
+* [小程序插件](https://mp.weixin.qq.com/debug/wxadoc/introduction/plugin.html)
 * [微信小程序wepy开发资源汇总](https://github.com/aben1188/awesome-wepy)
 * [微信小程序免费SSL证书Https 申请（阿里云申请）](https://www.cnblogs.com/jianxuanbing/p/8205042.html)
 
