@@ -14,3 +14,5 @@
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 * 小程序
   * [WePY](wepy)
+* PC 应用程序
+  * [electron-vue](https://github.com/SimulatedGREG/electron-vue)
