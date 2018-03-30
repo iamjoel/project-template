@@ -87,3 +87,39 @@ function addUrlGroup (prefix, types = ['list', 'detail', 'add', 'edit', 'del'], 
   return res
 }
 
+
+export const pageConfig = {
+  'song': {
+    list: {
+      urlKey: 'song',
+      table: [{
+        label: '歌曲名称',
+        key: 'name'
+      },{
+        label: '歌手',
+        key: 'singer.name'
+      },{
+        label: '类型',
+        key: 'type',
+        formatFn: 'formatType'
+      }],
+      operate: [{
+        name: 'add',
+      }, {
+        name: 'edit',
+        role: ['admin']
+      }, {
+        name: 'delete',
+        role: ['admin']
+      }],
+      searchCondition: [{
+        label: '歌曲名称',
+        key: 'name'
+      }],
+      fn: [{
+        name: 'formatType',
+        fn: new Function('row', 'utils' , 'return this.config.urlKey + row.type')
+      }]
+    }
+  }
+}

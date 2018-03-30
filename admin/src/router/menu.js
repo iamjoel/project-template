@@ -8,6 +8,13 @@ var routes = [
       lazyLoading(resolve, 'Dashboard', false)
     },
   },
+  // 通用一级列表页
+  {
+    path: '/common/:configName/list',
+    component: resolve => {
+      lazyLoading(resolve, 'common/List', false)
+    },
+  }
 ]
 
 // 页面的路由的定义
