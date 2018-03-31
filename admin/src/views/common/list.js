@@ -1,4 +1,4 @@
-import {pageConfig,isMock} from '@/setting'
+import {pageConfigs,isMock} from '@/setting'
 import listMixin from '@/mixin/list'
 
 if(isMock) {
@@ -9,8 +9,8 @@ export default {
   mixins: [listMixin],
   data() {
     return {
-      KEY: pageConfig.urlKey,
-      config: pageConfig[this.$route.params.configName].list,
+      KEY: null,
+      config: pageConfigs[this.$route.params.configName].list,
       searchConditions: {}
     }  
   },
@@ -27,6 +27,7 @@ export default {
     this.config.searchCondition.forEach(item => {
       this.searchConditions[item.key] = ''
     })
+    this.key = this.config.urlKey
     // debugger
   }
 }
