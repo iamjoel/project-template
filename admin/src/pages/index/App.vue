@@ -31,6 +31,7 @@ export default {
     var role = localStorage.getItem('j-role') || 'user'
     this.$store.commit(types.ROLE, role)
     this.$store.dispatch('fetchMenuAndLimit')
+    this.$store.dispatch('fetchBasicData')
   }
 }
 </script>

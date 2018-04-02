@@ -20,13 +20,17 @@ export var isMock = useFEMock
 
 export var SERVER_PREFIX = `${HOST}/api`
 
-// 角色，菜单，页面配置，可以在存在服务器
-import pages from './pages.js'
-export var pagesConfig = pages
+// 基础数据。以后存在服务器
+import roles from './roles.js'
+export var rolesConfig = roles
+import dict from './dict.js'
+export var dictConfig = dict
+import entities from './entities.js'
+export var entitiesConfig = entities
 import navMenu from './nav-menu.js'
 export var navMenuConfig = navMenu
-import role from './role.js'
-export var roleConfig = role
+import pages from './pages.js'
+export var pagesConfig = pages
 
 
 // 页面
@@ -51,6 +55,14 @@ var _menuConfig = [
     children: [{
       id: 'song',
       name: '歌曲',
+    }]
+  },
+  {
+    id: 'generator',
+    name: '代码生成器',
+    children: [{
+      id: 'roles',
+      name: '角色',
     }]
   }
 ]

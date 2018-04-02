@@ -14,7 +14,7 @@ var routes = [
     component: resolve => {
       lazyLoading(resolve, 'common/List', false)
     },
-  }
+  },
 ]
 
 // 页面的路由的定义
