@@ -1,7 +1,10 @@
 export default {
   'song': {
     list: {
-      urlKey: 'song',
+      basic: {
+        label: '歌曲',
+        entity: 'song'
+      },
       table: [{
         label: '歌曲名称',
         key: 'name'
@@ -19,7 +22,7 @@ export default {
           isShow: true,
         },
         edit: {
-          isShow: 'isShowEdit'
+          isShow: true
         },
         detail: {
           isShow: false
@@ -31,13 +34,23 @@ export default {
       searchCondition: [{
         label: '歌曲名称',
         key: 'name'
+      },{
+        label: '歌曲类型',
+        key: 'type',
+        dataType: 'select',
+        dataSource: {
+          type: '',
+          key: ''
+        }
       }],
       fn: [{
         name: 'formatType',
-        fn: new Function('row', 'return this.config.urlKey + row.type')
+        args: ['row'],
+        body: 'return this.config.urlKey + row.type'
       }, {
         name: 'isShowEdit',
-        fn: new Function('return this.$store.state.role == "admin"')
+        args: [],
+        body: 'return this.$store.state.role == "admin"'
       }]
     },
     detail: {

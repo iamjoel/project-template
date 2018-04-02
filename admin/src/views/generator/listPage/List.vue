@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <!-- <el-table
-      :data="$store.state.roles"
+    <el-table
+      :data="pages"
       border
       stripe>
       <el-table-column
@@ -11,16 +11,19 @@
         width="80">
       </el-table-column>
       <el-table-column
-        prop="label"
-        label="角色名称"
+        prop="basic.label"
+        label="实体"
         >
       </el-table-column>
       <el-table-column
         prop="key"
-        label="角色值"
+        label="操作"
         >
+        <template slot-scope="scope">
+          <el-button type="success" size="small" @click="$router.push('/generator/listPage/update/' + scope.row.id)">编辑</el-button>
+        </template>
       </el-table-column>
-    </el-table> -->
+    </el-table>
   </div>
 </template>
 

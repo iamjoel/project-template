@@ -36,5 +36,6 @@ export default {
 }
 </script>
 <style src="@/assets/reset.css"></style>
+<style src="css-utils-collection"></style>
 <style src="@/assets/common.css"></style>
 

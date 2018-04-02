@@ -71,6 +71,10 @@ var _menuConfig = [
     {
       id: 'entities',
       name: '实体',
+    },
+    {
+      id: 'listPage',
+      name: '生成列表页',
     },]
   }
 ]
