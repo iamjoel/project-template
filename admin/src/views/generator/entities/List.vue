@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <el-table
-      :data="$store.state.roles"
+      :data="$store.state.entities"
       border
       stripe>
       <el-table-column
@@ -12,12 +12,12 @@
       </el-table-column>
       <el-table-column
         prop="label"
-        label="角色名称"
+        label="名称"
         >
       </el-table-column>
       <el-table-column
         prop="key"
-        label="角色值"
+        label="值"
         >
       </el-table-column>
     </el-table>
