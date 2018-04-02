@@ -2,11 +2,6 @@
   <div class="main">
     {{model}}
     <br>
-    <!-- {{opList}} -->
-    <div class="ly ly-r">
-      <el-button>下载配置</el-button>
-      <el-button>下载展开代码</el-button>
-    </div>
     <el-tabs v-model="activeTab" >
       <el-tab-pane label="基本设置" name="basic">
         <el-form :inline="true" :model="model.basic"  label-position="right" >
@@ -305,8 +300,11 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-
     </el-tabs>
+    <div class="ly ly-c mt-10">
+      <el-button type="info" @click="generateExpend">下载展开代码</el-button>
+      <el-button type="primary" @click="save">保存</el-button>
+    </div>
     <el-dialog title="详情" :visible.sync="isShowEditArgsDialog">
       <div class="ly ly-r mb-10">
         <el-button type="primary" @click="currFn.args.push({
