@@ -12,12 +12,12 @@
       </el-table-column>
       <el-table-column
         prop="label"
-        label="名称"
+        label="角色名称"
         >
       </el-table-column>
       <el-table-column
         prop="key"
-        label="值"
+        label="角色值"
         >
       </el-table-column>
     </el-table>

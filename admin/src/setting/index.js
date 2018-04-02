@@ -63,7 +63,15 @@ var _menuConfig = [
     children: [{
       id: 'roles',
       name: '角色',
-    }]
+    },
+    {
+      id: 'dict',
+      name: '字典',
+    },
+    {
+      id: 'entities',
+      name: '实体',
+    },]
   }
 ]
 
