@@ -6,7 +6,7 @@ export default {
   },
   data() {
     return {
-      activeTab: 'basic',
+      activeTab: 'fn',
       model: {
         basic: {},
         table: [],
@@ -45,6 +45,8 @@ export default {
         label: '实体',
         key: 'entities'
       }],
+      isShowEditArgsDialog: false,
+      currFn: {}
     }
   },
   methods: {
@@ -61,7 +63,28 @@ export default {
       return type === 'dict' 
         ? [...this.$store.state.dict]
         : [...this.$store.state.entities]
-    }
+    },
+    move(key, index, action) {
+      var changeIndex = action === 'up' ? index - 1 : index + 1
+      var data =  key === 'args' ? this.currFn.args : this.model[key]
+      var res = data.map((item, currIndex) => {
+        if(currIndex === index) {
+          return data[changeIndex]
+        } else if(currIndex === changeIndex) {
+          return data[index]
+        } else {
+          return item
+        }
+      })
+
+      key === 'args' ? (this.currFn.args = res) : (this.model[key] = res)
+
+    },
+    editArgs(currFn) {
+      this.currFn = currFn
+      this.isShowEditArgsDialog = true
+    },
+    
 
   },
   mounted() {
@@ -78,6 +101,14 @@ export default {
         showRoles
       }
     })
+    // 标准化table数据
+    model.table = model.table.map(item => {
+      return {
+        ...item,
+        formatFn: item.formatFn || null, 
+        showFn: item.showFn || null, 
+      }
+    })
     // 标准化搜索条件数据
     model.searchCondition = model.searchCondition.map(item => {
       return {
@@ -87,6 +118,13 @@ export default {
           type: '',
           key: ''
         },
+      }
+    })
+    // 标准化函数数据
+    model.fn = model.fn.map(item => {
+      return {
+        ...item,
+        args: item.args.map(arg => {return {name: arg}})
       }
     })
 
