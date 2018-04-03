@@ -93,10 +93,21 @@ export default {
     * 按钮的权限控制
     * 用权限值(细力度)或角色(粗力度)来做。
     */
-    isShow (type) {
-      var limit = this.$store.state.limit[this.limitKey]
-      return (limit && limit[type]) || true // 测试
+    isShow(type) {
+      if(!this.config || !this.config.operate) {
+        return true
+      }
+      var isShow = this.config.operate[type].isShow
+      if(Array.isArray(isShow)) {
+        return isShow.indexOf(this.$store.state.role) !== -1
+      } else {
+        return isShow
+      }
     },
+    // isShow (type) {
+    //   var limit = this.$store.state.limit[this.limitKey]
+    //   return (limit && limit[type]) || true // 测试
+    // },
     showDetail(detail) {
       this.model = detail
       this.isShowDetailDialog = true

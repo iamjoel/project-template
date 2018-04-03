@@ -6,9 +6,13 @@ export default {
   },
   computed: {
     pathArr() {
-      return this.$route.path.split('/').filter(item=> {
+      var filteredArr = this.$route.path.split('/').filter(item=> {
         return item !== ''
       })
+      if(filteredArr[0] === 'common') { // 通用页面处理成普通页面
+        filteredArr.shift()
+      }
+      return filteredArr
     },
     currMenu() {
       var allMenu = this.menu

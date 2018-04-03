@@ -55,5 +55,37 @@ export default {
         dataType: 'string'
       }]
     }
+  },
+  'singer': {
+    list: {
+      basic: {
+        label: '歌手',
+        entity: 'singer'
+      },
+      table: [{
+        label: '名称',
+        key: 'name'
+      }],
+      operate: {
+        add: {
+          isShow: true,
+        },
+        edit: {
+          isShow: true
+        },
+        detail: {
+          isShow: true
+        },
+        delete: {
+          isShow: true
+        }
+      },
+      searchCondition: [{
+        label: '名称',
+        key: 'name'
+      }],
+      fn: []
+    },
+    detail: {}
   }
 }

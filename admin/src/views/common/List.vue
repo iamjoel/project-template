@@ -3,7 +3,25 @@
     <j-search-condition @search="search" v-if="config.searchCondition && config.searchCondition.length > 0">
       <j-edit-item
       :label="item.label" v-for="item in config.searchCondition" :key="item.key">
-        <el-input v-model="searchConditions[item.key]"></el-input>
+        <div v-if="item.dataType === 'select'">
+          <div v-if="item.dataSource.type === 'dict'">
+            <el-select v-model="searchConditions[item.key]" placeholder="请选择" filterable clearable>
+              <el-option
+                v-for="item in $store.getters.dictObj[item.dataSource.key]"
+                :key="item.key"
+                :label="item.label"
+                :value="item.key">
+              </el-option>
+            </el-select>
+          </div>
+          <div v-else>
+             <j-remote-select v-model="searchConditions[item.key]" url-key="item.dataSource.key" :autoFetch="true">
+            </j-remote-select>
+          </div>
+        </div>
+        <div v-else>
+          <el-input v-model="searchConditions[item.key]"></el-input>
+        </div>
       </j-edit-item>
     </j-search-condition>
     <j-grid-box :is-show-add-btn="isShow('add')" :add-url="addPagePath" :pager="pager" @pageChange="handleCurrentChange">
@@ -23,7 +41,7 @@
         v-for="item in config.table"
         >
         <template slot-scope="scope">
-          {{item.formatFn ? proxy(item.formatFn, [scope.row]) : item.label}}
+          {{item.formatFn ? proxy(item.formatFn, [scope.row]) : getValue(scope.row, item.key)}}
         </template>
       </el-table-column>
       <el-table-column
@@ -33,8 +51,7 @@
         fixed="right"
         >
         <template slot-scope="scope">
-          <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('view')">详情(跳页面)</el-button>
-          <el-button type="success" size="small" @click="showDetail(scope.row)" v-if="isShow('view')">详情(弹出框)</el-button>
+          <el-button type="success" size="small" @click="showDetail(scope.row)" v-if="isShow('detail')">详情</el-button>
           <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
           <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
         </template>

@@ -55,6 +55,10 @@ var _menuConfig = [
     children: [{
       id: 'song',
       name: '歌曲',
+    }, {
+      id: 'singer',
+      name: '歌手',
+      path: '/common/singer/list'
     }]
   },
   {

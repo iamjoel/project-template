@@ -1,16 +1,16 @@
-import {pageConfigs,isMock} from '@/setting'
 import listMixin from '@/mixin/list'
+import JRemoteSelect from '@/components/remote-select'
 
-if(isMock) {
-  require('../music/song/api/mock.js')
-}
-// #/common/song/list
+// #/common/music/song/list
 export default {
   mixins: [listMixin],
+  components: {
+   'j-remote-select': JRemoteSelect,
+  },
   data() {
     return {
       KEY: null,
-      config: pageConfigs[this.$route.params.configName].list,
+      config: this.$store.state.pagesConfig[this.$route.params.configName].list,
       searchConditions: {}
     }  
   },
@@ -19,15 +19,26 @@ export default {
     proxy(fnName, args) {
       var fn = this.config.fn.filter(item => item.name === fnName)[0]
       if(fn) {
-        return fn.fn.apply(this, args)
+        return (new Function([...fn.args], fn.body)).apply(this, args)
       }
     },
+    getValue(item, key) {
+      var res = item
+      var keyArr = key.split('.')
+      keyArr.forEach(keyItem => {
+        if(res) {
+          res = res[keyItem]
+        }
+      })
+      return res
+    }
   },
   mounted() {
+    var searchConditions = {}
     this.config.searchCondition.forEach(item => {
-      this.searchConditions[item.key] = ''
+      searchConditions[item.key] = ''
     })
+    this.$set(this, 'searchConditions', searchConditions)
     this.key = this.config.urlKey
-    // debugger
   }
 }

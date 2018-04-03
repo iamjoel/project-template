@@ -23,6 +23,7 @@ import * as types from '@/store/mutation-types'
 import {isMock} from '@/setting'
 if(isMock || true) {
   require('@/views/music/song/api/mock.js')
+  require('@/views/music/singer/api/mock.js')
 }
 export default {
   name: 'app',
