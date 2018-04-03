@@ -12,7 +12,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
           pageGroup.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
         }
         pageGroup.pages = pageGroup.pages.map(page => {
-          var pageInfo = getPageInfo(page, parentId, pageGroup.id)
+          var pageInfo = getPageInfo(page, parentId, pageGroup.id, pageGroup.useCommon)
           return Object.assign(page, pageInfo)
         })
         pageGroup.mainPage = getMainPage(pageGroup)
@@ -23,7 +23,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
         menu.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
       }
       menu.pages = menu.pages.map(page => {
-        var pageInfo = getPageInfo(page, undefined, menu.id)
+        var pageInfo = getPageInfo(page, undefined, menu.id, menu.useCommon)
         return Object.assign(page, pageInfo)
       })
       menu.mainPage = getMainPage(menu)
@@ -45,14 +45,14 @@ function getMainPage(pageGroup) {
   return mainPage
 }
 
-function getPageInfo(page, parentId, pageGroupId) {
+function getPageInfo(page, parentId, pageGroupId, useCommon) {
   return {
-    filePath: getFilePath(page, parentId, pageGroupId),
-    routePath: getRoutePath(page, parentId, pageGroupId)
+    filePath: getFilePath(page, parentId, pageGroupId, useCommon),
+    routePath: getRoutePath(page, parentId, pageGroupId, useCommon)
   }
 }
 
-function getFilePath(page, parentId, pageGroupId) {
+function getFilePath(page, parentId, pageGroupId, useCommon) {
   var filePath = page.filePath
   if(!filePath) {
     let type = page.type
@@ -71,14 +71,14 @@ function getFilePath(page, parentId, pageGroupId) {
   }).join('/')
 }
 
-function getRoutePath(page, parentId, pageGroupId) {
+function getRoutePath(page, parentId, pageGroupId, useCommon) {
   var routePath = page.routePath
   if(!routePath) {
     var path = {
-      update: 'update/:id',
-      view: 'view/:id',
+      update: `/update/:id`,
+      view: `view/:id`,
     }[page.type] || page.type
-    routePath = `${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
+    routePath = `${useCommon ? 'common/' : ''}${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
   }
   if(routePath.charAt(0) !== '/') {
     routePath = '/' + routePath

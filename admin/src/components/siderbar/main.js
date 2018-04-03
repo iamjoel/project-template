@@ -59,7 +59,7 @@ export default {
 
       if(currMenu) {
         currMenu.children.forEach(subMenu=> {
-          var pathArr = subMenu.path.split('/')
+          var pathArr = subMenu.path.split('/').filter(item=> item !== 'common')// 通用页面处理成普通页面
           if(pathArr[2] === currPathArr[1]) {
             id = subMenu.id
           }

@@ -58,7 +58,7 @@ var _menuConfig = [
     }, {
       id: 'singer',
       name: '歌手',
-      path: '/common/singer/list'
+      useCommon: true, // 用通用页面
     }]
   },
   {
