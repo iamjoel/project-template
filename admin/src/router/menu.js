@@ -15,7 +15,7 @@ var routes = [
       lazyLoading(resolve, 'common/List', false)
     },
   },
-  // 通用二级级列表页
+  // 通用二级列表页
   {
     path: '/common/:parent/:configName/list',
     component: resolve => {
@@ -56,4 +56,5 @@ const lazyLoading = (resolve, name, index = false) => {
   })
 }
 
+console.log(routes.map(item=> item.path).join())
 export default routes

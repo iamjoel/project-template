@@ -1,10 +1,12 @@
+       
 import listMixin from '@/mixin/list'
 import JRemoteSelect from '@/components/remote-select'
 
 var searchConditions = 
   {
     name: '',
-type: ''
+type: '',
+singer: ''
   }
 var operateConfig = {"add":{"isShow":true},"edit":{"isShow":true},"detail":{"isShow":false},"delete":{"isShow":["admin"]}}
 

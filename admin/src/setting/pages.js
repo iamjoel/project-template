@@ -31,7 +31,7 @@ export default {
         }
       },
       searchCondition: [{
-        label: '歌曲名称',
+        label: '歌名',
         key: 'name'
       },{
         label: '歌曲类型',
@@ -40,6 +40,14 @@ export default {
         dataSource: {
           type: 'dict',
           key: 'musicType'
+        }
+      },{
+        label: '歌手',
+        key: 'singer',
+        dataType: 'select',
+        dataSource: {
+          type: 'entity',
+          key: 'singer'
         }
       }],
       fn: [{

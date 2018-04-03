@@ -75,7 +75,7 @@ function getRoutePath(page, parentId, pageGroupId, useCommon) {
   var routePath = page.routePath
   if(!routePath) {
     var path = {
-      update: `/update/:id`,
+      update: `update/:id`,
       view: `view/:id`,
     }[page.type] || page.type
     routePath = `${useCommon ? 'common/' : ''}${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`

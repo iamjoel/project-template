@@ -3,7 +3,7 @@
     <j-search-condition @search="search">
      
         <j-edit-item
-        label="歌曲名称"
+        label="歌名"
         >
           <el-input v-model="searchConditions.name"></el-input>
         
@@ -20,6 +20,13 @@
                 :value="item.key">
               </el-option>
             </el-select>
+        </j-edit-item>
+
+        <j-edit-item
+        label="歌手"
+        >
+            <j-remote-select v-model="searchConditions.singer" url-key="singer" :autoFetch="true">
+            </j-remote-select>
         </j-edit-item>
     </j-search-condition>
 
@@ -82,4 +89,3 @@
 <script src="./list.js"></script>
 <style scoped>
 </style>
-       

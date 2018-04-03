@@ -51,7 +51,12 @@ export default {
         current: 1,
         limit: 20
       }, null).then(res => {
-        this.list = res.data.data
+        this.list = res.data.data.list.map(item => {
+          return {
+            id: item.id || item.key,
+            name: item.name || item.label
+          }
+        })
       })
     },
     setVal(value) {
