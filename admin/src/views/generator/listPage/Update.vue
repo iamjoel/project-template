@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    {{model}}
-    <br>
+    <!-- {{model}}
+    <br> -->
     <el-tabs v-model="activeTab" >
       <el-tab-pane label="基本设置" name="basic">
         <el-form :inline="true" :model="model.basic"  label-position="right" >
@@ -26,7 +26,6 @@
             label: '',
             key: '',
             formatFn: null,
-            showFn: null
           })">添加字段</el-button>
         </div>
         <el-table
@@ -70,6 +69,8 @@
             </el-select>
             </template>
           </el-table-column>
+          <!-- 
+          // 显示函数 or 显示的角色？ 需求足够多，再加
           <el-table-column
             prop="key"
             label="显示函数"
@@ -84,7 +85,7 @@
               </el-option>
             </el-select>
             </template>
-          </el-table-column>
+          </el-table-column> -->
           <el-table-column
             prop="key"
             label="操作"

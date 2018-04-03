@@ -89,7 +89,10 @@ export default {
     viewPagePath(id) {
       return `${this.PAGE_PATH_PREFIX}/view/${id}`
     },
-    // 按钮的权限控制
+    /*
+    * 按钮的权限控制
+    * 用权限值(细力度)或角色(粗力度)来做。
+    */
     isShow (type) {
       var limit = this.$store.state.limit[this.limitKey]
       return (limit && limit[type]) || true // 测试

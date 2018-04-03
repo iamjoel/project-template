@@ -20,6 +20,10 @@ import Topbar from '@/components/topbar'
 import Breadcrumb from '@/components/breadcrumb'
 import * as types from '@/store/mutation-types'
 
+import {isMock} from '@/setting'
+if(isMock || true) {
+  require('@/views/music/song/api/mock.js')
+}
 export default {
   name: 'app',
   components: {
@@ -29,7 +33,8 @@ export default {
   },
   mounted() {
     var role = localStorage.getItem('j-role') || 'user'
-    this.$store.commit(types.ROLE, role)
+    // this.$store.commit(types.ROLE, role)
+    this.$store.commit(types.ROLE, 'admin')
     this.$store.dispatch('fetchMenuAndLimit')
     this.$store.dispatch('fetchBasicData')
   }

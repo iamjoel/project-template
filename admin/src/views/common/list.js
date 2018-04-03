@@ -21,7 +21,7 @@ export default {
       if(fn) {
         return fn.fn.apply(this, args)
       }
-    }
+    },
   },
   mounted() {
     this.config.searchCondition.forEach(item => {

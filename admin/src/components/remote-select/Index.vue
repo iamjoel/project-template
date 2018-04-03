@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/assets/utils/ajax-crud'
+import { fetchList } from '@/service/api'
 
 export default {
   props: {

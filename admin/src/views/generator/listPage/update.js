@@ -1,12 +1,13 @@
 import JEditItem from '@/components/edit-item'
 import deepClone from 'clone'
+import generatorListCode from './utils/generatorListCode'
 export default {
   components: {
     'j-edit-item': JEditItem,
   },
   data() {
     return {
-      activeTab: 'fn',
+      activeTab: 'basic',
       model: {
         basic: {},
         table: [],
@@ -96,92 +97,9 @@ export default {
       console.log(JSON.stringify(model))
     },
     generateExpend() {
-      var model = this.model
-      var vue = `
-<template> 
-  <div class="main">
-    <j-search-condition @search="search">
-     ${model.searchCondition.map(item => {
-      var inner
-      switch(item.dataType) {
-        case 'select': 
+      generatorListCode(this.model)
+    },
 
-          if(item.dataSource.type === 'dict') {
-            inner = `
-            <el-select v-model="searchConditions.${item.key}" placeholder="请选择" filterable clearable>
-              <el-option
-                v-for="item in $store.state.dict[${item.dataSource.key}]"
-                :key="item.key"
-                :label="item.label"
-                :value="item.key">
-              </el-option>
-            </el-select>`
-          } else {
-            inner = `
-            <j-remote-select v-model="searchConditions.${item.key}" url-key="${item.dataSource.key}" :autoFetch="true">
-            </j-remote-select>`
-          }
-          break;
-        case 'string':
-        default:
-        inner = `
-          <el-input v-model="searchConditions.${item.key}"></el-input>
-        `
-
-      }
-      return `
-        <j-edit-item
-        label="${item.label}"
-        >
-          ${inner}
-        </j-edit-item>
-      `
-     }).join('\n')}
-    </j-search-condition>
-
-    <j-grid-box :is-show-add-btn="isShow('add')" :add-url="addPagePath" :pager="pager" @pageChange="handleCurrentChange">
-      <el-table
-        :data="tableData"
-        border
-        stripe>
-        <el-table-column
-          type="index"
-          label="序列"
-          align="center"
-          width="80">
-        </el-table-column>
-        ${model.table.map(item => {
-          return `
-          <el-table-column
-            prop="${item.key}"
-            label="${item.label}"
-            >
-          </el-table-column>
-          `
-        }).join('\n')}
-        <el-table-column
-          prop="op"
-          label="操作"
-          width="350"
-          fixed="right"
-          >
-          <template slot-scope="scope">
-            <el-button type="success" size="small" @click="showDetail(scope.row)" v-if="isShow('view')">详情</el-button>
-            <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
-            <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
-          </template>
-        </el-table-column>
-        
-      </el-table>
-    </j-grid-box>
-  </div>
-</template>
-
-      `
-      var js = `
-      `
-      console.log(vue)
-    }
 
   },
   mounted() {
@@ -203,7 +121,6 @@ export default {
       return {
         ...item,
         formatFn: item.formatFn || null, 
-        showFn: item.showFn || null, 
       }
     })
     // 标准化搜索条件数据

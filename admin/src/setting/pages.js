@@ -15,7 +15,6 @@ export default {
         label: '类型',
         key: 'type',
         formatFn: 'formatType'
-        // isShow: 'fnName'
       }],
       operate: {
         add: {
@@ -39,18 +38,14 @@ export default {
         key: 'type',
         dataType: 'select',
         dataSource: {
-          type: '',
-          key: ''
+          type: 'dict',
+          key: 'musicType'
         }
       }],
       fn: [{
         name: 'formatType',
         args: ['row'],
-        body: 'return this.config.urlKey + row.type'
-      }, {
-        name: 'isShowEdit',
-        args: [],
-        body: 'return this.$store.state.role == "admin"'
+        body: 'return this.getDictName("musicType", row.type)'
       }]
     },
     detail: {
