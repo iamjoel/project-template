@@ -11,41 +11,10 @@ export default {
       model: {
         basic: {},
         cols: [],
-        operate: {},
-        searchCondition: [],
         fn: [],
       },
       opList: [],
-      opDict: {
-        'add': '新增',
-        'edit': '编辑',
-        'detail': '详情',
-        'delete': '删除',
-      },
-      opShowType: [{
-        label: '显示',
-        key: 'show'
-      },{
-        label: '隐藏',
-        key: 'hide'
-      }, {
-        label: '某些角色显示',
-        key: 'roles'
-      }],
-      searchConditionDataType: [{
-        label: '字符串',
-        key: 'string'
-      },{
-        label: '下拉',
-        key: 'select'
-      }],
-      searchConditionDataSourceType: [{
-        label: '字典',
-        key: 'dict'
-      },{
-        label: '实体',
-        key: 'entities'
-      }],
+      
       isShowEditArgsDialog: false,
       currFn: {}
     }
@@ -104,40 +73,10 @@ export default {
   },
   mounted() {
     const pagesConfig = this.$store.state.pagesConfig
-    var model = deepClone(pagesConfig[this.$route.params.id].list)
-    // 操作列表
-    this.opList = Object.keys(model.operate).map(opKey => {
-      const item = model.operate[opKey]
-      const showType = this.getShowType(item.isShow)
-      const showRoles = showType === 'roles' ? item.isShow : []
-      return {
-        label: this.opDict[opKey],
-        showType,
-        showRoles
-      }
-    })
-    // 标准化cols数据
-    model.cols = model.cols || []
-    model.cols = model.cols.map(item => {
-      return {
-        ...item,
-        formatFn: item.formatFn || null, 
-      }
-    })
-    // 标准化搜索条件数据
-    model.searchCondition = model.searchCondition || []
-    model.searchCondition = model.searchCondition.map(item => {
-      return {
-        ...item,
-        dataType: item.dataType || 'string',
-        dataSource: item.dataSource || {
-          type: '',
-          key: ''
-        },
-      }
-    })
-    // 标准化函数数据
+    var model = deepClone(pagesConfig[this.$route.params.id].detail)
+    model.basic = model.basic || {}
     model.fn = model.fn || []
+    // 标准化函数数据
     model.fn = model.fn.map(item => {
       return {
         ...item,
@@ -146,6 +85,6 @@ export default {
     })
 
     this.model = model
-    this.generateExpend()
+    // this.generateExpend()
   }
 }

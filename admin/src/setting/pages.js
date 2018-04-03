@@ -5,7 +5,7 @@ export default {
         label: '歌曲',
         entity: 'song'
       },
-      table: [{
+      cols: [{
         label: '歌曲名称',
         key: 'name'
       },{
@@ -57,8 +57,8 @@ export default {
       }]
     },
     detail: {
-      model: [{
-        name: '',
+      cols: [{
+        label: '',
         key: '',
         dataType: 'string'
       }]
@@ -70,7 +70,7 @@ export default {
         label: '歌手',
         entity: 'singer'
       },
-      table: [{
+      cols: [{
         label: '名称',
         key: 'name'
       }],

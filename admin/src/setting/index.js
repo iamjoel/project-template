@@ -79,6 +79,9 @@ var _menuConfig = [
     {
       id: 'listPage',
       name: '生成列表页',
+    },{
+      id: 'updatePage',
+      name: '生成编辑页',
     },]
   }
 ]

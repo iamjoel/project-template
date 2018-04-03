@@ -20,16 +20,16 @@
         </el-row>
       </el-form>
       </el-tab-pane>
-      <el-tab-pane label="列表字段" name="cols">
+      <el-tab-pane label="详情字段" name="model">
         <div class="ly ly-r mb-10">
-          <el-button type="primary" @click="model.cols.push({
+          <el-button type="primary" @click="model.table.push({
             label: '',
             key: '',
             formatFn: null,
           })">添加字段</el-button>
         </div>
         <el-table
-          :data="model.cols"
+          :data="model.table"
           border
           stripe>
           <el-table-column
@@ -93,165 +93,12 @@
             >
             <template slot-scope="scope">
               <el-button v-if="scope.$index > 0" size="small" type="info" @click="move('table', scope.$index, 'up')">上移</el-button>
-              <el-button v-if="scope.$index < model.cols.length - 1" size="small" type="info" @click="move('table', scope.$index, 'down')">下移</el-button>
+              <el-button v-if="scope.$index < model.table.length - 1" size="small" type="info" @click="move('table', scope.$index, 'down')">下移</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      
-      <el-tab-pane label="操作" name="op">
-        <el-table
-          :data="opList"
-          border
-          stripe>
-          <el-table-column
-            type="index"
-            label="序列"
-            align="center"
-            width="80">
-          </el-table-column>
-          <el-table-column
-            prop="label"
-            label="名称"
-            >
-          </el-table-column>
-          <el-table-column
-            prop="是否显示"
-            label="op"
-            >
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.showType" placeholder="无" filterable clearable>
-              <el-option
-                v-for="item in opShowType"
-                :key="item.key"
-                :label="item.label"
-                :value="item.key">
-              </el-option>
-            </el-select>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="显示角色"
-            >
-            <template slot-scope="scope">
-              <div v-if="scope.row.showType === 'roles'" >
-                <el-select v-model="scope.row.showRoles" placeholder="所有角色" multiple filterable clearable>
-                  <el-option
-                    v-for="item in $store.state.roles"
-                    :key="item.key"
-                    :label="item.label"
-                    :value="item.key">
-                  </el-option>
-                </el-select>
-              </div>
-              <div v-else>所有角色</div>
-            </template>
-          </el-table-column>
-          
-        </el-table>
-      </el-tab-pane>
-      <el-tab-pane label="搜索条件" name="searchCondition">
-        <div class="ly ly-r mb-10">
-          <el-button type="primary" @click="model.searchCondition.push({
-              label: '',
-              key: '',
-              dataType: 'string',
-              dataSource: {
-                type: '',
-                key: ''
-              }
-          })">添加搜索条件</el-button>
-        </div>
-        <el-table
-          :data="model.searchCondition"
-          border
-          stripe>
-          <el-table-column
-            type="index"
-            label="序列"
-            align="center"
-            width="80">
-          </el-table-column>
-          <el-table-column
-            prop="label"
-            label="名称"
-            >
-            <template  slot-scope="scope">
-              <el-input v-model="scope.row.label" placeholder=""></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="字段key"
-            >
-            <template  slot-scope="scope">
-              <el-input v-model="scope.row.key" placeholder=""></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="类型"
-            >
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.dataType" placeholder="字符串" filterable clearable>
-              <el-option
-                v-for="item in searchConditionDataType"
-                :key="item.key"
-                :label="item.label"
-                :value="item.key">
-              </el-option>
-            </el-select>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="数据来源类型"
-            >
-            <template slot-scope="scope">
-              <div v-if="scope.row.dataType === 'select'">
-                <el-select v-model="scope.row.dataSource.type" placeholder="无" filterable clearable>
-                  <el-option
-                    v-for="item in searchConditionDataSourceType"
-                    :key="item.key"
-                    :label="item.label"
-                    :value="item.key">
-                  </el-option>
-                </el-select>
-              </div>
-              <div v-else>无</div>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="数据来源"
-            >
-            <template slot-scope="scope">
-              <div v-if="scope.row.dataType === 'select'">
-                <el-select v-model="scope.row.dataSource.key" placeholder="无" filterable clearable>
-                  <el-option
-                    v-for="item in getDataResource(scope.row.dataSource.type)"
-                    :key="item.key"
-                    :label="item.label"
-                    :value="item.key">
-                  </el-option>
-                </el-select>
-              </div>
-              <div v-else>无</div>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="key"
-            label="操作"
-            width="140"
-            >
-            <template slot-scope="scope">
-              <el-button v-if="scope.$index > 0" size="small" type="info" @click="move('searchCondition', scope.$index, 'up')">上移</el-button>
-              <el-button v-if="scope.$index < model.searchCondition.length - 1" size="small" type="info" @click="move('searchCondition', scope.$index, 'down')">下移</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-tab-pane>
+    
       <el-tab-pane label="函数" name="fn">
         <div class="ly ly-r mb-10">
           <el-button type="primary" @click="model.fn.push({
