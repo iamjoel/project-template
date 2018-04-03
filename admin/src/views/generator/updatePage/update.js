@@ -7,14 +7,28 @@ export default {
   },
   data() {
     return {
-      activeTab: 'basic',
+      activeTab: 'cols',
       model: {
         basic: {},
         cols: [],
         fn: [],
       },
-      opList: [],
-      
+      colsDataType: [{
+        key: 'string',
+        label: '字符串'
+      },{
+        key: 'number',
+        label: '数字'
+      },{
+        key: 'select',
+        label: '下拉'
+      },{
+        key: 'date',
+        label: '日期'
+      },{
+        key: 'img',
+        label: '图片'
+      }],
       isShowEditArgsDialog: false,
       currFn: {}
     }

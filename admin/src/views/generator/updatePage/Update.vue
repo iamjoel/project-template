@@ -20,16 +20,23 @@
         </el-row>
       </el-form>
       </el-tab-pane>
-      <el-tab-pane label="详情字段" name="model">
+      <el-tab-pane label="详情字段" name="cols">
         <div class="ly ly-r mb-10">
-          <el-button type="primary" @click="model.table.push({
+          <el-button type="primary" @click="model.cols.push({
             label: '',
             key: '',
+            dateType: 'string',
+            dataSource: {
+              type: 'entity',
+              key: ''
+            },
+            validRules: [],
             formatFn: null,
+            saveFormatFn: null,
           })">添加字段</el-button>
         </div>
         <el-table
-          :data="model.table"
+          :data="model.cols"
           border
           stripe>
           <el-table-column
@@ -46,6 +53,7 @@
               <el-input v-model="scope.row.label" placeholder=""></el-input>
             </template>
           </el-table-column>
+          
           <el-table-column
             prop="key"
             label="字段key"
@@ -55,8 +63,34 @@
             </template>
           </el-table-column>
           <el-table-column
+            prop="label"
+            label="数据类型"
+            >
+            <template  slot-scope="scope">
+              <el-select v-model="scope.row.dateType" placeholder="请选择">
+                <el-option
+                  v-for="item in colsDataType"
+                  :key="item.key"
+                  :label="item.label"
+                  :value="item.key">
+                </el-option>
+              </el-select>
+              <el-button v-if="scope.row.dateType">
+                选择下拉数据来源
+              </el-button>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="label"
+            label="验证规则"
+            >
+            <template  slot-scope="scope">
+             <el-button>查看</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column
             prop="key"
-            label="格式化函数"
+            label="获取后格式化函数"
             >
             <template slot-scope="scope">
               <el-select v-model="scope.row.formatFn" placeholder="无" filterable clearable>
@@ -69,14 +103,12 @@
             </el-select>
             </template>
           </el-table-column>
-          <!-- 
-          // 显示函数 or 显示的角色？ 需求足够多，再加
           <el-table-column
             prop="key"
-            label="显示函数"
+            label="保存前格式化函数"
             >
             <template slot-scope="scope">
-              <el-select v-model="scope.row.showFn" placeholder="无" filterable clearable>
+              <el-select v-model="scope.row.saveFormatFn" placeholder="无" filterable clearable>
               <el-option
                 v-for="item in model.fn"
                 :key="item.name"
@@ -85,15 +117,16 @@
               </el-option>
             </el-select>
             </template>
-          </el-table-column> -->
+          </el-table-column>
+          
           <el-table-column
             prop="key"
             label="操作"
             width="140"
             >
             <template slot-scope="scope">
-              <el-button v-if="scope.$index > 0" size="small" type="info" @click="move('table', scope.$index, 'up')">上移</el-button>
-              <el-button v-if="scope.$index < model.table.length - 1" size="small" type="info" @click="move('table', scope.$index, 'down')">下移</el-button>
+              <el-button v-if="scope.$index > 0" size="small" type="info" @click="move('cols', scope.$index, 'up')">上移</el-button>
+              <el-button v-if="scope.$index < model.cols.length - 1" size="small" type="info" @click="move('cols', scope.$index, 'down')">下移</el-button>
             </template>
           </el-table-column>
         </el-table>
