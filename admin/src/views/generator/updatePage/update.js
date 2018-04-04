@@ -1,6 +1,6 @@
 import JEditItem from '@/components/edit-item'
 import deepClone from 'clone'
-import generatorListCode from './utils/generatorListCode'
+import generatorUpdateCode from './utils/generatorUpdateCode'
 
 export default {
   components: {
@@ -32,7 +32,10 @@ export default {
       },
       colsDataType: [{
         key: 'string',
-        label: '字符串'
+        label: '文字'
+      },{
+        key: 'strings',
+        label: '多行文字'
       },{
         key: 'number',
         label: '数字'
@@ -48,7 +51,10 @@ export default {
       },{
         key: 'imgs',
         label: '多图'
-      }],
+      },{
+        key: 'bool',
+        label: '布尔值'
+      },],
       isShowEditArgsDialog: false,
       isShowDataSourceDialog: false,
       dataSourceType: [{
@@ -128,7 +134,7 @@ export default {
       console.log(JSON.stringify(model))
     },
     generateExpend() {
-      generatorListCode(this.model)
+      generatorUpdateCode(this.model)
     },
     generatorErrmsg(item) {
       var action
@@ -167,7 +173,7 @@ export default {
     })
 
     this.model = model
-    this.save()
-    // this.generateExpend()
+    // this.save()
+    this.generateExpend()
   }
 }

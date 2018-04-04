@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    {{model}}
-    <br>
+    <!-- {{model}} -->
+    <!-- <br> -->
     <el-tabs v-model="activeTab" >
       <el-tab-pane label="基本设置" name="basic">
         <el-form :inline="true" :model="model.basic"  label-position="right" >

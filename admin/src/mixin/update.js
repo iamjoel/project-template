@@ -40,6 +40,7 @@ export default {
           if(isSave === false) {
             return
           }
+          console.log(JSON.stringify(saveData))
           method(this.KEY, saveData).then(({data}) => {
             if(!data.errcode) {
                 this.$message({

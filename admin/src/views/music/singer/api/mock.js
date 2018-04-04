@@ -2,19 +2,21 @@ import Mock from 'mockjs'
 import {urls} from '@/setting'
 var Random = Mock.Random
 
-var currUrl = urls.song
+var currUrl = urls.singer
 var nextSongId = 1
 var list = [{
   id: nextSongId++,
-  name: '天黑黑',
-  type: 'pop',
-  describe: '由廖莹如、吴依铮填词，李偲菘谱曲，孙燕姿演唱的一首歌曲，收录于孙燕姿2000年发行的专辑《孙燕姿同名专辑》中。',
-  createdAt: new Date('2000/9/1'),
-  singer: {
-    name: '孙燕姿',
-    gender: 2
-  },
-}]
+  name: '孙燕姿',
+},{
+  id: nextSongId++,
+  name: '王菲',
+},{
+  id: nextSongId++,
+  name: '任贤齐',
+},{
+  id: nextSongId++,
+  name: '小刚',
+},]
 Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {
   return {
     data: {
@@ -53,12 +55,7 @@ Mock.mock(new RegExp(currUrl.edit), ({ url, body }) => {
 function makeItem() {
   return {
     id: Math.floor(Math.random() * 10000),
-    name: 'xxx',
-    singer: {
-      name:Random.cname()
-    },
-    describe: Random.sentence(),
-    createdAt: Date.now()
+    name: Random.cname(),
   }
 }
 

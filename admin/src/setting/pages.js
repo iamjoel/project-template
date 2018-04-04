@@ -3,7 +3,7 @@ export default {
     list: {
       basic: {
         label: '歌曲',
-        entity: 'song'
+        entity: 'song',
       },
       cols: [{
         label: '歌曲名称',
@@ -63,7 +63,7 @@ export default {
         dataType: 'string',
         formatFn: 'testFormat',
         saveFormatFn: 'testAfterFormat',
-
+        validRules: [{name: 'required', errMsg: '请输入歌曲名称'}],
       }, {
         label: '歌曲类型',
         key: 'type',
@@ -71,15 +71,21 @@ export default {
         dataSource: {
           type: 'dict',
           key: 'musicType'
-        }
+        },
+        validRules: [{name: 'required', errMsg: '请选择歌曲类型'}],
       },{
         label: '歌手',
-        key: 'singer',
+        key: 'singerId',
         dataType: 'select',
         dataSource: {
           type: 'entity',
           key: 'singer'
-        }
+        },
+        validRules: [{name: 'required', errMsg: '请选择歌手'}],
+      },{
+        label: '创作时间',
+        key: 'time',
+        dataType: 'date',
       }, {
         label: '图片',
         key: 'img',
@@ -87,6 +93,19 @@ export default {
         imgConfig: {
           tip: '建议尺寸 750 * 300'
         }
+      }, {
+        label: '排序值',
+        key: 'sort',
+        dataType: 'number',
+        validRules: [{name: 'required', errMsg: '请输入排序值'}],
+      },{
+        label: '是否原创歌曲',
+        key: 'isOriginal',
+        dataType: 'bool',
+      }, {
+        label: '描述',
+        key: 'describe',
+        dataType: 'strings',
       }, ],
       fn: [{
         name: 'testFormat',
