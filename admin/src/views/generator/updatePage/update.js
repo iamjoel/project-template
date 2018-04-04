@@ -130,6 +130,22 @@ export default {
     generateExpend() {
       generatorListCode(this.model)
     },
+    generatorErrmsg(item) {
+      var action
+      switch(item.dataType) {
+        case 'select':
+          action = '选择'
+          break;
+        case 'img':
+        case 'imgs':
+          return '请上传图片'
+          break;
+        case 'string':
+        default: 
+          action = '输入'
+      }
+      return `请${action}${item.label}`
+    }
   },
   mounted() {
     const pagesConfig = this.$store.state.pagesConfig

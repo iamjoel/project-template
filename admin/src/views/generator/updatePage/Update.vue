@@ -268,7 +268,7 @@
       <div class="ly ly-r mb-10">
         <el-button type="primary" @click="currRow.validRules.push({
           name: 'required',
-          errMsg: '请输入' + currRow.label
+          errMsg: generatorErrmsg(currRow)
         })">添加规则</el-button>
       </div>
       <el-table
@@ -300,6 +300,9 @@
           prop="errMsg"
           label="错误信息"
           >
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.errMsg" placeholder="请输入内容"></el-input>
+          </template>
         </el-table-column>
         <el-table-column
           prop="op"
