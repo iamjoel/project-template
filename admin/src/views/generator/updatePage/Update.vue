@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <!-- {{model}}
-    <br> -->
+    {{model}}
+    <br>
     <el-tabs v-model="activeTab" >
       <el-tab-pane label="基本设置" name="basic">
         <el-form :inline="true" :model="model.basic"  label-position="right" >
@@ -22,18 +22,7 @@
       </el-tab-pane>
       <el-tab-pane label="详情字段" name="cols">
         <div class="ly ly-r mb-10">
-          <el-button type="primary" @click="model.cols.push({
-            label: '',
-            key: '',
-            dateType: 'string',
-            dataSource: {
-              type: 'entity',
-              key: ''
-            },
-            validRules: [],
-            formatFn: null,
-            saveFormatFn: null,
-          })">添加字段</el-button>
+          <el-button type="primary" @click="model.cols.push(colItemTemplate)">添加字段</el-button>
         </div>
         <el-table
           :data="model.cols"
@@ -67,7 +56,7 @@
             label="数据类型"
             >
             <template  slot-scope="scope">
-              <el-select v-model="scope.row.dateType" placeholder="请选择">
+              <el-select v-model="scope.row.dataType" placeholder="请选择">
                 <el-option
                   v-for="item in colsDataType"
                   :key="item.key"
@@ -75,8 +64,11 @@
                   :value="item.key">
                 </el-option>
               </el-select>
-              <el-button v-if="scope.row.dateType">
-                选择下拉数据来源
+              <el-button v-if="scope.row.dataType == 'select'" @click="showDialog(scope.row, 'DataSource')">
+                数据来源
+              </el-button>
+              <el-button v-if="scope.row.dataType == 'img' || scope.row.dataType == 'imgs'" @click="showDialog(scope.row, 'Img')">
+                配置
               </el-button>
             </template>
           </el-table-column>
@@ -85,7 +77,8 @@
             label="验证规则"
             >
             <template  slot-scope="scope">
-             <el-button>查看</el-button>
+              {{scope.row.validRules.map(item=>item.name).join()}}
+             <el-button @click="showDialog(scope.row, 'Rule')">编辑</el-button>
             </template>
           </el-table-column>
           <el-table-column
@@ -224,7 +217,101 @@
 
       </el-table>
       <span slot="footer" class="dialog-footer">
+        
         <el-button @click="isShowEditArgsDialog=false">关 闭</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="数据来源" :visible.sync="isShowDataSourceDialog">
+      <el-form ref="form" :model="currRow" label-width="80px">
+        <el-form-item label="数据来源类型">
+          <el-select v-model="currRow.dataSource.type" placeholder="无" filterable clearable>
+            <el-option
+              v-for="item in dataSourceType"
+              :key="item.key"
+              :label="item.label"
+              :value="item.key">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="数据来源">
+          <el-select v-model="currRow.dataSource.key" placeholder="无" filterable clearable>
+            <el-option
+              v-for="item in getDataResource(currRow.dataSource.type)"
+              :key="item.key"
+              :label="item.label"
+              :value="item.key">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="isShowDataSourceDialog = false">关 闭</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="图片配置" :visible.sync="isShowImgDialog">
+      <el-form :model="currRow" label-width="80px">
+        <el-form-item label="图片数量" v-if="currRow.dataType === 'imgs'">
+          <el-input v-model.number="currRow.imgConfig.max" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="提示">
+          <el-input v-model="currRow.imgConfig.tip"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="isShowImgDialog = false">关 闭</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="验证规则" :visible.sync="isShowRuleDialog">
+      <div class="ly ly-r mb-10">
+        <el-button type="primary" @click="currRow.validRules.push({
+          name: 'required',
+          errMsg: '请输入' + currRow.label
+        })">添加规则</el-button>
+      </div>
+      <el-table
+        :data="currRow.validRules"
+        border
+        stripe>
+        <el-table-column
+          type="index"
+          label="序列"
+          align="center"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          prop="model"
+          label="规则名称"
+          >
+          <template slot-scope="scope">
+            <el-select v-model="scope.row.name" placeholder="请选择">
+              <el-option
+                v-for="item in validRuleType"
+                :key="item.key"
+                :label="item.label"
+                :value="item.key">
+              </el-option>
+            </el-select>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="errMsg"
+          label="错误信息"
+          >
+        </el-table-column>
+        <el-table-column
+          prop="op"
+          label="操作"
+          >
+          <template slot-scope="scope">
+            <el-button type="danger" size="small" @click="currRow.validRules.splice(scope.index, 1)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="isShowRuleDialog = false">关 闭</el-button>
       </span>
     </el-dialog>
   </div>

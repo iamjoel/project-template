@@ -1,6 +1,7 @@
 import JEditItem from '@/components/edit-item'
 import deepClone from 'clone'
 import generatorListCode from './utils/generatorListCode'
+
 export default {
   components: {
     'j-edit-item': JEditItem,
@@ -12,6 +13,22 @@ export default {
         basic: {},
         cols: [],
         fn: [],
+      },
+      colItemTemplate: {
+        label: '',
+        key: '',
+        dataType: 'string',
+        dataSource: {
+          type: 'entity',
+          key: ''
+        },
+        imgConfig: {
+          max: 5,
+          tip: '建议尺寸 750 * 300'
+        },
+        validRules: [],
+        formatFn: null,
+        saveFormatFn: null,
       },
       colsDataType: [{
         key: 'string',
@@ -27,21 +44,43 @@ export default {
         label: '日期'
       },{
         key: 'img',
-        label: '图片'
+        label: '单图'
+      },{
+        key: 'imgs',
+        label: '多图'
       }],
       isShowEditArgsDialog: false,
-      currFn: {}
+      isShowDataSourceDialog: false,
+      dataSourceType: [{
+        label: '字典',
+        key: 'dict'
+      },{
+        label: '实体',
+        key: 'entities'
+      }],
+      isShowImgDialog: false,
+      validRuleType: [{
+        key: 'required',
+        label: '非空验证'
+      }],
+      isShowRuleDialog: false,
+      currFn: {},
+      currRow: {
+        dataSource: {
+          type: '',
+          key: ''
+        },
+        imgConfig: {
+          max: 5,
+          tip: '建议尺寸 750 * 300'
+        }
+      }
     }
   },
   methods: {
-    getShowType(data) {
-      if(data === true) {
-        return 'show'
-      } else if (data === false) {
-        return 'hide'
-      } else {// 数组
-        return 'roles'
-      }
+    showDialog(row, key){
+      this.currRow = row
+      this[`isShow${key}Dialog`] = true
     },
     getDataResource(type) {
       return type === 'dict' 
@@ -70,6 +109,15 @@ export default {
     },
     save() {
       var model = deepClone(this.model)
+      model.cols = model.cols.map(item => {
+        if(item.dataType !== 'select') {
+          delete item.dataSource
+        }
+        if(item.dataType !== 'img' || item.dataType !== 'imgs') {
+          delete item.imgConfig
+        }
+        return item
+      })
       model.fn = model.fn.map(item => {
         return {
           ...item,
@@ -82,12 +130,16 @@ export default {
     generateExpend() {
       generatorListCode(this.model)
     },
-
-
   },
   mounted() {
     const pagesConfig = this.$store.state.pagesConfig
     var model = deepClone(pagesConfig[this.$route.params.id].detail)
+    model.cols = model.cols.map(col => {
+      return {
+        ...deepClone(this.colItemTemplate),
+        ...col
+      }
+    })
     model.basic = model.basic || {}
     model.fn = model.fn || []
     // 标准化函数数据
@@ -99,6 +151,7 @@ export default {
     })
 
     this.model = model
+    this.save()
     // this.generateExpend()
   }
 }
