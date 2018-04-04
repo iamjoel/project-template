@@ -22,6 +22,20 @@ var routes = [
       lazyLoading(resolve, 'common/List', false)
     },
   },
+  // 通用一级编辑页
+  {
+    path: '/common/:configName/:actionName/:id',
+    component: resolve => {
+      lazyLoading(resolve, 'common/Update', false)
+    },
+  },
+  // 通用二级编辑页
+  {
+    path: '/common/:parent/:configName/:actionName/:id',
+    component: resolve => {
+      lazyLoading(resolve, 'common/Update', false)
+    },
+  },
 ]
 
 // 页面的路由的定义

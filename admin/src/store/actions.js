@@ -89,6 +89,7 @@ import {
 export const fetchBasicData = ({ commit, state, getters }) => {
   // const loadDataNum = 5
   // var loadedNum = 0
+  
   commit(types.ROLES, rolesConfig)
   commit(types.DICT, dictConfig)
   commit(types.ENTITIES, entitiesConfig)
