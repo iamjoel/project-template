@@ -61,29 +61,6 @@ var _menuConfig = [
       useCommon: true, // 用通用页面
     }]
   },
-  {
-    id: 'generator',
-    name: '代码生成器',
-    children: [{
-      id: 'roles',
-      name: '角色',
-    },
-    {
-      id: 'dict',
-      name: '字典',
-    },
-    {
-      id: 'entities',
-      name: '实体',
-    },
-    {
-      id: 'listPage',
-      name: '生成列表页',
-    },{
-      id: 'updatePage',
-      name: '生成编辑页',
-    },]
-  }
 ]
 
 export const urls = {}
