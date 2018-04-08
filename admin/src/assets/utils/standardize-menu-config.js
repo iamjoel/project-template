@@ -30,6 +30,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
       setUrls(menu, urls, SERVER_PREFIX)
     }
   })
+  console.log(urls)
   return menuConfig
 }
 

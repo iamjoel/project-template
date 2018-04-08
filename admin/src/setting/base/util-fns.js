@@ -1,9 +1,9 @@
 export default [{
-  name: 'toNumber',
+  name: 'sysToNumber',
   args: ['model', 'key'],
   body: 'return parseFloat(model[key])'
 },{
-  name: 'toString',
+  name: 'sysToString',
   args: ['model', 'key'],
   body: 'return model[key] + ""'
 }]

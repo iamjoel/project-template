@@ -9,8 +9,9 @@ export default {
   },
   data() {
     return {
-      KEY: null,
-      config: this.$store.state.pagesConfig[this.$route.params.configName].list,
+      KEY: this.$route.params.configName,
+      isUpdatePageCommon: false,
+      config: this.$store.state.listPagesConfig.filter(item => item.basic.entity === this.$route.params.configName)[0],
       searchConditions: {}
     }  
   },
@@ -39,6 +40,6 @@ export default {
       searchConditions[item.key] = ''
     })
     this.$set(this, 'searchConditions', searchConditions)
-    this.key = this.config.urlKey
+    this.PAGE_PATH_PREFIX = `${this.config.basic.isUpdatePageCommon ? '/common' : ''}${this.PAGE_PATH_PREFIX}`
   }
 }

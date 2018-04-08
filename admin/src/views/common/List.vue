@@ -15,7 +15,7 @@
             </el-select>
           </div>
           <div v-else>
-             <j-remote-select v-model="searchConditions[item.key]" url-key="item.dataSource.key" :autoFetch="true">
+             <j-remote-select v-model="searchConditions[item.key]" :url-key="item.dataSource.key" :autoFetch="true">
             </j-remote-select>
           </div>
         </div>

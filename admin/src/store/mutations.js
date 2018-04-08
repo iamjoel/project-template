@@ -28,8 +28,11 @@ const mutations = {
   [types.UTIL_FN] (state, data) {
     state.utilFns = data 
   },
-  [types.PAGES_CONFIG] (state, data) {
-    state.pagesConfig = data 
+  [types.LIST_PAGES_CONFIG] (state, data) {
+    state.listPagesConfig = data 
+  },
+  [types.UPDATE_PAGES_CONFIG] (state, data) {
+    state.updatePagesConfig = data 
   },
   [types.BASIC_DATA_LOADED] (state, data) {
     state.hasLoadBasicData = true 

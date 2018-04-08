@@ -9,8 +9,8 @@ export default {
   },
   data() {
     return {
-      KEY: 'song',
-      config: deepClone(this.$store.state.pagesConfig[this.$route.params.configName].detail),
+      KEY: this.$route.params.configName,
+      config: deepClone(this.$store.state.updatePagesConfig.filter(item => item.basic.entity === this.$route.params.configName)[0]),
       model: {},
       rules: {},
     }  
@@ -80,8 +80,6 @@ export default {
   
   },
   mounted() {
-    this.key = 'song'//this.config.urlKey
-
     var config = this.config
     var model = {}
 

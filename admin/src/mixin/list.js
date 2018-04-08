@@ -33,6 +33,9 @@ export default {
   },
   mounted() {
     var pathArr = this.$route.path.split('/').filter(item => item !== '')
+    if(pathArr[0] === 'common') {
+      pathArr.shift()
+    }
     if(!this.KEY) { // 用 KEY 来调用 Ajax
       // 形如 ['account', 'list'], ['music', 'song', 'list']
       this.KEY = pathArr[pathArr.length - 2]
