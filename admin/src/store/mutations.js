@@ -25,6 +25,9 @@ const mutations = {
   [types.NAV_MENU] (state, data) {
     state.navMenu = data 
   },
+  [types.UTIL_FN] (state, data) {
+    state.utilFns = data 
+  },
   [types.PAGES_CONFIG] (state, data) {
     state.pagesConfig = data 
   },

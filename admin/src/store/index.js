@@ -18,6 +18,7 @@ const state = {
   dict: [], // 字典
   entities: [], // 实体
   navMenu: [], // 菜单
+  utilFns: [], // 工具方法
   pagesConfig: {}, // 页面配置
   user: {
     id: null,

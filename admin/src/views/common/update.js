@@ -1,7 +1,6 @@
 import updateMixin from '@/mixin/update'
 import JRemoteSelect from '@/components/remote-select'
 import deepClone from 'clone'
-import utilFns from './util-fns'
 // #/common/music/song/update/-1
 export default {
   mixins: [updateMixin],
@@ -88,11 +87,10 @@ export default {
 
     config.cols.forEach(col => {
       model[col.key] = null
-      
     })
 
     config.fn = config.fn || []
-    config.fn = config.fn.concat(utilFns) // 加入内置函数
+    config.fn = config.fn.concat(this.$store.state.utilFns) // 加入内置函数
     this.$set(this, 'model', model)
     
   }

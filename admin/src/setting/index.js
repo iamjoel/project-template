@@ -20,17 +20,20 @@ export var isMock = useFEMock
 
 export var SERVER_PREFIX = `${HOST}/api`
 
-// 基础数据。以后存在服务器
-import roles from './roles.js'
+// 基础数据
+import roles from './base/roles.js'
 export var rolesConfig = roles
-import dict from './dict.js'
+import dict from './base/dict.js'
 export var dictConfig = dict
-import entities from './entities.js'
+import entities from './base/entities.js'
 export var entitiesConfig = entities
-import navMenu from './nav-menu.js'
+import navMenu from './base/nav-menu.js'
 export var navMenuConfig = navMenu
-import pages from './pages.js'
+import uitlFns from './base/util-fns.js'
+export var uitlFnsConfig = uitlFns
+import pages from './base/pages.js'
 export var pagesConfig = pages
+
 
 
 // 页面
