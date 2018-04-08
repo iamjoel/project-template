@@ -24,7 +24,6 @@
         </div>
       </j-edit-item>
     </j-search-condition>
-    {{addPagePath}}
     <j-grid-box :is-show-add-btn="isShow('add')" :add-url="addPagePath" :pager="pager" @pageChange="handleCurrentChange">
     <el-table
       :data="tableData"

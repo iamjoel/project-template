@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <j-topbar></j-topbar>
-    <el-row :gutter="20" style="margin-top: 65px;">
-      <!-- min-height 为了占位 -->
-      <el-col :span="4" style="min-height: 100px;">
+    <div class="ly" style="margin-top: 65px;">
+      <div style="width: 250px;">
         <j-siderbar :menu="$store.state.menu"></j-siderbar>
-      </el-col>
-      <el-col :span="20">
+      </div>
+      <div class="lyi-f">
         <j-breadcrumb :menu="$store.state.menu"></j-breadcrumb>
         <router-view id="main-content"></router-view>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
+    
   </div>
 </template>
 

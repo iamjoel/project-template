@@ -30,7 +30,7 @@
   z-index: 1;
   left: 0;
   top: 60px;
-  width: 16.66667%;
+  width: 250px;
   bottom: 0;
   background-color: #324157;
 }
