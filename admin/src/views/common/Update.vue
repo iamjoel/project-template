@@ -2,8 +2,9 @@
 <template>
 <div class="main">
   <!-- {{config.cols.map(item=>item.key)}} -->
-  <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right" >
+  <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right">
     <el-row type="flex" justify="start" class="multi-line">
+
       <j-edit-item  :label="col.label" :prop="col.key" :is-view="isView" :view-value="model[col.key]" v-for="col in config.cols">
         <el-input v-model="model[col.key]" v-if="!col.dataType || col.dataType === 'string'"></el-input>
 

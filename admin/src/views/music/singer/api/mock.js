@@ -5,16 +5,16 @@ var Random = Mock.Random
 var currUrl = urls.singer
 var nextSongId = 1
 var list = [{
-  id: nextSongId++,
+  id: nextSongId++ + '',
   name: '孙燕姿',
 },{
-  id: nextSongId++,
+  id: nextSongId++ + '',
   name: '王菲',
 },{
-  id: nextSongId++,
+  id: nextSongId++ + '',
   name: '任贤齐',
 },{
-  id: nextSongId++,
+  id: nextSongId++ + '',
   name: '小刚',
 },]
 Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {

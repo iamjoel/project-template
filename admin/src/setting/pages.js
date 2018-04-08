@@ -77,6 +77,7 @@ export default {
         label: '歌手',
         key: 'singerId',
         dataType: 'select',
+        formatFn: 'toString',
         dataSource: {
           type: 'entity',
           key: 'singer'

@@ -1,6 +1,7 @@
 import updateMixin from '@/mixin/update'
 import JRemoteSelect from '@/components/remote-select'
 import deepClone from 'clone'
+import utilFns from './util-fns'
 // #/common/music/song/update/-1
 export default {
   mixins: [updateMixin],
@@ -10,9 +11,9 @@ export default {
   data() {
     return {
       KEY: 'song',
-      config: this.$store.state.pagesConfig[this.$route.params.configName].detail,
+      config: deepClone(this.$store.state.pagesConfig[this.$route.params.configName].detail),
       model: {},
-      rules: {}
+      rules: {},
     }  
   },
   methods: {
@@ -26,20 +27,44 @@ export default {
     formatFetchData(model) {
       var config = this.config
       model = deepClone(model)
+      var rules = {} // 验证规则
+
       config.cols.forEach(col => {
+        // 对单个字段的 format
         if(col.formatFn) {
-          model[col.key] = this.proxy(col.formatFn, [model])
+          model[col.key] = this.proxy(col.formatFn, [model, col.key])
         }
 
         if(!this.isView && col.dataType === 'select' && col.dataSource.type === 'entity') {
-          debugger
-          if(model[col.key]) {
-            debugger
-            this.$refs[col.key].setVal(model[col.key])
+          if(model[col.key] != undefined) {
+            this.$refs[col.key][0].setVal(model[col.key])
           }
         }
+
+
+        if(col.validRules && col.validRules.length > 0) {
+          rules[col.key] = col.validRules.map(rule => {
+            if(rule.name === 'required') {
+              var res = {
+                required: true, 
+                message: rule.errMsg,
+                trigger: 'blur'
+              }
+              if(col.dataType === 'number') {
+                res.type = 'number'
+              }
+              return res
+            }
+            return false
+          }).filter(item => item)
+
+        }
+
+
       })
-      
+      // 添加验证规则，会触发验证。所以要等数据好了再添加。
+      this.$set(this, 'rules', rules)
+
       return model
     },
     formatSaveData() {
@@ -47,7 +72,7 @@ export default {
       var model = deepClone(this.model)
       config.cols.forEach(col => {
         if(col.saveFormatFn) {
-          model[col.key] = this.proxy(col.saveFormatFn, [model])
+          model[col.key] = this.proxy(col.saveFormatFn, [model, col.key])
         }
       })
       return this.model
@@ -56,26 +81,19 @@ export default {
   
   },
   mounted() {
+    this.key = 'song'//this.config.urlKey
+
     var config = this.config
     var model = {}
-    var rules = {}
 
     config.cols.forEach(col => {
       model[col.key] = null
-
-      if(col.validRules && col.validRules.length > 0) {
-        rules[col.key] = col.validRules.map(rule => {
-          if(rule.name === 'required') {
-            return `{ ${ col.dataType === 'number' ? `type: 'number',`: ''}required: true, message: '${rule.errMsg}', trigger: 'blur' }`
-          }
-          return false
-        }).filter(item => item)
-      }
+      
     })
-    // debugger
 
+    config.fn = config.fn || []
+    config.fn = config.fn.concat(utilFns) // 加入内置函数
     this.$set(this, 'model', model)
-    this.$set(this, 'rules', rules)
-    this.key = 'song'//this.config.urlKey
+    
   }
 }
