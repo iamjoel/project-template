@@ -24,6 +24,7 @@
         </div>
       </j-edit-item>
     </j-search-condition>
+    {{addPagePath}}
     <j-grid-box :is-show-add-btn="isShow('add')" :add-url="addPagePath" :pager="pager" @pageChange="handleCurrentChange">
     <el-table
       :data="tableData"
@@ -51,7 +52,7 @@
         fixed="right"
         >
         <template slot-scope="scope">
-          <el-button type="success" size="small" @click="showDetail(scope.row)" v-if="isShow('detail')">详情</el-button>
+          <el-button type="success" size="small" @click="$router.push(viewPagePath(scope.row.id))" v-if="isShow('detail')">详情</el-button>
           <el-button type="info" size="small" @click="$router.push(editPagePath(scope.row.id))" v-if="isShow('edit')">编辑</el-button>
           <el-button type="danger" size="small" @click="remove(scope.row.id)" v-if="isShow('delete')">删除</el-button>
         </template>

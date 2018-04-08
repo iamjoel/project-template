@@ -1,7 +1,7 @@
 export default [{
     basic: {
       entity: 'song',
-      isUpdatePageCommon: true
+      isUpdatePageCommon: false,
     },
     cols: [{
       label: '歌曲名称',
@@ -56,7 +56,8 @@ export default [{
   },
   {
     basic: {
-      entity: 'singer'
+      entity: 'singer',
+      isUpdatePageCommon: true,
     },
     cols: [{
       label: '名称',

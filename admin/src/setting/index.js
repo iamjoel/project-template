@@ -36,8 +36,6 @@ export var listPagesConfig = listPages
 import updatePages from './base/update-pages.js'
 export var updatePagesConfig = updatePages
 
-
-
 // 页面
 var _menuConfig = [
   {
@@ -60,11 +58,13 @@ var _menuConfig = [
     children: [{
       id: 'song',
       name: '歌曲',
-      useCommon: true, // 用通用页面
+      listUseCommon: false, // 用通用页面
+      updateUseCommon: false, // 用通用页面
     }, {
       id: 'singer',
       name: '歌手',
-      useCommon: true, // 用通用页面
+      listUseCommon: true, // 用通用页面
+      updateUseCommon: true, // 用通用页面
     }]
   },
 ]

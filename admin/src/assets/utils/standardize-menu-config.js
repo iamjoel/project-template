@@ -12,7 +12,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
           pageGroup.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
         }
         pageGroup.pages = pageGroup.pages.map(page => {
-          var pageInfo = getPageInfo(page, parentId, pageGroup.id, pageGroup.useCommon)
+          var pageInfo = getPageInfo(page, parentId, pageGroup.id, pageGroup)
           return Object.assign(page, pageInfo)
         })
         pageGroup.mainPage = getMainPage(pageGroup)
@@ -23,7 +23,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
         menu.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
       }
       menu.pages = menu.pages.map(page => {
-        var pageInfo = getPageInfo(page, undefined, menu.id, menu.useCommon)
+        var pageInfo = getPageInfo(page, undefined, menu.id, menu)
         return Object.assign(page, pageInfo)
       })
       menu.mainPage = getMainPage(menu)
@@ -46,14 +46,14 @@ function getMainPage(pageGroup) {
   return mainPage
 }
 
-function getPageInfo(page, parentId, pageGroupId, useCommon) {
+function getPageInfo(page, parentId, pageGroupId, allData) {
   return {
-    filePath: getFilePath(page, parentId, pageGroupId, useCommon),
-    routePath: getRoutePath(page, parentId, pageGroupId, useCommon)
+    filePath: getFilePath(page, parentId, pageGroupId, allData),
+    routePath: getRoutePath(page, parentId, pageGroupId, allData)
   }
 }
 
-function getFilePath(page, parentId, pageGroupId, useCommon) {
+function getFilePath(page, parentId, pageGroupId) {
   var filePath = page.filePath
   if(!filePath) {
     let type = page.type
@@ -72,14 +72,20 @@ function getFilePath(page, parentId, pageGroupId, useCommon) {
   }).join('/')
 }
 
-function getRoutePath(page, parentId, pageGroupId, useCommon) {
+function getRoutePath(page, parentId, pageGroupId, allData) {
   var routePath = page.routePath
   if(!routePath) {
     var path = {
       update: `update/:id`,
       view: `view/:id`,
     }[page.type] || page.type
-    routePath = `${useCommon ? 'common/' : ''}${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
+    var isUseCommon = false
+    if((page.type === 'list' && allData.listUseCommon) ||
+      (page.type !== 'list' && allData.updateUseCommon)
+         ) {
+      isUseCommon = true
+    }
+    routePath = `${isUseCommon ? 'common/' : ''}${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
   }
   if(routePath.charAt(0) !== '/') {
     routePath = '/' + routePath

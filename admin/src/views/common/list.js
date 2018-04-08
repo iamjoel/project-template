@@ -11,9 +11,17 @@ export default {
     return {
       KEY: this.$route.params.configName,
       isUpdatePageCommon: false,
-      config: this.$store.state.listPagesConfig.filter(item => item.basic.entity === this.$route.params.configName)[0],
+      config: {},
       searchConditions: {}
     }  
+  },
+  watch: {
+    '$route.path': function() {
+      this.KEY = this.$route.params.configName
+      this.init()
+      this.mixinInit()
+      this.PAGE_PATH_PREFIX = this.calculatePathPrefix()
+    }
   },
   methods: {
     // 代理所有函数
@@ -32,14 +40,33 @@ export default {
         }
       })
       return res
+    },
+    init() {
+      var searchConditions = {}
+      this.$set(this, 'config', this.$store.state.listPagesConfig.filter(item => item.basic.entity === this.$route.params.configName)[0])
+
+      this.config.searchCondition.forEach(item => {
+        searchConditions[item.key] = ''
+      })
+      this.$set(this, 'searchConditions', searchConditions)
+      this.PAGE_PATH_PREFIX = `${this.config.basic.isUpdatePageCommon ? '/common' : ''}${this.PAGE_PATH_PREFIX}`
+    },
+    calculatePathPrefix() {
+      var pathArr = this.$route.path.split('/').filter(item => item !== '')
+      var res
+      if(pathArr[0] === 'common') {
+        pathArr.shift()
+      }
+      if(pathArr.length === 2) { // 形如 ['account', 'list']
+        res = '/' + pathArr[0]
+      } else {// 形如 ['music', 'song', 'list']
+        res = '/' + pathArr[0] + '/' + pathArr[1]
+      }
+      res = `${this.config.basic.isUpdatePageCommon ? '/common' : ''}${res}`
+      return res
     }
   },
   mounted() {
-    var searchConditions = {}
-    this.config.searchCondition.forEach(item => {
-      searchConditions[item.key] = ''
-    })
-    this.$set(this, 'searchConditions', searchConditions)
-    this.PAGE_PATH_PREFIX = `${this.config.basic.isUpdatePageCommon ? '/common' : ''}${this.PAGE_PATH_PREFIX}`
+    this.init()
   }
 }

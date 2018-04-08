@@ -66,4 +66,9 @@ export default [{
   basic: {
     entity: 'singer',
   },
+  cols: [{
+    label: '名称',
+    key: 'name',
+    dataType: 'string',
+  },]
 }]

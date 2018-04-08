@@ -29,13 +29,13 @@ export default {
                   console.error(subMenu)
                   return
                 }
-                var menuPath = subMenu.path.split('/')[1]
+                var menuPath = subMenu.path.split('/').filter(item=> item !== 'common')[1]
                 if(menuPath === pathArr[0]) {
                   currMenu = menu
                 }
               }
             } else {
-              var menuPath = menu.path.split('/')[1]
+              var menuPath = menu.path.split('/').filter(item=> item !== 'common')[1]
               if(menuPath === pathArr[0]) {
                 currMenu = menu
               }
