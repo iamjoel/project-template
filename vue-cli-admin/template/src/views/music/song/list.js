@@ -1,22 +1,41 @@
+       
 import listMixin from '@/mixin/list'
-import {isMock} from '@/setting'
-console.log(isMock)
-if(isMock) {
-  require('./api/mock.js')
-}
+import JRemoteSelect from '@/components/remote-select'
+
+var searchConditions = 
+  {
+    name: '',
+type: '',
+singer: ''
+  }
+var operateConfig = {"add":{"isShow":true},"edit":{"isShow":true},"detail":{"isShow":false},"delete":{"isShow":["admin"]}}
 
 export default {
   mixins: [listMixin],
-  data () {
+  components: {
+   'j-remote-select': JRemoteSelect,
+  },
+  data() {
     return {
-      searchConditions: {
-        name: null,
-      },
-      model: {}
-    }
+      KEY: null,
+      searchConditions,
+    }  
   },
   methods: {
-    
+    isShow(type) {
+      var isShow = operateConfig[type].isShow
+      if(Array.isArray(isShow)) {
+        return isShow.indexOf(this.$store.state.role) !== -1
+      } else {
+        return isShow
+      }
+    },
+  
+  formatType(row) {
+    return this.getDictName("musicType", row.type)
+  }
+  },
+  mounted() {
+    this.key = 'song'
   }
 }
-

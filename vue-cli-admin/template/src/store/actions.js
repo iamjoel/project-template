@@ -67,6 +67,7 @@ export const fetchMenuAndLimit = ({ commit, state, getters }) => {
       return true
     }
   })
+
   // 可以根据 process.env.NODE_ENV 来判断拿的值
   commit(types.MENU_LIMIT, {
       data: {
@@ -75,3 +76,31 @@ export const fetchMenuAndLimit = ({ commit, state, getters }) => {
       }
   })
 }
+
+// 这些配置以后放在服务器
+import {
+  rolesConfig,
+  dictConfig,
+  entitiesConfig,
+  navMenuConfig,
+  uitlFnsConfig,
+  listPagesConfig,
+  updatePagesConfig
+} from '@/setting'
+
+export const fetchBasicData = ({ commit, state, getters }) => {
+  // const loadDataNum = 5
+  // var loadedNum = 0
+  
+  commit(types.ROLES, rolesConfig)
+  commit(types.DICT, dictConfig)
+  commit(types.ENTITIES, entitiesConfig)
+  commit(types.NAV_MENU, navMenuConfig)
+  commit(types.UTIL_FN, uitlFnsConfig)
+  commit(types.LIST_PAGES_CONFIG, listPagesConfig)
+  commit(types.UPDATE_PAGES_CONFIG, updatePagesConfig)
+  // 所有数据加载完成
+  commit(types.BASIC_DATA_LOADED)
+  
+}
+

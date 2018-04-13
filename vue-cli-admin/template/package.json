@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "clone": "^1.0.4",
+    "css-utils-collection": "^1.2.0",
     "element-ui": "^1.3.7",
     "fundebug-javascript": "^0.3.3",
     "glob": "^7.1.2",

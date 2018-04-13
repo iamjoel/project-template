@@ -6,9 +6,13 @@ export default {
   },
   computed: {
     pathArr() {
-      return this.$route.path.split('/').filter(item=> {
+      var filteredArr = this.$route.path.split('/').filter(item=> {
         return item !== ''
       })
+      if(filteredArr[0] === 'common') { // 通用页面处理成普通页面
+        filteredArr.shift()
+      }
+      return filteredArr
     },
     currMenu() {
       var allMenu = this.menu
@@ -25,13 +29,13 @@ export default {
                   console.error(subMenu)
                   return
                 }
-                var menuPath = subMenu.path.split('/')[1]
+                var menuPath = subMenu.path.split('/').filter(item=> item !== 'common')[1]
                 if(menuPath === pathArr[0]) {
                   currMenu = menu
                 }
               }
             } else {
-              var menuPath = menu.path.split('/')[1]
+              var menuPath = menu.path.split('/').filter(item=> item !== 'common')[1]
               if(menuPath === pathArr[0]) {
                 currMenu = menu
               }
@@ -55,7 +59,7 @@ export default {
 
       if(currMenu) {
         currMenu.children.forEach(subMenu=> {
-          var pathArr = subMenu.path.split('/')
+          var pathArr = subMenu.path.split('/').filter(item=> item !== 'common')// 通用页面处理成普通页面
           if(pathArr[2] === currPathArr[1]) {
             id = subMenu.id
           }

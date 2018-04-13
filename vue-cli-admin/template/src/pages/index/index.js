@@ -18,6 +18,15 @@ Vue.prototype.developing = function(type = 'backend') {
   })
 }
 
+Vue.prototype.getDictName = function(name, key) {
+  var target = this.$store.getters.dictObj[name]
+  if(!target || target.length === 0) {
+    return ''
+  }
+  var res = target.filter(item => item.key == key)[0]
+  return res ? res.label : ''
+}
+
 import '@/assets/utils/errorHandler'
 
 import axios from 'axios'

@@ -20,6 +20,22 @@ export var isMock = useFEMock
 
 export var SERVER_PREFIX = `${HOST}/api`
 
+// 基础数据
+import roles from './base/roles.js'
+export var rolesConfig = roles
+import dict from './base/dict.js'
+export var dictConfig = dict
+import entities from './base/entities.js'
+export var entitiesConfig = entities
+import navMenu from './base/nav-menu.js'
+export var navMenuConfig = navMenu
+import uitlFns from './base/util-fns.js'
+export var uitlFnsConfig = uitlFns
+import listPages from './base/list-pages.js'
+export var listPagesConfig = listPages
+import updatePages from './base/update-pages.js'
+export var updatePagesConfig = updatePages
+
 // 页面
 var _menuConfig = [
   {
@@ -42,8 +58,15 @@ var _menuConfig = [
     children: [{
       id: 'song',
       name: '歌曲',
+      listUseCommon: false, // 用通用页面
+      updateUseCommon: false, // 用通用页面
+    }, {
+      id: 'singer',
+      name: '歌手',
+      listUseCommon: true, // 用通用页面
+      updateUseCommon: true, // 用通用页面
     }]
-  }
+  },
 ]
 
 export const urls = {}

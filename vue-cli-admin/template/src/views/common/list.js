@@ -43,10 +43,7 @@ export default {
     },
     init() {
       var searchConditions = {}
-      var config = this.$store.state.listPagesConfig.filter(item => {
-        return item.basic.entity === this.$route.params.configName
-      })[0]
-      this.$set(this, 'config', config)
+      this.$set(this, 'config', this.$store.state.listPagesConfig.filter(item => item.basic.entity === this.$route.params.configName)[0])
 
       this.config.searchCondition.forEach(item => {
         searchConditions[item.key] = ''

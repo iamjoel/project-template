@@ -12,7 +12,7 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
           pageGroup.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
         }
         pageGroup.pages = pageGroup.pages.map(page => {
-          var pageInfo = getPageInfo(page, parentId, pageGroup.id)
+          var pageInfo = getPageInfo(page, parentId, pageGroup.id, pageGroup)
           return Object.assign(page, pageInfo)
         })
         pageGroup.mainPage = getMainPage(pageGroup)
@@ -23,13 +23,14 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
         menu.pages = DEFAULT_PAGES.map(item => Object.assign({}, item))
       }
       menu.pages = menu.pages.map(page => {
-        var pageInfo = getPageInfo(page, undefined, menu.id)
+        var pageInfo = getPageInfo(page, undefined, menu.id, menu)
         return Object.assign(page, pageInfo)
       })
       menu.mainPage = getMainPage(menu)
       setUrls(menu, urls, SERVER_PREFIX)
     }
   })
+  console.log(urls)
   return menuConfig
 }
 
@@ -45,10 +46,10 @@ function getMainPage(pageGroup) {
   return mainPage
 }
 
-function getPageInfo(page, parentId, pageGroupId) {
+function getPageInfo(page, parentId, pageGroupId, allData) {
   return {
-    filePath: getFilePath(page, parentId, pageGroupId),
-    routePath: getRoutePath(page, parentId, pageGroupId)
+    filePath: getFilePath(page, parentId, pageGroupId, allData),
+    routePath: getRoutePath(page, parentId, pageGroupId, allData)
   }
 }
 
@@ -71,14 +72,20 @@ function getFilePath(page, parentId, pageGroupId) {
   }).join('/')
 }
 
-function getRoutePath(page, parentId, pageGroupId) {
+function getRoutePath(page, parentId, pageGroupId, allData) {
   var routePath = page.routePath
   if(!routePath) {
     var path = {
-      update: 'update/:id',
-      view: 'view/:id',
+      update: `update/:id`,
+      view: `view/:id`,
     }[page.type] || page.type
-    routePath = `${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
+    var isUseCommon = false
+    if((page.type === 'list' && allData.listUseCommon) ||
+      (page.type !== 'list' && allData.updateUseCommon)
+         ) {
+      isUseCommon = true
+    }
+    routePath = `${isUseCommon ? 'common/' : ''}${parentId ? parentId + '/' : '' }${pageGroupId}/${path}`
   }
   if(routePath.charAt(0) !== '/') {
     routePath = '/' + routePath
