@@ -1,11 +1,10 @@
 {
   "name": "admin-template",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "admin template",
-  "author": "金伟强 <iamjoel007@gmail.com>",
+  "author": "Joel <iamjoel007@gmail.com>",
   "private": true,
   "scripts": {
-    "mock": "BUILD_ENV=mock node build/dev-server.js",
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",

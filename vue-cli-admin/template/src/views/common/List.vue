@@ -38,7 +38,8 @@
       <el-table-column
         :prop="item.key"
         :label="item.label"
-        v-for="item in config.cols"
+        v-for="(item, index) in config.cols"
+        :key="index"
         >
         <template slot-scope="scope">
           \{{item.formatFn ? proxy(item.formatFn, [scope.row]) : getValue(scope.row, item.key)}}

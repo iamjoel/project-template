@@ -1,4 +1,5 @@
 # 后台管理系统模板
+配合 [管理后台代码生成工具](https://github.com/iamjoel/admin-fe-generator) 体验更佳。
 ## 功能
 * 登录页
 * 登录成功后的一系列页面

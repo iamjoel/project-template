@@ -57,8 +57,9 @@ function makeItem() {
     singer: {
       name:Random.cname()
     },
-    singerId: 1,
+    singerId: '1',
     describe: Random.sentence(),
+    imgs: '',
     createdAt: Date.now()
   }
 }

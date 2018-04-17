@@ -2,7 +2,6 @@ import { fetchList, deleteModel } from '@/service/api'
 import JSearchCondition from '@/components/search-condition'
 import JEditItem from '@/components/edit-item'
 import JGridBox from '@/components/grid-box'
-import {LIMIT_KEY} from '@/setting'
 
 export default {
   components: {

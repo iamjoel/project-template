@@ -1,3 +1,4 @@
+
 <template>
 <div class="main">
   <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right" >
@@ -22,7 +23,7 @@
         </j-edit-item>
         
 
-        <j-edit-item  label="歌手" prop="singerId" :is-view="isView" :view-value="model.singerId">
+        <j-edit-item  label="歌手" prop="singerId" :is-view="isView" :view-value="model.moreInfo.singer.name">
         
             <j-remote-select ref="singerId" v-model="model.singerId" url-key="singer" :autoFetch="true">
             </j-remote-select>
@@ -30,10 +31,10 @@
         </j-edit-item>
         
 
-        <j-edit-item  label="创作时间" prop="time" :is-view="isView" :view-value="model.time">
+        <j-edit-item  label="创作时间" prop="date" :is-view="isView" :view-value="model.date">
         
           <el-date-picker
-            v-model="model.time"
+            v-model="model.date"
             type="date"
             placeholder="选择日期"
           >
@@ -41,33 +42,55 @@
         </j-edit-item>
         
 
-        <j-edit-item  label="图片" prop="img" :is-view="isView" :view-value="model.img">
-        <div>单图 图片上传</div>
+        <j-edit-item fill label="图片" prop="img" :is-view="false" :view-value="model.img">
+        
+          <div class="img-upload" style="text-align:left" v-if="!isView">
+            <el-upload class="image-uploader" name="file"
+                     :action="addPicUrl" :show-file-list="false"
+                     :on-success="imgLoaded">
+              <img v-if="model.img" :src="model.img | img" class="image-show">
+                <i v-else class="el-icon-plus image-uploader-icon"></i>
+            </el-upload>
+            <div class="form-tip">建议尺寸 750 * 300</div>
+          </div>
+          <div class="img-upload" v-else>
+            <img :src="model.img | img" class="image-show">
+          </div>
+          
+        </j-edit-item>
+        
+
+        <j-edit-item fill label="多图测试" prop="imgs" :is-view="false" :view-value="model.imgs">
+        
+          <div class="imgs-upload" style="text-align:left" v-if="!isView">
+            <div class="ly ly-multi image-uploader" >
+              <div v-if="model.imgs" :key="img" v-for="(img, index) in model.imgs.split(',')" class="mb-10 mr-10 pos-r">
+                <img :src="img | img" class="image-show" >
+                <i class="el-icon-close" @click="removeImg('imgs', index)"></i>
+              </div>
+            </div>
+            <div>
+              <el-upload 
+                v-if="model.imgs.split(',').length < 5"
+                class="image-uploader" name="file"
+                 :action="addPicUrl" :show-file-list="false"
+                 :on-success="imgsLoaded"
+                 >
+                  <i class="el-icon-plus image-uploader-icon"></i>
+               </el-upload>
+              <div class="form-tip">建议尺寸 750 * 300</div>
+            </div>
+          </div>
+            
+          <div class="img-upload" style="text-align:left" v-else>
+            <img v-if="model.imgs" :src="img | img" class="image-show mr-10 mb-10" v-for="(img, index) in model.imgs.split(',')">
+          </div>
         </j-edit-item>
         
 
         <j-edit-item  label="排序值" prop="sort" :is-view="isView" :view-value="model.sort">
         
           <el-input-number v-model.number="model.sort" :controls="false"></el-input-number>
-        </j-edit-item>
-        
-
-        <j-edit-item  label="是否原创歌曲" prop="isOriginal" :is-view="isView" :view-value="model.isOriginal">
-        
-            <el-switch
-            v-model="model.isOriginal"
-            on-text="是"
-            off-text="否"
-            on-value="1"
-            off-value="0">
-          </el-switch>
-          
-        </j-edit-item>
-        
-
-        <j-edit-item fill label="描述" prop="describe" :is-view="isView" :view-value="model.describe">
-        
-          <el-input v-model="model.describe" type="textarea" :rows="3"></el-input>
         </j-edit-item>
         
     </el-row>
@@ -83,4 +106,17 @@
 <script src="./update.js"></script>
 <style scoped>
 
-</style> 
+.img-upload .image-uploader .image-uploader-icon,
+.img-upload .image-uploader .image-show {
+    min-width: 200px;
+    height: 200px;
+    line-height: 200px;
+}
+
+.imgs-upload .image-uploader .image-uploader-icon,
+.imgs-upload .image-uploader .image-show {
+    min-width: 150px;
+    height: 150px;
+    line-height: 150px;
+}
+</style>

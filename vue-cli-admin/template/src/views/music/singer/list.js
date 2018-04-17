@@ -4,8 +4,7 @@ import JRemoteSelect from '@/components/remote-select'
 
 var searchConditions = 
   {
-    name: '',
-type: ''
+    name: ''
   }
 var operateConfig = {"add":{"isShow":true},"edit":{"isShow":true},"detail":{"isShow":true},"delete":{"isShow":true}}
 
@@ -30,15 +29,8 @@ export default {
       }
     },
   
-  formatType(row) {
-    return this.getDictName('musicType', row.type)
-  },
-
-  doSth(row) {
-    return row.singer.name + row.name
-  }
   },
   mounted() {
-    this.key = 'song'
+    this.key = 'singer'
   }
 }

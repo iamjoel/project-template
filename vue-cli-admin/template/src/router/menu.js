@@ -63,12 +63,10 @@ function addRoute(filePath, routePath) {
   })
 }
 
-
 const lazyLoading = (resolve, name, index = false) => {
   require.ensure([], function(require) {
     resolve(require(`@/views/${name}${index ? '/Index' : ''}.vue`));
   })
 }
 
-console.log(routes.map(item=> item.path).join())
 export default routes

@@ -88,6 +88,7 @@
   }
 
   .view-content-value {
+    text-align: left;
     line-height: 41px;
   }
 </style>

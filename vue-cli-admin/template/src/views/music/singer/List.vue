@@ -4,23 +4,10 @@
     <j-search-condition @search="search">
      
         <j-edit-item
-        label="歌名"
+        label="名称"
         >
           <el-input v-model="searchConditions.name"></el-input>
         
-        </j-edit-item>
-
-        <j-edit-item
-        label="歌曲类型"
-        >
-            <el-select v-model="searchConditions.type" placeholder="请选择" filterable clearable>
-              <el-option
-                v-for="item in $store.getters.dictObj.musicType"
-                :key="item.key"
-                :label="item.label"
-                :value="item.key">
-              </el-option>
-            </el-select>
         </j-edit-item>
     </j-search-condition>
 
@@ -38,29 +25,9 @@
         
           <el-table-column
             prop="name"
-            label="歌曲名称"
+            label="名称1"
             >
             
-          </el-table-column>
-          
-
-          <el-table-column
-            prop="singer.name"
-            label="歌手"
-            >
-            
-          </el-table-column>
-          
-
-          <el-table-column
-            prop="type"
-            label="类型"
-            >
-            
-            <template slot-scope="scope">
-              \{{formatType(scope.row)}}
-            </template>
-          
           </el-table-column>
           
         <el-table-column
