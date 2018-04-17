@@ -1,40 +1,14 @@
 import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var HOST
-var useFEMock = false
 
-if (process.env.NODE_ENV === 'mock') { // 用 Mock Server mock数据
-  HOST = 'http://127.0.0.1:5000'
-} else if (process.env.NODE_ENV === 'development') { // 与后端联调
-  useFEMock = true
+if (process.env.NODE_ENV === 'development') { // 与后端联调
   HOST = 'http://127.0.0.1:3000'
 } else { // 线上环境
-  useFEMock = true // GitHub 不支持部署后端，所以Mock
   HOST = 'http://127.0.0.1:3000'
 }
 
-// 全栈JavaScript错误监控 https://fundebug.com/
-export const fundebugAPIKey = 'b3899a382b2a7117d2d479959a07a18b3d92d6a7a5ebd6ef14d14eac699be95d'
-
 export const IMGS_PREFIX = `${HOST}/imgs`
-export var isMock = useFEMock
-
 export var SERVER_PREFIX = `${HOST}/api`
-
-// 基础数据
-import roles from './base/roles.js'
-export var rolesConfig = roles
-import dict from './base/dict.js'
-export var dictConfig = dict
-import entities from './base/entities.js'
-export var entitiesConfig = entities
-import navMenu from './base/nav-menu.js'
-export var navMenuConfig = navMenu
-import uitlFns from './base/util-fns.js'
-export var uitlFnsConfig = uitlFns
-import listPages from './base/list-pages.js'
-export var listPagesConfig = listPages
-import updatePages from './base/update-pages.js'
-export var updatePagesConfig = updatePages
 
 // 页面
 var _menuConfig = [
@@ -58,8 +32,6 @@ var _menuConfig = [
     children: [{
       id: 'song',
       name: '歌曲',
-      listUseCommon: false, // 用通用页面
-      updateUseCommon: false, // 用通用页面
     }, {
       id: 'singer',
       name: '歌手',
@@ -69,35 +41,16 @@ var _menuConfig = [
   },
 ]
 
-export const urls = {}
-
-const DEFAULT_PAGES = [{
-  type: 'list'
-},{
-  type: 'update'
-},{
-  type: 'view'
-},]
-
-
-// 标准化
-export var menuConfig = standardizeMenu(_menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX)
-console.log(menuConfig)
 // 接口地址
-
-// 权限值
-export const LIMIT_KEY = {
-  'ADD': 1,
-  'EDIT': 2,
-  'DELETE': 4,
-  'LIST': 8,
-  'QUERY': 16,
-  'ADUIT': 32,
+export const urls = {
+  addPic: `${SERVER_PREFIX}/addPic`
 }
 
-export const ERROR_CODE_MAP = {
-  19: '没有权限'
-}
+// 标准化菜单配置
+export var menuConfig = standardizeMenu(_menuConfig, urls, SERVER_PREFIX)
+
+// 全栈JavaScript错误监控 https://fundebug.com/
+export const fundebugAPIKey = 'b3899a382b2a7117d2d479959a07a18b3d92d6a7a5ebd6ef14d14eac699be95d'
 
 function addUrlGroup (prefix, types = ['list', 'detail', 'add', 'edit', 'del'], others) {
   var res = {}

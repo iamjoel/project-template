@@ -1,8 +1,15 @@
-import {DEFAULT_PAGES} from '@/setting'
+const DEFAULT_PAGES = [{
+  type: 'list'
+},{
+  type: 'update'
+},{
+  type: 'view'
+},]
+
 export default standardize
 
 
-function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
+function standardize(menuConfig, urls, SERVER_PREFIX) {
   // 添加ajax地址；标准化页面的内容
   menuConfig.forEach(menu => {
     var parentId = menu.id
@@ -30,7 +37,6 @@ function standardize(menuConfig, DEFAULT_PAGES, urls, SERVER_PREFIX) {
       setUrls(menu, urls, SERVER_PREFIX)
     }
   })
-  console.log(urls)
   return menuConfig
 }
 

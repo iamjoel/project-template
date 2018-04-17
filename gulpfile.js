@@ -57,6 +57,7 @@ function mv(type) {
     `!${srcRootPath}/node_modules/**/*`,
     `!${srcRootPath}/dist/**/*`,
     `!${srcRootPath}/TODO.md`,
+    `!${srcRootPath}/yarn.lock`,
     `!${srcRootPath}/stats.json`,
     ])
     .pipe(gulp.dest(`${distRootPath}/template`))

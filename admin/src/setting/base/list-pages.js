@@ -3,7 +3,9 @@ export default [
 		"id": "0178437f-5ee7-36cd-bcb3-53711324adeb",
 		"basic": {
 			"entity": "singer",
-			"isUpdatePageCommon": true
+			"isUpdatePageCommon": true,
+			"codePath": "music/singer",
+			"isCommon": true
 		},
 		"cols": [
 			{
@@ -37,13 +39,16 @@ export default [
 				}
 			}
 		],
-		"fn": []
+		"fn": [],
+		"isFreeze": 0
 	},
 	{
 		"id": "d780556b-c50f-f699-01e8-ee44dee29e42",
 		"basic": {
 			"entity": "song",
-			"isUpdatePageCommon": false
+			"isUpdatePageCommon": false,
+			"isCommon": false,
+			"codePath": "music/song"
 		},
 		"cols": [
 			{
@@ -103,7 +108,15 @@ export default [
 					"row"
 				],
 				"body": "return this.getDictName('musicType', row.type)"
+			},
+			{
+				"name": "doSth",
+				"args": [
+					"row"
+				],
+				"body": "return row.singer.name + row.name"
 			}
-		]
+		],
+		"isFreeze": 0
 	}
 ]

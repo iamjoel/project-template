@@ -10,7 +10,6 @@
         <router-view id="main-content"></router-view>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -20,8 +19,9 @@ import Topbar from '@/components/topbar'
 import Breadcrumb from '@/components/breadcrumb'
 import * as types from '@/store/mutation-types'
 
-import {isMock} from '@/setting'
-if(isMock || true) {
+var isMock = true
+if(isMock) {
+  require('@/views/account/api/mock.js')
   require('@/views/music/song/api/mock.js')
   require('@/views/music/singer/api/mock.js')
 }
@@ -33,9 +33,8 @@ export default {
     'j-breadcrumb': Breadcrumb,
   },
   mounted() {
-    var role = localStorage.getItem('j-role') || 'user'
-    // this.$store.commit(types.ROLE, role)
-    this.$store.commit(types.ROLE, 'admin')
+    var role = localStorage.getItem('j-role') || 'admin'
+    this.$store.commit(types.ROLE, role)
     this.$store.dispatch('fetchMenuAndLimit')
     this.$store.dispatch('fetchBasicData')
   }

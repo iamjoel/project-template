@@ -2,24 +2,32 @@ export default [
 	{
 		"id": "a90ab542-36db-f7af-bf03-fff6d6899c35",
 		"basic": {
-			"entity": "singer"
+			"entity": "singer",
+			"isCommon": true
 		},
 		"cols": [
 			{
 				"label": "歌手",
 				"key": "name",
 				"dataType": "string",
-				"validRules": [],
+				"validRules": [
+					{
+						"name": "required",
+						"errMsg": "请输入歌手名称"
+					}
+				],
 				"formatFn": null,
 				"saveFormatFn": null
 			}
 		],
-		"fn": []
+		"fn": [],
+		"isFreeze": 0
 	},
 	{
 		"id": "dede6489-5952-0225-859b-f8eb9779a5b7",
 		"basic": {
-			"entity": "song"
+			"entity": "song",
+			"codePath": "music/song"
 		},
 		"cols": [
 			{
@@ -81,6 +89,24 @@ export default [
 				"label": "图片",
 				"key": "img",
 				"dataType": "img",
+				"imgConfig": {
+					"max": 5,
+					"tip": "建议尺寸 750 * 300",
+					"size": "200"
+				},
+				"validRules": [],
+				"formatFn": null,
+				"saveFormatFn": null
+			},
+			{
+				"label": "多图测试",
+				"key": "imgs",
+				"dataType": "imgs",
+				"imgConfig": {
+					"max": 5,
+					"tip": "建议尺寸 750 * 300",
+					"size": "150"
+				},
 				"validRules": [],
 				"formatFn": null,
 				"saveFormatFn": null
@@ -99,6 +125,7 @@ export default [
 				"saveFormatFn": null
 			}
 		],
-		"fn": []
+		"fn": [],
+		"isFreeze": 0
 	}
 ]
