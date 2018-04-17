@@ -4239,16 +4239,16 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-vant-css@^0.10.0:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/vant-css/-/vant-css-0.10.9.tgz#1eceff43e882cae89922f96e5b5d124f8f492563"
+vant-css@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vant-css/-/vant-css-1.0.6.tgz#dd76d6332face0732d857e7bf41dca5fb8bc533a"
 
-vant@^0.10.0:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/vant/-/vant-0.10.9.tgz#5605b61474d676182e729cc75b1e1f623a6802e8"
+vant@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vant/-/vant-1.0.6.tgz#0ed86fec2251194029620230e281edcfc881f086"
   dependencies:
     babel-runtime "6.x"
-    vue-lazyload "^1.1.4"
+    vue-lazyload "^1.2.2"
 
 vary@~1.1.2:
   version "1.1.2"
@@ -4276,9 +4276,13 @@ vue-hot-reload-api@^2.2.0:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
 
-vue-lazyload@^1.0.1, vue-lazyload@^1.1.4:
+vue-lazyload@^1.0.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.1.4.tgz#94dbb3fcb047f147f37900c0e22ad4fd478e31c4"
+
+vue-lazyload@^1.2.2:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.2.3.tgz#901f9ec15c7e6ca78781a2bae4a343686bdedb2c"
 
 vue-loader@^13.0.4:
   version "13.7.0"

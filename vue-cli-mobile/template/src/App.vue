@@ -5,7 +5,7 @@
       :title="header.title"
       leftText="返回"
       leftArrow
-      @clickLeft="$router.go(-1)"
+      @click-left="$router.go(-1)"
     />
     <router-view></router-view>
     <van-tabbar v-model="activeTypeIndex" v-show="$store.state.isShowFooter">
@@ -19,6 +19,9 @@
 </template>
 
 <script>
+import {urls} from '@/setting'
+import * as types from '@/store/mutation-types'
+import {Indicator} from 'mint-ui'
 
 export default {
   name: 'app',
@@ -39,7 +42,7 @@ export default {
       var res = {...this.$route.meta} || {}
       res.isShow = !!res.title
       return res
-    }
+    },
   },
   watch: {
     // 控制底部Tab的高亮，和消隐
@@ -61,10 +64,62 @@ export default {
       if(meta.activeTypeIndex !== undefined) {
         this.$store.dispatch('changeActiveType', parseInt(meta.activeTypeIndex, 10))
       }
-      // console.log(JSON.stringify(meta))
+    },
+    fetchUserInfo(openid) {
+      return this.$http.get(`${urls.userInfo}/${openid}`)
+    },
+    fetchOpenId(code) {
+      if(!code) { // 本地没有 code
+        return new Promise((resolve, reject) => {
+          reject()
+        })
+      } else {
+        return new Promise((resolve, reject) => {
+          this.$http.get(urls.getOpenid + '/' + code).then(({data})=> {
+            resolve(data.data)
+          }, ()=> {
+            reject()
+          })
+        })
+      }
     }
+  },
+  created() {
+    var vm = this
+    
+    var code = getQueryObject().code
+    if(code) {
+      Indicator.open('加载中...')
+    }
+    // var code = '001Y2c2Z0soQB22HNx4Z0pzc2Z0Y2c2V'
+    this.fetchOpenId(code).then(openid => {
+
+      vm.$store.commit(types.OPENID, openid)
+      vm.fetchUserInfo(openid).then(({data}) => {
+        data = data.data
+        vm.$store.commit(types.USER_INFO, data)
+        Indicator.close()
+      }, ()=> {
+        Indicator.close()
+      })
+    }, )
   }
 };
+
+function getQueryObject(url) {
+    url = url == null ? window.location.href : url;
+    var search = url.substring(url.lastIndexOf("?") + 1);
+    var obj = {};
+    var reg = /([^?&=]+)=([^?&=]*)/g;
+    search.replace(reg, function (rs, $1, $2) {
+        var name = decodeURIComponent($1);
+        var val = decodeURIComponent($2);
+        val = String(val);
+        obj[name] = val;
+        return rs;
+    });
+    return obj;
+}
 </script>
 <style src="@/assets/vendor/reset.css"></style>
 <style src="css-utils-collection"></style>
