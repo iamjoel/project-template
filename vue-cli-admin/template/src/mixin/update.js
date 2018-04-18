@@ -1,6 +1,11 @@
 import { fetchList, addModel, editModel, fetchModel } from '@/service/api'
 import JEditItem from '@/components/edit-item'
+import deepClone from 'clone'
 
+// 缓存新增时的初始数据
+var modelInitValue = {
+
+}
 export default {
   components: {
     'j-edit-item': JEditItem,
@@ -82,6 +87,14 @@ export default {
           this.afterFectch()
         }
       })
+    } else {
+      // 解决 model 会拿上次的值
+      var initModel = modelInitValue[this.KEY]
+      if(initModel) { // 非第一进入，拿之前存的初始化值
+        this.model = deepClone(initModel)
+      } else { // 第一次进入，将初始化值存起来
+        modelInitValue[this.KEY] = deepClone(this.model)
+      }
     }
   },
 }
