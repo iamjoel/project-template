@@ -21,7 +21,7 @@ export default {
       return this.$route.params.id == -1
     },
     isView () {
-      return this.$route.path.indexOf('view') > 0
+      return this.$route.path.indexOf('/view/') !== -1
     },
   },
   methods: {
