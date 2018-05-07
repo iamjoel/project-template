@@ -10,44 +10,16 @@ if (process.env.NODE_ENV === 'development') { // 与后端联调
 export const IMGS_PREFIX = `${HOST}/imgs`
 export var SERVER_PREFIX = `${HOST}/api`
 
-// 页面
-var _menuConfig = [
-  {
-    id: 'dashboard',
-    name: '仪表盘',
-    pages: [{
-      type: 'dashboard',
-      filePath: 'dashboard',
-      routePath: 'dashboard'
-    }]
-  },
-  {
-    id: 'account',
-    name: '帐号',
-    role: 'admin', // 只有管理员才能看
-  },
-  {
-    id: 'music',
-    name: '音乐',
-    children: [{
-      id: 'song',
-      name: '歌曲',
-    }, {
-      id: 'singer',
-      name: '歌手',
-      listUseCommon: true, // 用通用页面
-      updateUseCommon: true, // 用通用页面
-    }]
-  },
-]
-
 // 接口地址
 export const urls = {
-  addPic: `${SERVER_PREFIX}/addPic`
+  addPic: `${SERVER_PREFIX}/addPic`,
+  account: addUrlGroup(`${SERVER_PREFIX}/account`),
 }
-
-// 标准化菜单配置
-export var menuConfig = standardizeMenu(_menuConfig, urls, SERVER_PREFIX)
+// 根据实体生成 urls
+import entities from '@/setting/base/entities'
+entities.forEach(item => {
+  urls[item.key] = addUrlGroup(`${SERVER_PREFIX}/${item.key}`)
+})
 
 // 全栈JavaScript错误监控 https://fundebug.com/
 export const fundebugAPIKey = 'b3899a382b2a7117d2d479959a07a18b3d92d6a7a5ebd6ef14d14eac699be95d'

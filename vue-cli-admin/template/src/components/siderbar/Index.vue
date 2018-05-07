@@ -2,6 +2,7 @@
 <div class="j-siderbar">
   <el-menu theme="dark" :default-openeds="[currMenuId]" :default-active="currSubMenuId || currMenuId" style="height: 100%; overflow-y: auto">
     <template v-for="item in menu">
+
       <el-menu-item :index="item.id" v-if="!item.children"  @click="$router.push(item.path)">
           <router-link :to="item.path">\{{item.name}}</router-link>
       </el-menu-item>
