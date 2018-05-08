@@ -3,7 +3,8 @@ export default [
 		"id": "a90ab542-36db-f7af-bf03-fff6d6899c35",
 		"basic": {
 			"entity": "singer",
-			"isCommon": true
+			"isCommon": false,
+			"codePath": "music/singer"
 		},
 		"cols": [
 			{

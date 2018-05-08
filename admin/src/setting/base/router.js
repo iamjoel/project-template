@@ -4,7 +4,15 @@ export default [
 		"filePath": "music/song/Update"
 	},
 	{
+		"routePath": "/music/singer/list",
+		"filePath": "music/singer/List"
+	},
+	{
 		"routePath": "/music/song/list",
 		"filePath": "music/song/List.vue"
+	},
+	{
+		"routePath": "/music/singer/update/:id",
+		"filePath": "music/singer/Update"
 	}
 ]

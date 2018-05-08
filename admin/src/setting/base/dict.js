@@ -23,10 +23,10 @@ export default [
 				"label": "男"
 			},
 			{
-				"key": "0",
+				"key": "2",
 				"label": "女"
 			}
 		],
-		"id": "88dda992-560f-567e-1b93-5480c0006ea0"
+		"id": "e2c8e3c4-e44b-53f2-6ce5-9bfe0512f072"
 	}
 ]
