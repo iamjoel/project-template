@@ -73,6 +73,12 @@ export default {
           }
         })
       })
+    },
+    // 多图上传，删除某张图片
+    removeImg(data,index){
+      var imgList = this.model[data].split(',')
+      imgList.splice(index,1)
+      this.model[data] = imgList.join(',')
     }
   },
   mounted () {
