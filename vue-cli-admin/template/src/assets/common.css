@@ -77,3 +77,8 @@
 .detail-item__val {
   flex-grow: 1;
 }
+
+/* ueditor 高度 */
+.edui-editor-iframeholder {
+  height: 400px !important;
+}

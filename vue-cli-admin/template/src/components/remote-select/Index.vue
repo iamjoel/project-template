@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable>
+    <el-select v-model="inputVal" placeholder="请选择" filterable remote :remote-method="fetch" @change="$emit('change')" clearable  :multiple="multiple">
       <el-option
         v-for="item in list"
         :key="item.id"
@@ -18,10 +18,13 @@ import { fetchList } from '@/service/api'
 
 export default {
   props: {
+    multiple: { // 是否是多选
+      default: false
+    },
     urlKey: String,
     otherQuery: null,// 调列表接口的其他查询参数
     autoFetch: Boolean,
-    value: String // v-model
+    value: null//String // v-model
   },
   data() {
     return {
@@ -31,7 +34,11 @@ export default {
   },
   watch: {
     inputVal() {
-      this.$emit('input', this.inputVal + '') // 让 v-model 生效
+      if(Array.isArray(this.inputVal)) {
+        this.$emit('input', this.inputVal)
+      } else {
+        this.$emit('input', this.inputVal + '')
+      }
     }
   },
   methods: {
