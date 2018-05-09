@@ -4,6 +4,10 @@ export default [
 		"filePath": "music/song/Update"
 	},
 	{
+		"routePath": "/music/song/view/:id",
+		"filePath": "music/song/Update"
+	},
+	{
 		"routePath": "/music/singer/list",
 		"filePath": "music/singer/List"
 	},
@@ -13,6 +17,10 @@ export default [
 	},
 	{
 		"routePath": "/music/singer/update/:id",
+		"filePath": "music/singer/Update"
+	},
+	{
+		"routePath": "/music/singer/view/:id",
 		"filePath": "music/singer/Update"
 	}
 ]
