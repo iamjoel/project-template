@@ -64,8 +64,6 @@ export const fetchBasicData = ({ commit, state, getters }) => {
   commit(types.DICT, require('@/setting/base/dict').default)
   commit(types.ENTITIES, require('@/setting/base/entities').default)
   commit(types.UTIL_FN, require('@/setting/base/util-fns').default)
-  commit(types.LIST_PAGES_CONFIG, require('@/setting/base/list-pages').default)
-  commit(types.UPDATE_PAGES_CONFIG, require('@/setting/base/update-pages').default)
 }
 
 

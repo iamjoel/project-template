@@ -25,7 +25,7 @@
         
           <el-table-column
             prop="name"
-            label="名称1"
+            label="名称"
             >
             
           </el-table-column>
