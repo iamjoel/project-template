@@ -19,8 +19,6 @@ const state = {
   entities: [], // 实体
   navMenu: [], // 菜单
   utilFns: [], // 工具方法
-  listPagesConfig: [], // 列表页配置
-  updatePagesConfig: [], // 终页配置
   user: {
     id: null,
     name: null,
