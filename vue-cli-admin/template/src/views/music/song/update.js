@@ -3,8 +3,34 @@ import updateMixin from '@/mixin/update'
 import JRemoteSelect from '@/components/remote-select'
 import deepClone from 'clone'
 
-var model = {"moreInfo":{"singer":{"name":null}},"name":null,"type":null,"singerId":null,"date":null,"img":null,"imgs":"","sort":null}
-var rules = {"name":[{ required: true, message: '请输入名称', trigger: 'blur' }],"type":[{ required: true, message: '请选择歌曲类型', trigger: 'blur' }],"singerId":[{ required: true, message: '请选择歌手', trigger: 'blur' }],"sort":[{ type: 'number',required: true, message: '请输入排序值', trigger: 'blur' }]}
+var model = {
+	"moreInfo": {
+		"singer": {
+			"name": null
+		}
+	},
+	"name": null,
+	"type": null,
+	"singerId": null,
+	"date": null,
+	"img": null,
+	"imgs": "",
+	"sort": null
+}
+var rules = {
+	"name": [
+		{ required: true, message: '请输入名称', trigger: 'blur' }
+	],
+	"type": [
+		{ required: true, message: '请选择歌曲类型', trigger: 'blur' }
+	],
+	"singerId": [
+		{ required: true, message: '请选择歌手', trigger: 'blur' }
+	],
+	"sort": [
+		{ type: 'number',required: true, message: '请输入排序值', trigger: 'blur' }
+	]
+}
 
 export default {
   mixins: [updateMixin],

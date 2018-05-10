@@ -3,8 +3,15 @@ import updateMixin from '@/mixin/update'
 import JRemoteSelect from '@/components/remote-select'
 import deepClone from 'clone'
 
-var model = {"moreInfo":{},"name":null}
-var rules = {"name":[{ required: true, message: '请输入歌手名称', trigger: 'blur' }]}
+var model = {
+	"moreInfo": {},
+	"name": null
+}
+var rules = {
+	"name": [
+		{ required: true, message: '请输入歌手名称', trigger: 'blur' }
+	]
+}
 
 export default {
   mixins: [updateMixin],
