@@ -44,11 +44,21 @@ var routes = [
   {
     path: '/demo/form',
     meta: {
-      title: '表单Demo',
+      title: '表单',
       activeTypeIndex: 0,
     },
     component: resolve => {
       lazyLoading(resolve, 'demo/Form', false)
+    },
+  },
+  {
+    path: '/demo/list',
+    meta: {
+      title: '列表',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/List', false)
     },
   },
 ]

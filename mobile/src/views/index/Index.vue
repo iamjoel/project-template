@@ -7,10 +7,14 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    <div class="ly ly-c nav">
+    <div class="ly ly-c ly-multi nav">
       <a href="javascript:void(0)" @click="$router.push('/demo/form')" class="nav__item">
         <van-icon name="records" />
         <div class="mt-10 ta-c">表单</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/list')" class="nav__item">
+        <van-icon name="wap-nav" />
+        <div class="mt-10 ta-c">无限加载</div>
       </a>
     </div>
   </div>
@@ -39,7 +43,8 @@ export default {
     height: 100%;
   }
   .nav__item {
-    width: 1rem;
+    margin-right: .1rem;
+    width: 1.5rem;
     color: inherit;
   }
   .nav__item  i{
