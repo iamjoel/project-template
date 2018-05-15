@@ -1,5 +1,10 @@
 <template>
   <div class="main">
+    <van-search placeholder="请输入xxx" v-model="searchInput" @search="onSearch"/>
+    <van-notice-bar
+      text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
+      left-icon="chat"
+    />
     <div class="swipe mb-10rem">
       <van-swipe :autoplay="3000" class="h-100per ta-c">
         <van-swipe-item v-for="i in 4" :key="i">
@@ -16,7 +21,13 @@
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">无限加载</div>
       </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/lazyload')" class="nav__item">
+        <van-icon name="photo" />
+        <div class="mt-10 ta-c">懒加载</div>
+      </a>
     </div>
+    
+    
   </div>
 </template>
 
@@ -25,10 +36,16 @@ export default {
   data() {
     return {
       activeTypeIndex: 0,
+      searchInput: '',
     }  
   },
   methods: {
-    
+    onSearch() {
+      this.$showLoading()
+      setTimeout(()=> {
+        this.$hideLoading()
+      }, 2000)
+    }
   }
 }
 </script>

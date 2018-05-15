@@ -17,7 +17,6 @@
       <van-tabbar-item icon="gift" url="#/cart">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
     </van-tabbar>
-    <van-loading color="white" v-if="isLoading"/>
   </div>
 </template>
 
@@ -29,7 +28,6 @@ export default {
   name: 'app',
   data() {
     return {
-      isLoading: true
     }
   },
   computed: {
@@ -92,7 +90,7 @@ export default {
     
     var code = getQueryObject().code
     if(code) {
-      this.isLoading = true
+      this.$showLoading()
     }
     // var code = '001Y2c2Z0soQB22HNx4Z0pzc2Z0Y2c2V'
     this.fetchOpenId(code).then(openid => {
@@ -101,9 +99,9 @@ export default {
       vm.fetchUserInfo(openid).then(({data}) => {
         data = data.data
         vm.$store.commit(types.USER_INFO, data)
-        this.isLoading = false
+        this.$hideLoading()
       }, ()=> {
-        this.isLoading = false
+        this.$hideLoading()
       })
     }, )
   }

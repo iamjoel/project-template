@@ -61,6 +61,16 @@ var routes = [
       lazyLoading(resolve, 'demo/List', false)
     },
   },
+  {
+    path: '/demo/lazyload',
+    meta: {
+      title: '列表',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/Lazyload', false)
+    },
+  },
 ]
 
 
