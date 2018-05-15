@@ -21,9 +21,7 @@
     </van-cell-group>
 
     <van-cell-group>
-      <van-cell title="开关 外观：TODO" >
-        <van-switch v-model="model.switch" size="30px"/>
-       </van-cell>
+       <van-switch-cell v-model="model.switch" title="开关" />
     </van-cell-group>
 
     <van-radio-group v-model="model.radio">
