@@ -40,6 +40,17 @@ var routes = [
       lazyLoading(resolve, 'member-center')
     },
   },
+  // demo
+  {
+    path: '/demo/form',
+    meta: {
+      title: '表单Demo',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/Form', false)
+    },
+  },
 ]
 
 

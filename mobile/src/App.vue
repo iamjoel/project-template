@@ -7,7 +7,9 @@
       leftArrow
       @click-left="$router.go(-1)"
     />
-    <router-view></router-view>
+    <div class="main">
+      <router-view></router-view>
+    </div>
     <van-tabbar v-model="activeTypeIndex" v-show="$store.state.isShowFooter">
       <van-tabbar-item icon="wap-home" url="#/">首页
       </van-tabbar-item>
@@ -15,18 +17,19 @@
       <van-tabbar-item icon="gift" url="#/cart">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
     </van-tabbar>
+    <van-loading color="white" v-if="isLoading"/>
   </div>
 </template>
 
 <script>
 import {urls} from '@/setting'
 import * as types from '@/store/mutation-types'
-import {Indicator} from 'mint-ui'
 
 export default {
   name: 'app',
   data() {
     return {
+      isLoading: true
     }
   },
   computed: {
@@ -89,7 +92,7 @@ export default {
     
     var code = getQueryObject().code
     if(code) {
-      Indicator.open('加载中...')
+      this.isLoading = true
     }
     // var code = '001Y2c2Z0soQB22HNx4Z0pzc2Z0Y2c2V'
     this.fetchOpenId(code).then(openid => {
@@ -98,9 +101,9 @@ export default {
       vm.fetchUserInfo(openid).then(({data}) => {
         data = data.data
         vm.$store.commit(types.USER_INFO, data)
-        Indicator.close()
+        this.isLoading = false
       }, ()=> {
-        Indicator.close()
+        this.isLoading = false
       })
     }, )
   }
@@ -124,4 +127,9 @@ function getQueryObject(url) {
 <style src="@/assets/vendor/reset.css"></style>
 <style src="css-utils-collection"></style>
 <style src="@/assets/common.css"></style>
+<style scoped>
+  .main {
+    padding-bottom: 40px;
+  }
+</style>
 

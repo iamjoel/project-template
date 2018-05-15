@@ -126,10 +126,6 @@ arr-flatten@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.1.0.tgz#36048bbff4e7b47e136644316c99669ea5ae91f1"
 
-array-find-index@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
-
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
@@ -2698,14 +2694,6 @@ minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
-mint-ui@2.2.13:
-  version "2.2.13"
-  resolved "https://registry.yarnpkg.com/mint-ui/-/mint-ui-2.2.13.tgz#856a2cba9608c6ecf21f0e521ce89ed8ddfe33d3"
-  dependencies:
-    array-find-index "^1.0.2"
-    raf.js "0.0.4"
-    vue-lazyload "^1.0.1"
-
 mississippi@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/mississippi/-/mississippi-1.3.0.tgz#d201583eb12327e3c5c1642a404a9cacf94e34f5"
@@ -3479,10 +3467,6 @@ querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-raf.js@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/raf.js/-/raf.js-0.0.4.tgz#f15af445d241b27fa7131a57450b67ef9c402fec"
-
 randomatic@^1.1.3:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
@@ -4239,16 +4223,12 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-vant-css@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/vant-css/-/vant-css-1.0.6.tgz#dd76d6332face0732d857e7bf41dca5fb8bc533a"
-
-vant@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/vant/-/vant-1.0.6.tgz#0ed86fec2251194029620230e281edcfc881f086"
+vant@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/vant/-/vant-1.1.3.tgz#686c12a614ebd83a3489dd23905415a3879a6a45"
   dependencies:
     babel-runtime "6.x"
-    vue-lazyload "^1.2.2"
+    vue-lazyload "^1.2.3"
 
 vary@~1.1.2:
   version "1.1.2"
@@ -4276,11 +4256,7 @@ vue-hot-reload-api@^2.2.0:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
 
-vue-lazyload@^1.0.1:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.1.4.tgz#94dbb3fcb047f147f37900c0e22ad4fd478e31c4"
-
-vue-lazyload@^1.2.2:
+vue-lazyload@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.2.3.tgz#901f9ec15c7e6ca78781a2bae4a343686bdedb2c"
 

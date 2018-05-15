@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Toast } from 'mint-ui'
+import { Toast } from 'vant'
 
 axios.interceptors.request.use(function (config) {
   return new Promise((resolve, reject)=>{

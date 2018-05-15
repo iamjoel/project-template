@@ -1,17 +1,12 @@
 require('@/assets/vendor/rem')
 
-import Vue from 'vue';
+import Vue from 'vue'
 Vue.config.productionTip = false
 
 // vant ui
-import Vant from 'vant';
-import 'vant-css/lib/index.css';
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
 Vue.use(Vant)
-
-// mint ui TODO： 以后只加载 无限加载之类的 vant ui 不包含的组件。
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
 
 import axios from 'axios'
 require('@/service/interceptor') // axios 拦截器，做通用报错等

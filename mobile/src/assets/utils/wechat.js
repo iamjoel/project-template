@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {urls} from '@/settings'
-import {Toast} from 'mint-ui'
 
 function registerSDK( opts = {}, successFn = function(){}) {
   // opts.registerURL = opts.registerURL || location.origin + location.pathname
@@ -57,7 +56,7 @@ export function pay(payInfo, success) {
     registerSDK({}, function () {
       wx.chooseWXPay(Object.assign(data.data, {
         success() {
-          Toast('支付成功')
+          this.$toast('支付成功')
           success && success()
         }
       }))
