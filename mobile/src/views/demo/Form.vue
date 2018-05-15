@@ -12,6 +12,15 @@
 
     <van-cell-group>
       <van-field 
+        v-model="model.number"
+        type="number"
+        label="数字"
+        required
+      />
+    </van-cell-group>
+
+    <van-cell-group>
+      <van-field 
         v-model="model.textarea"
         type="textarea"
         label="文本域"
@@ -62,7 +71,19 @@
         {{model.select.name}}
       </van-cell>
     </van-cell-group>
-    <van-actionsheet v-model="showSelect" :actions="waterList" />
+    <van-popup 
+      v-model="showSelect"
+      position="bottom"
+    >
+      <van-picker
+        show-toolbar
+        title=""
+        :columns="fruitNameList"
+        @cancel="showSelect = false"
+        @confirm="selectFruit"
+      />
+    </van-popup>
+    
   
     <!-- 日期 -->
     <van-cell-group>
@@ -101,11 +122,28 @@
         @cancel="showTimePicker = false"
       />
     </van-popup>
-    
+
+    <!-- 选择城市 -->
+    <van-cell-group>
+      <van-cell title="选择城市" @click="showArea = true">
+        {{model.area.name}}
+      </van-cell>
+    </van-cell-group>
+    <van-popup 
+      v-model="showArea"
+      position="bottom"
+    >
+      <van-area 
+        :area-list="areaList"
+        v-model="tempArea"
+        @confirm="selectedArea"
+        @cancel="showArea = false" />
+    </van-popup>
   </div>
 </template>
 
 <script>
+import areaList from '@/area'
 export default {
   data() {
     return {
@@ -116,13 +154,17 @@ export default {
         checkbox: [],
         checkbox2: [],
         select: {
-          name:'',
+          name: null,
         },
         date: null,
+        area: {
+          name: null,
+          code: null
+        }
       },
 
       showSelect: false,
-      waterList: [{
+      fruitList: [{
         id: 'water-melon',
         name: '西瓜',
         callback: this.selectFruit
@@ -135,12 +177,16 @@ export default {
         name: '苹果',
         callback: this.selectFruit
       }],
-
+      fruitNameList: [],
       tempDate: null,
       showDatePicker: false,
 
       tempTime: null,
       showTimePicker: false,
+      
+      tempArea: null,
+      showArea: false,
+      areaList,
     }  
   },
   methods: {
@@ -153,7 +199,7 @@ export default {
     },
     noop() {},
     selectFruit(curr) {
-      this.model.select = curr
+      this.model.select = this.fruitList.filter(item => item.name === curr)[0]
       this.showSelect = false
     },
     selectedDate() {
@@ -164,6 +210,23 @@ export default {
       this.model.time = this.tempTime
       this.showTimePicker = false
     },
+    selectedArea(area) {
+      if(area[0].code !== '-1' 
+        && area[1].code !== '-1' 
+        && area[2].code !== '-1') {
+        this.model.area = {
+          name: `${area[0].name}${area[1].name}${area[2].name}`,
+          code: area[2].code
+        }
+        this.showArea = false
+      } else {
+        this.$toast('请选择城市')
+      }
+      
+    },
+  },
+  mounted() {
+    this.fruitNameList = this.fruitList.map(item => item.name)
   }
 }
 </script>
