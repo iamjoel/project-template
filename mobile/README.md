@@ -55,4 +55,3 @@
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
 * [Vant UI](https://www.youzanyun.com/zanui/vant#/zh-CN/component/intro) 有赞出品的基于 Vue 的组件库。
-* [Mint UI](http://mint-ui.github.io/docs/#/zh-cn2) 饿了么出品的基于 Vue 的组件库。

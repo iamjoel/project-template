@@ -33,7 +33,6 @@ var routes = [
   {
     path: '/member-center',
     meta: {
-      title: '个人中心',
       activeTypeIndex: 3,
     },
     component: resolve => {
