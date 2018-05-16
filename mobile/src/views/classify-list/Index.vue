@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main item-page">
     <van-tabs v-model="active">
       <van-tab  title="新品">
         <van-list
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-
+import stickybits from 'stickybits'
 export default {
   data() {
     return {
@@ -68,6 +68,10 @@ export default {
       }, 500);
     }
   },
+
+  mounted() {
+    stickybits('.van-tabs__wrap')
+  }
   
 }
 </script>
@@ -89,5 +93,11 @@ export default {
     margin-top: .1rem;
     color: #f44;
     font-family: arial;
+  }
+</style>
+<style>
+  /*修复用了 stickybits 导致的副作用*/
+  .item-page .van-tabs--line {
+    padding-top: 0;
   }
 </style>
