@@ -1,4 +1,3 @@
-import { Toast } from 'mint-ui'
 import axios from 'axios'
 import {urls} from '@/settings'
  
@@ -17,9 +16,7 @@ export default {
       }
       var saveData = this.formatSaveData()
       axios.post(urls[this.key], saveData).then(({data}) => {
-        Toast({
-          message: '操作成功',
-        })
+        this.$toast('操作成功')
         this.afterSave()
       })
     },

@@ -8,6 +8,9 @@ Vue.filter('img', function (value, size) {
 
 import moment from 'moment'
 Vue.filter('time', function (value, format="YYYY-MM-DD") {
+  if(!value) {
+    return ''
+  }
   return moment(value).format(format)
 })
 

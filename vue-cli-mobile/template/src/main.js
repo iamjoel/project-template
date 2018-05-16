@@ -1,17 +1,32 @@
 require('@/assets/vendor/rem')
 
-import Vue from 'vue';
+import Vue from 'vue'
 Vue.config.productionTip = false
 
 // vant ui
-import Vant from 'vant';
-import 'vant-css/lib/index.css';
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
+import { Lazyload,Toast } from 'vant';
 Vue.use(Vant)
+// lazyLoad https://www.youzanyun.com/zanui/vant#/zh-CN/lazyload
+Vue.use(Lazyload, {
+  // loading: '', // 加载中的图片样式
+  // error: '' // 加载完成的图片样式
+})
 
-// mint ui TODO： 以后只加载 无限加载之类的 vant ui 不包含的组件。
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
+Vue.prototype.$showLoading = () => {
+  Toast.loading({
+    duration: 0,       // 持续展示 toast
+    forbidClick: true, // 禁用背景点击
+    mask: true,
+    loadingType: 'spinner',
+    message: '加载中'
+  })
+}
+
+Vue.prototype.$hideLoading = () => {
+  Toast.clear()
+}
 
 import axios from 'axios'
 require('@/service/interceptor') // axios 拦截器，做通用报错等
