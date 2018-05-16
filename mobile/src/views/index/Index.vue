@@ -25,6 +25,10 @@
         <van-icon name="photo" />
         <div class="mt-10 ta-c">懒加载</div>
       </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/pull-refresh')" class="nav__item">
+        <van-icon name="upgrade" />
+        <div class="mt-10 ta-c">下拉刷新</div>
+      </a>
     </div>
     
     

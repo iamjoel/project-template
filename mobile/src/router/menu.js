@@ -71,6 +71,16 @@ var routes = [
       lazyLoading(resolve, 'demo/Lazyload', false)
     },
   },
+  {
+    path: '/demo/pull-refresh',
+    meta: {
+      title: '下拉刷新',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/PullRefresh', false)
+    },
+  },
 ]
 
 
