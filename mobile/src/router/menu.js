@@ -62,13 +62,33 @@ var routes = [
     },
   },
   {
+    path: '/demo/tree-select',
+    meta: {
+      title: '分类选择',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/TreeSelect', false)
+    },
+  },
+  {
     path: '/demo/lazyload',
     meta: {
-      title: '列表',
+      title: '懒加载',
       activeTypeIndex: 0,
     },
     component: resolve => {
       lazyLoading(resolve, 'demo/Lazyload', false)
+    },
+  },
+  {
+    path: '/demo/img-preview',
+    meta: {
+      title: '图片预览',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/ImgPreview', false)
     },
   },
   {
