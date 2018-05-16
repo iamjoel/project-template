@@ -1,5 +1,37 @@
 <template>
   <div class="main">
+    <div class="ly ly-r mv-10">
+      <a href="javascript:void(0);" @click="showForm = true" >弹出新表单</a>
+    </div>
+    <van-popup v-model="showForm" position="bottom">
+      <div class="pb-20">
+        <div class="van-hairline--top-bottom van-picker__toolbar">
+          <div class="van-picker__cancel" @click="showForm = false">取消</div>
+          <div class="van-picker__confirm" @click="showForm = false">确认</div>
+        </div>
+
+        <div>
+          <van-cell-group>
+            <van-field 
+              v-model="model.name"
+              label="姓名"
+              placeholder="请输入姓名"
+              required
+            />
+          </van-cell-group>
+
+          <van-cell-group>
+            <van-field 
+              v-model="model.number"
+              type="number"
+              label="数字"
+              required
+            />
+          </van-cell-group>
+        </div>
+      </div>
+      
+    </van-popup>
     <!-- 验证TODO -->
     <van-cell-group>
       <van-field 
@@ -162,6 +194,7 @@ export default {
           code: null
         }
       },
+      showForm: false,
 
       showSelect: false,
       fruitList: [{
@@ -231,4 +264,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
