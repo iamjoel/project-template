@@ -14,7 +14,7 @@
       <van-tabbar-item icon="wap-home" url="#/">首页
       </van-tabbar-item>
       <van-tabbar-item icon="wap-nav" url="#/classify-list">分类</van-tabbar-item>
-      <van-tabbar-item icon="gift" url="#/cart">购物车</van-tabbar-item>
+      <van-tabbar-item icon="gift" url="#/cart" info="3">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
     </van-tabbar>
   </div>
