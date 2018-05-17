@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main form-page">
     <div class="ly ly-r mv-10">
       <a href="javascript:void(0);" @click="showForm = true" >弹出新表单</a>
     </div>
@@ -14,9 +14,8 @@
           <van-cell-group>
             <van-field 
               v-model="model.name"
-              label="姓名"
-              placeholder="请输入姓名"
-              required
+              label="文本框"
+              placeholder="请输入文字"
             />
           </van-cell-group>
 
@@ -25,7 +24,6 @@
               v-model="model.number"
               type="number"
               label="数字"
-              required
             />
           </van-cell-group>
         </div>
@@ -36,8 +34,8 @@
     <van-cell-group>
       <van-field 
         v-model="model.name"
-        label="姓名"
-        placeholder="请输入姓名"
+        label="文本框"
+        placeholder="请输入文字"
         required
       />
     </van-cell-group>
@@ -60,6 +58,15 @@
         required
       />
     </van-cell-group>
+    
+    <!-- 上传图片 -->
+    <van-cell-group>
+      <van-cell title="上传图片">
+        <van-uploader :after-read="upload">
+          <van-icon name="photograph" />
+        </van-uploader>
+      </van-cell>
+    </van-cell-group>
 
     <van-cell-group>
        <van-switch-cell v-model="model.switch" title="开关" />
@@ -67,7 +74,7 @@
 
     <van-radio-group v-model="model.radio">
       <van-cell-group>
-         <van-cell :title="'单选。选中:' + model.radio" />
+         <van-cell :title="'单选标题。选中:' + model.radio" />
       </van-cell-group>
       <van-cell-group>
         <van-cell title="单选框 1" @click="model.radio = '1'">
@@ -80,7 +87,7 @@
     </van-radio-group>
     <van-checkbox-group v-model="model.checkbox">
       <van-cell-group>
-         <van-cell :title="'复选。选中:' + model.checkbox.join()" />
+         <van-cell :title="'复选标题。选中:' + model.checkbox.join()" />
       </van-cell-group>
       <van-cell-group>
         <van-cell title="复选框 1" @click="checkboxClicked($event, model.checkbox, '1')">
@@ -223,6 +230,11 @@ export default {
     }  
   },
   methods: {
+    upload(file) {
+      var formData = new FormData();
+      formData.append('img', file.file)
+      this.$http.post('/test/upload', formData)
+    },
     checkboxClicked($event, selected, curr) {
       if(selected.indexOf(curr) !== -1) {
         selected.splice(selected.indexOf(curr), 1)
@@ -266,4 +278,10 @@ export default {
 
 <style scoped>
 
+</style>
+<style>
+/*增大点击范围*/
+.form-page .van-uploader {
+  width: 100%;
+}
 </style>
