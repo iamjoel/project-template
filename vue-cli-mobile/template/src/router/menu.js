@@ -3,6 +3,7 @@ var routes = [
   {
     path: '/',
     meta: {
+      title: '首页',
       activeTypeIndex: 0,
     },
     component: resolve => {

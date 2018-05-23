@@ -40,7 +40,7 @@
 {
   path: 路由,
   meta: {
-    title: 头部标题, // 若传该字段，则不显示该标题。
+    title: 页面标题, 
     isShowFooter: false, // 是否显示底部的Tab。默认值是true
     activeTypeIndex: 1, // 需要高亮的底部Tab的下标。首页，分类，购物车，我的 对应 0，1，2，3
   },
@@ -50,9 +50,39 @@
 }
 ```
 
+## 约定
+1 页面中的 `style` 默认要加 `scoped` 的属性。如
+```
+<style scoped>
+.img {
+  display: block;
+  width: 3rem;
+}
+</style>
+```
 
+在当前页面重置第三方组件样式时，可以不加 `scoped`。需要在带去页面加唯一的类名。如:  
+
+```
+<template>
+<div class="main some-page">
+  <el-menu>...</el-menu>
+</div>
+</template>
+
+<style>
+.some-page .el-menu {
+  border-radius: 0;
+}
+</style>
+```
+
+2 为每个页面建立一个目录。文件包括:
+* `Index.vue` 
+* `style.css` 可选。
+* `main.js` 可选。
+* `image/` 可选。放图片。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
 * [Vant UI](https://www.youzanyun.com/zanui/vant#/zh-CN/component/intro) 有赞出品的基于 Vue 的组件库。
-* [Mint UI](http://mint-ui.github.io/docs/#/zh-cn2) 饿了么出品的基于 Vue 的组件库。
