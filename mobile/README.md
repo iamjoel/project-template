@@ -40,7 +40,7 @@
 {
   path: 路由,
   meta: {
-    title: 头部标题, // 若传该字段，则不显示该标题。
+    title: 页面标题, 
     isShowFooter: false, // 是否显示底部的Tab。默认值是true
     activeTypeIndex: 1, // 需要高亮的底部Tab的下标。首页，分类，购物车，我的 对应 0，1，2，3
   },

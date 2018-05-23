@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <van-nav-bar
+    <!-- 改用 document.title -->
+    <!-- <van-nav-bar
       v-if="header.isShow"
       :title="header.title"
       leftText="返回"
       leftArrow
       @click-left="$router.go(-1)"
-    />
+    /> -->
     <div class="main">
       <router-view></router-view>
     </div>
@@ -57,6 +58,9 @@ export default {
   methods: {
     pathChange() {
       var meta = this.$route.meta || {}
+
+      document.title = meta.title || ''
+
       if(meta.isShowFooter === undefined) {
         meta.isShowFooter = true
       }
@@ -86,6 +90,7 @@ export default {
     }
   },
   created() {
+    return
     var vm = this
     
     var code = getQueryObject().code

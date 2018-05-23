@@ -3,6 +3,7 @@ var routes = [
   {
     path: '/',
     meta: {
+      title: '首页',
       activeTypeIndex: 0,
     },
     component: resolve => {
@@ -33,6 +34,7 @@ var routes = [
   {
     path: '/member-center',
     meta: {
+      title: '个人中心',
       activeTypeIndex: 3,
     },
     component: resolve => {

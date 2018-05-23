@@ -29,6 +29,9 @@ export default {
       }
     },
   
+  toRandomnum() {
+    return Math.ceil(Math.random() * 100)
+  }
   },
   mounted() {
     this.key = 'singer'
