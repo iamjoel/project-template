@@ -50,7 +50,38 @@
 }
 ```
 
+## 约定
+1 页面中的 `style` 默认要加 `scoped` 的属性。如
+```
+<style scoped>
+.img {
+  display: block;
+  width: 3rem;
+}
+</style>
+```
 
+在当前页面重置第三方组件样式时，可以不加 `scoped`。需要在带去页面加唯一的类名。如:  
+
+```
+<template>
+<div class="main some-page">
+  <el-menu>...</el-menu>
+</div>
+</template>
+
+<style>
+.some-page .el-menu {
+  border-radius: 0;
+}
+</style>
+```
+
+2 为每个页面建立一个目录。文件包括:
+* `Index.vue` 
+* `style.css` 可选。
+* `main.js` 可选。
+* `image/` 可选。放图片。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
