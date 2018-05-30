@@ -65,11 +65,21 @@ var routes = [
   {
     path: '/demo/list/no-data',
     meta: {
-      title: '无数据',
+      title: '列表无数据',
       activeTypeIndex: 0,
     },
     component: resolve => {
       lazyLoading(resolve, 'demo/list/No-data', false)
+    },
+  },
+  {
+    path: '/demo/list/filter',
+    meta: {
+      title: '列表搜索条件',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/list/filter')
     },
   },
   {

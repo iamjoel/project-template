@@ -37,7 +37,7 @@
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">无数据</div>
       </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/list/infinate-load')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/filter')" class="nav__item">
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">搜索条件</div>
       </a>
@@ -48,8 +48,6 @@
     </div>
     <h2>图片</h2>
     <div class="ly ly-multi nav">
-      
-
       <a href="javascript:void(0)" @click="$router.push('/demo/lazyload')" class="nav__item">
         <van-icon name="photo" />
         <div class="mt-10 ta-c">懒加载</div>
