@@ -1,11 +1,19 @@
 <template>
   <div class="main item-page">
+    
+    <van-cell-group>
+       <van-switch-cell v-model="isNodata" title="无数据" />
+    </van-cell-group>
+
+    <div class="ly ly-r mv-20">
+      <van-button type="primary" @click="searchAll">搜索</van-button>
+    </div>
     <van-tabs v-model="active">
       <van-tab  title="新品">
         <van-list
             v-model="newItem.isLoading"
             :finished="newItem.isFinished"
-            @load="onLoad('newItem')"
+            @load="search('newItem')"
           >
           <div class="ly ly-multi ly-j item-wrap">
               <div v-for="(item,i) in newItem.list" :key="i" class="item">
@@ -15,12 +23,15 @@
               </div>
           </div>
         </van-list>
+        <no-data v-show="!newItem.isLoading && newItem.list.length === 0">
+          暂无数据
+        </no-data>
       </van-tab>
       <van-tab  title="热销">
         <van-list
             v-model="hotItem.isLoading"
             :finished="hotItem.isFinished"
-            @load="onLoad('hotItem')"
+            @load="search('hotItem')"
           >
           <div class="ly ly-multi ly-j item-wrap">
             <div v-for="(item,i) in hotItem.list" :key="i" class="item">
@@ -30,71 +41,17 @@
             </div>
           </div>
         </van-list>
+        <no-data v-show="!hotItem.isLoading && hotItem.list.length === 0">
+          暂无数据
+        </no-data>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
-<script>
-import stickybits from 'stickybits'
-export default {
-  data() {
-    return {
-      active: 0,
-      newItem: {
-        list: new Array(10),
-        isLoading: false,
-        isFinished: false
-      },
-      hotItem: {
-        list: new Array(10),
-        isLoading: false,
-        isFinished: false
-      },
-    }
-  },
-  methods: {
-    onLoad(type) {
-      var list = this[type].list
-      setTimeout(() => {
-        for (let i = 0; i < 6; i++) {
-          list.push('');
-        }
-        this[type].isLoading = false;
+<script src="./main.js"></script>
 
-        if (list.length >= 40) {
-          this[type].isFinished = true;
-        }
-      }, 500);
-    }
-  },
-
-  mounted() {
-    stickybits('.van-tabs__wrap')
-  }
-  
-}
-</script>
-
-<style scoped>
-  .item-wrap {
-    padding: 0 .2rem;
-  }
-  .item {
-    margin-top: .2rem;
-    width: 2.9rem;
-  }
-  .item__img {
-    display: block;
-    width: 100%;
-    height: 3rem;
-  }
-  .item__price {
-    margin-top: .1rem;
-    color: #f44;
-    font-family: arial;
-  }
-</style>
+<style scoped src="./style.css"></style>
 <style>
   /*修复用了 stickybits 导致的副作用*/
   .item-page .van-tabs--line {

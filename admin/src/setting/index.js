@@ -2,7 +2,8 @@ import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var HOST
 
 if (process.env.NODE_ENV === 'development') { // 与后端联调
-  HOST = 'http://127.0.0.1:3000'
+  // HOST = 'http://127.0.0.1:3000'
+  HOST = 'http://192.168.2.107:7001'
 } else { // 线上环境
   HOST = 'http://127.0.0.1:3000'
 }
@@ -12,7 +13,7 @@ export var SERVER_PREFIX = `${HOST}/api`
 
 // 接口地址
 export const urls = {
-  addPic: `${SERVER_PREFIX}/addPic`,
+  addPic: `${SERVER_PREFIX}/picture/upload`,
   account: addUrlGroup(`${SERVER_PREFIX}/account`),
 }
 // 根据实体生成 urls
