@@ -1,0 +1,46 @@
+h2 {
+  font-size: 18px;
+  margin: .2rem;
+}
+.swipe {
+  height: 3rem;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav__item {
+  margin-right: .1rem;
+  margin-bottom: .2rem;
+  width: 1.5rem;
+  color: inherit;
+}
+.nav__item  i{
+  display: block;
+  font-size: 24px;
+  text-align: center;
+}
+
+/*通知*/
+.notice {
+  display: flex;
+  align-items: center;
+  padding: 0 .2rem;
+  height: .73rem;
+  background-color: #fff;
+}
+.notice__icon {
+  padding-right: .13rem;
+}
+.notice__icon img {
+  width: .28rem;
+}
+.notice__content {
+  width: 5rem;
+  height: .4rem;
+  line-height: .4rem;
+}
+.notice strong {
+  color: #fd9003;
+}

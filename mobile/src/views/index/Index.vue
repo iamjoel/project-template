@@ -1,14 +1,28 @@
 <template>
   <div class="main">
+    <!-- 搜索 -->
     <van-search placeholder="请输入xxx" v-model="searchInput" @search="onSearch"/>
+    <!-- 跑马灯通知 -->
     <van-notice-bar
       text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
       left-icon="chat"
     />
+    <!-- 垂直轮播通知 -->
+    <div class="ly notice">
+      <i class="notice__icon"><img src="./images/notice.png" alt=""></i>
+      <div class="notice__content">
+        <van-swipe :autoplay="3000" :vertical="true" :show-indicators="false"  class="h-100per">
+          <van-swipe-item v-for="item in 10" :key="item">
+            用户<strong style="">138123456{{item}}</strong>进入聊天室
+          </van-swipe-item>
+        </van-swipe>
+      </div>
+    </div>
+    <!-- 轮播 -->
     <div class="swipe mb-10rem">
       <van-swipe :autoplay="3000" class="h-100per ta-c">
-        <van-swipe-item v-for="i in 4" :key="i">
-          <img class="img" :src="'http://via.placeholder.com/200x100?text=' + i"/>
+        <van-swipe-item v-for="i in 5" :key="i">
+          <img class="img" src="/static/demo/2.jpeg"/>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -61,47 +75,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      activeTypeIndex: 0,
-      searchInput: '',
-    }  
-  },
-  methods: {
-    onSearch() {
-      this.$showLoading()
-      setTimeout(()=> {
-        this.$hideLoading()
-      }, 2000)
-    }
-  }
-}
-</script>
+<script src="./main.js"></script>
 
-<style scoped>
-  h2 {
-    font-size: 18px;
-    margin: .2rem;
-  }
-  .swipe {
-    height: 3rem;
-  }
-  .img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .nav__item {
-    margin-right: .1rem;
-    margin-bottom: .2rem;
-    width: 1.5rem;
-    color: inherit;
-  }
-  .nav__item  i{
-    display: block;
-    font-size: 24px;
-    text-align: center;
-  }
-</style>
+<style scoped src="./style.css"></style>
