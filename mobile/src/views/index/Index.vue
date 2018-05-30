@@ -28,7 +28,7 @@
     </div>
     
     <h2>列表</h2>
-    <div class="ly ly-c ly-multi nav">
+    <div class="ly ly-multi nav">
       <a href="javascript:void(0)" @click="$router.push('/demo/list/infinate-load')" class="nav__item">
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">无限加载</div>
@@ -47,7 +47,7 @@
       </a>
     </div>
     <h2>图片</h2>
-    <div class="ly ly-c ly-multi nav">
+    <div class="ly ly-multi nav">
       
 
       <a href="javascript:void(0)" @click="$router.push('/demo/lazyload')" class="nav__item">
@@ -60,7 +60,7 @@
       </a>
     </div>
     <h2>其他</h2>
-    <div class="ly ly-c ly-multi nav">
+    <div class="ly ly-multi nav">
       <a href="javascript:void(0)" @click="$router.push('/demo/form')" class="nav__item">
         <van-icon name="records" />
         <div class="mt-10 ta-c">表单</div>
