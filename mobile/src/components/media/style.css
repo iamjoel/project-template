@@ -1,0 +1,27 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.media__body {
+  flex: 1;
+}
+
+.media--right img{
+  order: 2;
+
+}
+
+.media--border {
+  border-bottom: 1px solid #ddd;
+}
+
+.media--border:last-child {
+  border-bottom: none;
+}
+
+.media--round img {
+  border-radius: 50%;
+}

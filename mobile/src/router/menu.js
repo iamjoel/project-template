@@ -43,6 +43,16 @@ var routes = [
   },
   // demo
   {
+    path: '/demo/media',
+    meta: {
+      title: 'Media',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/Media', false)
+    },
+  },
+  {
     path: '/demo/form',
     meta: {
       title: '表单',
