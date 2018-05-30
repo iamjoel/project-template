@@ -1,13 +1,5 @@
 <template>
   <div class="main item-page">
-    
-    <van-cell-group>
-       <van-switch-cell v-model="isNodata" title="无数据" />
-    </van-cell-group>
-
-    <div class="ly ly-r mv-20">
-      <van-button type="primary" @click="searchAll">搜索</van-button>
-    </div>
     <van-tabs v-model="active">
       <van-tab  title="新品">
         <van-list
@@ -23,9 +15,6 @@
               </div>
           </div>
         </van-list>
-        <no-data v-show="!newItem.isLoading && newItem.list.length === 0">
-          暂无数据
-        </no-data>
       </van-tab>
       <van-tab  title="热销">
         <van-list
@@ -41,9 +30,6 @@
             </div>
           </div>
         </van-list>
-        <no-data v-show="!hotItem.isLoading && hotItem.list.length === 0">
-          暂无数据
-        </no-data>
       </van-tab>
     </van-tabs>
   </div>

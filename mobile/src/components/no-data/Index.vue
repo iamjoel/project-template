@@ -27,6 +27,7 @@ export default {
 .no-data {
   text-align: center;
   padding: 1.5rem 0;
+  background: #f2f2f2
 }
 .no-data__img {
   display: inline-block;

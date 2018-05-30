@@ -53,13 +53,23 @@ var routes = [
     },
   },
   {
-    path: '/demo/list',
+    path: '/demo/list/infinate-load',
     meta: {
-      title: '列表',
+      title: '列表无限加载',
       activeTypeIndex: 0,
     },
     component: resolve => {
-      lazyLoading(resolve, 'demo/List', false)
+      lazyLoading(resolve, 'demo/list/Infinate-load', false)
+    },
+  },
+  {
+    path: '/demo/list/no-data',
+    meta: {
+      title: '无数据',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/list/No-data', false)
     },
   },
   {

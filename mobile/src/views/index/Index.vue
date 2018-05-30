@@ -12,24 +12,29 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    
+    <h2>列表</h2>
     <div class="ly ly-c ly-multi nav">
-      <a href="javascript:void(0)" @click="$router.push('/demo/form')" class="nav__item">
-        <van-icon name="records" />
-        <div class="mt-10 ta-c">表单</div>
-      </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/list')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/infinate-load')" class="nav__item">
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">无限加载</div>
       </a>
-      
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/no-data')" class="nav__item">
+        <van-icon name="wap-nav" />
+        <div class="mt-10 ta-c">无数据</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/infinate-load')" class="nav__item">
+        <van-icon name="wap-nav" />
+        <div class="mt-10 ta-c">搜索条件</div>
+      </a>
       <a href="javascript:void(0)" @click="$router.push('/demo/pull-refresh')" class="nav__item">
         <van-icon name="upgrade" />
         <div class="mt-10 ta-c">下拉刷新</div>
       </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/tree-select')" class="nav__item">
-        <van-icon name="records" />
-        <div class="mt-10 ta-c">分类选择</div>
-      </a>
+    </div>
+    <h2>图片</h2>
+    <div class="ly ly-c ly-multi nav">
+      
 
       <a href="javascript:void(0)" @click="$router.push('/demo/lazyload')" class="nav__item">
         <van-icon name="photo" />
@@ -38,6 +43,17 @@
       <a href="javascript:void(0)" @click="$router.push('/demo/img-preview')" class="nav__item">
         <van-icon name="photo" />
         <div class="mt-10 ta-c">图片预览</div>
+      </a>
+    </div>
+    <h2>其他</h2>
+    <div class="ly ly-c ly-multi nav">
+      <a href="javascript:void(0)" @click="$router.push('/demo/form')" class="nav__item">
+        <van-icon name="records" />
+        <div class="mt-10 ta-c">表单</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/tree-select')" class="nav__item">
+        <van-icon name="records" />
+        <div class="mt-10 ta-c">分类选择</div>
       </a>
     </div>
     
@@ -65,6 +81,10 @@ export default {
 </script>
 
 <style scoped>
+  h2 {
+    font-size: 18px;
+    margin: .2rem;
+  }
   .swipe {
     height: 3rem;
   }
