@@ -1,5 +1,8 @@
 <template>
   <div class="media" 
+    :style="{
+      padding: padding
+    }"
     :class="{
       'media--border': !noBorder,
       'media--round': imgRound,

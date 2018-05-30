@@ -11,6 +11,7 @@
 
     <h2>定制化的Media</h2>
     <media v-for="i in 3" :key="Math.random()"
+      padding=".3rem"
       src="/static/demo/2.jpeg"
       img-right
       img-round

@@ -4,6 +4,9 @@ export default {
       type: String,
       default: 'http://via.placeholder.com/50x50'
     },
+    padding: {
+      default: '.2rem'
+    },
     imgRound: {
       type: Boolean,
       default: false
