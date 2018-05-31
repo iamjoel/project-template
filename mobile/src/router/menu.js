@@ -103,23 +103,33 @@ var routes = [
     },
   },
   {
-    path: '/demo/lazyload',
+    path: '/demo/img/lazyload',
     meta: {
       title: '懒加载',
       activeTypeIndex: 0,
     },
     component: resolve => {
-      lazyLoading(resolve, 'demo/Lazyload', false)
+      lazyLoading(resolve, 'demo/img/Lazyload', false)
     },
   },
   {
-    path: '/demo/img-preview',
+    path: '/demo/img/img-preview',
     meta: {
       title: '图片预览',
       activeTypeIndex: 0,
     },
     component: resolve => {
-      lazyLoading(resolve, 'demo/ImgPreview', false)
+      lazyLoading(resolve, 'demo/img/ImgPreview', false)
+    },
+  },
+  {
+    path: '/demo/img/img-badge',
+    meta: {
+      title: '角标',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/img/ImgBadge', false)
     },
   },
   {

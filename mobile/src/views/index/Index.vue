@@ -48,13 +48,17 @@
     </div>
     <h2>图片</h2>
     <div class="ly ly-multi nav">
-      <a href="javascript:void(0)" @click="$router.push('/demo/lazyload')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/img/lazyload')" class="nav__item">
         <van-icon name="photo" />
         <div class="mt-10 ta-c">懒加载</div>
       </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/img-preview')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/img/img-preview')" class="nav__item">
         <van-icon name="photo" />
         <div class="mt-10 ta-c">图片预览</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/img/img-badge')" class="nav__item">
+        <van-icon name="photo" />
+        <div class="mt-10 ta-c">角标</div>
       </a>
     </div>
     <h2>其他</h2>
