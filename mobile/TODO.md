@@ -10,5 +10,6 @@
 * 集成功能
   * 搜索的时候： grid select https://alibaba.github.io/weex-ui/#/packages/wxc-grid-select/
   * Index List 比如：城市选择这种 https://alibaba.github.io/weex-ui/#/cn/packages/wxc-city/ 和 https://didi.github.io/cube-ui/#/zh-CN/docs/index-list
+  * 卡片 http://t.amazeui.org/#/docs/card?_k=i0myx5
 * 性能优化
   * [webpack 应用编译优化之路](https://github.com/DDFE/DDFE-blog/issues/23)
