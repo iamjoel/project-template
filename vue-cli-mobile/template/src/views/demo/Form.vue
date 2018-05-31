@@ -182,7 +182,7 @@
 </template>
 
 <script>
-import areaList from '@/area'
+import areaList from '@/assets/area'
 export default {
   data() {
     return {

@@ -2,9 +2,74 @@ html {
   font-size: 50px;
 }
 body {
-  font-size: medium;
+  font-size: 12px;
    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: 80px;/* 空出底部 Toolbar 的距离*/
+}
+
+
+/* 左右两侧带线的标题 */
+.title-with-line {
+  font-size: 14px;
+}
+
+.title-with-line__text {
+  position: relative;
+  padding: 0 .7rem;
+  height: .6rem;
+  line-height: .6rem;
+}
+.title-with-line__text:before,
+.title-with-line__text:after {
+  content: "";
+  position: absolute;
+  top: 49%;
+  width: .5rem;
+  height: .04rem;
+  background-color: #666;
+}
+
+.title-with-line__text:before {
+  left: 0;
+}
+.title-with-line__text:after {
+  right: 0;
+}
+
+/* 带图标的导航 */
+.nav__item {
+  margin-right: .1rem;
+  margin-bottom: .2rem;
+  width: 1.5rem;
+  color: inherit;
+}
+.nav__item i{
+  display: block;
+  font-size: 24px;
+  text-align: center;
+}
+
+/*通知*/
+.notice {
+  display: flex;
+  align-items: center;
+  padding: 0 .2rem;
+  height: .73rem;
+  background-color: #fff;
+}
+.notice__icon {
+  padding-right: .13rem;
+}
+.notice__icon img {
+  width: .28rem;
+}
+.notice__content {
+  width: 5rem;
+  height: .4rem;
+  line-height: .4rem;
+}
+.notice strong {
+  color: #fd9003;
 }

@@ -1,0 +1,36 @@
+a {
+  color: #343434;
+}
+
+.filter-tab__item {
+  margin: .28rem 0;
+  width: 1.6rem;
+  text-align: center;
+  border-right: 1px solid #e4e4e4;
+  font-size: 12px;
+}
+.filter-tab__item:last-child {
+  border-right: none;
+}
+.filter-tab__icon {
+  padding-left: .1rem;
+  width: .18rem;
+}
+
+.filter-item {
+  display: block;
+  height: .8rem;
+  line-height: .8rem;
+  font-size: 14px;
+  text-align: center;
+  color: rgb(102, 102, 102);
+  border-bottom: 1px solid #d1d1d1;
+}
+.filter-item:last-child {
+  border-bottom: none;
+}
+.filter-item--active {
+  color: #5e84ff;
+}
+
+

@@ -1,0 +1,17 @@
+h2 {
+  font-size: 16px;
+  margin: .2rem;
+  padding-left: .2rem;
+  height: .4rem;
+  line-height: .4rem;
+  border-left: 3px solid #fd9003;
+}
+.swipe {
+  height: 3rem;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+

@@ -42,66 +42,7 @@ var routes = [
     },
   },
   // demo
-  {
-    path: '/demo/form',
-    meta: {
-      title: '表单',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/Form', false)
-    },
-  },
-  {
-    path: '/demo/list',
-    meta: {
-      title: '列表',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/List', false)
-    },
-  },
-  {
-    path: '/demo/tree-select',
-    meta: {
-      title: '分类选择',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/TreeSelect', false)
-    },
-  },
-  {
-    path: '/demo/lazyload',
-    meta: {
-      title: '懒加载',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/Lazyload', false)
-    },
-  },
-  {
-    path: '/demo/img-preview',
-    meta: {
-      title: '图片预览',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/ImgPreview', false)
-    },
-  },
-  {
-    path: '/demo/pull-refresh',
-    meta: {
-      title: '下拉刷新',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/PullRefresh', false)
-    },
-  },
+  ...require('./demo').default
 ]
 
 
