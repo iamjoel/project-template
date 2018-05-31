@@ -15,17 +15,17 @@ module.exports.serverUrl = serverUrl;
 //微信配置信息
 const wechatInfo ={
     //公众号ID
-    appId:'',
+    appId:'wx358d1d9cd3d7bc8c',
     //公众号密码
-    secret:'',
+    secret:'1ca2d4e87d5cde5dee1b6e55429ffc26',
     //商户ID
-    mch_id:'',
+    mch_id:'1491194932',
     //商户密码
-    payPassWord:'',
+    payPassWord:'NvAPtO3YDmAKP3sMXZ13gAMsVf8bczA8',
     //交易回调地址
-    payCallbackUrl:'',
+    payCallbackUrl:'http://1t60716a51.iok.la/api/wechat/paynotify',
     //服务器地址
-    ipAddress:''
+    ipAddress:'47.96.189.4'
 };
 module.exports.wechatInfo = wechatInfo;
 

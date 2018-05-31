@@ -11,5 +11,5 @@ run/
 *.sw*
 *.un~
 public
-config/config.default.js
-app/conf/setting.js
+.config/config.default.js
+.app/conf/setting.js
