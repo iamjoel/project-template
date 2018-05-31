@@ -8,8 +8,19 @@
       </media>
     </div>
     
+    <h2>垂直的Media</h2>
+    <div class="ly ly-multi">
+      <media v-for="i in 3" :key="Math.random()"
+        style="width: 3.2rem;"
+        dir-ver
+      >
+        <h3 class="mb-10">标题</h3>
+        <p>内容内容内容内容内容内容内容内容内容</p>
+      </media>
+    </div>
+    
 
-    <h2>定制化的Media</h2>
+    <h2>可配置项目的Media</h2>
     <media v-for="i in 3" :key="Math.random()"
       padding=".3rem"
       src="/static/demo/2.jpeg"
@@ -23,6 +34,8 @@
       <h3 class="mb-10">标题</h3>
       <p>内容内容内容内容内容内容内容内容内容</p>
     </media>
+
+    
   </div>
 </template>
 

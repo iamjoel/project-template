@@ -8,7 +8,7 @@
   flex: 1;
 }
 
-.media--right img{
+.media--right .media__img{
   order: 2;
 
 }
@@ -20,6 +20,11 @@
   border-bottom: none;
 }
 
-.media--round img {
+.media--round .media__img {
   border-radius: 50%;
+}
+
+.media-ver .media__img{
+  display: block;
+  max-width: 100%;
 }

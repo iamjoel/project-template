@@ -1,5 +1,9 @@
 export default {
   props: {
+    dirVer: { // 垂直方向的Media
+      type: Boolean,
+      default: false
+    },
     src: {
       type: String,
       default: 'http://via.placeholder.com/50x50'
@@ -11,12 +15,8 @@ export default {
       type: Boolean,
       default: false
     },
-    imgWidth: {
-      default: '.6rem'
-    },
-    imgHeight: {
-      default: '.6rem'
-    },
+    imgWidth: null,
+    imgHeight: null,
     imgPadding: {
       default: '.2rem'
     },
@@ -35,10 +35,15 @@ export default {
     }  
   },
   mounted() {
-    this.imgStyle = {
-      width: this.imgWidth,
-      height: this.imgHeight,
-      [this.imgRight ? 'margin-left' : 'margin-right']: this.imgPadding
+    this.imgStyle = {}
+    if(this.dirVer) {
+      this.imgStyle['margin-bottom'] = this.imgPadding
+      this.imgStyle.width = this.imgWidth || '100%'
+      this.imgStyle.height = this.imgHeight || 'auto'
+    } else {
+      this.imgStyle[this.imgRight ? 'margin-left' : 'margin-right'] = this.imgPadding
+      this.imgStyle.width = this.imgWidth || '.6rem'
+      this.imgStyle.height = this.imgHeight || '.6rem'
     }
    
   }
