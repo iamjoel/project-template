@@ -41,9 +41,13 @@
         <van-icon name="wap-nav" />
         <div class="mt-10 ta-c">搜索条件</div>
       </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/pull-refresh')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/pull-refresh')" class="nav__item">
         <van-icon name="upgrade" />
         <div class="mt-10 ta-c">下拉刷新</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/list/hor-scroll')" class="nav__item">
+        <van-icon name="wap-nav" />
+        <div class="mt-10 ta-c">横向滚动</div>
       </a>
     </div>
     <h2>图片</h2>

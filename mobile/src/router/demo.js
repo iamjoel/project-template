@@ -50,6 +50,26 @@ export default [
     },
   },
   {
+    path: '/demo/list/pull-refresh',
+    meta: {
+      title: '下拉刷新',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/list/PullRefresh', false)
+    },
+  },
+  {
+    path: '/demo/list/hor-scroll',
+    meta: {
+      title: '横向滚动',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/list/Hor-scroll', false)
+    },
+  },
+  {
     path: '/demo/tree-select',
     meta: {
       title: '分类选择',
@@ -89,16 +109,7 @@ export default [
       lazyLoading(resolve, 'demo/img/ImgBadge', false)
     },
   },
-  {
-    path: '/demo/pull-refresh',
-    meta: {
-      title: '下拉刷新',
-      activeTypeIndex: 0,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'demo/PullRefresh', false)
-    },
-  },
+  
 ]
 
 const lazyLoading = (resolve, name, index = true) => {
