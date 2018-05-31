@@ -18,6 +18,7 @@
         </van-swipe>
       </div>
     </div>
+
     <!-- 轮播 -->
     <div class="swipe mb-10rem">
       <van-swipe :autoplay="3000" class="h-100per ta-c">
@@ -26,6 +27,10 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+
+    <h1 class="ly ly-c title-with-line">
+      <div class="title-with-line__text">功能菜单</div>
+    </h1>
     
     <h2>列表</h2>
     <div class="ly ly-multi nav">
