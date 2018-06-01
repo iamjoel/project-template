@@ -51,6 +51,8 @@ module.exports = app => {
           listQuery = Tools.generatorQuery(resouceName, pageAt, where, orders, pageLimit,'query')
           listCount = Tools.generatorQuery(resouceName, pageAt, where, orders, pageLimit,'count')
         }
+        console.log(listQuery)
+        
         const result = yield app.mysql.query(listQuery);
         const total  = yield app.mysql.query(listCount);
         if(specialSql[resouceName].list!=undefined&&specialSql[resouceName].count!=undefined){

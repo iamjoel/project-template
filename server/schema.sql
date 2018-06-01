@@ -1,10 +1,4 @@
 /*
-Navicat MySQL Data Transfer
-
-Source Server         : 阿里云-知行社
-Source Server Version : 50638
-Source Host           : 47.96.189.4:3306
-Source Database       : demo
 
 Target Server Type    : MYSQL
 Target Server Version : 50638
@@ -12,6 +6,8 @@ File Encoding         : 65001
 
 Date: 2018-05-31 18:15:12
 */
+
+use `admin-template`;
 
 SET FOREIGN_KEY_CHECKS=0;
 

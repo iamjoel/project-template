@@ -1,39 +1,38 @@
-# serverp-template
+# Node.js 服务器端模板
+基于 [egg](https://eggjs.org)。
 
-server-template
+### 运行
+1 创建表  
+在 MySQL 中创建名为 `admin-template` 的数据库。  
+执行 server/schma.sql 创建表结构。
 
-### 本地开发
-
-创建表文件
-执行 server/demo.sql 创建表结构
-
-修改文件名 server/config.demo.js => config.default.js
+2 修改配置  
+在`config` 下新建 `config.default.js` 复制 `server/config.demo.js` 的内容。
 修改文件名 server/app/conf/setting.demo.js => setting.js
 
+3 安装依赖  
 ```bash
-$ npm i
-$ npm run debug
-$ open http://localhost:7001/
+npm i
 ```
 
-### 部署
+4 运行  
+```bash
+npm run debug
+```
 
+服务器端地址为 `http://localhost:7001/`
+
+### 部署
 ```bash
 $ npm start
 $ npm stop
 ```
 
-### 单元测试
-
-- [egg-bin] 内置了 [mocha], [thunk-mocha], [power-assert], [istanbul] 等框架，让你可以专注于写单元测试，无需理会配套工具。
-- 断言库非常推荐使用 [power-assert]。
-- 具体参见 [egg 文档 - 单元测试](https://eggjs.org/zh-cn/core/unittest)。
 
 ### 内置指令
-
 - 使用 `npm run lint` 来做代码风格检查。
 - 使用 `npm test` 来执行单元测试。
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 
-[egg]: https://eggjs.org
+
