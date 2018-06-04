@@ -337,7 +337,7 @@ const sqlInjectionCheck =  function(data){
             res = Object.assign({[i]:v},res)
         }
     }else{
-        res = ''
+        res = data
     }
     return res
 }

@@ -8,6 +8,8 @@
 
 2 修改配置  
 在`config` 下新建 `config.default.js` 复制 `server/config.demo.js` 的内容。
+
+在`config` 下新建 `config.default.js` 复制 `server/config.demo.js` 的内容。
 修改文件名 server/app/conf/setting.demo.js => setting.js
 
 3 安装依赖  

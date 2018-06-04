@@ -74,6 +74,10 @@ export default {
         })
       })
     },
+    // 图片上传成功
+    handleUploadImageSuccess(key, value) {
+      this.model[key] = value
+    },
     // 多图上传，删除某张图片
     removeImg(data,index){
       var imgList = this.model[data].split(',')
