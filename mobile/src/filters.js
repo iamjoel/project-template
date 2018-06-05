@@ -3,7 +3,14 @@ import Vue from 'vue'
 // 获取资源服务器的图片
 import {IMGS_PREFIX, BASIC_CONFIG} from '@/setting'
 Vue.filter('img', function (value, size) {
-  return `${IMGS_PREFIX}/${size === 'small' ? 'thumb_img/' : ''}${value}`
+  if(typeof value !== 'string' ) {
+    return value
+  }
+  // 绝对路径，不加前缀
+  if(/^http/.test(value.trim())) {
+    return value
+  }
+  return `${IMGS_PREFIX}/${value}`
 })
 
 import moment from 'moment'
