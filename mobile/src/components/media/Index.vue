@@ -2,16 +2,12 @@
   <div>
     <div class="media" 
       v-if="!dirVer"
-      :style="{
-        padding: padding
-      }"
       :class="{
-        'media--border': !noBorder,
-        'media--round': imgRound,
-        'media--right': imgRight,
+        'media--round': img.isCircle,
+        'media--right': img.isRight,
       }"
     >
-      <img class="media__img" :src="src" alt=""
+      <img class="media__img" :src="img.src" alt=""
         :style="imgStyle"
       />
       <div class="media__body">
@@ -21,11 +17,8 @@
     <!-- 垂直 Media -->
     <div v-else
       class="media-ver"
-      :style="{
-        padding: padding
-      }"
     >
-      <img class="media__img" :src="src" alt=""
+      <img class="media__img" :src="img.src" alt=""
         :style="imgStyle"
         />
       <div class="media__body">
