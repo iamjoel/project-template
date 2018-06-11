@@ -1,6 +1,8 @@
 
 <template>
 <div class="main">
+  <el-button type="primary" @click="autoFill">补全表单内容</el-button>
+  <!-- {{model}} -->
   <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right" >
     <el-row type="flex" justify="start" class="multi-line">
       

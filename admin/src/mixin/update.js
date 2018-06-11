@@ -83,6 +83,20 @@ export default {
       var imgList = this.model[data].split(',')
       imgList.splice(index,1)
       this.model[data] = imgList.join(',')
+    },
+    // 自动补全表单内容
+    autoFill() {
+      for(var key in this.model) {
+        // 不能用 typeof this.model[key] === 'object' 来判断，因为都是 object。
+        try {
+          if(this.model[key] == null || this.model[key] == '') {
+            this.model[key] = `${key}-测试`
+          }
+        } catch(e) {
+          
+        }
+        
+      }
     }
   },
   mounted () {
