@@ -109,6 +109,16 @@ export default [
       lazyLoading(resolve, 'demo/img/ImgBadge', false)
     },
   },
+  {
+    path: '/demo/singer',
+    meta: {
+      title: '歌手',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/singer')
+    },
+  },
   
 ]
 
