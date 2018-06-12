@@ -1,12 +1,24 @@
-
 import listMixin from '@/mixin/list'
 import JRemoteSelect from '@/components/remote-select'
 
-var searchConditions = 
-  {
-    name: ''
+var searchConditions = {
+  name: ''
+}
+
+var operateConfig = {
+  "add": {
+    "isShow": true
+  },
+  "edit": {
+    "isShow": true
+  },
+  "detail": {
+    "isShow": true
+  },
+  "delete": {
+    "isShow": true
   }
-var operateConfig = {"add":{"isShow":true},"edit":{"isShow":true},"detail":{"isShow":true},"delete":{"isShow":true}}
+}
 
 export default {
   mixins: [listMixin],
@@ -15,7 +27,7 @@ export default {
   },
   data() {
     return {
-      KEY: null,
+      KEY: 'singer',
       searchConditions,
     }  
   },
@@ -28,12 +40,11 @@ export default {
         return isShow
       }
     },
-  
-  toRandomnum() {
-    return Math.ceil(Math.random() * 100)
-  }
+    toRandomnum() {
+      return Math.ceil(Math.random() * 100)
+    }
   },
   mounted() {
-    this.key = 'singer'
+    
   }
 }
