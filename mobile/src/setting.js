@@ -1,9 +1,9 @@
 var HOST
 
 if (process.env.NODE_ENV === 'development') {
-  HOST = 'http://127.0.0.1:7001'
+  HOST = document.body.getAttribute('data-server-dev')
 } else {
-  HOST = 'http://127.0.0.1:7001'
+  HOST = document.body.getAttribute('data-server')
 }
 
 const SERVER_PREFIX = `${HOST}/public`

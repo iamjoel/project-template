@@ -1,11 +1,10 @@
 import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var HOST
 
-if (process.env.NODE_ENV === 'development') { // 与后端联调
-  // HOST = 'http://127.0.0.1:3000'
-  HOST = 'http://192.168.2.107:7001'
-} else { // 线上环境
-  HOST = 'http://127.0.0.1:3000'
+if (process.env.NODE_ENV === 'development') {
+  HOST = document.body.getAttribute('data-server-dev')
+} else {
+  HOST = document.body.getAttribute('data-server')
 }
 
 export const IMGS_PREFIX = `${HOST}/imgs`
