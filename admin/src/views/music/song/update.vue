@@ -1,27 +1,23 @@
 
 <template>
 <div class="main">
-  <el-button type="primary" @click="autoFill">补全表单内容</el-button>
+  <el-button type="primary" @click="autoFill" v-if="isDev">补全表单内容</el-button>
   <!-- {{model}} -->
   <el-form :inline="true" :model="model" :rules="rules" ref="form" label-position="right" >
     <el-row type="flex" justify="start" class="multi-line">
-      
-        <j-edit-item  label="名称" prop="name" :is-view="isView" :view-value="model.name">
-        
+        <j-edit-item label="名称" prop="name" :is-view="isView" :view-value="model.name">
           <el-input v-model="model.name"></el-input>
         </j-edit-item>
-        
 
-        <j-edit-item  label="歌曲类型" prop="type" :is-view="isView" :view-value="model.type">
-        
-            <el-select v-model="model.type" placeholder="请选择" filterable clearable>
-              <el-option
-                v-for="item in $store.getters.dictObj.musicType"
-                :key="item.key"
-                :label="item.label"
-                :value="item.key">
-              </el-option>
-            </el-select>
+        <j-edit-item label="歌曲类型" prop="type" :is-view="isView" :view-value="model.type">
+          <el-select v-model="model.type" placeholder="请选择" filterable clearable>
+            <el-option
+              v-for="item in $store.getters.dictObj.musicType"
+              :key="item.key"
+              :label="item.label"
+              :value="item.key">
+            </el-option>
+          </el-select>
         </j-edit-item>
         
 

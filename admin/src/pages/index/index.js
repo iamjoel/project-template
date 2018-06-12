@@ -19,8 +19,9 @@ Vue.prototype.getDictName = function(name, key) {
 }
 
 Vue.prototype.addPicUrl = urls.addPic // 上传图片地址
+Vue.prototype.isDev = process.env.NODE_ENV === 'development' // 是否是开发环境
 
-import '@/assets/utils/errorHandler' // 错误处理,收集
+// import '@/assets/utils/errorHandler' // 错误处理,收集
 
 import axios from 'axios'
 require('@/service/interceptor') // axios 拦截器，做通用报错等
