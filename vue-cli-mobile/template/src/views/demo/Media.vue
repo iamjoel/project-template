@@ -2,7 +2,7 @@
   <div class="main">
     <h2>默认Media</h2>
     <div>
-      <media v-for="i in 3" :key="i">
+      <media v-for="i in 3" :key="i" style="padding: .1rem">
         <h3 class="mb-10">标题</h3>
         <p>内容内容内容内容内容内容内容内容内容</p>
       </media>
@@ -11,7 +11,7 @@
     <h2>垂直的Media</h2>
     <div class="ly ly-multi">
       <media v-for="i in 3" :key="Math.random()"
-        style="width: 3.2rem;"
+        style="padding: .1rem;width: 3rem;"
         dir-ver
       >
         <h3 class="mb-10">标题</h3>
@@ -22,14 +22,14 @@
 
     <h2>可配置项目的Media</h2>
     <media v-for="i in 3" :key="Math.random()"
-      padding=".3rem"
-      src="/static/demo/2.jpeg"
-      img-right
-      img-round
-      img-height="1rem"
-      img-width="1rem"
-      img-padding=".4rem"
-      no-border
+      style="padding: .1rem"
+      :img="{
+        src: '/static/demo/2.jpeg',
+        isRight: true,
+        isCircle: true,
+        height:'1rem',
+        width: '1rem'
+      }"
     >
       <h3 class="mb-10">标题</h3>
       <p>内容内容内容内容内容内容内容内容内容</p>

@@ -1,33 +1,23 @@
+const imgDefaultConfig = {
+  src: 'http://via.placeholder.com/50x50',
+  width: '',
+  height: '',
+  isCircle: false,
+  isRight: false
+}
 export default {
   props: {
     dirVer: { // 垂直方向的Media
       type: Boolean,
       default: false
     },
-    src: {
-      type: String,
-      default: 'http://via.placeholder.com/50x50'
+    img: {
+      type: Object,
+      default: () => imgDefaultConfig
     },
-    padding: {
+    spaceBetween: {
       default: '.2rem'
-    },
-    imgRound: {
-      type: Boolean,
-      default: false
-    },
-    imgWidth: null,
-    imgHeight: null,
-    imgPadding: {
-      default: '.2rem'
-    },
-    imgRight: {
-      type: Boolean,
-      default: false
-    },
-    noBorder: {
-      type: Boolean,
-      default: false
-    },
+    }
   },
   data() {
     return {
@@ -36,14 +26,15 @@ export default {
   },
   mounted() {
     this.imgStyle = {}
+    var imgConfig = Object.assign({}, imgDefaultConfig, this.img)
     if(this.dirVer) {
-      this.imgStyle['margin-bottom'] = this.imgPadding
-      this.imgStyle.width = this.imgWidth || '100%'
-      this.imgStyle.height = this.imgHeight || 'auto'
+      this.imgStyle['margin-bottom'] = this.spaceBetween
+      this.imgStyle.width = imgConfig.width || '100%'
+      this.imgStyle.height = imgConfig.height || 'auto'
     } else {
-      this.imgStyle[this.imgRight ? 'margin-left' : 'margin-right'] = this.imgPadding
-      this.imgStyle.width = this.imgWidth || '.6rem'
-      this.imgStyle.height = this.imgHeight || '.6rem'
+      this.imgStyle[imgConfig.isRight ? 'margin-left' : 'margin-right'] = this.spaceBetween
+      this.imgStyle.width = imgConfig.width || '.6rem'
+      this.imgStyle.height = imgConfig.height || '.6rem'
     }
    
   }

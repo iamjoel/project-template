@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {urls} from '@/settings'
+import {urls} from '@/setting'
 
 function registerSDK( opts = {}, successFn = function(){}) {
   // opts.registerURL = opts.registerURL || location.origin + location.pathname
