@@ -1,7 +1,8 @@
 import { fetchList, addModel, editModel, fetchModel } from '@/service/api'
 import JEditItem from '@/components/edit-item'
 import deepClone from 'clone'
-
+import moment from 'moment'
+import dict from '@/setting/base/dict'
 // 缓存新增时的初始数据
 var modelInitValue = {
 
@@ -74,11 +75,52 @@ export default {
         })
       })
     },
+    // 图片上传成功
+    handleUploadImageSuccess(key, value) {
+      this.model[key] = value
+    },
     // 多图上传，删除某张图片
     removeImg(data,index){
       var imgList = this.model[data].split(',')
       imgList.splice(index,1)
       this.model[data] = imgList.join(',')
+    },
+    // 自动补全表单内容
+    autoFill() {
+      this.modelScheme.forEach(item => {
+        let key = item.key
+        var value = null
+        switch(item.dataType) {
+          case 'string':
+            default:
+            value = `${key}-测试`
+            break;
+          case 'number':
+            value = Math.ceil(Math.random() * 50)
+            break;
+          case 'date':
+            value = moment().format('YYYY-MM-DD')
+            break;
+          case 'img':
+            value = 'http://via.placeholder.com/100x100'
+            break;
+          case 'imgs':
+            value = 'http://via.placeholder.com/100x100,http://via.placeholder.com/150x100'
+            break;
+          case 'select':
+            if(item.dataSource.type === 'dict') {
+              value = dict.filter(d => item.dataSource.key == d.key)[0].value[0].key
+            } else {
+              fetchList(item.dataSource.key).then(({data}) => {
+                this.model[key] = data.data.list[0].id
+              })
+              return // 异步的，防止被重置
+            }
+            break;
+        }
+        this.model[key] = value
+      })
+      
     }
   },
   mounted () {

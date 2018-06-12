@@ -13,7 +13,7 @@ export default [
 	},
 	{
 		"routePath": "/music/song/list",
-		"filePath": "music/song/List.vue"
+		"filePath": "music/song/List"
 	},
 	{
 		"routePath": "/music/singer/update/:id",

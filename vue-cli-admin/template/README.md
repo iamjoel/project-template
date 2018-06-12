@@ -191,3 +191,17 @@ export const PAGES = [
   * 搜索，分页，排序写法: assets/utils/wrap-fetch-query.js
 * ajax 的拦截器。处理如：接口的错误提示，登录(可能是加token),登录过期的写法 assets/utils/ajax.js
 
+## 常见问题
+Mac 上出现 `ENFILE: file table overflow`  
+解决方案  
+```
+$ echo kern.maxfiles=65536 | sudo tee -a /etc/sysctl.conf
+$ echo kern.maxfilesperproc=65536 | sudo tee -a /etc/sysctl.conf
+$ sudo sysctl -w kern.maxfiles=65536
+$ sudo sysctl -w kern.maxfilesperproc=65536
+$ ulimit -n 65536
+```
+
+具体见 `http://blog.mact.me/2014/10/22/yosemite-upgrade-changes-open-file-limit`
+
+

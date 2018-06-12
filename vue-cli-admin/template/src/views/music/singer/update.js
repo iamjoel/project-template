@@ -1,16 +1,17 @@
-
 import updateMixin from '@/mixin/update'
+import modelScheme from './model'
 import JRemoteSelect from '@/components/remote-select'
 import deepClone from 'clone'
 
 var model = {
-	"moreInfo": {},
-	"name": null
+  "moreInfo": {},
+  "name": null
 }
+
 var rules = {
-	"name": [
-		{ required: true, message: '请输入歌手名称', trigger: 'blur' }
-	]
+  "name": [
+    { required: true, message: '请输入歌手名称', trigger: 'blur' }
+  ]
 }
 
 export default {
@@ -22,16 +23,17 @@ export default {
     return {
       KEY: 'singer',
       model,
+      modelScheme,
       rules,
     }  
   },
   methods: {
     formatFetchData(model) {
       model = deepClone(model)
-      
+
       // 下拉框赋值
       if(!this.isView) {
-        
+
       } else {
         var dictModelCols = [] || []
         dictModelCols.length > 0 && dictModelCols.forEach(col => {
@@ -46,8 +48,8 @@ export default {
       delete model.moreInfo // 表关联的数据
       return model
     },
-    
-    
+
+
   },
   mounted() {
     
