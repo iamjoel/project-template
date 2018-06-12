@@ -80,7 +80,7 @@
     </el-row>
   </el-form>
   
-  <el-row type="flex" justify="center">
+  <el-row type="flex" justify="center" class="mb-20">
     <el-button @click="$router.go(-1)">返回</el-button>
     <el-button type="success" @click="save" v-if="!isView">保存</el-button>
   </el-row>
