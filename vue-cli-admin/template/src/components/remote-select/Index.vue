@@ -58,7 +58,7 @@ export default {
         current: 1,
         limit: 20
       }, null).then(res => {
-        this.list = res.data.data.list.map(item => {
+        this.list = res.data.data.map(item => {
           return {
             id: item.id || item.key,
             name: item.name || item.label

@@ -61,7 +61,7 @@ export default {
         .then(({ data }) => {
           if(!data.errorCode) {
             this.pager.total = data.pager.total
-            this.tableData = data.data.list
+            this.tableData = data.data
           }
         })
     },

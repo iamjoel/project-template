@@ -19,9 +19,7 @@ var list = [{
 },]
 Mock.mock(new RegExp(currUrl.list), ({ url, body }) => {
   return {
-    data: {
-      list,
-    },
+    data: list,
     pager: {
       total: list.length
     }
