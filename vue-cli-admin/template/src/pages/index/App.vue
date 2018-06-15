@@ -18,6 +18,7 @@ import Sidebar from '@/components/siderbar'
 import Topbar from '@/components/topbar'
 import Breadcrumb from '@/components/breadcrumb'
 import * as types from '@/store/mutation-types'
+import {title} from '@/setting'
 
 var isMock = true
 if(isMock) {
@@ -37,6 +38,9 @@ export default {
     this.$store.commit(types.ROLE, role)
     this.$store.dispatch('fetchMenuAndLimit')
     this.$store.dispatch('fetchBasicData')
+  },
+  created() {
+    document.title = title
   }
 }
 </script>

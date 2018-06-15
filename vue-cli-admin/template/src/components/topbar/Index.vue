@@ -1,7 +1,7 @@
 <template>
 <div id="topbar">
   <el-menu theme="dark" :default-active="'2'" mode="horizontal" id="sc-menu">
-    <el-menu-item index="1">娱乐</el-menu-item>
+    <el-menu-item index="1">\{{title}}</el-menu-item>
     <!-- <el-menu-item index="2" class="menu__ops">
       <router-link :to="'/system/inform/list'">link</router-link>
     </el-menu-item> -->
@@ -12,10 +12,11 @@
 </template>
 
 <script>
+  import {title} from '@/setting'
   export default {
     data () {
       return {
-
+        title
       }
     },
     methods: {

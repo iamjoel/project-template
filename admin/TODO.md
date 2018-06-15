@@ -1,4 +1,5 @@
 # 待做
+* 增加npm命令，一键删除demo代码。
 * element ui 验证能支持两种类型
 * 详情页，在保存和下载前，数据格式的转化（如 日期字符串 <-> 日期对象 和 0，1 <-> 布尔值），有公共方法来做。
 * Dashboard 放常见组件的调用。参考 ant design 和 iview admin。
@@ -28,7 +29,5 @@
 * coding split优化  
 https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-chunk
 * 页面能支持不同的 layout 吗？
-
-## 需同步到工具
 
 

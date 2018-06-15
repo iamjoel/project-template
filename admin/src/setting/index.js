@@ -1,3 +1,5 @@
+export const title = '娱乐' // 页面标题，以及 topbar 上的文字。
+
 import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var HOST
 
