@@ -18,8 +18,14 @@ Vue.prototype.getDictName = function(name, key) {
   return res ? res.label : ''
 }
 
+// 原型方法
 Vue.prototype.addPicUrl = urls.addPic // 上传图片地址
 Vue.prototype.isDev = process.env.NODE_ENV === 'development' // 是否是开发环境
+// 工具方法
+import utilFns from '@/setting/base/util-fns' 
+utilFns.forEach(fn => {
+  Vue.prototype[fn.name] = new Function(...fn.args, fn.body)
+})
 
 // import '@/assets/utils/errorHandler' // 错误处理,收集
 
