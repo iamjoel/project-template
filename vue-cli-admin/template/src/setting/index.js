@@ -1,15 +1,17 @@
 export const title = '娱乐' // 页面标题，以及 topbar 上的文字。
 
-import standardizeMenu from '@/assets/utils/standardize-menu-config'
 var HOST
+var imgPrefix
 
 if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server-dev')
+  imgPrefix = `${HOST}/public/img`
 } else {
   HOST = document.body.getAttribute('data-server')
+  imgPrefix = `${HOST}/public/img`
 }
 
-export const IMGS_PREFIX = `${HOST}/imgs`
+export const IMGS_PREFIX = imgPrefix
 export var SERVER_PREFIX = `${HOST}/api`
 
 // 接口地址

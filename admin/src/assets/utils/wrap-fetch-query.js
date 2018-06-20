@@ -1,4 +1,4 @@
-export default function (url, query, pager) {
+export default function (url, query, pager, order) {
   var res = url
   if (query || pager) {
     res += '?'
@@ -22,6 +22,13 @@ export default function (url, query, pager) {
       }
       res += (`pageAt=${pager.current}&`)
       res += (`pageLimit=${pager.item || 10}`) // 一页几条
+    }
+
+    // 默认最新修改的在最前面
+    if(order) {
+      res += ('&order=' + encodeURIComponent(JSON.stringify(
+        [order]
+      )))
     }
   }
   return res
