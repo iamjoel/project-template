@@ -22,7 +22,7 @@ export default {
       default: false
     },
     urlKey: String,
-    otherQuery: null,// 调列表接口的其他查询参数
+    otherQuery: null,// 调列表接口的其他查询参数。可以函数用 {name: null, someKey: name} 来自定义远程搜索的key
     autoFetch: Boolean,
     value: null//String // v-model
   },
@@ -50,7 +50,7 @@ export default {
     //   }]
       var otherQuery
       if(typeof this.otherQuery === 'function') {
-        otherQuery = this.otherQuery()
+        otherQuery = this.otherQuery(name)
       } else {
         otherQuery = this.otherQuery
       }
@@ -72,6 +72,9 @@ export default {
   },
   mounted() {
     this.inputVal = this.value
+    if(this.multiple) {
+      this.inputVal = this.inputVal || []
+    }
     if(this.autoFetch) {
       this.fetch()
     }
