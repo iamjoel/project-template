@@ -1,29 +1,25 @@
 var HOST
-
+console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
-  HOST = document.body.getAttribute('data-server-dev')
+  HOST = 'http://127.0.0.1:7001'// 不知道为什么是错的。。。document.body.getAttribute('data-server-dev')
 } else {
   HOST = document.body.getAttribute('data-server')
 }
 
-const SERVER_PREFIX = `${HOST}/public`
+const SERVER_PREFIX = `${HOST}/api`
 export const IMGS_PREFIX = `${HOST}/public/imgs`
 
 export const urls = {
-  registerWechat: `${SERVER_PREFIX}/wechat/sdkinfo`, // 注册jssdk
-  getOpenid: `${SERVER_PREFIX}/wechat/openid`, // 拿微信的 openid
-  getPayInfo: `${SERVER_PREFIX}/wechat/prepay`, //
-  userInfo: `${SERVER_PREFIX}/wechat/userinfo`,
-  album: addUrlGroup('album')
+  care_service: addUrlGroup('care_service')
 }
 
-function addUrlGroup (prefix, types = ['list', 'detail', 'add', 'edit','del'], others) {
+function addUrlGroup (key, types = ['list', 'detail', 'add', 'edit','del'], others) {
   var res = {}
   if(others && others.length > 0) {
     types = [...types, ...others]
   }
   types.forEach(type => {
-    res[type] = `${prefix}/${type}`
+    res[type] = `${SERVER_PREFIX}/${key}/${type}`
   })
   return res
 }

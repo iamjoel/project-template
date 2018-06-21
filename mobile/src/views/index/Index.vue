@@ -72,6 +72,10 @@
     </div>
     <h2>其他</h2>
     <div class="ly ly-multi nav">
+      <a href="javascript:void(0)" @click="$router.push('/demo/data')" class="nav__item">
+        <van-icon name="records" />
+        <div class="mt-10 ta-c">数据获取</div>
+      </a>
       <a href="javascript:void(0)" @click="$router.push('/demo/media')" class="nav__item">
         <van-icon name="records" />
         <div class="mt-10 ta-c">Media</div>

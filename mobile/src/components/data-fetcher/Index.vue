@@ -1,6 +1,6 @@
 <template>
   <div class="data-fetcher">
-    <slot />
+    <slot :data="data"/>
   </div>
 </template>
 
@@ -8,27 +8,35 @@
 import {fetchModel} from '@/service/api'
 export default {
   props: {
-    config: Array
+    config: {
+      type: [Object, Array],
+    } 
   },
   data() {
     return {
-
+      data: Array.isArray(this.config) ? [] : {}
     }
   },
   mounted() {
-    var len = this.config.length
+    var isMulti = Array.isArray(this.config)
+    var config = isMulti ? this.config : [this.config]
+
+    var len = config.length
     var loaded = 0
     var res = []
 
-    this.config.forEach((name, i) => {
-      fetchModel(c).then(({data})=> {
+    config.forEach((item, i) => {
+      fetchModel(item.key, item.id).then(({data})=> {
         loaded++;
-        res[i] = data
+        res[i] = data.data
         if(loaded === len) {
-          this.$emit('loaded', res)
+          this.data = isMulti ? res : res[0]
         }
+      }, (e) => {
+        this.$emit('error', e)
       })
     })
+    
   }
 }
 </script>
