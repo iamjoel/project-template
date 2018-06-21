@@ -32,11 +32,8 @@
   </div>
 </template>
 
-<script>
+<script src="./main.js">
 
-export default {
-  
-}
 </script>
 
 <style>
