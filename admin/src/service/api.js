@@ -3,8 +3,8 @@ import wrapFetchQuery from '@/assets/utils/wrap-fetch-query'
 import {urls} from '@/setting'
 
 
-export const fetchList = (key, condition, pager, sort) => {
-  var url = wrapFetchQuery(urls[key].list, condition, pager, sort)
+export const fetchList = (key, condition, pager, order) => {
+  var url = wrapFetchQuery(urls[key].list, condition, pager, order)
   return axios.get(url, {
     params: {
     },

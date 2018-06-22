@@ -119,6 +119,16 @@ export default [
       lazyLoading(resolve, 'demo/singer')
     },
   },
+  {
+    path: '/demo/data',
+    meta: {
+      title: '数据获取',
+      activeTypeIndex: 0,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/Data', false)
+    },
+  },
   
 ]
 

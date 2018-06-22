@@ -24,10 +24,9 @@ export default function (url, query, pager, order) {
       res += (`pageLimit=${pager.item || 10}`) // 一页几条
     }
 
-    // 默认最新修改的在最前面
     if(order) {
       res += ('&order=' + encodeURIComponent(JSON.stringify(
-        [order]
+        [order] // order 类似 ['name', 'desc或asc']
       )))
     }
   }
