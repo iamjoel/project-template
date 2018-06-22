@@ -1,5 +1,14 @@
 <template>
   <div class="data-fetcher">
+    <van-list
+      v-model="isLoading"
+      :finished="isFinished"
+      @load="fetchList"
+    >
+      <template v-for="(item, i) in list">
+        <slot :data="item"/>
+      </template>
+    </van-list>
     <slot />
   </div>
 </template>
@@ -8,27 +17,61 @@
 import {fetchList} from '@/service/api'
 export default {
   props: {
-    config: Array
+    keyId: String,
+    searchCondition: {
+      type: Object,
+      default: () => {return {}}
+    },
+    order: Array,
+    pageLimit: {
+      type: Number,
+      default: 5
+    },
+    isInfinate: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
-
+      list: [],
+      isLoading: false,
+      isFinished: false,
+      pager: {
+        current: 0,
+        total: 1,
+      },
     }
   },
-  mounted() {
-    var len = this.config.length
-    var loaded = 0
-    var res = []
+  methods: {
+    fetchList() {
+      if(this.isFinished) {
+        return
+      }
+      this.isLoading = true
+      this.pager.current++
+      
+      // 非无限加载的，只调用一次接口
+      if(!this.isInfinate) {
+        this.isFinished = true
+      }
 
-    this.config.forEach((name, i) => {
-      fetchModel(c).then(({data})=> {
-        loaded++;
-        res[i] = data
-        if(loaded === len) {
-          this.$emit('loaded', res)
+      fetchList(this.keyId, this.searchCondition, this.pager).then(({data}) => {
+        this.list = this.list.concat(data.data)
+        this.pager.total = data.pager.total
+        if(this.pager.current >= Math.ceil(data.pager.total / this.pageLimit)) {
+          this.isFinished = true
         }
+        this.isLoading = false
+        console.log(this.list)
       })
-    })
+
+    }
+    
+  },
+  mounted() {
+    this.pager.item = this.pageLimit
+    this.fetchList()
   }
 }
 </script>

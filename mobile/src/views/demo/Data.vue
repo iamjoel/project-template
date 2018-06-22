@@ -19,14 +19,34 @@
         接口2数据：{{scope.data[1].name}}
       </template>
     </DataFetcher>
+
+    <h2>无限加载列表</h2>
+    <van-cell-group>
+      <ListFetcher key-id="skill">
+        <template slot-scope="scope" v-if="scope.data">
+          <van-cell :value="scope.data.name" />
+        </template>
+      </ListFetcher>
+    </van-cell-group>
+
+    <h2>非无限加载列表</h2>
+    <van-cell-group>
+      <ListFetcher key-id="skill" :is-infinate="false" :page-limit="2">
+        <template slot-scope="scope" v-if="scope.data">
+          <van-cell :value="scope.data.name" />
+        </template>
+      </ListFetcher>
+    </van-cell-group>
   </div>
 </template>
 
 <script>
 import DataFetcher from '@/components/data-fetcher'
+import ListFetcher from '@/components/list-fetcher'
 export default {
   components: {
     DataFetcher,
+    ListFetcher
   },
   data() {
     return {
@@ -37,4 +57,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 2;
+}
+</style>

@@ -12,6 +12,7 @@ export const IMGS_PREFIX = `${HOST}/public/imgs`
 export const urls = {
   care_service: addUrlGroup('care_service'),
   single_service: addUrlGroup('single_service'),
+  skill: addUrlGroup('skill'),
 }
 
 function addUrlGroup (key, types = ['list', 'detail', 'add', 'edit','del'], others) {

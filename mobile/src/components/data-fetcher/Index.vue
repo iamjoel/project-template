@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      data: Array.isArray(this.config) ? [] : {}
+      data: Array.isArray(this.config) ? fillEmptyObj(this.config.length) : {}
     }
   },
   mounted() {
@@ -38,6 +38,14 @@ export default {
     })
     
   }
+}
+
+function  fillEmptyObj(len) {
+  var res = []
+  for(var i = 0; i < len; i++) {
+    res.push({})
+  }
+  return res
 }
 </script>
 
