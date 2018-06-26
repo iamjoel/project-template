@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const SERVER_PREFIX = `${HOST}/api`
-export const IMGS_PREFIX = `${HOST}/public/imgs`
+export const IMGS_PREFIX = `${HOST}/public/img`
 
 export const urls = {
   care_service: addUrlGroup('care_service'),

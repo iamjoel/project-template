@@ -37,6 +37,9 @@ require('@/filters')
 import store from '@/store'
 
 import router from './router'
+router.afterEach((to,from,next) => { // 进入新页面时，页面总是滚动到顶部
+  window.scrollTo(0,0);
+})
 
 import App from './App.vue'
 

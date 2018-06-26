@@ -5,7 +5,7 @@
     <!-- 跑马灯通知 -->
     <van-notice-bar
       text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
-      left-icon="chat"
+      left-icon="/static/icon/chat.png"
     />
     <!-- 垂直轮播通知 -->
     <div class="ly notice">
@@ -87,6 +87,10 @@
       <a href="javascript:void(0)" @click="$router.push('/demo/tree-select')" class="nav__item">
         <van-icon name="records" />
         <div class="mt-10 ta-c">分类选择</div>
+      </a>
+      <a href="javascript:void(0)" @click="$router.push('/demo/map/120.614/31.3661')" class="nav__item">
+        <van-icon name="records" />
+        <div class="mt-10 ta-c">地图</div>
       </a>
     </div>
     

@@ -129,7 +129,17 @@ export default [
       lazyLoading(resolve, 'demo/Data', false)
     },
   },
-  
+  {
+    path: '/demo/map/:lng/:lat',
+    meta: {
+      title: '地图',
+      activeTypeIndex: 1,
+      isShowFooter: false,
+    },
+    component: resolve => {
+      lazyLoading(resolve, 'demo/map')
+    },
+  },
 ]
 
 const lazyLoading = (resolve, name, index = true) => {

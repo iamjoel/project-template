@@ -1,7 +1,5 @@
 # 待做
-* 增加npm命令，一键删除demo代码。
 * element ui 验证能支持两种类型
-* 详情页，在保存和下载前，数据格式的转化（如 日期字符串 <-> 日期对象 和 0，1 <-> 布尔值），有公共方法来做。
 * Dashboard 放常见组件的调用。参考 ant design 和 iview admin。
   * Table grid。包括分页。
   * 图片上传
@@ -22,7 +20,6 @@
 * 添加 npm clean 命令，做删除demo页面的功能，可参考 [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)。
   * views 下的一些目录
   * 修改 setting 下的配置。重写 setting 比较容易。
-* 添加 npm generate 命令，创建新的页面的功能，也参考 [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)。
 
 ## 待探究
 * 操作栏如何自适应宽度？
