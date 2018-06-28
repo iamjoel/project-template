@@ -6,13 +6,25 @@ Vue.config.productionTip = false
 // vant ui
 import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
-import { Lazyload,Toast } from 'vant';
+import { Lazyload, Toast, ImagePreview } from 'vant';
 Vue.use(Vant)
 // lazyLoad https://www.youzanyun.com/zanui/vant#/zh-CN/lazyload
 Vue.use(Lazyload, {
   // loading: '', // 加载中的图片样式
   // error: '' // 加载完成的图片样式
 })
+
+import {IMGS_PREFIX} from '@/setting'
+Vue.prototype.$imgPrefix = IMGS_PREFIX
+Vue.prototype.$preview = url => {
+  if(typeof url !== 'string' ) {
+    return
+  }
+  if(!/^http/.test(url.trim())) {
+    url = `${IMGS_PREFIX}/${url}`
+  }
+  ImagePreview([url])
+}
 
 Vue.prototype.$showLoading = () => {
   Toast.loading({

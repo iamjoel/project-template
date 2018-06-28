@@ -66,6 +66,12 @@ export default {
       }
       this.$store.dispatch('changeFooterVisible', meta.isShowFooter)
 
+      if(meta.isShowFooter) {
+        document.body.classList.remove('no-foot-tabbar')
+      } else {
+        document.body.classList.add('no-foot-tabbar')
+      }
+
       if(meta.activeTypeIndex !== undefined) {
         this.$store.dispatch('changeActiveType', parseInt(meta.activeTypeIndex, 10))
       }
