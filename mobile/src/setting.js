@@ -1,5 +1,6 @@
 var HOST
 console.log(process.env.NODE_ENV)
+// TODO 加 appid 的配置。
 if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server-dev')
 } else {
