@@ -9,7 +9,9 @@
         <slot :data="item"/>
       </template>
     </van-list>
-    <slot />
+    <div v-if="!isLoading && list.length === 0" class="ta-c">
+      暂无数据
+    </div>
   </div>
 </template>
 
