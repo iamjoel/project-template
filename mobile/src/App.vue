@@ -97,24 +97,24 @@ export default {
   },
   created() {
     return
-    var vm = this
-    
-    var code = getQueryObject().code
+    this.$showLoading()
+    var queryObject = getQueryObject()
+    var code = queryObject.code
     if(code) {
-      this.$showLoading()
-    }
-    // var code = '001Y2c2Z0soQB22HNx4Z0pzc2Z0Y2c2V'
-    this.fetchOpenId(code).then(openid => {
-
-      vm.$store.commit(types.OPENID, openid)
-      vm.fetchUserInfo(openid).then(({data}) => {
-        data = data.data
+      // 微信是 redirectUrl 上不支持 hash。
+      if(queryObject.state && queryObject.state != 'STATE') {
+        this.$router.push(queryObject.state)
+      }
+      this.fetchOpenId(code).then((data) => { // 把用户信息也返回了
+        vm.$store.commit(types.OPENID, data.openid)
         vm.$store.commit(types.USER_INFO, data)
-        this.$hideLoading()
-      }, ()=> {
-        this.$hideLoading()
-      })
-    }, )
+        vm.$hideLoading()
+      }, )
+    } else { // 测试环境
+      var openid = 'ozNc2xHa3VosLO9zsnsg31axOa2o' // 测试
+      vm.$store.commit(types.OPENID, openid)
+      vm.fetchUserInfo(openid)
+    }
   }
 };
 
