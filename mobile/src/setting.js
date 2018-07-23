@@ -2,8 +2,6 @@ var HOST
 var imgPrefix
 var appid // 公众号id
 
-console.log(process.env.NODE_ENV)
-
 if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server-dev')
   imgPrefix = document.body.getAttribute('data-img-prefix-dev')
