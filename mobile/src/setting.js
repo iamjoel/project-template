@@ -1,14 +1,22 @@
 var HOST
+var imgPrefix
+var appid // 公众号id
+
 console.log(process.env.NODE_ENV)
-// TODO 加 appid 的配置。
+
 if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server-dev')
+  imgPrefix = document.body.getAttribute('data-img-prefix-dev')
+  appid = document.body.getAttribute('data-appid-dev')
 } else {
   HOST = document.body.getAttribute('data-server')
+  imgPrefix = document.body.getAttribute('data-img-prefix')
+  appid = document.body.getAttribute('data-appid')
 }
 
 export const SERVER_PREFIX = `${HOST}/api`
-export const IMGS_PREFIX = `${HOST}/public/img`
+export const IMGS_PREFIX = imgPrefix
+export const APPID = appid
 
 export const urls = {
   // TODO 把这四个放在 wechat 下。 wechat: {userInfo: ..}
