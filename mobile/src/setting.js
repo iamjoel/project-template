@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server')
 }
 
-const SERVER_PREFIX = `${HOST}/api`
+export const SERVER_PREFIX = `${HOST}/api`
 export const IMGS_PREFIX = `${HOST}/public/img`
 
 export const urls = {
