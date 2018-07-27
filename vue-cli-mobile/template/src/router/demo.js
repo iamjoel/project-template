@@ -130,7 +130,7 @@ export default [
     },
   },
   {
-    path: '/demo/map/:lng/:lat',
+    path: '/demo/map/:lng/:lat/:name/:address',
     meta: {
       title: '地图',
       activeTypeIndex: 1,

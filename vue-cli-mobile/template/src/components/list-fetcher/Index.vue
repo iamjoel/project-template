@@ -6,10 +6,12 @@
       @load="fetchList"
     >
       <template v-for="(item, i) in list">
-        <slot :data="item"/>
+        <slot :data="item" :index="i"/>
       </template>
     </van-list>
-    <slot />
+    <div v-if="!isLoading && list.length === 0" class="ta-c">
+      暂无数据
+    </div>
   </div>
 </template>
 

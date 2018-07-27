@@ -88,7 +88,7 @@
         <van-icon name="records" />
         <div class="mt-10 ta-c">分类选择</div>
       </a>
-      <a href="javascript:void(0)" @click="$router.push('/demo/map/120.614/31.3661')" class="nav__item">
+      <a href="javascript:void(0)" @click="$router.push('/demo/map/120.614/31.3661/联青大厦/吴中东路134号')" class="nav__item">
         <van-icon name="records" />
         <div class="mt-10 ta-c">地图</div>
       </a>

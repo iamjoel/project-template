@@ -5,7 +5,7 @@ function registerSDK( opts = {}, successFn = function(){}) {
   // opts.registerURL = opts.registerURL || location.origin + location.pathname
   // opts.registerURL = 'http://zhixingclub.com/sanqianfang/mobile/?a=3'//location.origin + location.pathname
   opts.registerURL = location.href.split('#')[0]//location.origin + location.pathname
-  axios.get(urls.registerWechat, {
+  axios.post(urls.registerWechat, {
     url: opts.registerURL
   }).then(({data}) => {
     var info = data.data
@@ -47,17 +47,18 @@ function registerSDK( opts = {}, successFn = function(){}) {
   })
 }
 
-export function pay(payInfo, success) {
-  // payInfo 包含：orderId, openid, attach
-  // alert(JSON.stringify(payInfo))
-
+import { Toast } from 'vant'
+export function pay(payInfo, successFn, failFn) {
   axios.post(urls.getPayInfo, payInfo).then(({data}) => {
-    // alert(JSON.stringify(data.data))
     registerSDK({}, function () {
       wx.chooseWXPay(Object.assign(data.data, {
         success() {
-          this.$toast('支付成功')
-          success && success()
+          Toast('支付成功')
+          successFn && successFn()
+        },
+        fail() {
+          Toast('支付失败')
+          failFn && failFn()
         }
       }))
     })

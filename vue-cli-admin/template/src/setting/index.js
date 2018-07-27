@@ -5,10 +5,10 @@ var imgPrefix
 
 if (process.env.NODE_ENV === 'development') {
   HOST = document.body.getAttribute('data-server-dev')
-  imgPrefix = `${HOST}/public/img`
+  imgPrefix = document.body.getAttribute('data-img-prefix-dev') || `${HOST}/public/img`
 } else {
   HOST = document.body.getAttribute('data-server')
-  imgPrefix = `${HOST}/public/img`
+  imgPrefix = document.body.getAttribute('data-img-prefix') || `${HOST}/public/img`
 }
 
 export const IMGS_PREFIX = imgPrefix

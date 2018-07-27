@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: 80px;/* 空出底部 Toolbar 的距离*/
 }
+/* 底部无 Toolbar 的页面 */
+body.no-foot-tabbar {
+  padding-bottom: 20px;
+}
 
 
 /* 左右两侧带线的标题 */

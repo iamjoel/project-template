@@ -4,7 +4,7 @@ import {urls, SERVER_PREFIX} from '@/setting'
 
 
 export const fetchList = (key, condition, pager, order) => {
-  var url = (urls[key] && urls[key].detail) || `${SERVER_PREFIX}/${key}/list`
+  var url = (urls[key] && urls[key].list) || `${SERVER_PREFIX}/${key}/list`
   var url = wrapFetchQuery(url,
     condition,
     pager,
