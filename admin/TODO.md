@@ -1,5 +1,6 @@
 # 待做
 * element ui 验证能支持两种类型
+* 输出必要的日志信息。
 * Dashboard 放常见组件的调用。参考 ant design 和 iview admin。
   * Table grid。包括分页。
   * 图片上传
