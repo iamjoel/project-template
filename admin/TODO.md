@@ -1,4 +1,5 @@
 # 待做
+* demo相关的，放到专门的库，这个库就是个 template，项目生成后，是不需要去移除，改动代码的。
 * element ui 验证能支持两种类型
 * 输出必要的日志信息。
 * Dashboard 放常见组件的调用。参考 ant design 和 iview admin。

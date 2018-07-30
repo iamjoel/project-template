@@ -23,7 +23,7 @@ const state = {
     id: null,
     name: null,
   },
-  role: '',// 角色
+  role: 'customer-service',// 角色
   menu: [], // 所有有权限的菜单
   limit: {}, // 权限
 }
