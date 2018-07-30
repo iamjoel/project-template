@@ -1,12 +1,12 @@
 export default [
 	{
-		"id": "fbbd34d3-7b09-128c-8681-a86ccc934313",
+		"id": 1,
 		"label": "管理员",
-		"key": "admin"
+		"key": 1
 	},
 	{
-		"id": "a6f6aa16-a16b-52d5-fd95-6303c278e4dc",
+		"id": 2,
 		"label": "店员",
-		"key": "shop"
+		"key": 2
 	}
 ]
