@@ -1,4 +1,11 @@
+import roles from './roles'
 export default [
+	{
+		"id": "role",
+		"key": "role",
+		"label": "角色",
+		"value": [...roles]
+	},
 	{
 		"id": "4f421170-35e0-58f4-7122-bfbf092d2ebd",
 		"key": "musicType",

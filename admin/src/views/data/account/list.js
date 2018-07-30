@@ -1,18 +1,48 @@
 import listMixin from '@/mixin/list'
+import JRemoteSelect from '@/components/remote-select'
 
-export default {
-  mixins: [listMixin],
-  data () {
-    return {
-      KEY: 'account',
-      searchConditions: {
-        name: null,
-      },
-      model: {}
-    }
+var searchConditions = {
+  account: ''
+}
+
+var operateConfig = {
+  "add": {
+    "isShow": true
   },
-  methods: {
-    
+  "edit": {
+    "isShow": true
+  },
+  "detail": {
+    "isShow": true
+  },
+  "delete": {
+    "isShow": true
   }
 }
 
+export default {
+  mixins: [listMixin],
+  components: {
+   'j-remote-select': JRemoteSelect,
+  },
+  data() {
+    return {
+      KEY: 'account',
+      searchConditions,
+    }  
+  },
+  methods: {
+    isShow(type) {
+      var isShow = operateConfig[type].isShow
+      if(Array.isArray(isShow)) {
+        return isShow.indexOf(this.$store.state.role) !== -1
+      } else {
+        return isShow
+      }
+    },
+
+  },
+  mounted() {
+    
+  }
+}

@@ -14,7 +14,6 @@ const state = {
   * 基础数据包括：菜单，角色，字典，实体，页面配置数据
   */
   hasLoadBasicData: false,
-  roles: [], // 角色
   dict: [], // 字典
   entities: [], // 实体
   navMenu: [], // 菜单
@@ -23,7 +22,8 @@ const state = {
     id: null,
     name: null,
   },
-  role: 'customer-service',// 角色
+  roles: [], // 角色
+  role: 1,// 角色
   menu: [], // 所有有权限的菜单
   limit: {}, // 权限
 }
