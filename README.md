@@ -8,7 +8,7 @@
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 * [移动端](mobile)
   * Vue
-    * [源码](mobile)
+    * [源码](mobile)。 [代码库](https://github.com/iamjoel/mobile-codes-collection)。
     * [脚手架](vue-cli-mobile)。同步源码到脚手架: `gulp generator-mobile`
   * React
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)

@@ -97,12 +97,12 @@ export default {
 }
 
 .card-goods__item .van-checkbox__icon {
-      top: 50%;
-      left: 10px;
-      z-index: 1;
-      position: absolute;
-      margin-top: -10px;
-    }
+  top: 50%;
+  left: 10px;
+  z-index: 1;
+  position: absolute;
+  margin-top: -10px;
+}
 
 .card-goods__item .van-card__price {
   color: #f44;

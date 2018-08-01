@@ -41,8 +41,6 @@ var routes = [
       lazyLoading(resolve, 'member-center')
     },
   },
-  // demo
-  ...require('./demo').default
 ]
 
 
