@@ -10,42 +10,31 @@ var sysMenu = [{
   id: 'dashboard',
   name: '仪表盘',
   path: '/'
-},{
-  id: 'account',
-  name: '帐号',
-  path: '/account',
-  role: 'admin',
 }]
 import configMenus from '@/setting/base/menu'
 var menus = [...sysMenu, ...configMenus]
 
 export const fetchMenuAndLimit = ({ commit, state, getters }) => {
   var role = state.role
+  console.log(role)
   // 权限过滤
   var currentMenus = menus.filter(menu => {
     if(menu.role) {
-      if(menu.role !== role) {
-        return false
-      } else {
-        if(menu.children) {
-          menu.children = menu.children.filter(item => {
-            if(item.role) {
-              return item.role === role
-            }
-            return true
-          })
-        }
-        return true
-      }
+      return hasLimit(menu.role, role)
     } else {
       if(menu.children) {
         menu.children = menu.children.filter(item => {
-          if(item.role) {
-            return item.role === role
-          }
-          return true
+          return hasLimit(item.role, role)
         })
       }
+      return true
+    }
+  })
+  // 过滤掉那些空菜单。
+  currentMenus = currentMenus.filter(menu => {
+    if(menu.children && menu.children.length === 0) {
+      return false
+    } else {
       return true
     }
   })
@@ -57,6 +46,15 @@ export const fetchMenuAndLimit = ({ commit, state, getters }) => {
         limit: {}
       }
   })
+}
+
+function  hasLimit(allowRoles, role) {
+  if(!allowRoles || role == 1) return true // 所有设置权限人都能看; 1 是超级管理员
+  if(Array.isArray(allowRoles)) {
+    return allowRoles.indexOf(role) != -1
+  } else {
+    return allowRoles == role
+  }
 }
 
 export const fetchBasicData = ({ commit, state, getters }) => {

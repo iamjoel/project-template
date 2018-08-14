@@ -8,12 +8,6 @@ var routes = [
       lazyLoading(resolve, 'Dashboard', false)
     },
   },
-  {
-    path: '/account',
-    component: resolve => {
-      lazyLoading(resolve, 'account/List', false)
-    },
-  },
   ...routerConfig.map(item => {
     return {
       path: item.routePath,
@@ -23,32 +17,6 @@ var routes = [
     }
   }),
 ]
-
-// import {menuConfig} from '@/setting'
-// // 页面的路由的定义
-// menuConfig.forEach(menu => {
-//   var parentId = menu.id
-//   if(menu.children) { // 二级菜单
-//     menu.children.forEach(pageGroup => {
-//       pageGroup.pages.forEach(page => {
-//         addRoute(page.filePath, page.routePath)
-//       })
-//     })
-//   } else { // 一级路由
-//     menu.pages.forEach(page => {
-//       addRoute(page.filePath, page.routePath)
-//     })
-//   }
-// })
-
-// function addRoute(filePath, routePath) {
-//   routes.push({
-//     path: routePath,
-//     component: resolve => {
-//       lazyLoading(resolve, filePath)
-//     }
-//   })
-// }
 
 const lazyLoading = (resolve, name, index = false) => {
   require.ensure([], function(require) {

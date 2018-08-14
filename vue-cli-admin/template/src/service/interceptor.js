@@ -20,7 +20,7 @@ axios.interceptors.response.use(response => {
   var config = response.config
   var errorCode = data.errorCode
   if(errorCode) {
-    if(errorCode == 1) {
+    if(errorCode == 999) { // 登录超时
       location.href = 'login.html'
       return 
     }

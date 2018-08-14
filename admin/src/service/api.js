@@ -25,6 +25,7 @@ export const fetchModel = (key, id) => {
 }
 
 export const addModel = (key, data) => {
+  delete data.moreInfo
   var url = (urls[key] && urls[key].add) || `${SERVER_PREFIX}/${key}/add`
   return axios.post(url, Object.assign({}, data, {
   }) )
@@ -35,7 +36,6 @@ export const editModel = (key, data) => {
   delete data.updateTime
   delete data.delFlg
   delete data.moreInfo
-  // var url = `${urls[key].edit}/${data.id}`
   var url = (urls[key] && `${urls[key].edit}`) || `${SERVER_PREFIX}/${key}/edit`
   return axios.post(url, Object.assign({}, data, {
   }))

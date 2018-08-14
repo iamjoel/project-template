@@ -5,15 +5,11 @@
         <div class="login__title">登录</div>
       </div>
       <el-form :model="model" :rules="rules" ref="form" label-position="right" label-width="80px">
-          <el-form-item label="用户名" prop="name">
-            <el-input v-model="model.name"></el-input>
+          <el-form-item label="用户名" prop="account">
+            <el-input v-model="model.account"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input v-model="model.password" type="password" @keyup.enter.native="login"></el-input>
-            <p style="font-size:12px;color: #666">
-              超级管理员: admin 密码: 1<br>
-              普通用户: user 密码: 1
-            </p>
           </el-form-item>
       </el-form>
       <div class="login__btn-wrap">
@@ -25,6 +21,9 @@
 </template>
 
 <script>
+import {urls} from '@/setting'
+import * as types from '@/store/mutation-types'
+
 export default {
   name: 'app',
   components: {
@@ -33,11 +32,11 @@ export default {
   data() {
     return {
       model: {
-        name: 'admin',
-        password: '1',
+        account: null,
+        password: null,
       },
       rules: {
-        name: [
+        account: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
         ],
         password: [
@@ -49,15 +48,12 @@ export default {
   methods: {
     login() {
       this.$refs.form.validate((valid) => {
-        if (valid) {
-          localStorage.setItem('j-sessionid', Math.random())
-          // 仅供测试
-          var role = this.model.name === 'admin' ? 'admin' : 'user'
-          localStorage.setItem('j-role', role)
-          location.href= "index.html"
-        } else {
-          return false;
-        }
+        this.$http.post(urls.login, this.model).then(({data}) => {
+          data = data.data
+          localStorage.setItem('j-role', data.role)
+          localStorage.setItem('j-token', data.token)
+          location.href = 'index.html'
+        })
       });
       
     }
