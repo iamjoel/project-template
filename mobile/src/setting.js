@@ -17,15 +17,6 @@ export const IMGS_PREFIX = imgPrefix
 export const APPID = appid
 
 export const urls = {
-  // TODO 把这四个放在 wechat 下。 wechat: {userInfo: ..}
-  userInfo: `${SERVER_PREFIX}/wechat/userinfo`, // 微信基本信息
-  registerWechat: `${SERVER_PREFIX}/wechat/sdkinfo`, // 注册 jssdk 信息
-  getOpenid: `${SERVER_PREFIX}/wechat/openid`, // 微信的 openid
-  getPayInfo: `${SERVER_PREFIX}/wechat/prepay`, // 微信支付信息
-
-  care_service: addUrlGroup('care_service'),
-  single_service: addUrlGroup('single_service'),
-  skill: addUrlGroup('skill'),
 }
 
 function addUrlGroup (key, types = ['list', 'detail', 'add', 'edit','del'], others) {

@@ -1,21 +1,14 @@
 <template>
   <div id="app">
-    <!-- 改用 document.title -->
-    <!-- <van-nav-bar
-      v-if="header.isShow"
-      :title="header.title"
-      leftText="返回"
-      leftArrow
-      @click-left="$router.go(-1)"
-    /> -->
+
     <div class="main">
       <router-view></router-view>
     </div>
     <van-tabbar v-model="activeTypeIndex" v-show="$store.state.isShowFooter">
       <van-tabbar-item icon="wap-home" url="#/">首页
       </van-tabbar-item>
-      <van-tabbar-item icon="wap-nav" url="#/classify-list">分类</van-tabbar-item>
-      <van-tabbar-item icon="gift" url="#/cart" info="3">购物车</van-tabbar-item>
+      <van-tabbar-item icon="wap-nav" @click="$toast('分类页')">分类</van-tabbar-item>
+      <van-tabbar-item icon="gift" @click="$toast('购物车')">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" url="#/member-center">我的</van-tabbar-item>
     </van-tabbar>
   </div>

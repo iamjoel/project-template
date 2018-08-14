@@ -11,27 +11,6 @@ var routes = [
     },
   },
   {
-    path: '/classify-list',
-    meta: {
-      title: '分类',
-      activeTypeIndex: 1,
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'classify-list')
-    },
-  },
-  {
-    path: '/cart',
-    meta: {
-      title: '购物车',
-      activeTypeIndex: 2,
-      isShowFooter: false
-    },
-    component: resolve => {
-      lazyLoading(resolve, 'cart')
-    },
-  },
-  {
     path: '/member-center',
     meta: {
       title: '个人中心',
