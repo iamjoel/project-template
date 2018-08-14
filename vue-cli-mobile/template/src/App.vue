@@ -70,7 +70,7 @@ export default {
       }
     },
     fetchUserInfo(openid) {
-      return this.$http.get(`${urls.userInfo}/${openid}`)
+      return this.$http.get(`${urls.wechat.userInfo}/${openid}`)
     },
     fetchOpenId(code) {
       if(!code) { // 本地没有 code
@@ -79,7 +79,7 @@ export default {
         })
       } else {
         return new Promise((resolve, reject) => {
-          this.$http.get(urls.getOpenid + '/' + code).then(({data})=> {
+          this.$http.get(urls.wechat.getOpenid + '/' + code).then(({data})=> {
             resolve(data.data)
           }, ()=> {
             reject()
