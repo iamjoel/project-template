@@ -1,0 +1,30 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+}
+
+.media__body {
+  flex: 1;
+}
+
+.media--right .media__img{
+  order: 2;
+
+}
+.media--border {
+  border-bottom: 1px solid #ddd;
+}
+
+.media--border:last-child {
+  border-bottom: none;
+}
+
+.media--round .media__img {
+  border-radius: 50%;
+}
+
+.media-ver .media__img{
+  display: block;
+  max-width: 100%;
+}

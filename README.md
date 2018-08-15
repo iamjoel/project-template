@@ -14,9 +14,9 @@
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 * 小程序
   * [WePY](wepy)
+* 服务器端渲染(SSR)
+  * Nuxt.js [源码](nuxt)
 * PC 应用程序
   * [electron-vue](https://github.com/SimulatedGREG/electron-vue)
 * 服务器端
   * [Node](server)
-* 服务器端渲染(SSR)
-  * [Nuxt.js](https://nuxtjs.org/) 待探索
