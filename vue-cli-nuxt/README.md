@@ -1,9 +1,13 @@
-# vue-cli-template-mobile
-移动端项目脚手架。
+# vue-cli-template-nuxt
+nuxt 项目脚手架。 目前文件能移动，但项目跑起来有问题。。。
+
+先用 官方脚手架吧 `vue init nuxt-community/starter-template`。
+
+有空参考 `https://github.com/nuxt-community/starter-template/tree/master/template` 再倒腾下。
 
 ## 启动
 ```
-vue init iamjoel/vue-cli-template-mobile
+vue init iamjoel/vue-cli-template-nuxt
 ```
 
 ## 需要注意的

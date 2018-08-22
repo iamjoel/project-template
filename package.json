@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:admin": "gulp generator-admin",
-    "build:mobile": "gulp generator-mobile"
+    "build:mobile": "gulp generator-mobile",
+    "build:nuxt": "gulp generator-nuxt"
   },
   "repository": {
     "type": "git",
