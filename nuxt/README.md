@@ -37,6 +37,7 @@ process.browser : true 在客户端; false 在服务器端
 </no-ssr>
 ```
 
+
 2 动态加载组件
 ```
 components: {
@@ -52,3 +53,12 @@ components: {
   }),
 }
 ```
+
+## 在 Linux(Center OS) 系统 build 不成功
+解决方案: 在本地构建，构建好后，把 `.nuxt` 和 `node_modules` 上传到服务器。
+
+## 组件里不支持 asyncData 
+解决方案: 所以只能在 Page 的 asyncData 里拿到数据后，塞到组件里。
+
+## adBlock(广告拦截插件) 会经常导致服务挂掉
+解决方案：禁用adBlock。
