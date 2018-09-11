@@ -1,11 +1,18 @@
+* {
+  /* 字体抗锯齿 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 使用与当前操作系统一致的字体 https://devhints.io/css-system-font-stack  */
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
 html {
   font-size: 50px;
 }
 body {
   font-size: 12px;
-   font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   padding-bottom: 80px;/* 空出底部 Toolbar 的距离*/
 }
 /* 底部无 Toolbar 的页面 */
