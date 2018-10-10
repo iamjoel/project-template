@@ -4,16 +4,17 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_zhixingclub';
+  config.keys = appInfo.name + '_demo';
 
   // 自定义中间件
-  //config.middleware = [ 'bodyparser', 'tokencheck', 'xmlbodytransfer'];
-  config.middleware = ['bodyparser', 'xmlbodytransfer'];
+  //config.middleware = [ 'json','xml','jwt'];
+  config.middleware = ['xml', 'json'];
 
   // log输出
   config.logger = {
-    dir: './logs/server-template',
+    dir: './logs/demo-server',
     level: 'DEBUG',
+    allowDebugAtProd:true,
   };
 
   // bodyParser设置
@@ -31,12 +32,13 @@ module.exports = appInfo => {
   // mysql设置
   config.mysql = {
     client: {
+      // host: '47.96.191.184',
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: '',
+      password: '123456',
       // 数据库名
-      database: 'admin-template',
+      database: 'demo',
     },
     // 是否加载到 app 上，默认开启
     app: true,

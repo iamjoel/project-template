@@ -1,31 +1,22 @@
 'use strict';
 
-const setting = require('../conf/setting')
-const sql = require('../conf/sql').list
 const jwt = require('jwt-simple');
-const role = require('../conf/right');
 const mysql = require('mysql');
 
 const getResourceName = function(path) {
-  return path.split('/')[2];
-};
-module.exports.getResourceName = getResourceName;
-
-const getOptionName = function(path) {
-    return path.split('/')[3];
+    return path.split('/')[2];
 };
 module.exports.getResourceName = getResourceName;
 
 const checkToken = function(token, jwtTokenSecret) {
-  if (token) {
-    try {
+  if(token){
+    try{
       const decoded = jwt.decode(token, jwtTokenSecret);
       if (decoded.account != null && new Date(decoded.exp) > new Date()) {
         return true;
       }
       return false;
-
-    } catch (err) {
+    }catch (err) {
       return false;
     }
   } else {
@@ -47,34 +38,6 @@ const getUserInfoByToken = function(token, jwtTokenSecret) {
   }
 };
 module.exports.getUserInfoByToken = getUserInfoByToken;
-
-const rightCheck = function(roleType,api) {
-    let resourceName = getResourceName(api)
-    let option = getOptionName(api)
-    let right = role[roleType]
-    let hasRight
-    let res = {
-        code:0,
-        message:''
-    }
-    if(right==undefined){
-        res.code = 998
-        res.message = '未配置权限文件'
-    }else{
-        let rightList = role[roleType][resourceName]
-        hasRight = rightList.find((v,i,o)=>{
-            return v == option
-        })
-        if(hasRight==undefined){
-            res.code = 998
-            res.message = `没有权限对资源${resourceName}进行${option}操作`
-        }else{
-            res.code = 0
-        }
-    }
-    return res    
-};
-module.exports.rightCheck = rightCheck;
 
 const transformStrFormCamel = function(str) {
   const re = /_(\w)/g;
@@ -99,182 +62,6 @@ const getParmars = function(url) {
   return obj;
 };
 module.exports.getParmars = getParmars;
-
-const resultFormat = function(queryData){
-  let result = {};
-  let list = [];
-
-  for(let item in queryData){
-      if(item.indexOf('_')==-1) {
-          delete queryData['delFlg'];
-          delete queryData['createTime'];
-          delete queryData['updateTime'];
-          return queryData
-      }else{
-          let table = item.split('_')[0];
-          let key = item.split('_')[1];
-          let value = queryData[item];
-          let obj ={
-              [key]:value
-          };
-          list.push(table);
-          if(result[table]) {
-              result[table] = Object.assign(result[table], obj)
-          } else {
-              result[table] = obj
-          }
-      }
-  }
-  list = Array.from(new Set(list));
-  result[list[0]].moreInfo = {};
-  list.forEach((item)=>{
-      if(item!=list[0]){
-          result[list[0]].moreInfo = Object.assign({[item]:result[item]},result[list[0]].moreInfo);
-          delete result[item];
-      }
-  });
-  result = result[list[0]];
-  return result
-};
-module.exports.resultFormat  = resultFormat;
-
-const tableInfo = function(tableName){
-    let table = sql.find((v,i,o)=>{
-        if(v.mainTable==tableName){
-            return v
-        }
-    });
-    return table
-}
-const getWhereQuery = function(where,tableInfo){
-    let _where = [];
-    let res = ''
-    let mainTableAs = ''
-    if(tableInfo!=undefined){
-        mainTableAs = tableInfo.mainTableAs + '.'
-    }
-
-    if(where != null){
-        for(let i in where){
-            let name = i
-            let likeFieldlist = setting.likeFieldlist.find((v,i,o)=>{
-                if(v == name){
-                    return v
-                }
-            });
-            if(likeFieldlist != undefined){
-                _where.push(`${mainTableAs}${i} like '%${where[i]}%'`);
-            }else{
-                if(typeof(where[i])==='string'){
-                    _where.push(`${mainTableAs}${i} = '${where[i]}'`);
-                }else if(typeof(where[i])==='number'){
-                    _where.push(`${mainTableAs}${i} = ${where[i]}`);
-                }
-            }
-        }
-        //设置删除flg
-        _where.push(`${mainTableAs}delFlg = 0`);
-        res =  ` where ${_where.join(' and ')}`;
-    }else{
-        _where.push(`${mainTableAs}delFlg = 0`);
-        res =  ` where ${_where.join(' and ')}`;
-    }
-    return res
-}
-
-const getOrderQuery = function(orders,tableInfo){
-    let res = ''
-    let mainTableAs =''
-    if(tableInfo!=undefined){
-        mainTableAs = tableInfo.mainTableAs + '.'
-    }
-    if(orders != null){
-        res = `${res} order by`;
-        for(let z=0;z<orders.length;z++){
-            res = `${res} ${mainTableAs}${orders[z][0]} ${orders[z][1]} ,`
-        }
-        res = `${res} ${mainTableAs}updateTime desc `
-    }else {
-        res = `${res} order by ${mainTableAs}updateTime desc `
-    }
-    return res
-}
-
-const pagination = function(pageAt,pageLimit){
-    let res =''
-    let limit = pageLimit;
-    let offset = (pageAt - 1) * pageLimit;
-    pageAt = parseInt(pageAt);
-    pageLimit = parseInt(pageLimit);
-    res = ` limit ${offset},${limit}`;
-    return res
-}
-
-const Columnmaker = function(tableInfo){
-    let column = []
-    tableInfo.mainColumn.split(',').forEach((item)=>{
-        column.push(`${tableInfo.mainTableAs}.${item} as ${tableInfo.mainTableAs}_${item}`);
-    });
-    tableInfo.joinTables.forEach((table)=>{
-        table.joinTableColumn.split(',').forEach((item)=>{
-            column.push(`${table.joinTableAs}.${item} as ${table.joinTableAs}_${item}`);
-        });
-    });
-
-    return column
-}
-
-const joinMaker = function(tableInfo){
-    let res = ''
-    tableInfo.joinTables.forEach((table)=>{
-        res = res + ` ${table.joinType} ${table.joinTable} as ${table.joinTableAs} on ${tableInfo.mainTableAs}.${table.joinKey[0]} = ${table.joinTableAs}.${table.joinKey[1]}`;
-    });
-    return res
-}
-
-const generatorQuery = function(tableName, pageAt = 1, where, orders, pageLimit = 10,type = 'query'){
-    let query = '';
-    let _where = [];
-    tableName = setting.PREFIX + tableName
-    let _tableInfo = tableInfo(tableName)
-    //没有表关联的情况
-    if(_tableInfo == undefined){
-        //查询list或者详情
-        if(type=='query'){
-            query = `select * from ${tableName}`
-        }else if(type=='count'){
-            query = `select count(*) as num from ${tableName}`
-        }else if(type=='detail'){
-            query = `select * from ${tableName}`
-        }
-    }else if(_tableInfo != undefined){
-        //有表关联的情况
-        let column = Columnmaker(_tableInfo)
-        if(type=='query'){
-            query = `select ${column.join(',')} from ${_tableInfo.mainTable} as ${_tableInfo.mainTableAs}`;
-        }else if(type=='count'){
-            query = `select count(*) as num from ${_tableInfo.mainTable} as ${_tableInfo.mainTableAs}`;
-        }else{
-            query = `select ${column.join(',')} from ${_tableInfo.mainTable} as ${_tableInfo.mainTableAs}`;
-        }
-        query = query + joinMaker(_tableInfo)
-    }
-    //where条件拼接
-    query = query + getWhereQuery(where,_tableInfo)
-    if(type=='detail'){
-        console.log(query)
-        return query
-    }
-    //order拼接
-    query = query + getOrderQuery(orders,_tableInfo)
-    //分页
-    if(type!='count'){
-        query = query + pagination(pageAt,pageLimit)
-    }
-    console.log(query)
-    return query
-};
-module.exports.generatorQuery  = generatorQuery;
 
 const generatorRule = function(rule) {
     let res = {};
@@ -315,7 +102,7 @@ module.exports.generatorRule  = generatorRule;
 
 const logicResult = function(code,data){
     return  {
-        code:code,
+        errorCode:code,
         data:data,
     }
 };
@@ -356,3 +143,85 @@ const convertImgCmd = function(path,thumbImgPath,size) {
     })
 }
 module.exports.convertImgCmd  = convertImgCmd;
+
+const randomString = function (len) {
+    len = len || 32;
+    var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var maxPos = chars.length;
+    var str = '';
+    for (let i = 0; i < len; i++) {
+        str += chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+};
+module.exports.randomString  = randomString;
+
+const filterEmoji = function (str){
+    var strArr = str.split("");
+    var result = "";
+    var totalLen = 0;
+
+    for(var i = 0; i < strArr.length; i ++) {
+        // 超出长度,退出程序
+        if(totalLen >= 16) break;
+        var val = strArr[i];
+        // 英文,增加长度1
+        if(/[a-zA-Z]/.test(val)) {
+            totalLen = 1 + (+totalLen);
+            result += val;
+        }
+        // 中文,增加长度2
+        else if(/[\u4e00-\u9fa5]/.test(val)) {
+            totalLen = 2 + (+totalLen);
+            result += val;
+        }
+        // 遇到代理字符,将其转换为 "", 不增加长度
+        else if(/[\ud800-\udfff]/.test(val)) {
+            // 代理对长度为2,
+            if(/[\ud800-\udfff]/.test(strArr[i + 1])) {
+                // 跳过下一个
+                i ++;
+            }
+            // 将代理对替换为 ""
+            result += "";
+        }
+    };
+    return result
+}
+module.exports.filterEmoji  = filterEmoji;
+
+const formatXmlResult = function (data){
+    let result = data;
+    for(let i in result){
+        result[i] = result[i][0];
+    }
+    return result
+}
+module.exports.formatXmlResult  = formatXmlResult;
+
+const randomNum =function(len) {
+    len = len || 32;
+    var chars = '0123456789';
+    var maxPos = chars.length;
+    var str = '';
+    for (let i = 0; i < len; i++) {
+        str += chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+};
+module.exports.randomNum  = randomNum;
+
+//计算GPS距离
+const toRad =  function (d) {  
+    return d * Math.PI / 180
+}
+const getDisance = function (lat1, lng1, lat2, lng2) { 
+    var dis = 0;
+    var radLat1 = toRad(lat1);
+    var radLat2 = toRad(lat2);
+    var deltaLat = radLat1 - radLat2;
+    var deltaLng = toRad(lng1) - toRad(lng2);
+    var dis = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(deltaLng / 2), 2)));
+    return dis * 6378137;
+}
+module.exports.getDisance  = getDisance;

@@ -10,6 +10,7 @@ run/
 .DS_Store
 *.sw*
 *.un~
-public
-config/config.default.js
-app/conf/setting.js
+*.png
+*.jpeg
+*.jpg
+*.gif

@@ -1,11 +1,14 @@
 const Service = require('egg').Service;
-var Tools = require('../util/tools.js');
+var Tools = require('../../util/tools.js');
 var uuid = require('uuid');
+const setting =  require('../../conf/setting.js')
+const moment =  require('moment')
 
-class item extends Service {
+class staff_profile extends Service {
     * addCheck (data){
         try{
-            console.log(1)
+            
+
             return Tools.logicResult(0,data)
         }catch(e){
             return Tools.logicResult(-1,e)
@@ -14,7 +17,7 @@ class item extends Service {
 
     * editCheck (data){
         try{
-            console.log('item logic edit')
+            
             return Tools.logicResult(0,data)
         }catch(e){
             return Tools.logicResult(-1,e)
@@ -23,11 +26,13 @@ class item extends Service {
 
     * delCheck (data){
         try{
-            console.log('item logic del')
+
+            
             return Tools.logicResult(0,data)
         }catch(e){
             return Tools.logicResult(-1,e)
         }
     }
+
 }
-module.exports = item;
+module.exports = staff_profile;

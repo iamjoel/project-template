@@ -9,7 +9,7 @@ module.exports = app => {
         * upload(ctx) {
             try {
                 const uploadType = Tools.getResourceName(this.ctx.request.path)
-                const res = yield this.service.resourceUpload.resourceUpload(ctx,uploadType);
+                const res = yield this.service.commonLogic.resourceUpload.resourceUpload(ctx,uploadType);
                 this.ctx.body = res;
             } catch (e) {
                 this.ctx.body = Response.fail(1, e)

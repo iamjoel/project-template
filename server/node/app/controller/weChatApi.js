@@ -7,7 +7,7 @@ module.exports = app => {
 
         * getAppId() {
             try {
-                var res = yield this.service.weChatApi.getAppId();
+                var res = yield this.service.commonLogic.weChatApi.getAppId();
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
@@ -16,7 +16,7 @@ module.exports = app => {
 
         * getToken() {
             try {
-                var res = yield this.service.weChatApi.getToken();
+                var res = yield this.service.commonLogic.weChatApi.getToken();
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
@@ -25,7 +25,7 @@ module.exports = app => {
 
         * getTicket() {
             try {
-                var res = yield this.service.weChatApi.getTicket();
+                var res = yield this.service.commonLogic.weChatApi.getTicket();
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
@@ -34,34 +34,7 @@ module.exports = app => {
 
         * getSdkInfo() {
             try {
-                var res = yield this.service.weChatApi.getSdkInfo(this.ctx.request.body.url);
-                this.ctx.body = res;
-            } catch(e) {
-                this.ctx.body = Response.fail(1, e)
-            }
-        }
-
-        * getUserInfo(){
-            try {
-                var res = yield this.service.weChatApi.getUserInfo(this.ctx.params.id);
-                this.ctx.body = res;
-            } catch(e) {
-                this.ctx.body = Response.fail(1, e)
-            }
-        }
-
-        * getOpenid(){
-            try {
-                var res = yield this.service.weChatApi.getUserInfoByOAuth(this.ctx.params.code);
-                this.ctx.body = res;
-            } catch(e) {
-                this.ctx.body = Response.fail(1, e)
-            }
-        }
-
-        * getUserInfoByOAuth(){
-            try {
-                var res = yield this.service.weChatApi.getUserInfoByOAuth(this.ctx.params.code);
+                var res = yield this.service.commonLogic.weChatApi.getSdkInfo(this.ctx.request.body.url);
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
@@ -71,7 +44,7 @@ module.exports = app => {
         * getPrePayId(){
             try {
                 var data = this.ctx.request.body;
-                var res = yield this.service.weChatApi.getPrePayId(data);
+                var res = yield this.service.commonLogic.weChatApi.getPrePayId(data);
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
@@ -81,7 +54,34 @@ module.exports = app => {
         * getPayNotify(){
             try {
                 var data = this.ctx.request.body;
-                var res = yield this.service.weChatApi.getPayNotify(data);
+                var res = yield this.service.commonLogic.weChatApi.getPayNotify(data);
+                this.ctx.body = res;
+            } catch(e) {
+                this.ctx.body = Response.fail(1, e)
+            }
+        }
+
+        * snsapiBase(){
+            try {
+                var res = yield this.service.commonLogic.weChatApi.snsapiBase(this.ctx.params.code);
+                this.ctx.body = res;
+            } catch(e) {
+                this.ctx.body = Response.fail(1, e)
+            }
+        }
+
+        * snsapiUserInfo(){
+            try {
+                var res = yield this.service.commonLogic.weChatApi.snsapiUserInfo(this.ctx.params.code);
+                this.ctx.body = res;
+            } catch(e) {
+                this.ctx.body = Response.fail(1, e)
+            }
+        }
+
+        * userInfo(){
+            try {
+                var res = yield this.service.commonLogic.weChatApi.getUserInfo(this.ctx.params.openid);
                 this.ctx.body = res;
             } catch(e) {
                 this.ctx.body = Response.fail(1, e)
