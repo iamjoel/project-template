@@ -174,6 +174,7 @@ module.exports = app => {
           if(data[item]==null){
             delete inputData[item];
           }else{
+            // tableSchme[item]
             inputData[item] = data[item]
           }
         }
