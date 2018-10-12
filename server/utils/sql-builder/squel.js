@@ -28,11 +28,28 @@ print('where', sql)
 
 sql = squelMysql.select()
         .from('table1')
-        .where('a = ?', 'd')
+        .where('a = ? and c = ?', 'd', 4)
         .where('b = ?', squelMysql.select().field('score').from('results').where('c = 5'))
         .toString()
 print('where use params', sql)
 
+
+sql = splitQuery(squelMysql.select()
+        .from('table1'), {
+            'e': 'd',
+            'c': 'b',
+        })
+        .limit(4)
+        .toString()
+print('where use obj', sql, true)
+
+function splitQuery(sql, obj) {
+    var keys = Object.keys(obj)
+    keys.forEach(key => {
+        sql = sql.where(`${key} = "${obj[key]}"`)
+    })
+    return sql
+}
 
 sql = squelMysql.select()
         .from('table1')
@@ -99,6 +116,6 @@ sql = squelMysql.delete()
         .toString()
 print('delete', sql)
 
-function print(describe, sql) {
-  console.log(`${describe}: ${sql}`)
+function print(describe, sql, isPrint) {
+    console.log(`${describe}: ${sql}`)
 }
