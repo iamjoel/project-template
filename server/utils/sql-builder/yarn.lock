@@ -5,3 +5,7 @@
 sql-query@^0.1.27:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/sql-query/-/sql-query-0.1.27.tgz#f854672e1e3c09df773d8b343c6ad0902f92d905"
+
+squel@^5.12.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/squel/-/squel-5.12.2.tgz#8c7b54fd5462d95fe2432663c8762b65d29efe4c"

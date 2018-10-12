@@ -9,6 +9,7 @@
   "author": "Joel",
   "license": "MIT",
   "dependencies": {
-    "sql-query": "^0.1.27"
+    "sql-query": "^0.1.27",
+    "squel": "^5.12.2"
   }
 }
