@@ -14,3 +14,6 @@ run/
 *.jpeg
 *.jpg
 *.gif
+
+server/config.demo.js
+conf/setting.js

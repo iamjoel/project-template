@@ -34,7 +34,7 @@ module.exports = app => {
         }
       }
     } catch (e) {
-      ctx.body = Response.fail(999);
+      ctx.body = Response.fail(-1, e);
     }
   };
 };

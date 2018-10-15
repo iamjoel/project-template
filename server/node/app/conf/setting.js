@@ -15,25 +15,24 @@ const setting = {
     //微信配置信息
     wechatInfo:{
         //公众号ID
-        appId:'wx358d1d9cd3d7bc8c',
+        appId:'',
         //公众号密码
-        secret:'1ca2d4e87d5cde5dee1b6e55429ffc26',
+        secret:'',
         //商户ID
         mch_id:'1491194932',
         //商户密码
-        payPassWord:'NvAPtO3YDmAKP3sMXZ13gAMsVf8bczA8',
+        payPassWord:'',
         //交易回调地址
-        payCallbackUrl:'http://zhixingclub.com:7001/api/wechat/paynotify',
-        //payCallbackUrl:'http://1t60716a51.iok.la:21622/api/wechat/paynotify',
+        payCallbackUrl:'',
         //服务器地址
-        ipAddress:'47.96.189.4',
+        ipAddress:'', // 47.96.189.4
         //展示名称
-        shopName:'柏嘉优护'
+        shopName:''
     },
     // 阿里云ACCESS_KEY_ID/ACCESS_KEY_SECRET 短信
     aliyunAccessKey:{
-        id:'LTAIvCg0pJmamGfs',
-        key:'27Zo7eMqPMxBSFvwO9KC2yeNdnaaGp'
+        id:'',
+        key:''
     },
     //jwt秘钥 
     jwtTokenSecret:'demo',
@@ -59,8 +58,8 @@ const setting = {
     qiniuOss:{
         enable:false,//是否启用
         isSaveOnLocal:false,//是否保存在本地
-        accessKey:'-HLD034FdM87pyQolWxUBpZypDhIzM7NSXpin0nS',
-        secretKey:'rltTORSgg6bcv5pFnNHFbwej3DwxajP3uxZIlp0_',
+        accessKey:'',
+        secretKey:'',
         bucket:'zhixingclub',
         url:'http://pfr5h9qyx.bkt.clouddn.com'
     }

@@ -19,6 +19,18 @@ const JOIN_TYPE = {
 const PREFIX = setting.PREFIX
 
 const entities = {
+    category:{
+        //资源名(表名)
+        name:`${PREFIX}category`,
+        //资源名别名
+        alias:'category',
+        role:[1,2,3],
+        column:[
+            //字段类型:int,varchar,datetime,timestamp,text,
+            {name:'name',logicName:'账号',type:DATA_TYPE.STRING,length:40,isRrequire:true,isAllowEmpty:false},
+        ],
+        relatedEntities:[]
+    },
     account:{
         //资源名(表名)
         name:`${PREFIX}account`,
@@ -87,10 +99,13 @@ const entities = {
 
 //加入所有实体都需要的字段
 for(var item in entities){
-    entities[item].column.push({name:'id',logicName:'id',type:DATA_TYPE.STRING,length:36,isRrequire:false,isAllowEmpty:false})
-    entities[item].column.push({name:'delFlg',logicName:'删除Flg',type:DATA_TYPE.INT,length:1,isRrequire:false,isAllowEmpty:true})
-    entities[item].column.push({name:'createTime',logicName:'创建时间',type:DATA_TYPE.DATATIME,length:0,isRrequire:false,isAllowEmpty:true})
-    entities[item].column.push({name:'updateTime',logicName:'更新时间',type:DATA_TYPE.DATATIME,length:0,isRrequire:false,isAllowEmpty:true})
+    entities[item].column = [
+        ...entities[item].column,
+        {name:'id',logicName:'id',type:DATA_TYPE.STRING,length:36,isRrequire:false,isAllowEmpty:false},
+        {name:'delFlg',logicName:'删除Flg',type:DATA_TYPE.INT,length:1,isRrequire:false,isAllowEmpty:true},
+        {name:'createTime',logicName:'创建时间',type:DATA_TYPE.DATATIME,length:0,isRrequire:false,isAllowEmpty:true},
+        {name:'updateTime',logicName:'更新时间',type:DATA_TYPE.DATATIME,length:0,isRrequire:false,isAllowEmpty:true}
+    ]
 }
 
 module.exports = entities

@@ -4,10 +4,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2018-05-31 18:15:12
 */
 
-use `admin-template`;
+use `template`;
 
 SET FOREIGN_KEY_CHECKS=0;
 

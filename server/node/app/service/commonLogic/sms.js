@@ -3,7 +3,7 @@ var Tools = require('../../util/tools.js');
 var uuid = require('uuid');
 const SMSClient = require('@alicloud/sms-sdk')
 const setting = require('../../conf/setting.js')
-const smsClient = new SMSClient({accessKeyId:setting.aliyunAccessKey.id, secretAccessKey:setting.aliyunAccessKey.key})
+// const smsClient = new SMSClient({accessKeyId:setting.aliyunAccessKey.id, secretAccessKey:setting.aliyunAccessKey.key})
 const sendSms =  function(message){
     return new Promise((resolve, reject)=> {
         smsClient.sendSMS(message).then(function (res) {

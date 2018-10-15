@@ -6,9 +6,10 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_demo';
 
-  // 自定义中间件
-  //config.middleware = [ 'json','xml','jwt'];
-  config.middleware = ['xml', 'json'];
+  // 需要启用的中间件
+  config.middleware = ['xml', 'json']
+
+  console.log(config.middleware)
 
   // log输出
   config.logger = {
@@ -32,13 +33,12 @@ module.exports = appInfo => {
   // mysql设置
   config.mysql = {
     client: {
-      // host: '47.96.191.184',
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: '123456',
+      password: '',
       // 数据库名
-      database: 'demo',
+      database: 'template',
     },
     // 是否加载到 app 上，默认开启
     app: true,

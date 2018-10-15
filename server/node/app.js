@@ -4,22 +4,14 @@ module.exports = app => {
       app.logger.info(str)
     }
   }
-  // console.log(
-  //   `
-  //   ******************************************************************************
-  //   * service is starting now!  ${new Date()} *
-  //   *                            www.zhixingclub.com                             *
-  //   ******************************************************************************
-  //   `)
-
- 
+  
   app.beforeStart(async () => {
+    console.log(`Node 环境: ${process.env.NODE_ENV}`)
     await apiCount(app)
     console.log(
     `
     ******************************************************************************
     * service is running now!   ${new Date()} *
-    *                            www.zhixingclub.com                             *
     ******************************************************************************
     `)
   });
@@ -33,5 +25,5 @@ const apiCount = function(app){
       path:item.path,
       methods:item.methods
     }))
-  }) 
+  })
 }

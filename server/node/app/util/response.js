@@ -3,8 +3,8 @@ const errorMessage = require('../conf/errorMessage.js')
 
 const fail = function fail(code,e = null) {
   return {
-    errorCode:code,
-    errorDetail:errorMessage[code].message||e
+    errorCode: code,
+    errorDetail: e ? e : ((errorMessage[code] && errorMessage[code].message) || '未知错误')
   }
   // if(code==100){
   //   return {

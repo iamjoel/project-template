@@ -4,7 +4,8 @@ var uuid = require('uuid');
 const setting = require('../../conf/setting.js')
 
 class account extends Service {
-    * listCheck (data){
+    * listCheck (data, cone){
+
         try{
             console.log(1)
 
