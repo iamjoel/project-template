@@ -41,6 +41,7 @@ $ npm stop
 * JWT
 
 ## 目录结构
+```
 egg-project
 ├── package.json
 ├── app.js 入口文件
@@ -66,6 +67,7 @@ egg-project
 |   ├── config.test.js 测试环境配置
 |   ├── config.local.js 开发环境的配置
 └── test 测试用例。
+```
     
 ## 说明
 ### Controller
