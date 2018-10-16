@@ -18,16 +18,17 @@ class CommonController extends Controller {
     var order = query.order ? JSON.parse(query.order) : undefined
 
     var resourceName = ctx.request.path.split('/')[2]
-    
+
     try {
-      ctx.body = await service.common.index.list(
+      let res = await service.common.index.list(
         resourceName,
         pager,
         where,
         order,
       )
+      ctx.body = ctx.success(res)
     } catch(e) {
-      this.ctx.body = e
+      this.ctx.body = ctx.fail(-1, e)
       this.logger.error(e)
     }
     
