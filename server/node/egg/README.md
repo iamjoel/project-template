@@ -72,6 +72,9 @@ egg-project
 ```
     
 ## 说明
+### 常用方法
+* ctx.helper.escape : 防 SQL 注入
+
 ### Controller
 在接口处理中，Controller 层主要对用户的请求参数进行处理（校验、转换），然后调用对应的 service 方法处理业务，得到业务结果后封装并返回。
 
@@ -108,3 +111,6 @@ egg-project
 
 ## 用的框架和库
 * [squel](https://github.com/hiddentao/squel)
+
+## 资源
+* [Awesome Egg.js](https://github.com/eggjs/awesome-egg)

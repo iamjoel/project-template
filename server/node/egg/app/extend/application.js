@@ -3,4 +3,4 @@ var squel = require("squel").useFlavour('mysql')
 
 module.exports = {
   squel,
-};
+}

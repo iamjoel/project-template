@@ -17,6 +17,9 @@ module.exports = appInfo => {
       database: 'template',
     },
   }
+  
+  // 一页多少条
+  config.PAGE_LIMIT = 10
 
   /**
    * some description
