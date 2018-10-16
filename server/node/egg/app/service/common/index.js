@@ -18,27 +18,46 @@ class CommonService extends Service {
     const {app, ctx, config} = this
 
     var {at, limit} = pager
+    at = at ? parseInt(at) : 1
     limit = limit || config.PAGE_LIMIT
+    const offset = (at - 1) * limit
 
     let whereStr = generatorWhere(where, ctx.helper.escape)
 
-    const offset = (at - 1) * limit
+    orders.push(['updateTime', 'desc'])
 
-    var sql = generatorOrder(
+    // 列表数据
+    var listSql = generatorOrder(
                 app.squel.select()
                   .from(`demo_${resourceName}`)
                   .where(whereStr)
                   .offset(offset)
                   .limit(limit),
-                [...orders, ['updateTime', 'desc']]
+                orders
               ).toString()
-    console.log(sql)
+    console.log(listSql)
+    const list = await this.app.mysql.query(listSql)
 
-    const list = await this.app.mysql.query(sql)
-    return list
+    // 总条数
+    var countSql = generatorOrder(
+                app.squel.select()
+                  .from(`demo_${resourceName}`)
+                  .field('count(id)', 'total')
+                  .where(whereStr),
+                orders
+              ).toString()
+    console.log(countSql)
+    const total = await this.app.mysql.query(countSql)
+
+    return {
+      data: list,
+      pager: {
+        total: total[0].total,
+        pageAt: at
+      }
+    }
   }
 
-  // 分页
 
   async listORM(resourceName) {
     const list = await this.app.mysql.query(`select * from demo_${resourceName}`)
