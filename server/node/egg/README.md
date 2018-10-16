@@ -100,6 +100,11 @@ egg-project
 
 ## TODO
 * 将 `app/config` 合并到 `config` 下。
+* 单表的列表，详情。 拼 sql 和 orm。
+* 接口权限。
 * 将 `service/commonLogic` 下的做成一个个的 npm 的包。
 * 将 `service/businessLogic` 文件夹 和 `speccialLogic.js` 去掉。验证放到 controller 里去做。
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
+
+## 用的框架和库
+* [squel](https://github.com/hiddentao/squel)

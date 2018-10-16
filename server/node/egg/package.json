@@ -4,7 +4,8 @@
   "description": "",
   "dependencies": {
     "egg": "^2.3.0",
-    "egg-mysql": "^3.0.0"
+    "egg-mysql": "^3.0.0",
+    "squel": "^5.12.2"
   },
   "devDependencies": {
     "autod": "^3.0.1",
