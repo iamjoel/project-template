@@ -102,9 +102,16 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 将 `app/config` 合并到 `config` 下。
-* 单表的列表，详情。 拼 sql 和 orm。
+* 单表的列表，orm。
+* 单表详情。 拼 sql 和 orm。
+* 单表，拿指定列。
+* 多表的关联。
+* 新增，编辑。 body parse；以及验证
+* 图片上传
+* 删除
+* 跨域处理。
 * 接口权限。
+* 微信api的接入。
 * 将 `service/commonLogic` 下的做成一个个的 npm 的包。
 * 将 `service/businessLogic` 文件夹 和 `speccialLogic.js` 去掉。验证放到 controller 里去做。
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
