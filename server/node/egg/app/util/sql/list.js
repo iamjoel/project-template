@@ -4,7 +4,7 @@
 var generatorWhere = require('./where')
 var generatorOrder = require('./order')
 
-module.exports = (info, env, type = 'list') => {
+module.exports = (info, env, type = 'list', isMulti = false) => {
   var {resourceName, pager, where, orders} = info
   const {app, ctx, config} = env
 
@@ -19,8 +19,10 @@ module.exports = (info, env, type = 'list') => {
   let whereStr = generatorWhere(where, ctx.helper.escape)
 
   orders = orders || []
-  orders.push(['updateTime', 'desc'])
-
+  if(!isMulti) {
+    orders.push(['updateTime', 'desc'])
+  }
+  
   var sql = generatorOrder(
       app.squel.select()
         .from(resourceName)

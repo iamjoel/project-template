@@ -2,6 +2,8 @@ var resources = ['category']
 module.exports = app => {
   const { router, controller } = app
 
+  router.get(`/api/item/list`, controller.item.item.list)
+
   // 通用的CRUD
   const commonController = controller.common.index
   resources.forEach(resourceName => {
