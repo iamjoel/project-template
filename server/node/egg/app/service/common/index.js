@@ -58,6 +58,24 @@ class CommonService extends Service {
     }
   }
 
+  /*
+  * 详情
+  */
+  async detail(resourceName, id) {
+    const {app, ctx, config} = this
+
+    var sql = app.squel.select()
+            .from(`demo_${resourceName}`)
+            .where(`id = "${id}"`)
+            .toString()
+    console.log(sql)
+
+    var res = await this.app.mysql.query(sql)
+    return {
+      data: res
+    }
+  }
+
 
   async listORM(resourceName) {
     const list = await this.app.mysql.query(`select * from demo_${resourceName}`)
