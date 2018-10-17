@@ -1,11 +1,9 @@
-var generatorWhere = require('../../util/sql/where')
-var generatorOrder = require('../../util/sql/order')
+var generatorList = require('../../util/sql/list')
 const Service = require('egg').Service;
 
 /*
 * 单表的操作
 */
-
 class CommonService extends Service {
   /*
   * 列表
@@ -14,42 +12,32 @@ class CommonService extends Service {
   pageAt=3&pageLimit=6&
   order=[["name", "desc"], ["detail", "asc"]]
   */
-  async list(resourceName, pager = {at: 1} , where = {}, orders = []) {
+  async list(resourceName, pager = {at: 1} , where, orders) {
     const {app, ctx, config} = this
 
     // 要显示的字段
     var fields = ['id'].concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
 
-    var {at, limit} = pager
-    at = at ? parseInt(at) : 1
-    limit = limit || config.PAGE_LIMIT
-    const offset = (at - 1) * limit
-
-    let whereStr = generatorWhere(where, ctx.helper.escape)
-
-    orders.push(['updateTime', 'desc'])
-
     // 列表数据
-    var listSql = generatorOrder(
-                app.squel.select()
-                  .from(`${resourceName}`)
+    var listSql = generatorList({
+                    resourceName,
+                    pager,
+                    where,
+                    orders
+                  }, this)
                   .fields(fields)
-                  .where(whereStr)
-                  .offset(offset)
-                  .limit(limit),
-                orders
-              ).toString()
+                  .toString()
     console.log(listSql)
     const list = await this.app.mysql.query(listSql)
 
     // 总条数
-    var countSql = generatorOrder(
-                app.squel.select()
-                  .from(resourceName)
-                  .field('count(id)', 'total')
-                  .where(whereStr),
-                orders
-              ).toString()
+    var countSql = generatorList({
+                    resourceName,
+                    pager,
+                    where,
+                    orders
+                  }, this, 'count')
+                  .toString()
     console.log(countSql)
     const total = await this.app.mysql.query(countSql)
 
@@ -57,7 +45,7 @@ class CommonService extends Service {
       data: list,
       pager: {
         total: total[0].total,
-        pageAt: at
+        pageAt: pager.at
       }
     }
   }
