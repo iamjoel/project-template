@@ -7,15 +7,9 @@ module.exports = appInfo => {
   config.keys = appInfo.name // package.json 里的 name
 
   // mysql 配置
+  var mySqlConfig = require('./mysql')
   config.mysql = {
-    client: {
-      host: 'localhost',
-      port: '3306',
-      user: 'root',
-      password: '',
-      // 数据库名
-      database: 'template',
-    },
+    client: mySqlConfig,
   }
   
   // 一页多少条

@@ -17,6 +17,9 @@ class CommonService extends Service {
   async list(resourceName, pager = {at: 1} , where = {}, orders = []) {
     const {app, ctx, config} = this
 
+    // 要显示的字段
+    var fields = ['id'].concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+
     var {at, limit} = pager
     at = at ? parseInt(at) : 1
     limit = limit || config.PAGE_LIMIT
@@ -29,7 +32,8 @@ class CommonService extends Service {
     // 列表数据
     var listSql = generatorOrder(
                 app.squel.select()
-                  .from(`demo_${resourceName}`)
+                  .from(`${resourceName}`)
+                  .fields(fields)
                   .where(whereStr)
                   .offset(offset)
                   .limit(limit),
@@ -41,7 +45,7 @@ class CommonService extends Service {
     // 总条数
     var countSql = generatorOrder(
                 app.squel.select()
-                  .from(`demo_${resourceName}`)
+                  .from(resourceName)
                   .field('count(id)', 'total')
                   .where(whereStr),
                 orders
@@ -60,12 +64,17 @@ class CommonService extends Service {
 
   /*
   * 详情
+  * /api/resourceName/detail/1
   */
   async detail(resourceName, id) {
     const {app, ctx, config} = this
 
+    // 要显示的字段
+    var fields = ['id'].concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+
     var sql = app.squel.select()
-            .from(`demo_${resourceName}`)
+            .from(resourceName)
+            .fields(fields)
             .where(`id = "${id}"`)
             .toString()
     console.log(sql)
@@ -75,12 +84,7 @@ class CommonService extends Service {
       data: res
     }
   }
-
-
-  async listORM(resourceName) {
-    const list = await this.app.mysql.query(`select * from demo_${resourceName}`)
-    return list
-  }
+  
 }
 
 module.exports = CommonService

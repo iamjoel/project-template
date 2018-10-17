@@ -51,6 +51,7 @@ egg-project
 |   ├── router.js 路由规则。
 │   ├── controller 控制器。路由的处理文件。
 │   ├── service 业务逻辑。读写数据库，文件等。
+│   ├── model 表的信息。如，查询时，要显示表上的哪些字段，新增，更新时的字段。
 │   ├── middleware 中间件。
 │   ├── schedule 定时任务。
 │   ├── public 静态资源。图片,CSS,JS 等。
@@ -68,6 +69,8 @@ egg-project
 │   ├── config.prod.js 产品环境配置
 |   ├── config.test.js 测试环境配置
 |   ├── config.local.js 开发环境的配置
+|   ├── mysql.js mysql的配置
+|   ├── model-map.js model名称与对应路径的映射
 └── test 测试用例。
 ```
     
@@ -102,9 +105,6 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 单表的列表，orm。
-* 单表详情, orm。
-* 单表，拿指定列。
 * 多表的关联。
 * 新增，编辑。 body parse；以及验证
 * 图片上传
@@ -113,12 +113,13 @@ egg-project
 * 错误处理。
 * 接口权限。
 * 微信api的接入。
+* 数据库数据变动这块。探究下 Migrations 和 sequelize-cli
 * 将 `service/commonLogic` 下的做成一个个的 npm 的包。
 * 将 `service/businessLogic` 文件夹 和 `speccialLogic.js` 去掉。验证放到 controller 里去做。
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
 
 ## 用的框架和库
-* [squel](https://github.com/hiddentao/squel)
+* [squel](https://github.com/hiddentao/squel) 。用来拼 SQL 字符串的。
 
 ## 资源
 * [Awesome Egg.js](https://github.com/eggjs/awesome-egg)

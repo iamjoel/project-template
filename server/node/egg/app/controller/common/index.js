@@ -20,7 +20,7 @@ class CommonController extends Controller {
 
       var order = query.order ? JSON.parse(query.order) : undefined
 
-      let res = await service.common.index.list(
+      let res = await service.common.index.list( // 拼 sql
         resourceName,
         pager,
         where,
