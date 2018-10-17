@@ -1,4 +1,5 @@
 var generatorList = require('../../util/sql/list')
+var splitMoreInfo = require('../../util/split-more-info')
 
 const Service = require('egg').Service;
 
@@ -15,7 +16,7 @@ class CommonService extends Service {
     var subResourceName = 'category'
     var subFields = ['id']
                       .concat(require(`../../model/${app.modelMap[subResourceName] || subResourceName}`).viewFields)
-                      .map(item => `${subResourceName}.${item} as ${subResourceName}_${item}`)
+                      .map(item => `${subResourceName}.${item} as ${subResourceName}__${item}`)
 
     var fields = mainFields.concat(subFields)
 
@@ -30,7 +31,8 @@ class CommonService extends Service {
                   .left_join(subResourceName, null, `${resourceName}.categoryId = ${subResourceName}.id`)
                   .toString()
     console.log(listSql)
-    const list = await this.app.mysql.query(listSql)
+    var list = await this.app.mysql.query(listSql)
+    list = splitMoreInfo(list, 'category')
 
     // 总条数
     var countSql = generatorList({
@@ -51,6 +53,41 @@ class CommonService extends Service {
       }
     }
 
+  }
+
+  /*
+  * 详情
+  */
+  async detail(resourceName, id) {
+    const {app, ctx, config} = this
+
+    // 要显示的字段
+    // 要显示的字段
+    var mainFields = ['id']
+                      .concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+                      .map(item => `${resourceName}.${item}`)
+
+    var subResourceName = 'category'
+    var subFields = ['id']
+                      .concat(require(`../../model/${app.modelMap[subResourceName] || subResourceName}`).viewFields)
+                      .map(item => `${subResourceName}.${item} as ${subResourceName}__${item}`)
+
+    var fields = mainFields.concat(subFields)
+
+    var sql = app.squel.select()
+            .from(resourceName)
+            .left_join(subResourceName, null, `${resourceName}.categoryId = ${subResourceName}.id`)
+            .fields(fields)
+            .where(`${resourceName}.id = "${id}"`)
+            .toString()
+    console.log(sql)
+
+    var res = await this.app.mysql.query(sql)
+    res = splitMoreInfo(res, 'category')
+
+    return {
+      data: res
+    }
   }
 
 }

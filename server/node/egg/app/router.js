@@ -3,6 +3,7 @@ module.exports = app => {
   const { router, controller } = app
 
   router.get(`/api/item/list`, controller.item.item.list)
+  router.get(`/api/item/detail/:id`, controller.item.item.detail)
 
   // 通用的CRUD
   const commonController = controller.common.index

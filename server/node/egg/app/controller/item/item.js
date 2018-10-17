@@ -31,6 +31,22 @@ class ItemController extends Controller {
       this.logger.error(e)
     }
   }
+
+  async detail() {
+    const { ctx, service, config } = this
+    
+    try {
+      var resourceName = ctx.request.path.split('/')[2]
+      var id = ctx.helper.escape(ctx.params.id)
+      let res = await service.item.item.detail(resourceName, id)
+      ctx.body = ctx.success(res)
+    } catch(e) {
+      this.ctx.body = ctx.fail(-1, e)
+      this.logger.error(e)
+    }
+  }
+
+
 }
 
 module.exports = ItemController
