@@ -4,20 +4,14 @@ var splitMoreInfo = require('../../util/split-more-info')
 const Service = require('egg').Service;
 
 class CommonService extends Service {
-  // api/item/list 怎么处理成两个对象呢？
   async list(resourceName, pager = {at: 1} , where, orders) {
     const {app, ctx, config} = this
-
+    var helper = ctx.helper
+    
     // 要显示的字段
-    var mainFields = ['id']
-                      .concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
-                      .map(item => `${resourceName}.${item}`)
-
+    var mainFields = helper.getFields(app, resourceName, {isJoinTable: true, isMainTable: true})
     var subResourceName = 'category'
-    var subFields = ['id']
-                      .concat(require(`../../model/${app.modelMap[subResourceName] || subResourceName}`).viewFields)
-                      .map(item => `${subResourceName}.${item} as ${subResourceName}__${item}`)
-
+    var subFields = helper.getFields(app, subResourceName, {isJoinTable: true, isMainTable: false})
     var fields = mainFields.concat(subFields)
 
     // 列表数据
@@ -32,7 +26,7 @@ class CommonService extends Service {
                   .toString()
     console.log(listSql)
     var list = await this.app.mysql.query(listSql)
-    list = splitMoreInfo(list, 'category')
+    list = splitMoreInfo(list, subResourceName)
 
     // 总条数
     var countSql = generatorList({
@@ -60,17 +54,12 @@ class CommonService extends Service {
   */
   async detail(resourceName, id) {
     const {app, ctx, config} = this
+    var helper = ctx.helper
 
     // 要显示的字段
-    // 要显示的字段
-    var mainFields = ['id']
-                      .concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
-                      .map(item => `${resourceName}.${item}`)
-
+    var mainFields = helper.getFields(app, resourceName, {isJoinTable: true, isMainTable: true})
     var subResourceName = 'category'
-    var subFields = ['id']
-                      .concat(require(`../../model/${app.modelMap[subResourceName] || subResourceName}`).viewFields)
-                      .map(item => `${subResourceName}.${item} as ${subResourceName}__${item}`)
+    var subFields = helper.getFields(app, subResourceName, {isJoinTable: true, isMainTable: false})
 
     var fields = mainFields.concat(subFields)
 
@@ -83,7 +72,7 @@ class CommonService extends Service {
     console.log(sql)
 
     var res = await this.app.mysql.query(sql)
-    res = splitMoreInfo(res, 'category')
+    res = splitMoreInfo(res, subResourceName)
 
     return {
       data: res

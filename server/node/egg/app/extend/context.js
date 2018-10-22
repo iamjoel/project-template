@@ -6,5 +6,4 @@ module.exports = {
   fail: Response.fail,
   handleList: require('../controller/common/crud/list'),
   handleDetail: require('../controller/common/crud/detail'),
-
 }

@@ -5,7 +5,7 @@ class ItemController extends Controller {
   }
 
   async detail() {
-    await this.ctx.handleDetail(this, this.service.item.index.detail)
+    await this.ctx.handleDetail(this, this.service.item.item.detail)
   }
 
 

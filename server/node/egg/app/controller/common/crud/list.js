@@ -1,4 +1,4 @@
-var getListInfo = require('../../util/request/get-req-info').getListInfo
+var getListInfo = require('../../../util/request/get-req-info').getListInfo
 /*
 * 列表 的通用处理
 */

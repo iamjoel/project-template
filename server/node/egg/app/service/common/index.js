@@ -16,7 +16,7 @@ class CommonService extends Service {
     const {app, ctx, config} = this
 
     // 要显示的字段
-    var fields = ['id'].concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+    var fields = this.ctx.helper.getFields(app, resourceName)
 
     // 列表数据
     var listSql = generatorList({
@@ -58,7 +58,7 @@ class CommonService extends Service {
     const {app, ctx, config} = this
 
     // 要显示的字段
-    var fields = ['id'].concat(require(`../../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+    var fields = this.ctx.helper.getFields(app, resourceName)
 
     var sql = app.squel.select()
             .from(resourceName)

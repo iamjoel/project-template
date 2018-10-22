@@ -7,7 +7,10 @@ module.exports = async (req, handler) => {
   try {
     var resourceName = ctx.request.path.split('/')[2]
     var id = ctx.helper.escape(ctx.params.id)
-    let res = await service.common.index.detail(resourceName, id)
+
+    handler = handler.bind(req)
+    let res = await handler(resourceName, id)
+    
     ctx.body = ctx.success(res)
   } catch(e) {
     ctx.body = ctx.fail(-1, e)
