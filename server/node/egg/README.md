@@ -111,13 +111,16 @@ egg-project
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
 * 接口权限。
 * 微信api的接入。
-* 数据库数据变动这块。探究下 Migrations 和 sequelize-cli
-* 将 `service/commonLogic` 下的做成一个个的 npm 的包。
-* 将 `service/businessLogic` 文件夹 和 `speccialLogic.js` 去掉。验证放到 controller 里去做。
+* JWT
+
+
+### 优化项 TODO
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
+* 数据库数据变动这块。探究下 Migrations 和 sequelize-cli
 
 ## 问题
 * 不知如何给 `Controller` 传参。如果能给 `Controller` 传参，会传入 具体 Service 的路径，可以少些很多 `Controller`。
+* model 应该放在各自的目录下面，还是统一放在 model 下？
 
 
 ## 用的框架和库
