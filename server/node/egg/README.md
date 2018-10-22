@@ -106,10 +106,10 @@ egg-project
 
 ## TODO
 * 列表，详情的代码的公用。
+* 跨域处理。
 * 新增，编辑。 body parse；以及验证
 * 图片上传
 * 删除
-* 跨域处理。
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
 * 接口权限。
 * 微信api的接入。
@@ -117,6 +117,10 @@ egg-project
 * 将 `service/commonLogic` 下的做成一个个的 npm 的包。
 * 将 `service/businessLogic` 文件夹 和 `speccialLogic.js` 去掉。验证放到 controller 里去做。
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
+
+## 问题
+* 不知如何给 `Controller` 传参。如果能给 `Controller` 传参，会传入 具体 Service 的路径，可以少些很多 `Controller`。
+
 
 ## 用的框架和库
 * [squel](https://github.com/hiddentao/squel) 。用来拼 SQL 字符串的。
