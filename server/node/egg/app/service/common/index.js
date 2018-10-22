@@ -72,6 +72,36 @@ class CommonService extends Service {
       data: res
     }
   }
+
+  /*
+  * 详情
+  * /api/resourceName/add  data
+  */
+  async add(resourceName, data) {
+    const {app, ctx, config} = this
+    var helper = ctx.helper
+
+    var isValid = helper.isValid(app, resourceName, data)
+    if(isValid) {
+      const id = data.id || helper.uuid()
+      var insertData = Object.assign({}, data, {
+        id,
+        delFlg: 0,
+        createTime: app.mysql.literals.now,
+        updateTime: app.mysql.literals.now
+      })
+
+      await this.app.mysql.insert(resourceName, insertData)
+      return {
+        data: {
+          id 
+        }
+      }
+    } else {
+      // 验证报错
+    }
+
+  }
   
 }
 

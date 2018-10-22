@@ -19,12 +19,12 @@ module.exports = appInfo => {
     credentials: true,
   }
   
-  // 如果跨域头有问题，加下面的。
-  // config.security = {
-  //   csrf: {
-  //     enable: false,
-  //   },
-  // }
+  // 跨域 新增，编辑时缺，会报错。
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  }
   
   // 一页多少条
   config.PAGE_LIMIT = 10

@@ -105,7 +105,8 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 新增，编辑。 body parse；以及验证
+* 新增。 返回404...
+* 编辑。 body parse；以及验证
 * 图片上传
 * 删除
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。

@@ -1,6 +1,11 @@
 module.exports = {
   viewFields: ['name'],
-  valid: {
-    
-  }
+  validFields: [{
+    key: 'name',
+    // https://github.com/node-modules/parameter
+    rule: {
+      type: 'string'
+    },
+    validType: 'all', // add, edit, all. default: all
+  }]
 }

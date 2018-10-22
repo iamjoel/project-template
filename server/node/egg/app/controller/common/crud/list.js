@@ -18,6 +18,6 @@ module.exports = async (req, handler) => {
     ctx.body = ctx.success(res)
   } catch(e) {
     ctx.body = ctx.fail(-1, e)
-    // this.logger.error(e)
+    ctx.logger.error(e)
   }
 }
