@@ -18,12 +18,13 @@ module.exports = appInfo => {
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
     credentials: true,
   }
-
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  }
+  
+  // 如果跨域头有问题，加下面的。
+  // config.security = {
+  //   csrf: {
+  //     enable: false,
+  //   },
+  // }
   
   // 一页多少条
   config.PAGE_LIMIT = 10
