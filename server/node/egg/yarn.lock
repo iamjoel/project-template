@@ -156,6 +156,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@koa/cors@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@koa/cors/-/cors-2.2.2.tgz#9084ab7f58107734e6b19d602d99538eda73f2d0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2118,6 +2122,12 @@ egg-core@^4.10.3:
     node-homedir "^1.1.1"
     ready-callback "^2.1.0"
     utility "^1.14.0"
+
+egg-cors@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/egg-cors/-/egg-cors-2.1.1.tgz#56a7f71f41369f2dfab78b387ea7c37d60490c33"
+  dependencies:
+    "@koa/cors" "^2.2.2"
 
 egg-development@^2.4.1:
   version "2.4.1"

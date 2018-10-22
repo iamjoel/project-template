@@ -11,6 +11,19 @@ module.exports = appInfo => {
   config.mysql = {
     client: mySqlConfig,
   }
+
+  // 跨域头
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+    credentials: true,
+  }
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  }
   
   // 一页多少条
   config.PAGE_LIMIT = 10

@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "egg": "^2.3.0",
+    "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
     "squel": "^5.12.2"
   },

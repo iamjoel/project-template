@@ -105,7 +105,6 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 跨域处理。
 * 新增，编辑。 body parse；以及验证
 * 图片上传
 * 删除
