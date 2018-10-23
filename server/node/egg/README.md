@@ -51,7 +51,7 @@ egg-project
 |   ├── router.js 路由规则。
 │   ├── controller 控制器。路由的处理文件。
 │   ├── service 业务逻辑。读写数据库，文件等。
-│   ├── model 表的信息。如，查询时，要显示表上的哪些字段，新增，更新时的字段。
+│   ├──── model 表的信息。如，查询时，显示表上的哪些字段。新增，更新时的字段的验证。
 │   ├── middleware 中间件。
 │   ├── schedule 定时任务。
 │   ├── public 静态资源。图片,CSS,JS 等。
@@ -89,6 +89,22 @@ egg-project
 * this.config
 * this.logger
 
+## 字段验证
+见 `app/service/item/model/category.js`。  
+
+```
+validFields: [{
+  key: 'name',
+  name: '名称',
+  rule: {
+    type: 'string',
+    max: 5,
+    min: 2
+  },
+  validType: 'all', //什么时候验证: add 为新增时 , edit 为编辑时, all 为新增，编辑时总是验证。默认为 all。
+}]
+```
+
 ### 中间件
 在 `app/middleware` 中定义。加载要在使用 `config.default.js` 中配置 `config.middleware = ['xml', 'json', 中间件n...]`。
 
@@ -106,10 +122,8 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 编辑。 body parse；
-* 新增，编辑的验证
-* 图片上传
 * 删除
+* 图片上传
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
 * 接口权限。
 * 微信api的接入。
@@ -127,6 +141,7 @@ egg-project
 
 ## 用的框架和库
 * [squel](https://github.com/hiddentao/squel) 。用来拼 SQL 字符串的。
+* 
 
 ## 资源
 * [Awesome Egg.js](https://github.com/eggjs/awesome-egg)

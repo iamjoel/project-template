@@ -4629,6 +4629,10 @@ param-case@^2.1.0:
   dependencies:
     no-case "^2.2.0"
 
+parameter@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/parameter/-/parameter-3.3.1.tgz#ebf6eb085b6e57abc9b8bf7ead40a88dd095970d"
+
 parse-json@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"

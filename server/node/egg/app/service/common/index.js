@@ -81,8 +81,8 @@ class CommonService extends Service {
     const {app, ctx, config} = this
     var helper = ctx.helper
 
-    var isValid = helper.isValid(app, resourceName, data, 'add')
-    if(isValid) {
+    var checkRes = helper.checkFields(app, resourceName, data, 'add')
+    if(checkRes === true) {
       const id = data.id || helper.uuid()
       var insertData = Object.assign({}, data, {
         id,
@@ -99,20 +99,23 @@ class CommonService extends Service {
       }
     } else {
       // 验证报错
+      return {
+        errMsg: checkRes
+      }
     }
 
   }
 
   /*
   * 编辑
-  * /api/resourceName/add  data
+  * /api/resourceName/edit  data
   */
   async edit(resourceName, data) {
     const {app, ctx, config} = this
     var helper = ctx.helper
 
-    var isValid = helper.isValid(app, resourceName, data, 'edit')
-    if(isValid) {
+    var checkRes = helper.checkFields(app, resourceName, data, 'edit')
+    if(checkRes === true) {
       var insertData = Object.assign({}, data, {
         updateTime: app.mysql.literals.now
       })
@@ -125,6 +128,9 @@ class CommonService extends Service {
       }
     } else {
       // 验证报错
+      return {
+        errMsg: checkRes
+      }
     }
 
   }

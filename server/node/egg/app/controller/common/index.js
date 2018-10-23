@@ -14,7 +14,11 @@ class CommonController extends Controller {
     try {
       var resourceName = ctx.request.path.split('/')[2]
       var res = await this.service.common.index.add(resourceName, ctx.request.body)
-      ctx.body = ctx.success(res)
+      if(res.errMsg) { // 验证报错
+        ctx.body = ctx.fail(-2, res.errMsg)
+      } else {
+        ctx.body = ctx.success(res)
+      }
     }  catch(e) {
       ctx.body = ctx.fail(-1, e)
     }
@@ -25,7 +29,11 @@ class CommonController extends Controller {
     try {
       var resourceName = ctx.request.path.split('/')[2]
       var res = await this.service.common.index.edit(resourceName, ctx.request.body)
-      ctx.body = ctx.success(res)
+      if(res.errMsg) { // 验证报错
+        ctx.body = ctx.fail(-2, res.errMsg)
+      } else {
+        ctx.body = ctx.success(res)
+      }
     }  catch(e) {
       ctx.body = ctx.fail(-1, e)
     }

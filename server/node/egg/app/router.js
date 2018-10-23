@@ -21,3 +21,38 @@ function addCRUD(tableName, router, commonController) {
   router.post(`/api/${tableName}/edit`, commonController.edit)
   router.post(`/api/${tableName}/del/:id`, commonController.del)
 }
+
+
+var Parameter = require('parameter');
+
+var parameter = new Parameter({
+  // translate: function() {
+  //   var args = Array.prototype.slice.call(arguments)
+  //   console.log(args)
+  //   return args
+  // },
+  validateRoot: true, // restrict the being validate value must be a object
+});
+
+var data = {
+  name: 'a',
+  age: 24,
+  gender: 'male'
+};
+
+var rule = {
+  name: {
+    type: 'string',
+    max: 5
+  },
+  age: 'int',
+  gender: ['male', 'female', 'unknown']
+};
+
+var error = parameter.validate(rule, data)
+if(error && error[0]) {
+  // smaller than. empty.
+  error = `${error.field} ${error.message}。 ${error.code} ... ${JSON.stringify(error)}`
+}
+console.log('aaaa')
+console.log(`error: ${JSON.stringify(error)}`)
