@@ -132,9 +132,21 @@ class CommonService extends Service {
         errMsg: checkRes
       }
     }
-
   }
   
+  /*
+  * 删除
+  * /api/resourceName/del/:id
+  */
+  async del(resourceName, id) {
+    await this.app.mysql.update(resourceName, {
+      id,
+      delFlg: 1,
+      updateTime: this.app.mysql.literals.now
+    })
+
+    return {id}
+  }
 }
 
 module.exports = CommonService

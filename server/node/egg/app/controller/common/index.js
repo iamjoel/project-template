@@ -40,7 +40,14 @@ class CommonController extends Controller {
   }
 
   async del() {
-
+    const { ctx, service, config } = this
+    try {
+      var resourceName = ctx.request.path.split('/')[2]
+      var res = await this.service.common.index.del(resourceName, ctx.params.id)
+      ctx.body = ctx.success(res)
+    }  catch(e) {
+      ctx.body = ctx.fail(-1, e)
+    }
   }
 }
 

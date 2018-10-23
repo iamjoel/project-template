@@ -121,8 +121,10 @@ validFields: [{
 - 使用 `npm test` 来执行单元测试。
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
+### 表设计注意点
+每个表都需要有这些字段: id, delFlg, createTime, updateTime。
+
 ## TODO
-* 删除
 * 图片上传
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
 * 接口权限。
