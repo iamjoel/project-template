@@ -21,7 +21,14 @@ class CommonController extends Controller {
   }
 
   async edit() {
-
+    const { ctx, service, config } = this
+    try {
+      var resourceName = ctx.request.path.split('/')[2]
+      var res = await this.service.common.index.add(resourceName, ctx.request.body)
+      ctx.body = ctx.success(res)
+    }  catch(e) {
+      ctx.body = ctx.fail(-1, e)
+    }
   }
 
   async del() {

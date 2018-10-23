@@ -1,5 +1,5 @@
 module.exports = (app, resourceName, opts = {isJoinTable: false, isMainTable: true}) => {
-  var fields = ['id'].concat(require(`../model/${app.modelMap[resourceName] || resourceName}`).viewFields)
+  var fields = ['id'].concat(require(`@/service/${app.modelMap[resourceName]}`).viewFields)
   if(opts && opts.isJoinTable) {
     fields = fields.map(key => {
       if(opts.isMainTable) {

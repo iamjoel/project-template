@@ -6,6 +6,7 @@
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "module-alias": "^2.1.0",
     "squel": "^5.12.2",
     "uuid": "^3.3.2"
   },
@@ -54,5 +55,9 @@
     "coverage",
     "dist"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "_moduleAliases": {
+    "@": "./app",
+    "@root": "."
+  }
 }

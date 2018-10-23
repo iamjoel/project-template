@@ -77,6 +77,7 @@ egg-project
 ## 说明
 ### 常用方法
 * ctx.helper.escape : 防 SQL 注入
+* require 中 '@' 指向 文件夹'app'， '@root' 指向 '项目根路径'。 用的 [module-alias](https://github.com/ilearnio/module-alias) 来实现。
 
 ### Controller
 在接口处理中，Controller 层主要对用户的请求参数进行处理（校验、转换），然后调用对应的 service 方法处理业务，得到业务结果后封装并返回。
