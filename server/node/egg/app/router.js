@@ -10,9 +10,8 @@ module.exports = app => {
   // 多表的CRUD
   router.get(`/api/item/list`, controller.item.item.list)
   router.get(`/api/item/detail/:id`, controller.item.item.detail)
-  router.get(`/api/item/add`, controller.common.index.add)
-
-  
+  router.post(`/api/item/add`, controller.common.index.add)
+  router.post(`/api/item/edit`, controller.common.index.edit)
 }
 
 function addCRUD(tableName, router, commonController) {

@@ -74,14 +74,14 @@ class CommonService extends Service {
   }
 
   /*
-  * 详情
+  * 新增
   * /api/resourceName/add  data
   */
   async add(resourceName, data) {
     const {app, ctx, config} = this
     var helper = ctx.helper
 
-    var isValid = helper.isValid(app, resourceName, data)
+    var isValid = helper.isValid(app, resourceName, data, 'add')
     if(isValid) {
       const id = data.id || helper.uuid()
       var insertData = Object.assign({}, data, {
@@ -95,6 +95,32 @@ class CommonService extends Service {
       return {
         data: {
           id 
+        }
+      }
+    } else {
+      // 验证报错
+    }
+
+  }
+
+  /*
+  * 编辑
+  * /api/resourceName/add  data
+  */
+  async edit(resourceName, data) {
+    const {app, ctx, config} = this
+    var helper = ctx.helper
+
+    var isValid = helper.isValid(app, resourceName, data, 'edit')
+    if(isValid) {
+      var insertData = Object.assign({}, data, {
+        updateTime: app.mysql.literals.now
+      })
+
+      await this.app.mysql.update(resourceName, insertData)
+      return {
+        data: {
+          id: data.id 
         }
       }
     } else {
