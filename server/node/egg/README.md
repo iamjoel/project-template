@@ -105,7 +105,6 @@ egg-project
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
 ## TODO
-* 新增。 返回404...
 * 编辑。 body parse；以及验证
 * 图片上传
 * 删除
@@ -120,7 +119,7 @@ egg-project
 * 数据库数据变动这块。探究下 Migrations 和 sequelize-cli
 
 ## 问题
-* 不知如何给 `Controller` 传参。如果能给 `Controller` 传参，会传入 具体 Service 的路径，可以少些很多 `Controller`。
+* 不知如何给 `Controller` 传参。如果能给 `Controller` 传参，会传入 具体 Service 的路径，可以少些很多 `Controller`。用中间件行吗？
 * model 应该放在各自的目录下面，还是统一放在 model 下？
 
 
