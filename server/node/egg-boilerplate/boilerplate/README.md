@@ -147,6 +147,3 @@ validFields: [{
 
 ## 资源
 * [Awesome Egg.js](https://github.com/eggjs/awesome-egg)
-
-## 参考
-* [egg-init](https://github.com/eggjs/egg-init) 脚手架。

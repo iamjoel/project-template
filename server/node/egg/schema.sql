@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `id` varchar(36) NOT NULL,
   `account` varchar(40) DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
   `password` varchar(400) DEFAULT NULL,
   `role` int(2) DEFAULT NULL,
   `delFlg` int(1) DEFAULT NULL,
