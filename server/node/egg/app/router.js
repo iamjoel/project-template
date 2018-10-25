@@ -2,7 +2,7 @@ var singleTable = ['category']
 module.exports = app => {
   const { router, controller } = app
   const jwt = app.middleware.jwt()
-  
+
   // 单表的CRUD
   singleTable.forEach(tableName => {
     addCRUD(tableName, router, controller.common.index, jwt)
