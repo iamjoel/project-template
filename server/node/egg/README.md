@@ -11,6 +11,8 @@
 * 修改 `config.default.js` 下框架相关的配置。
   * `keys` cookie 会用这个来签名，加密
   * `mysql` 的配置。
+  * `jwtTokenSecret` jwt 的密钥
+  * `publicApiKey` jwt 的公共api的key
 
 
 3 安装依赖  
@@ -38,9 +40,11 @@ $ npm stop
 ```
 
 ## 支持功能
-* 微信的相关功能
-* 短信
-* JWT
+* 对 MySQL 上数据的增删改查。
+* 图片上传。本地可以了，需要放到服务器上试下，看会不会出现上传超时的问题。
+* JWT。
+* 接口权限。(开发中)
+* 微信的相关功能。(开发中)
 
 ## 目录结构
 ```
@@ -125,11 +129,9 @@ validFields: [{
 每个表都需要有这些字段: id, delFlg, createTime, updateTime。
 
 ## TODO
+* 自定义egg的脚手架。
 * 错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
-* 接口权限。
 * 微信api的接入。
-* JWT
-* 图片上传。本地可以了，需要放到服务器上试下，看会不会出现时的问题。
 
 
 ### 优化项 TODO
@@ -138,12 +140,10 @@ validFields: [{
 
 ## 问题
 * 不知如何给 `Controller` 传参。如果能给 `Controller` 传参，会传入 具体 Service 的路径，可以少些很多 `Controller`。用中间件行吗？
-* model 应该放在各自的目录下面，还是统一放在 model 下？
 
 
 ## 用的框架和库
 * [squel](https://github.com/hiddentao/squel) 。用来拼 SQL 字符串的。
-* 
 
 ## 资源
 * [Awesome Egg.js](https://github.com/eggjs/awesome-egg)

@@ -1,7 +1,7 @@
 
 const Controller = require('egg').Controller
 class CommonController extends Controller {
-  async list(handler) {
+  async list() {
     await this.ctx.handleList(this, this.service.common.index.list)
   }
 

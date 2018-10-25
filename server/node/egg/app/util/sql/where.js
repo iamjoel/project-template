@@ -1,10 +1,10 @@
 var squel = require("squel")
 var squelMysql = squel.useFlavour('mysql')
 
-module.exports = function (searchCondition = {delFlg: 0}, escape) {
+module.exports = function (searchCondition = {}, escape, resourceName) {
   var res = squelMysql.expr()
 
-  searchCondition.delFlg = 0 // 未被删除的
+  searchCondition[`${resourceName}.delFlg`] = 0 // 未被删除的
   
   for(var key in searchCondition) {
     // 过滤 XSS 字符

@@ -38,6 +38,15 @@ module.exports = appInfo => {
     file:`${staticPath}/file`,
   }
 
+  config.jwtTokenSecret = 'demo' // token 的密钥
+  config.publicApiKey = 'demo' // 公共api
+
+  // jwt 的 url白名单
+  config.whiteRouterList = [
+    '/public',
+    '/api/login',
+    '/api/picture/upload',
+  ]
   /**
    * some description
    * @member Config#test

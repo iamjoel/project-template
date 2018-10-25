@@ -7,7 +7,10 @@
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "jwt-simple": "^0.5.5",
+    "md5": "^2.2.1",
     "module-alias": "^2.1.0",
+    "moment": "^2.22.2",
     "parameter": "^3.3.1",
     "squel": "^5.12.2",
     "uuid": "^3.3.2"

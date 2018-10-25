@@ -16,7 +16,7 @@ module.exports = (info, env, type = 'list', isMulti = false) => {
   const offset = (at - 1) * limit
 
   where = where || {}
-  let whereStr = generatorWhere(where, ctx.helper.escape)
+  let whereStr = generatorWhere(where, ctx.helper.escape, resourceName)
 
   orders = orders || []
   if(!isMulti) {
