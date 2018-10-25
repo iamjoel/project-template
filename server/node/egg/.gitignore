@@ -10,7 +10,7 @@ package-lock.json
 
 
 app/public/img/*.jpg
-app/public/img/*.jepg
+app/public/img/*.jpeg
 app/public/img/*.gif
 app/public/img/*.png
 
