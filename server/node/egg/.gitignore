@@ -9,8 +9,8 @@ run/
 package-lock.json
 
 
-public/img/*.jpg
-public/img/*.jepg
-public/img/*.gif
-public/img/*.png
+app/public/img/*.jpg
+app/public/img/*.jepg
+app/public/img/*.gif
+app/public/img/*.png
 
