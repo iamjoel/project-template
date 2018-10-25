@@ -8,3 +8,9 @@ run/
 *.swp
 package-lock.json
 
+
+public/img/*.jpg
+public/img/*.jepg
+public/img/*.gif
+public/img/*.png
+

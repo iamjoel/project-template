@@ -29,6 +29,15 @@ module.exports = appInfo => {
   // 一页多少条
   config.PAGE_LIMIT = 10
 
+  // 上传资源的路径
+  const staticPath ='./app/public'//本地路径
+  config.uploadResourcePath = {
+    img:`${staticPath}/img`,
+    music:`${staticPath}/music`,
+    video:`${staticPath}/video`,
+    file:`${staticPath}/file`,
+  }
+
   /**
    * some description
    * @member Config#test

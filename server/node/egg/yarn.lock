@@ -548,6 +548,10 @@ await-first@^1.0.0:
   dependencies:
     ee-first "^1.1.1"
 
+await-stream-ready@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/await-stream-ready/-/await-stream-ready-1.0.1.tgz#fa308c63fe14ac7a90966ad70822aa9369f8a6bb"
+
 axobject-query@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.0.2.tgz#ea187abe5b9002b377f925d8bf7d1c561adf38f9"
