@@ -6,6 +6,9 @@ module.exports = appInfo => {
   // 一定要配置  cookie need secret key to sign and encrypt
   config.keys = appInfo.name // package.json 里的 name
 
+  // 启用的中间件
+  config.middleware = ['acl']
+
   // mysql 配置
   var mySqlConfig = require('./mysql')
   config.mysql = {
@@ -41,12 +44,6 @@ module.exports = appInfo => {
   config.jwtTokenSecret = 'demo' // token 的密钥
   config.publicApiKey = 'demo' // 公共api
 
-  // jwt 的 url白名单
-  config.whiteRouterList = [
-    '/public',
-    '/api/login',
-    '/api/picture/upload',
-  ]
   /**
    * some description
    * @member Config#test

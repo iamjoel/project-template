@@ -3,14 +3,15 @@
 const jwt = require('jwt-simple');
 const tokenTools = require('../util/token.js');
 const config = require('../../config/config.default.js')({})
+const whiteRouterList = require('../../config/white-router-list')
 
 module.exports = app => {
   return async function jwtCheck(ctx, next) {
     try {
-      if(process.env.NODE_ENV == 'development' && false){
+      if(process.env.NODE_ENV == 'development'){
         await next();
-      }else{
-        const isPassRouter = config.whiteRouterList.filter(item => {
+      } else{
+        const isPassRouter = whiteRouterList.filter(item => {
           return ctx.request.path.indexOf(item) >= 0;
         })
         if (ctx.request.path === '/' || isPassRouter.length > 0) {

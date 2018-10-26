@@ -1,45 +1,48 @@
 // 接口权限
+/*
+* 从 jwt 中拿 role；调用 areAnyRolesAllowed
+* 
+*/
+const whiteRouterList = require('../../config/white-router-list')
+const config = require('../../config/config.default.js')({})
+
 var acl = require('acl')
 acl = new acl(new acl.memoryBackend())
+const aclConfig = require('../../config/acl')
+acl.allow(aclConfig) // 设置权限
 
-var roleGuest = {
-  roles: ['2'],
-  allows: [
-  {
-    resources: 'item', permissions: ['list', 'detail']
-  }]
+const jwt = require('jwt-simple');
+const tokenTools = require('../util/token.js')
+
+module.exports = app => {
+  return async function (ctx, next) {
+    const isWhiteRouter = whiteRouterList.filter(item => {
+      return ctx.request.path.indexOf(item) >= 0;
+    })[0]
+
+    if(isWhiteRouter) { // 公开api，都可以访问
+      await next()
+    }  else {
+      let userInfo = tokenTools.getUserInfoByToken(ctx.req.headers.token, config.jwtTokenSecret);
+      if(!userInfo) {
+        ctx.body = ctx.fail(999);
+        return
+      }
+      const role = userInfo.role + ''
+      var resourceName = ctx.request.path.split('/')[2]
+      var action = ctx.request.path.split('/')[3]
+      console.log(`${role} ${action} ${resourceName}`)
+      if(role == '1') { // 管理员，有所有权限
+        await next()
+      } else {
+        var isAllow = await acl.areAnyRolesAllowed(role, resourceName, action)
+        if(isAllow) {
+          await next()
+        } else {
+          ctx.body = ctx.fail(3, `没有权限的操作`);
+        }
+      }
+    }
+  }
 }
-
-var roleAdmin = {
-  roles: ['1'],
-  allows: [
-  {
-    resources: 'item', permissions: ['add', 'edit', 'del']
-  }]
-}
-
-
-acl.allow([roleGuest])
-acl.allow('1', ['item'], ['add', 'edit', 'del'])
-
-
-
-async function test(argument) {
-  console.log('---- acl ------')
-  // console.log(await acl.allowedPermissions('1', 'item'))
-  console.log(await acl.areAnyRolesAllowed('1', 'item', 'add'))
-  // console.log(acl.isAllowed('1', 'item', 'edit'))
-  // console.log(acl.isAllowed('1', 'item', 'del'))
-
-  console.log(await acl.allowedPermissions('2', 'item'))
-
-  acl.allow('guest', 'blogs', 'view')
-  console.log(await acl.areAnyRolesAllowed('guest', 'blogs', 'view'))
-  console.log(await acl.allowedPermissions('guest', 'view'))
-  console.log(await acl.whatResources('guest'))
-
-  console.log('---- acl ------')
-
-}
-test()
 
