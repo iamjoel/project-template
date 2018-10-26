@@ -1,4 +1,5 @@
 var singleTable = ['category']
+const publicPrefix = 'publicApi'
 module.exports = app => {
   const { router, controller } = app
   const jwt = app.middleware.jwt()
@@ -10,7 +11,9 @@ module.exports = app => {
   
   // 多表的CRUD
   router.get(`/api/item/list`, jwt, controller.item.item.list)
+  router.get(`/${publicPrefix}/item/list`, jwt, controller.item.item.list)
   router.get(`/api/item/detail/:id`,jwt, controller.item.item.detail)
+  router.get(`/${publicPrefix}/item/detail/:id`,jwt, controller.item.item.detail)
   router.post(`/api/item/add`, jwt, controller.common.index.add)
   router.post(`/api/item/edit`, jwt, controller.common.index.edit)
 
@@ -21,6 +24,7 @@ module.exports = app => {
 }
 
 function addCRUD(tableName, router, commonController, jwt) {
+  if(tableName)
   router.get(`/api/${tableName}/detail/:id`, jwt, commonController.detail)
   router.get(`/api/${tableName}/list`, jwt, commonController.list)
   router.post(`/api/${tableName}/add`, jwt, commonController.add)
