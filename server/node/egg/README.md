@@ -91,9 +91,9 @@ egg-project
 每个表都需要有这些字段: `id`, `delFlg`, `createTime`, `updateTime`。删除数据只是把那条数据的 `delFlg` 设置成 1。
 
 1 写业务逻辑(service)。  
-1.1 在 `app/service` 下创建文件或在已有文件上添加方法，来写业务逻辑。
+1\.1 在 `app/service` 下创建文件或在已有文件上添加方法，来写业务逻辑。
 
-1.2 在该 service 目录下，创建 model 目录，目录下放文件，来定义 获取列表，详情时，哪些字段要返回，新增，编辑时哪些字段要验证。 例如:
+1\.2 在该 service 目录下，创建 model 目录，目录下放文件，来定义 获取列表，详情时，哪些字段要返回，新增，编辑时哪些字段要验证。 例如:
 
 ```
 // service/item/model/item.js
@@ -125,7 +125,7 @@ module.exports = {
 
 验证规则参考 [parameter](https://github.com/node-modules/parameter)。
 
-1.3 在 `config/model-map.js` 中添加 model 名称和对应的文件路径。
+1\.3 在 `config/model-map.js` 中添加 model 名称和对应的文件路径。
 
 2 写控制器(controller)
 在 `app/controller` 下创建文件或在已有文件上添加方法，来写控制器。

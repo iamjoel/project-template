@@ -17,19 +17,15 @@ module.exports = app => {
         if (ctx.request.path === '/' || isPassRouter.length > 0) {
           await next();
         } else {
-          if (ctx.req.headers.token === config.publicApiKey) {
-            await next();
-          } else {
-            if (tokenTools.checkToken(ctx.req.headers.token, config.jwtTokenSecret)) {
-              let userInfo = tokenTools.getUserInfoByToken(ctx.req.headers.token,config.jwtTokenSecret);
-              if(userInfo.account!=undefined){
-                await next();
-              }else{
-                ctx.body = ctx.fail(999);
-              }
-            } else {
+          if (tokenTools.checkToken(ctx.req.headers.token, config.jwtTokenSecret)) {
+            let userInfo = tokenTools.getUserInfoByToken(ctx.req.headers.token,config.jwtTokenSecret);
+            if(userInfo.account!=undefined){
+              await next();
+            }else{
               ctx.body = ctx.fail(999);
             }
+          } else {
+            ctx.body = ctx.fail(999);
           }
         }
       }
