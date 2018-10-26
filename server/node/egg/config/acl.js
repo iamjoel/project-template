@@ -5,13 +5,13 @@
 
 // 访客
 const guest = {
-  roles: ['2'], // 以后用字典
+  roles: [ '2' ], // 以后用字典
   allows: [
-  {
-    resources: 'item', permissions: ['list', 'detail']
-  },
-  {
-    resources: 'category', permissions: ['list', 'detail']
-  },]
-}
-module.exports = [guest]
+    {
+      resources: 'item', permissions: [ 'list', 'detail' ],
+    },
+    {
+      resources: 'category', permissions: [ 'list', 'detail' ],
+    }],
+};
+module.exports = [ guest ];

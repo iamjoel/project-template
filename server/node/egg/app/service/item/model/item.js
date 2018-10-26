@@ -1,6 +1,6 @@
 module.exports = {
-  viewFields: ['name'],
+  viewFields: [ 'name' ],
   valid: {
-    
-  }
-}
+
+  },
+};

@@ -1,5 +1,5 @@
 module.exports = {
-  viewFields: ['name', 'detail'],
+  viewFields: [ 'name', 'detail' ],
   validFields: [{
     key: 'name',
     name: '名称',
@@ -7,7 +7,7 @@ module.exports = {
     rule: {
       type: 'string',
       max: 5,
-      min: 2
+      min: 2,
     },
     validType: 'all', // add, edit, all. default: all
   }, {
@@ -17,8 +17,8 @@ module.exports = {
     rule: {
       type: 'string',
       max: 100,
-      min: 5
+      min: 5,
     },
     validType: 'edit', // add, edit, all. default: all
-  }, ]
-}
+  }],
+};

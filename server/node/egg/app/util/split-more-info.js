@@ -3,39 +3,39 @@
 * 关联表的字段的结构是 "关联表名__表字段名"
 */
 module.exports = (list, joinTableNames) => {
-  if(typeof joinTableNames === 'string') {
-    joinTableNames = [joinTableNames]
+  if (typeof joinTableNames === 'string') {
+    joinTableNames = [ joinTableNames ];
   }
 
-  if(!Array.isArray(list)) {
-    return splitItem(item, joinTableNames)
-  } else {
-    return list.map(item => {
-      return splitItem(item, joinTableNames)
-    })
+  if (!Array.isArray(list)) {
+    return splitItem(item, joinTableNames);
   }
-  
-}
+  return list.map(item => {
+    return splitItem(item, joinTableNames);
+  });
+
+
+};
 
 function splitItem(item, joinTableNames) {
-  var res = {}
-  
-  var moreInfo = {}
-  joinTableNames.forEach(name => {
-    moreInfo[name] = {}
-  })
+  const res = {};
 
-  for(var key in item) {
-    let value = item[key]
-    if(key.includes('__')) {
-      let [joinTableName, splitKey] = key.split('__')
-      moreInfo[joinTableName][splitKey] = value
+  const moreInfo = {};
+  joinTableNames.forEach(name => {
+    moreInfo[name] = {};
+  });
+
+  for (const key in item) {
+    const value = item[key];
+    if (key.includes('__')) {
+      const [ joinTableName, splitKey ] = key.split('__');
+      moreInfo[joinTableName][splitKey] = value;
     } else {
-      res[key] = value
+      res[key] = value;
     }
   }
 
-  res.moreInfo = moreInfo
+  res.moreInfo = moreInfo;
 
-  return res
+  return res;
 }

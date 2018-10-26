@@ -1,4 +1,4 @@
-var generatorList = require('../../util/sql/list')
+const generatorList = require('../../util/sql/list');
 const Service = require('egg').Service;
 
 /*
@@ -12,42 +12,42 @@ class CommonService extends Service {
   pageAt=3&pageLimit=6&
   order=[["name", "desc"], ["detail", "asc"]]
   */
-  async list(resourceName, pager = {at: 1} , where, orders) {
-    const {app, ctx, config} = this
+  async list(resourceName, pager = { at: 1 }, where, orders) {
+    const { app, ctx, config } = this;
 
     // 要显示的字段
-    var fields = this.ctx.helper.getFields(app, resourceName)
+    const fields = this.ctx.helper.getFields(app, resourceName);
 
     // 列表数据
-    var listSql = generatorList({
-                    resourceName,
-                    pager,
-                    where,
-                    orders
-                  }, this)
-                  .fields(fields)
-                  .toString()
-    console.log(listSql)
-    const list = await this.app.mysql.query(listSql)
+    const listSql = generatorList({
+      resourceName,
+      pager,
+      where,
+      orders,
+    }, this)
+      .fields(fields)
+      .toString();
+    console.log(listSql);
+    const list = await this.app.mysql.query(listSql);
 
     // 总条数
-    var countSql = generatorList({
-                    resourceName,
-                    pager,
-                    where,
-                    orders
-                  }, this, 'count')
-                  .toString()
-    console.log(countSql)
-    const total = await this.app.mysql.query(countSql)
+    const countSql = generatorList({
+      resourceName,
+      pager,
+      where,
+      orders,
+    }, this, 'count')
+      .toString();
+    console.log(countSql);
+    const total = await this.app.mysql.query(countSql);
 
     return {
       data: list,
       pager: {
         total: total[0].total,
-        pageAt: pager.at
-      }
-    }
+        pageAt: pager.at,
+      },
+    };
   }
 
   /*
@@ -55,22 +55,22 @@ class CommonService extends Service {
   * /api/resourceName/detail/1
   */
   async detail(resourceName, id) {
-    const {app, ctx, config} = this
+    const { app, ctx, config } = this;
 
     // 要显示的字段
-    var fields = this.ctx.helper.getFields(app, resourceName)
+    const fields = this.ctx.helper.getFields(app, resourceName);
 
-    var sql = app.squel.select()
-            .from(resourceName)
-            .fields(fields)
-            .where(`id = "${id}"`)
-            .toString()
-    console.log(sql)
+    const sql = app.squel.select()
+      .from(resourceName)
+      .fields(fields)
+      .where(`id = "${id}"`)
+      .toString();
+    console.log(sql);
 
-    var res = await this.app.mysql.query(sql)
+    const res = await this.app.mysql.query(sql);
     return {
-      data: res
-    }
+      data: res,
+    };
   }
 
   /*
@@ -78,31 +78,31 @@ class CommonService extends Service {
   * /api/resourceName/add  data
   */
   async add(resourceName, data) {
-    const {app, ctx, config} = this
-    var helper = ctx.helper
+    const { app, ctx, config } = this;
+    const helper = ctx.helper;
 
-    var checkRes = helper.checkFields(app, resourceName, data, 'add')
-    if(checkRes === true) {
-      const id = data.id || helper.uuid()
-      var insertData = Object.assign({}, data, {
+    const checkRes = helper.checkFields(app, resourceName, data, 'add');
+    if (checkRes === true) {
+      const id = data.id || helper.uuid();
+      const insertData = Object.assign({}, data, {
         id,
         delFlg: 0,
         createTime: app.mysql.literals.now,
-        updateTime: app.mysql.literals.now
-      })
+        updateTime: app.mysql.literals.now,
+      });
 
-      await this.app.mysql.insert(resourceName, insertData)
+      await this.app.mysql.insert(resourceName, insertData);
       return {
         data: {
-          id 
-        }
-      }
-    } else {
-      // 验证报错
-      return {
-        errMsg: checkRes
-      }
+          id,
+        },
+      };
     }
+    // 验证报错
+    return {
+      errMsg: checkRes,
+    };
+
 
   }
 
@@ -111,29 +111,29 @@ class CommonService extends Service {
   * /api/resourceName/edit  data
   */
   async edit(resourceName, data) {
-    const {app, ctx, config} = this
-    var helper = ctx.helper
+    const { app, ctx, config } = this;
+    const helper = ctx.helper;
 
-    var checkRes = helper.checkFields(app, resourceName, data, 'edit')
-    if(checkRes === true) {
-      var insertData = Object.assign({}, data, {
-        updateTime: app.mysql.literals.now
-      })
+    const checkRes = helper.checkFields(app, resourceName, data, 'edit');
+    if (checkRes === true) {
+      const insertData = Object.assign({}, data, {
+        updateTime: app.mysql.literals.now,
+      });
 
-      await this.app.mysql.update(resourceName, insertData)
+      await this.app.mysql.update(resourceName, insertData);
       return {
         data: {
-          id: data.id 
-        }
-      }
-    } else {
-      // 验证报错
-      return {
-        errMsg: checkRes
-      }
+          id: data.id,
+        },
+      };
     }
+    // 验证报错
+    return {
+      errMsg: checkRes,
+    };
+
   }
-  
+
   /*
   * 删除
   * /api/resourceName/del/:id
@@ -142,11 +142,11 @@ class CommonService extends Service {
     await this.app.mysql.update(resourceName, {
       id,
       delFlg: 1,
-      updateTime: this.app.mysql.literals.now
-    })
+      updateTime: this.app.mysql.literals.now,
+    });
 
-    return {id}
+    return { id };
   }
 }
 
-module.exports = CommonService
+module.exports = CommonService;

@@ -1,28 +1,28 @@
 module.exports = {
   getListInfo(req) {
-    const { ctx, service, config } = req
-    var query = ctx.query
-    
-    var resourceName = ctx.request.path.split('/')[2]
+    const { ctx, service, config } = req;
+    const query = ctx.query;
 
-    var pager
-    if(query.pageAt){
+    const resourceName = ctx.request.path.split('/')[2];
+
+    let pager;
+    if (query.pageAt) {
       pager = {
         at: ctx.helper.escape(query.pageAt),
-        limit: query.pageLimit ? ctx.helper.escape(query.pageLimit) : config.PAGE_LIMIT
-      }
+        limit: query.pageLimit ? ctx.helper.escape(query.pageLimit) : config.PAGE_LIMIT,
+      };
     }
 
-    var where = query.where ? JSON.parse(query.where) : undefined
+    const where = query.where ? JSON.parse(query.where) : undefined;
 
-    var order = query.order ? JSON.parse(query.order) : undefined
+    const order = query.order ? JSON.parse(query.order) : undefined;
 
     return {
       resourceName,
       pager,
       where,
       order,
-    }
+    };
 
-  }
-}
+  },
+};

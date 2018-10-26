@@ -12,8 +12,6 @@
   * `keys` cookie 会用这个来签名，加密
   * `mysql` 的配置。
   * `jwtTokenSecret` jwt 的密钥
-  * `publicApiKey` jwt 的公共api的key
-
 
 3 安装依赖  
 ```bash
@@ -32,6 +30,11 @@ npm run debug
 1. 将 `Disvover network targets` 去设置在启动 `egg` 时，后台打出来的 `ip:端口`。
 1. 点击 `Open dedicated DevTools for Node`
 
+## 测试
+```
+npm run test-local
+```
+
 ## 部署
 ```bash
 $ npm start
@@ -43,8 +46,8 @@ $ npm stop
 * 图片上传。本地可以了，需要放到服务器上试下，看会不会出现上传超时的问题。
 * JWT。
 * 接口权限。
-* 微信的相关功能。(开发中)
-* 核心功能的测试。(开发中)
+* 微信的相关功能(开发中)。
+* 核心功能的测试(写了一小部分)。
 
 ## 目录结构
 ```
@@ -87,8 +90,10 @@ egg-project
 * require 中 '@' 指向 文件夹'app'， '@root' 指向 '项目根路径'。 用的 [module-alias](https://github.com/ilearnio/module-alias) 来实现。
 
 ## 开发流程
-0 设计表
+0 数据库 表设计
 每个表都需要有这些字段: `id`, `delFlg`, `createTime`, `updateTime`。删除数据只是把那条数据的 `delFlg` 设置成 1。
+
+创建的表结构放在 `db.sql`。
 
 1 写业务逻辑(service)。  
 1\.1 在 `app/service` 下创建文件或在已有文件上添加方法，来写业务逻辑。
@@ -145,7 +150,7 @@ module.exports = {
 路由创建后，需要去 `config/acl.js` 中配置各个角色对该路由的权限。写法见 [node acl](https://github.com/OptimalBits/node_acl)。任何角色(包括没有登录的)都可以访问路由以 `/publicApi` 开头。
 
 4 写测试用例(可选)
-
+参考 [这里](https://eggjs.org/zh-cn/core/unittest.html)
 
 ### 中间件
 在 `app/middleware` 中定义。加载要在使用 `config.default.js` 中配置 `config.middleware = ['xml', 'json', 中间件n...]`。
@@ -156,15 +161,11 @@ module.exports = {
 用 JWT 做中间件， 会把微信的回调的数据格式处理的不对。 目前配置在每个路由里的。
 
 ## Body Paser 
-要调研下，以前 egg 的 Body Paser 拿文件上传的内容有问题，用 koa 的没问题。
-
-### 内置指令
-- 使用 `npm run lint` 来做代码风格检查。
-- 使用 `npm test` 来执行单元测试。
-- 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
+要调研下，以前 egg 的 Body Paser 在服务器上，拿文件上传的会有超时的问题，用 koa 的没问题。
 
 ## TODO
 * 健壮的错误处理。包括，如果是 `where` 里传了表里不存在的字段，给个特别的报错码。
+* 日志的完善。
 
 ### 优化项 TODO
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
@@ -181,6 +182,10 @@ module.exports = {
   * [squel](https://github.com/hiddentao/squel) 。用来拼 SQL 字符串的。
 * [node acl](https://github.com/OptimalBits/node_acl) 接口权限。
 * [parameter](https://github.com/node-modules/parameter) 参数验证。
+* 测试
+  * [Mocha](https://mochajs.org/) 测试框架。
+  * [power-assert](https://github.com/power-assert-js/power-assert) 断言库。
+  * [SuperTest](https://github.com/visionmedia/supertest) 测试 HTTP 接口的断言工具库。
 
 ## 资源
 * [Awesome Egg.js](https://github.com/eggjs/awesome-egg)

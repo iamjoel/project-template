@@ -5,4 +5,4 @@ module.exports = {
   password: '',
   // 数据库名
   database: 'template',
-}
+};

@@ -1,21 +1,21 @@
 const jwt = require('jwt-simple');
 
 const checkToken = function(token, jwtTokenSecret) {
-  if(token){
-    try{
+  if (token) {
+    try {
       const decoded = jwt.decode(token, jwtTokenSecret);
       if (decoded.account != null && new Date(decoded.exp) > new Date()) {
         return true;
       }
       return false;
-    }catch (err) {
+    } catch (err) {
       return false;
     }
   } else {
     return false;
   }
-}
-module.exports.checkToken = checkToken
+};
+module.exports.checkToken = checkToken;
 
 const getUserInfoByToken = function(token, jwtTokenSecret) {
   if (token) {
@@ -29,4 +29,4 @@ const getUserInfoByToken = function(token, jwtTokenSecret) {
     return null;
   }
 };
-module.exports.getUserInfoByToken = getUserInfoByToken
+module.exports.getUserInfoByToken = getUserInfoByToken;
