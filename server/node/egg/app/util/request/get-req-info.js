@@ -13,9 +13,20 @@ module.exports = {
       };
     }
 
-    const where = query.where ? JSON.parse(query.where) : undefined;
+    let where
+    let order
 
-    const order = query.order ? JSON.parse(query.order) : undefined;
+    try {
+      where = query.where ? JSON.parse(query.where) : undefined;
+    } catch(e) {
+      throw '搜索条件不是合法的 JSON'
+    }
+
+    try {
+      order = query.order ? JSON.parse(query.order) : undefined;
+    } catch(e) {
+      throw '排序不是合法的 JSON'
+    }
 
     return {
       resourceName,
