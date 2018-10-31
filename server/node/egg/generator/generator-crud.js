@@ -2,14 +2,24 @@
 * 生成 CRUD 操作。
 */
 const fs = require('fs-extra')
+const argv = require('yargs').argv
 
-const modelName = 't2'
-const {modelPath, modelPrefix, modelSuffix} = getModelPathInfo(modelName)
 
-generatorEmptyModel({modelPath, modelName, modelPrefix, modelSuffix})
-generatorService({modelName, modelPrefix, modelSuffix})
-generatorController({modelName, modelPrefix, modelSuffix})
-generatorRouter({modelName, modelPrefix, modelSuffix})
+if (argv.name) {
+  let modelName = argv.name
+  console.log(modelName)
+
+  const {modelPath, modelPrefix, modelSuffix} = getModelPathInfo(modelName)
+
+  generatorEmptyModel({modelPath, modelName, modelPrefix, modelSuffix})
+  generatorService({modelName, modelPrefix, modelSuffix})
+  generatorController({modelName, modelPrefix, modelSuffix})
+  generatorRouter({modelName, modelPrefix, modelSuffix})
+} else {
+  console.log('请传入参数 name。')
+}
+
+
 
 
 function generatorEmptyModel(info) {
@@ -86,7 +96,12 @@ router.post(\`/${publicPrefix}/${modelPrefixPath}/edit\`, jwt, controller.${cont
 
 function getModelPathInfo (modelName) {
   const modelMap = require('../config/model-map.js')
-  let modelPath = modelMap[modelName].split('/')
+  let modelPath = modelMap[modelName]
+  if(!modelPath) {
+    throw `请在 config/model-map.js 中配置: ${modelName}`
+    return
+  }
+  modelPath = modelPath.split('/')
   var modelPrefix = []
   var modelSuffix = []
   var isFindModel = false
