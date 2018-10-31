@@ -8,6 +8,7 @@
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "fs-extra": "^7.0.0",
     "jwt-simple": "^0.5.5",
     "md5": "^2.2.1",
     "module-alias": "^2.1.0",

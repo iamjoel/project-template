@@ -4,4 +4,6 @@
 module.exports = {
   category: 'item/model/category',
   item: 'item/model/item',
+  t1: 'a/model/t1',
+  t2: 'b/model/c/t2'
 };

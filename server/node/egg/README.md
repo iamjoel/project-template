@@ -46,6 +46,7 @@ $ npm stop
 * 图片上传。本地可以了，需要放到服务器上试下，看会不会出现上传超时的问题。
 * JWT。
 * 接口权限。
+* 生成某个实体的代码。
 * 微信的相关功能(开发中)。
 * 核心功能的测试(写了一小部分)。
 
@@ -164,7 +165,10 @@ module.exports = {
 要调研下，以前 egg 的 Body Paser 在服务器上，拿文件上传的会有超时的问题，用 koa 的没问题。
 
 ## TODO
-* 日志的完善。
+* 文件上传。
+* 日志的完善。日志规范。 调研如何快速找到指定内容的egg的日志。看看 ELK(ElasticSearch, Logstash, Kibana)。
+* 根据 model-map 去生成 Controller， Service 的代码。
+
 
 ### 优化项 TODO
 * 加入 gzip 参考 [这里](https://eggjs.org/zh-cn/basics/middleware.html)。
