@@ -1690,7 +1690,7 @@ commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
-common-bin@^2.7.3:
+common-bin@^2.7.1, common-bin@^2.7.3:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/common-bin/-/common-bin-2.8.0.tgz#a96f4c0f7f7cd70b53a96258d9bdf9b3a647c37f"
   dependencies:
@@ -2070,6 +2070,15 @@ duplexer@^0.1.1, duplexer@~0.1.1:
   version "0.1.1"
   resolved "http://registry.npmjs.org/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
+duplexify@^3.6.0:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.6.1.tgz#b1a7a29c4abfd639585efaecce80d666b1e34125"
+  dependencies:
+    end-of-stream "^1.0.0"
+    inherits "^2.0.1"
+    readable-stream "^2.0.0"
+    stream-shift "^1.0.0"
+
 eastasianwidth@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
@@ -2291,6 +2300,21 @@ egg-schedule@^3.4.0:
     safe-timers "^1.1.0"
     utility "^1.13.1"
 
+egg-scripts@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/egg-scripts/-/egg-scripts-2.10.0.tgz#56c3c59c51150c83c190c569814a29b5382f867c"
+  dependencies:
+    common-bin "^2.7.1"
+    debug "^3.1.0"
+    egg-utils "^2.3.0"
+    moment "^2.19.2"
+    mz "^2.7.0"
+    mz-modules "^2.0.0"
+    node-homedir "^1.1.0"
+    runscript "^1.3.0"
+    source-map-support "^0.5.4"
+    zlogger "^1.1.0"
+
 egg-security@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/egg-security/-/egg-security-2.4.0.tgz#8bab9ac82069477b08145744d4ff29d552776df8"
@@ -2327,7 +2351,7 @@ egg-static@^2.1.1:
     mkdirp "^0.5.1"
     ylru "^1.2.0"
 
-egg-utils@^2.4.0, egg-utils@^2.4.1:
+egg-utils@^2.3.0, egg-utils@^2.4.0, egg-utils@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/egg-utils/-/egg-utils-2.4.1.tgz#bc7a330315a100bc45838a54f744fdd5d47c332a"
   dependencies:
@@ -2422,7 +2446,7 @@ empower@^1.3.1:
     core-js "^2.0.0"
     empower-core "^1.2.0"
 
-end-of-stream@^1.1.0:
+end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
   dependencies:
@@ -3622,7 +3646,7 @@ is-symbol@^1.0.2:
   dependencies:
     has-symbols "^1.0.0"
 
-is-type-of@^1.0.0, is-type-of@^1.2.0, is-type-of@^1.2.1:
+is-type-of@^1.0.0, is-type-of@^1.1.0, is-type-of@^1.2.0, is-type-of@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/is-type-of/-/is-type-of-1.2.1.tgz#e263ec3857aceb4f28c47130ec78db09a920f8c5"
   dependencies:
@@ -4257,7 +4281,7 @@ moment-timezone@^0.5.0:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.19.3, moment@^2.22.2:
+"moment@>= 2.9.0", moment@^2.19.2, moment@^2.19.3, moment@^2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -4320,7 +4344,7 @@ mysql@^2.13.0:
     safe-buffer "5.1.2"
     sqlstring "2.3.1"
 
-mz-modules@^2.1.0:
+mz-modules@^2.0.0, mz-modules@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/mz-modules/-/mz-modules-2.1.0.tgz#7f529877afd0d42f409a7463b96986d61cfbcf96"
   dependencies:
@@ -4400,7 +4424,7 @@ no-case@^2.2.0, no-case@^2.3.2:
   dependencies:
     lower-case "^1.1.1"
 
-node-homedir@^1.1.1:
+node-homedir@^1.1.0, node-homedir@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/node-homedir/-/node-homedir-1.1.1.tgz#736db0b60e3bba8aba68df9927de40a7aabe1075"
 
@@ -5008,12 +5032,27 @@ pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
+pump@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/pump/-/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"
+  dependencies:
+    end-of-stream "^1.1.0"
+    once "^1.3.1"
+
 pump@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pump/-/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
   dependencies:
     end-of-stream "^1.1.0"
     once "^1.3.1"
+
+pumpify@^1.3.5:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/pumpify/-/pumpify-1.5.1.tgz#36513be246ab27570b1a374a5ce278bfd74370ce"
+  dependencies:
+    duplexify "^3.6.0"
+    inherits "^2.0.3"
+    pump "^2.0.0"
 
 qs@^6.4.0, qs@^6.5.1, qs@^6.5.2:
   version "6.5.2"
@@ -5095,7 +5134,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2, readable-stream@2.3.6, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.3.5:
+readable-stream@2, readable-stream@2.3.6, readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.3.5:
   version "2.3.6"
   resolved "http://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -5299,6 +5338,13 @@ run-async@^2.2.0:
   dependencies:
     is-promise "^2.1.0"
 
+runscript@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/runscript/-/runscript-1.3.0.tgz#291e77cbe23580c00ea7c0eb1d208fac86aa1306"
+  dependencies:
+    debug "^2.6.8"
+    is-type-of "^1.1.0"
+
 rx-lite-aggregates@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite-aggregates/-/rx-lite-aggregates-4.0.8.tgz#753b87a89a11c95467c4ac1626c4efc4e05c67be"
@@ -5494,7 +5540,7 @@ source-map-support@^0.4.0, source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.6, source-map-support@^0.5.9:
+source-map-support@^0.5.4, source-map-support@^0.5.6, source-map-support@^0.5.9:
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
   dependencies:
@@ -5558,6 +5604,12 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+split2@^2.1.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/split2/-/split2-2.2.0.tgz#186b2575bcf83e85b7d18465756238ee4ee42493"
+  dependencies:
+    through2 "^2.0.2"
+
 split@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/split/-/split-1.0.1.tgz#605bd9be303aa59fb35f9229fbea0ddec9ea07d9"
@@ -5597,6 +5649,10 @@ stream-combiner@^0.2.2:
   dependencies:
     duplexer "~0.1.1"
     through "~2.3.4"
+
+stream-shift@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
 
 stream-slice@^0.1.2:
   version "0.1.2"
@@ -5790,7 +5846,7 @@ throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
 
-through2@^2.0.3:
+through2@^2.0.1, through2@^2.0.2, through2@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:
@@ -6258,3 +6314,11 @@ ypkgfiles@^1.6.0:
     is-type-of "^1.0.0"
     resolve-files "^1.0.0"
     yargs "^7.0.1"
+
+zlogger@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/zlogger/-/zlogger-1.1.0.tgz#bc0d4a1a50d88b4e027636060c7a23682754744e"
+  dependencies:
+    pumpify "^1.3.5"
+    split2 "^2.1.0"
+    through2 "^2.0.1"

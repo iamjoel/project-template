@@ -8,6 +8,7 @@
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.10.0",
     "fs-extra": "^7.0.0",
     "jwt-simple": "^0.5.5",
     "md5": "^2.2.1",
@@ -32,6 +33,8 @@
     "node": ">=8.0.0"
   },
   "scripts": {
+    "start": "egg-scripts start --daemon --title=template",
+    "stop": "egg-scripts stop --title=template",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
     "test-local": "egg-bin test",

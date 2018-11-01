@@ -36,10 +36,17 @@ npm run test-local
 ```
 
 ## 部署
-```bash
+启动
+```
 $ npm start
+```
+
+停止
+```
 $ npm stop
 ```
+
+详细文档，见[这里](https://eggjs.org/zh-cn/core/deployment.html)。
 
 ## 支持功能
 * 对 MySQL 上数据的增删改查。
