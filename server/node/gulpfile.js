@@ -33,7 +33,7 @@ function mv(type) {
     `!${srcRootPath}/.idea`,
     `!${srcRootPath}/logs`,
     `!${srcRootPath}/logs/**/*`,
-    `!${srcRootPath}/db.sql`,
+    `!${srcRootPath}/TODO.md`,
     `!${srcRootPath}/yarn.lock`,
     // ...hasVueFolderPath,  // 会在 replace 中做替换
     ])
