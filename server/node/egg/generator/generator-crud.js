@@ -79,16 +79,16 @@ function generatorRouter(info) {
   console.log('路由如下:')
   console.log(`
 router.get('/api/${modelPrefixPath}/list', jwt, controller.${controllerPrefixPath}.list)
-router.get(\`/\${publicPrefix}/${modelPrefixPath}/list\`, jwt, controller.${controllerPrefixPath}.list)
+router.get(\`/\${publicPrefix}/${modelPrefixPath}/list\`, controller.${controllerPrefixPath}.list)
 
 router.get('/api/${modelPrefixPath}/detail/:id', jwt, controller.${controllerPrefixPath}.detail)
-router.get(\`/\${publicPrefix}/${modelPrefixPath}/detail/:id\`, jwt, controller.${controllerPrefixPath}.detail)
+router.get(\`/\${publicPrefix}/${modelPrefixPath}/detail/:id\`, controller.${controllerPrefixPath}.detail)
 
 router.post('/api/${modelPrefixPath}/add', jwt, controller.${controllerPrefixPath}.add)
-router.post(\`/\${publicPrefix}/${modelPrefixPath}/add\`, jwt, controller.${controllerPrefixPath}.add)
+router.post(\`/\${publicPrefix}/${modelPrefixPath}/add\`, controller.${controllerPrefixPath}.add)
 
 router.post('/api/${modelPrefixPath}/edit', jwt, controller.${controllerPrefixPath}.edit)
-router.post(\`/${publicPrefix}/${modelPrefixPath}/edit\`, jwt, controller.${controllerPrefixPath}.edit)
+router.post(\`/${publicPrefix}/${modelPrefixPath}/edit\`, controller.${controllerPrefixPath}.edit)
 `)
   
 }
