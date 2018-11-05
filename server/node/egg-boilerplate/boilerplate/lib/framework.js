@@ -11,7 +11,6 @@ class Application extends egg.Application {
 }
 
 
-
 class Agent extends egg.Agent {
   get [EGG_PATH]() {
     return path.dirname(__dirname);

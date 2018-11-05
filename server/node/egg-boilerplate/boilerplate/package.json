@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "acl": "^0.4.11",
     "await-stream-ready": "^1.0.1",
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
     "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.10.0",
+    "fs-extra": "^7.0.0",
     "jwt-simple": "^0.5.5",
     "md5": "^2.2.1",
     "module-alias": "^2.1.0",
@@ -23,15 +26,19 @@
     "egg-mock": "^3.14.0",
     "eslint": "^4.18.0",
     "eslint-config-egg": "^7.0.0",
-    "webstorm-disable-index": "^1.2.0"
+    "webstorm-disable-index": "^1.2.0",
+    "yargs": "^12.0.2"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
+    "start": "egg-scripts start --daemon --title=template",
+    "stop": "egg-scripts stop --title=template",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
     "test-local": "egg-bin test",
+    "gen": "node generator/generator-crud",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && egg-bin pkgfiles --check && npm run cov",
@@ -47,7 +54,7 @@
   },
   "keywords": [
     "egg",
-    "egg-framework"
+    "egg-template"
   ],
   "author": "Joel",
   "files": [

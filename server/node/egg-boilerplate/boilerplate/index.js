@@ -4,4 +4,4 @@
 module.exports = require('./lib/framework.js');
 
 
-console.log('server started!')
+console.log('server started!');

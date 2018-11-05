@@ -1,19 +1,19 @@
-
+var template = `
 const Controller = require('egg').Controller;
-class CommonController extends Controller {
+class MainController extends Controller {
   async list() {
-    await this.ctx.handleList(this, this.service.common.index.list);
+    await this.ctx.handleList(this, this.service.{servicePath}.list);
   }
 
   async detail() {
-    await this.ctx.handleDetail(this, this.service.common.index.list);
+    await this.ctx.handleDetail(this, this.service.{servicePath}.list);
   }
 
   async add() {
     const { ctx, service, config } = this;
     try {
       const resourceName = ctx.request.path.split('/')[2];
-      const res = await this.service.common.index.add(resourceName, ctx.request.body);
+      const res = await this.service.{servicePath}.add(resourceName, ctx.request.body);
       if (res.errMsg) { // 验证报错
         ctx.body = ctx.fail(-2, res.errMsg);
       } else {
@@ -28,7 +28,7 @@ class CommonController extends Controller {
     const { ctx, service, config } = this;
     try {
       const resourceName = ctx.request.path.split('/')[2];
-      const res = await this.service.common.index.edit(resourceName, ctx.request.body);
+      const res = await this.service.{servicePath}.edit(resourceName, ctx.request.body);
       if (res.errMsg) { // 验证报错
         ctx.body = ctx.fail(-2, res.errMsg);
       } else {
@@ -43,7 +43,7 @@ class CommonController extends Controller {
     const { ctx, service, config } = this;
     try {
       const resourceName = ctx.request.path.split('/')[2];
-      const res = await this.service.common.index.del(resourceName, ctx.params.id);
+      const res = await this.service.{servicePath}.del(resourceName, ctx.params.id);
       ctx.body = ctx.success(res);
     } catch (e) {
       ctx.body = ctx.fail(-1, e);
@@ -52,4 +52,6 @@ class CommonController extends Controller {
 }
 
 
-module.exports = CommonController;
+module.exports = MainController
+`
+module.exports = template

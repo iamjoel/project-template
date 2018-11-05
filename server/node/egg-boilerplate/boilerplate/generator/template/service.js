@@ -1,21 +1,11 @@
-const generatorList = require('../../util/sql/list');
+var template = `
+const generatorList = require('@/util/sql/list');
 const Service = require('egg').Service;
 
-/*
-* 单表的操作
-*/
-class CommonService extends Service {
-  /*
-  * 列表
-  /api/resourceName/list?
-  where={"name":"t", "detail": "d", "name__like": 3}&
-  pageAt=3&pageLimit=6&
-  order=[["name", "desc"], ["detail", "asc"]]
-  */
+class MainService extends Service {
   async list(resourceName, pager = { at: 1 }, where, orders) {
     const { app, ctx, config } = this;
 
-    // 要显示的字段
     const fields = this.ctx.helper.getFields(app, resourceName);
 
     // 列表数据
@@ -50,10 +40,6 @@ class CommonService extends Service {
     };
   }
 
-  /*
-  * 详情
-  * /api/resourceName/detail/1
-  */
   async detail(resourceName, id) {
     const { app, ctx, config } = this;
 
@@ -63,7 +49,7 @@ class CommonService extends Service {
     const sql = app.squel.select()
       .from(resourceName)
       .fields(fields)
-      .where(`id = "${id}"`)
+      .where(\`id = "\${id}"\`)
       .toString();
     console.log(sql);
 
@@ -73,10 +59,6 @@ class CommonService extends Service {
     };
   }
 
-  /*
-  * 新增
-  * /api/resourceName/add  data
-  */
   async add(resourceName, data) {
     const { app, ctx, config } = this;
     const helper = ctx.helper;
@@ -106,10 +88,6 @@ class CommonService extends Service {
 
   }
 
-  /*
-  * 编辑
-  * /api/resourceName/edit  data
-  */
   async edit(resourceName, data) {
     const { app, ctx, config } = this;
     const helper = ctx.helper;
@@ -134,10 +112,6 @@ class CommonService extends Service {
 
   }
 
-  /*
-  * 删除
-  * /api/resourceName/del/:id
-  */
   async del(resourceName, id) {
     await this.app.mysql.update(resourceName, {
       id,
@@ -149,4 +123,6 @@ class CommonService extends Service {
   }
 }
 
-module.exports = CommonService;
+module.exports = MainService;`
+
+module.exports = template
