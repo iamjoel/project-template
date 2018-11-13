@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller;
+
 class UploadController extends Controller {
   async uploadImg() {
     const { ctx, service, config } = this;

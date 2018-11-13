@@ -6,7 +6,7 @@ class CommonController extends Controller {
   }
 
   async detail() {
-    await this.ctx.handleDetail(this, this.service.common.index.list);
+    await this.ctx.handleDetail(this, this.service.common.index.detail);
   }
 
   async add() {

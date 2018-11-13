@@ -8,7 +8,8 @@
 
 2 修改配置  
 
-* 修改 `config.default.js` 下框架相关的配置。
+* 修改 `config.
+default.js` 下框架相关的配置。
   * `keys` cookie 会用这个来签名，加密
   * `mysql` 的配置。
   * `jwtTokenSecret` jwt 的密钥

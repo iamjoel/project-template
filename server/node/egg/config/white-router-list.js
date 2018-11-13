@@ -4,4 +4,5 @@ module.exports = [
   '/publicApi',
   '/api/login',
   '/api/picture/upload',
+  '/api/file/upload',
 ];

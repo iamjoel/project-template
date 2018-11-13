@@ -6,17 +6,35 @@ module.exports = function(searchCondition = {}, escape, resourceName) {
 
   searchCondition[`${resourceName}.delFlg`] = 0; // 未被删除的
 
-  for (const key in searchCondition) {
+  for (let key in searchCondition) {
     // 过滤 XSS 字符
     let value = escape(searchCondition[key]);
     if (typeof value === 'string') {
       value = `"${value}"`;
     }
 
+    if(key.indexOf('.') < 0 
+        && key.substring(0, key.indexOf('.')) !== resourceName
+        && key.indexOf('fullName') < 0) {
+      key = `${resourceName}.${key}`;
+    }
+
     if (!key.includes('__')) {
       res = res.and(`${key} = ${value}`);
     } else { // like, < , > 的操作
-      const [ rawKey, action ] = key.split('__');
+      let [ rawKey, action ] = key.split('__');
+      if(action === 'like'){
+        console.log(value.replace(/\"/g, ''))
+        value = `'%${value.replace(/\"/g, '')}%'`;
+      } else if(action === 'lt'){
+        action = '<';
+      } else if(action === 'lte'){
+        action = '<=';
+      } else if(action === 'gt'){
+        action = '>'
+      } else if(action === 'gte'){
+        action = '>='
+      }
       res = res.and(`${rawKey} ${action} ${value}`);
     }
   }
