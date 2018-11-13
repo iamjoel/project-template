@@ -42,7 +42,7 @@ class CommonService extends Service {
     return {
       data: list,
       pager: {
-        total: total[0].total,
+        total: total.length > 0 ? total[0].total : 0,
         pageAt: pager.at,
       },
     };
