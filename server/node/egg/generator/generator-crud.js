@@ -3,6 +3,7 @@
 */
 const fs = require('fs-extra')
 const argv = require('yargs').argv
+const line2upper = require('../app/util/line-to-upper')
 
 
 if (argv.name) {
@@ -46,7 +47,7 @@ module.exports = {
 function generatorService(info) {
   const {modelName, modelPrefix, modelSuffix} = info
 
-  let dist = `app/service/${modelPrefix.join('/')}/${modelSuffix.join('/')}.js`
+  let dist = line2upper(`app/service/${modelPrefix.join('/')}/${modelSuffix.join('/')}.js`)
   var template = require('./template/service.js')
 
   fs.outputFileSync(dist, template)
@@ -58,7 +59,7 @@ function generatorService(info) {
 function generatorController(info) {
   const {modelName, modelPrefix, modelSuffix} = info
   var modelPrefixPath = modelPrefix.join('/')
-  var servicePath = `${modelPrefix.join('.')}.${modelSuffix.join('.')}`
+  var servicePath = line2upper(`${modelPrefix.join('.')}.${modelSuffix.join('.')}`)
 
   let dist = `app/controller/${modelPrefix.join('/')}/${modelSuffix.join('/')}.js`
   var template = require('./template/controller.js')
@@ -73,22 +74,26 @@ function generatorRouter(info) {
   const publicPrefix = 'publicApi'
 
   const {modelPrefix, modelSuffix} = info
-  var modelPrefixPath = modelPrefix.join('/')
-  var controllerPrefixPath = `${modelPrefix.join('.')}.${modelSuffix.join('.')}`
+  // var modelPrefixPath = modelPrefix.join('/')
+  var modelSuffixPath = modelSuffix.join('/')
+  var controllerPrefixPath = line2upper(`${modelPrefix.join('.')}.${modelSuffix.join('.')}`)
   
   console.log('路由如下:')
   console.log(`
-router.get('/api/${modelPrefixPath}/list', jwt, controller.${controllerPrefixPath}.list)
-router.get(\`/\${publicPrefix}/${modelPrefixPath}/list\`, controller.${controllerPrefixPath}.list)
+router.get('/api/${modelSuffixPath}/list', jwt, controller.${controllerPrefixPath}.list)
+router.get(\`/\${publicPrefix}/${modelSuffixPath}/list\`, controller.${controllerPrefixPath}.list)
 
-router.get('/api/${modelPrefixPath}/detail/:id', jwt, controller.${controllerPrefixPath}.detail)
-router.get(\`/\${publicPrefix}/${modelPrefixPath}/detail/:id\`, controller.${controllerPrefixPath}.detail)
+router.get('/api/${modelSuffixPath}/detail/:id', jwt, controller.${controllerPrefixPath}.detail)
+router.get(\`/\${publicPrefix}/${modelSuffixPath}/detail/:id\`, controller.${controllerPrefixPath}.detail)
 
-router.post('/api/${modelPrefixPath}/add', jwt, controller.${controllerPrefixPath}.add)
-router.post(\`/\${publicPrefix}/${modelPrefixPath}/add\`, controller.${controllerPrefixPath}.add)
+router.post('/api/${modelSuffixPath}/add', jwt, controller.${controllerPrefixPath}.add)
+router.post(\`/\${publicPrefix}/${modelSuffixPath}/add\`, controller.${controllerPrefixPath}.add)
 
-router.post('/api/${modelPrefixPath}/edit', jwt, controller.${controllerPrefixPath}.edit)
-router.post(\`/${publicPrefix}/${modelPrefixPath}/edit\`, controller.${controllerPrefixPath}.edit)
+router.post('/api/${modelSuffixPath}/edit', jwt, controller.${controllerPrefixPath}.edit)
+router.post(\`/${publicPrefix}/${modelSuffixPath}/edit\`, controller.${controllerPrefixPath}.edit)
+
+router.post('/api/${modelSuffixPath}/del/:id', jwt, controller.${controllerPrefixPath}.del)
+router.post(\`/${publicPrefix}/${modelSuffixPath}/del/:id\`, controller.${controllerPrefixPath}.del)
 `)
   
 }
