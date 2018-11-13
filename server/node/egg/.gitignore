@@ -8,9 +8,8 @@ run/
 *.swp
 package-lock.json
 
+app/public/img/*.*
+!app/public/img/.gitkeeper
 
-app/public/img/*.jpg
-app/public/img/*.jpeg
-app/public/img/*.gif
-app/public/img/*.png
-
+app/public/file/*.*
+!app/public/file/.gitkeeper
