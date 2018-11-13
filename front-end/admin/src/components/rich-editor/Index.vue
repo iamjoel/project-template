@@ -1,5 +1,5 @@
 <template>
-  <div class="editor">
+  <div class="editor" :class="['editor-' + editId]">
      <!-- 图片上传组件辅助-->
     <el-upload class="image-uploader" name="file"
              :action="addPicUrl" :show-file-list="false"

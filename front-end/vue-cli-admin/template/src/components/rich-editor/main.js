@@ -24,6 +24,8 @@ const toolbarOptions = [
   ['clean']                                         // remove formatting button
 ]
 
+var id = 0
+
 import {IMGS_PREFIX} from '@/setting'
 
 export default {
@@ -34,7 +36,10 @@ export default {
     quillEditor
   },
   data() {
+    id++
+    var editId = id
     return {
+      editId,
       content: '',
       editorOption: {
           placeholder: '',
@@ -45,7 +50,7 @@ export default {
                   handlers: {
                       'image': function (value) {
                           if (value) {
-                            document.querySelector('.editor .image-uploader input').click()
+                            document.querySelector(`.editor-${editId} .image-uploader input`).click()
                           } else {
                               this.quill.format('image', false);
                           }
@@ -57,6 +62,11 @@ export default {
     }  
   },
   watch: {
+    value() {
+      if(this.value) {
+        this.content = this.value
+      }
+    }
   },
   methods: {
     onEditorBlur(quill) {

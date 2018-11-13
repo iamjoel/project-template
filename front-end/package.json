@@ -1,0 +1,20 @@
+{
+  "name": "front-end-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:admin": "gulp generator-admin",
+    "build:mobile": "gulp generator-mobile"
+  },
+  "keywords": [
+    "template"
+  ],
+  "author": "Joel",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.6.1"
+  }
+}
