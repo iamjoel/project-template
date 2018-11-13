@@ -8,7 +8,8 @@
 
 2 修改配置  
 
-* 修改 `config.default.js` 下框架相关的配置。
+* 修改 `config.
+default.js` 下框架相关的配置。
   * `keys` cookie 会用这个来签名，加密
   * `mysql` 的配置。
   * `jwtTokenSecret` jwt 的密钥
@@ -51,6 +52,7 @@ $ npm stop
 ## 支持功能
 * 对 MySQL 上数据的增删改查。
 * 图片上传。本地可以了，需要放到服务器上试下，看会不会出现上传超时的问题。
+* 文件上传。
 * JWT。
 * 接口权限。
 * 生成某个表的增删改查的代码。 `npm run gen -- --name=表`

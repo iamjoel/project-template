@@ -7,7 +7,10 @@ module.exports = appInfo => {
   config.keys = appInfo.name; // package.json 里的 name
 
   // 启用的中间件
-  config.middleware = [ 'acl' ];
+  config.middleware = [ 
+    // 'acl' 
+    'filterEdit'
+  ]
 
   // mysql 配置
   const mySqlConfig = require('./mysql');
@@ -40,6 +43,20 @@ module.exports = appInfo => {
     video: `${staticPath}/video`,
     file: `${staticPath}/file`,
   };
+
+  // 文件上方的后缀的白名单
+  config.multipart = {
+    fileSize: '50mb',
+    fileExtensions: [
+      '.txt',
+      '.docx',
+      '.doc',
+      '.xlsx',
+      '.xls',
+      '.ppt',
+      '.pptx',
+    ],
+  }
 
   config.jwtTokenSecret = 'demo'; // token 的密钥
 

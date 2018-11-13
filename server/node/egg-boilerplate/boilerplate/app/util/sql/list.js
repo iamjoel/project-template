@@ -20,11 +20,16 @@ module.exports = (info, env, type = 'list', isMulti = false) => {
 
   orders = orders || [];
   if (!isMulti) {
-    orders.push([ 'updateTime', 'desc' ]);
+    orders.push([ `${resourceName}.updateTime`, 'desc' ]);
   }
 
+
   let sql = generatorOrder(
-    app.squel.select()
+    type === 'count' 
+    ? app.squel.select()
+    .from(resourceName)
+    .where(whereStr)
+    : app.squel.select()
       .from(resourceName)
       .where(whereStr)
       .offset(offset)
@@ -32,7 +37,7 @@ module.exports = (info, env, type = 'list', isMulti = false) => {
     orders
   );
   if (type === 'count') {
-    sql = sql.field('count(id)', 'total');
+    sql = sql.field(`count(${resourceName}.id)`, 'total');
   }
   return sql;
 };

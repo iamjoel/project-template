@@ -6,7 +6,7 @@ class MainController extends Controller {
   }
 
   async detail() {
-    await this.ctx.handleDetail(this, this.service.{servicePath}.list);
+    await this.ctx.handleDetail(this, this.service.{servicePath}.detail);
   }
 
   async add() {

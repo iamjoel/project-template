@@ -19,6 +19,7 @@ module.exports = app => {
 
 
   router.post('/api/picture/upload', controller.common.upload.uploadImg); // 图片上传
+  router.post('/api/file/upload', controller.common.upload.uploadFile); // 文件上传
   router.post('/api/login', controller.common.login.login);
 
 };
