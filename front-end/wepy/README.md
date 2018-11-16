@@ -90,6 +90,11 @@ wepy.request('xxxx').then()
 * [微信小程序免费SSL证书Https 申请（阿里云申请）](https://www.cnblogs.com/jianxuanbing/p/8205042.html)
 
 ## 其他
-* 微信开发者工具中
-  * 点预览可以生成二维码，在真机上看效果。
-  * 点上传可以上传代码。然后需要登录后台提交审核。 
+### Sublime 中 wpy文件的语法高亮
+1. 打开 Sublime->Preferences->Browse Packages.进入用户包文件夹。
+1. 在此文件夹下打开cmd，运行 `git clone https://github.com/vuejs/vue-syntax-highlight.git`，无 git用户可以直接下载zip包解压至当前文件夹。
+1. 关闭.wpy文件重新打开即可高亮。
+
+### 微信开发者工具中
+* 点预览可以生成二维码，在真机上看效果。
+* 点上传可以上传代码。然后需要登录后台提交审核。 
