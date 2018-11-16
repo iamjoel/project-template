@@ -86,7 +86,7 @@ wepy.request('xxxx').then()
 * [小程序组件](https://mp.weixin.qq.com/debug/wxadoc/dev/component/)
 * [小程序API](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
 * [小程序插件](https://mp.weixin.qq.com/debug/wxadoc/introduction/plugin.html)
-* [微信小程序wepy开发资源汇总](https://github.com/aben1188/awesome-wepy)
+* [awesome wepy](https://github.com/aben1188/awesome-wepy) 微信小程序wepy开发资源汇总
 * [微信小程序免费SSL证书Https 申请（阿里云申请）](https://www.cnblogs.com/jianxuanbing/p/8205042.html)
 
 ## 其他
