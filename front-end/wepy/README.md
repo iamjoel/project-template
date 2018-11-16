@@ -69,8 +69,8 @@ wepy.request('xxxx').then()
 * 线上小程序的接口请求必须是 `https`。
 
 ## 一些坑
-* 微信小程序 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。
-* 布置成 window 对象。
+* 微信小程序 只支持少量的 HTML 标签。不支持 div, span。如果用div，会把 div 处理为内联元素。用 block 元素来代替 div。
+* 不支持 window 对象。
 * 样式表不支持级联选择器。
 * 一个应用同时只能打开5个页面。当已经打开了5个页面之后，wx.navigateTo不能正常打开新页面。请避免多层级的交互方式，或者使用wx.redirectTo。
 * wepy中的 `methods` 仅可用于页面事件绑定。wepy 还不支持模板中调用函数。解决方案：列表直接 map 好，详情用 computed。
