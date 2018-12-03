@@ -37,6 +37,7 @@ exports.cssLoaders = function (options) {
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
+        publicPath: '../../', // 这行是新增的
         use: loaders,
         fallback: 'vue-style-loader'
       })

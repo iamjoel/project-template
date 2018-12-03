@@ -55,13 +55,19 @@ router.afterEach((to,from,next) => { // 进入新页面时，页面总是滚动�
 
 import App from './App.vue'
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   template: '<App/>',
   components: { App },
   store
 })
+
+// 登录后才能跳转的页面
+Vue.prototype.$loginedJump = function(url) {
+  var jumpUrl = this.$store.state.user.id ? url : '/login'
+  this.$router.push(jumpUrl)
+}.bind(vm)
 
 // 项目信息
 console.group()
