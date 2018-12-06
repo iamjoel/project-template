@@ -24,8 +24,9 @@ module.exports = function(searchCondition = {}, escape, resourceName) {
     } else { // like, < , > 的操作
       let [ rawKey, action ] = key.split('__');
       if(action === 'like'){
-        console.log(value.replace(/\"/g, ''))
         value = `'%${value.replace(/\"/g, '')}%'`;
+      } else if(action === 'in') {
+        value = '('+value.replace(/\"/g, '').split(',').map(a => a = `'${a}'`).join(',')+')'
       } else if(action === 'lt'){
         action = '<';
       } else if(action === 'lte'){
