@@ -72,6 +72,10 @@ export default {
     },
     setVal(value) {
       this.inputVal = value
+    },
+    reset() {
+      this.inputVal = ''
+      this.fetch() // 一定要写，否则返回的列表还是带上传筛选值。
     }
   },
   mounted() {
