@@ -9,7 +9,7 @@
         <slot :data="item" :index="i"/>
       </template>
     </van-list>
-    <div v-if="!isLoading && list.length === 0" class="ta-c">
+    <div v-if="!isLoading && list.length === 0" class="ta-c lh-lg mt-10rem">
       暂无数据
     </div>
   </div>
@@ -46,12 +46,18 @@ export default {
     }
   },
   methods: {
-    fetchList() {
-      if(this.isFinished) {
-        return
+    fetchList(isReSearch) {
+      if(!isReSearch) {
+        if(this.isFinished) {
+          return
+        }
+        this.pager.current++
+      } else {
+        this.isFinished = false
+        this.pager.current = 1
       }
+      
       this.isLoading = true
-      this.pager.current++
       
       // 非无限加载的，只调用一次接口
       if(!this.isInfinate) {
@@ -59,13 +65,12 @@ export default {
       }
 
       fetchList(this.keyId, this.searchCondition, this.pager, this.order).then(({data}) => {
-        this.list = this.list.concat(data.data)
+        this.list = isReSearch ? data.data : this.list.concat(data.data)
         this.pager.total = data.pager.total
         if(this.pager.current >= Math.ceil(data.pager.total / this.pageLimit)) {
           this.isFinished = true
         }
         this.isLoading = false
-        console.log(this.list)
       })
 
     }
