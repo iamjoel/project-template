@@ -29,6 +29,21 @@ utilFns.forEach(fn => {
 
 // import '@/assets/utils/errorHandler' // 错误处理,收集
 
+import {Message} from 'element-ui'
+Vue.prototype.$success = function (msg) {
+  Message({
+    type: 'success',
+    message: msg
+  });
+}
+
+Vue.prototype.$error = function (msg) {
+  Message({
+    type: 'error',
+    message: msg
+  });
+}
+
 import axios from 'axios'
 require('@/service/interceptor') // axios 拦截器，做通用报错等
 Vue.prototype.$http = axios
@@ -38,13 +53,14 @@ import store from '@/store'
 // 过滤器
 require('@/filters')
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
   components: { App }
 })
+
 
 // 项目信息
 console.group()
