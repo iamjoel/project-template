@@ -24,13 +24,14 @@ export default {
     urlKey: String,
     otherQuery: null,// 调列表接口的其他查询参数。可以函数用 {name: null, someKey: name} 来自定义远程搜索的key
     autoFetch: Boolean,
-    value: null//String // v-model
+    value: null,//String // v-model
+    formatList: null
   },
   data() {
     return {
       list: [],
       inputVal: null
-    }  
+    }
   },
   watch: {
     inputVal() {
@@ -56,14 +57,17 @@ export default {
       }
       fetchList(this.urlKey, {name: name, ...otherQuery}, {
         current: 1,
-        limit: 20
+        item: 50
       }, null).then(res => {
         this.list = res.data.data.map(item => {
           return {
             id: item.id || item.key,
-            name: item.name || item.label
+            name: item.name || item.label || item.title
           }
         })
+        if(typeof this.formatList === 'function') {
+          this.list = this.formatList(this.list)
+        }
       })
     },
     setVal(value) {
@@ -78,6 +82,9 @@ export default {
     if(this.autoFetch) {
       this.fetch()
     }
+  },
+  destroyed() {
+    this.$emit('input', '')
   }
 }
 </script>
