@@ -8,8 +8,6 @@ npm i -g vue-cli
 vue init 该项目的路径
 ```
 
-# Plugin Development
-
 ## 安装
 
 ```
@@ -39,6 +37,7 @@ npm unlink 该项目的路径
 ## 发布到 npm
 
 ```
+npm run build
 npm publish
 ```
 
