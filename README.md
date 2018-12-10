@@ -18,6 +18,7 @@
     * 使用脚手架: `vue init 脚手架所在文件夹的路径`
   * React
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+* [可发布到 npm 的 Vue 组件模板](front-end/vue-cli-npm-components)。使用方式：`vue init 改组件模板所在文件夹的路径`。
 * 小程序
   * [WePY](front-end/wepy)
 * 服务器端渲染(SSR)
