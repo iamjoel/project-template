@@ -24,8 +24,7 @@ npm run dev
 ## 组件的开发测试
 
 ```
-cd 该项目的路径
-npm link
+npm link 该项目的路径
 ```
 
 测试完后
