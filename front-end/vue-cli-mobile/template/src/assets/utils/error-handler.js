@@ -1,20 +1,13 @@
 import Vue from 'vue'
-import fundebug from 'fundebug-javascript'
-import {fundebugAPIKey} from '@/setting'
+import {Toast} from 'vant'
 
-fundebug.apikey = fundebugAPIKey
-
-Vue.config.errorHandler = function(err, vm, info) {
+Vue.config.errorHandler = function(error, vm, info) {
   var componentName = formatComponentName(vm);
   var propsData = vm.$options && vm.$options.propsData;
 
-  fundebug.notifyError(err, {
-    metaData: {
-      componentName: componentName,
-      propsData: propsData,
-      info: info
-    }
-  });
+  Toast.fail(error)
+  console.error(`${componentName}: ${error}`)
+  console.error(`更多错误信息: ${info}`)
 }
 
 function formatComponentName(vm) {

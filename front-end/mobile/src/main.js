@@ -14,6 +14,8 @@ Vue.use(Lazyload, {
   // error: '' // 加载完成的图片样式
 })
 
+import '@/assets/utils/error-handler' // 错误处理,收集
+
 import {IMGS_PREFIX} from '@/setting'
 Vue.prototype.$imgPrefix = IMGS_PREFIX
 Vue.prototype.$preview = url => {

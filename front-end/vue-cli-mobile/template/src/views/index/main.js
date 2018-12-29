@@ -5,6 +5,8 @@ export default {
       searchInput: '',
     }  
   },
+  mounted() {
+  },
   methods: {
     onSearch() {
       this.$showLoading()
@@ -12,5 +14,5 @@ export default {
         this.$hideLoading()
       }, 2000)
     }
-  }
+  },
 }

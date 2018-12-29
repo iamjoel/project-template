@@ -27,7 +27,7 @@ utilFns.forEach(fn => {
   Vue.prototype[fn.name] = new Function(...fn.args, fn.body)
 })
 
-// import '@/assets/utils/errorHandler' // 错误处理,收集
+import '@/assets/utils/error-handler' // 错误处理,收集
 
 import {Message} from 'element-ui'
 Vue.prototype.$success = function (msg) {
