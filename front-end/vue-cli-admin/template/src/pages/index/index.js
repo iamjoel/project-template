@@ -53,6 +53,9 @@ import store from '@/store'
 // 过滤器
 require('@/filters')
 
+import mock from 'mockjs'
+Vue.prototype.$mock = mock
+
 var vm = new Vue({
   el: '#app',
   router,

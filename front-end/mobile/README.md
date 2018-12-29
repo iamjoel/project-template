@@ -86,3 +86,6 @@
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
 * [Vant UI](https://www.youzanyun.com/zanui/vant#/zh-CN/component/intro) 有赞出品的基于 Vue 的组件库。
+* [axios](https://github.com/mzabriskie/axios) 用来发 HTTP 请求的。
+* [Webpack](http://webpack.github.io/)
+* [Mock.js](http://mockjs.com/) 生成随机数据，拦截 Ajax 请求。

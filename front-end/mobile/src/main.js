@@ -55,6 +55,9 @@ router.afterEach((to,from,next) => { // 进入新页面时，页面总是滚动�
   window.scrollTo(0,0);
 })
 
+import mock from 'mockjs'
+Vue.prototype.$mock = mock
+
 import App from './App.vue'
 
 var vm = new Vue({

@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    欢迎
+    欢迎 \{{$mock.Random.cname()}}
   </div>
 </template>
 
