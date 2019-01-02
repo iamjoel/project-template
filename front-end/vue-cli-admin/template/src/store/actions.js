@@ -49,11 +49,14 @@ export const fetchMenuAndLimit = ({ commit, state, getters }) => {
 }
 
 function  hasLimit(allowRoles, role) {
-  if(!allowRoles || role == 1) return true // 所有设置权限人都能看; 1 是超级管理员
+  role = role + ''
+  if(!allowRoles || role === 
+    '1') return true // 所有设置权限人都能看; 1 是超级管理员
   if(Array.isArray(allowRoles)) {
-    return allowRoles.indexOf(role) != -1
+    return allowRoles.map(item => item + '').indexOf(role) != -1
   } else {
-    return allowRoles == role
+    allowRoles = allowRoles + ''
+    return allowRoles === role
   }
 }
 

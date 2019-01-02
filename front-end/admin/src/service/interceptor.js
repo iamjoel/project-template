@@ -7,7 +7,7 @@ import {Message} from 'element-ui'
 //   return new Promise((resolve, reject)=>{
 //     if(config.url.indexOf('login') === -1) {
 //       config.params = config.params || {}
-//       config.params['token'] = token;
+//       config.headers['token'] = token;
 //     }
 //     return resolve(config);
 //   })
