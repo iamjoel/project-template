@@ -17,5 +17,10 @@ function formatComponentName(vm) {
 
 }
 
+window.onerror = function(error, url, line) {
+  console.error(`文件: ${url}第${line}行: ${error}`)
+}
+
+
 // 测试有没成功。
 // fundebug.notify("Test", "Hello Fundebug!") 

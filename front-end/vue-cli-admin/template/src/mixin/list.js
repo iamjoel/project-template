@@ -3,17 +3,31 @@ import JSearchCondition from '@/components/search-condition'
 import JEditItem from '@/components/edit-item'
 import JGridBox from '@/components/grid-box'
 
+var operateConfig = {
+  "add": {
+    "isShow": true
+  },
+  "edit": {
+    "isShow": true
+  },
+  "detail": {
+    "isShow": true
+  },
+  "delete": {
+    "isShow": true
+  }
+}
 export default {
   components: {
-    'j-search-condition': JSearchCondition,
-    'j-edit-item': JEditItem,
-    'j-grid-box': JGridBox
+    JSearchCondition,
+    JEditItem,
+    JGridBox
   },
   data() {
     return {
       KEY: null,
       PAGE_PATH_PREFIX: null,
-      limitKey: null,
+      operateConfig,
       tableData: [],
       pager: {
         current: 1,
@@ -22,7 +36,6 @@ export default {
       model: {},// 详情的model
       isShowDetailDialog: false,
       params: false,
-      limitKey: null // 页面权限key
     }
   },
   computed: {
@@ -50,10 +63,7 @@ export default {
           this.PAGE_PATH_PREFIX = '/' + pathArr[0] + '/' + pathArr[1]
         }
       }
-      if(!this.limitKey) {
-        this.limitKey = this.KEY
-      }
-      // console.log(`KEY: ${this.KEY};PAGE_PATH_PREFIX: ${this.PAGE_PATH_PREFIX},limitKey: ${this.limitKey}`)
+      
       this.search()
     },
     fetch(searchConditions = this.searchConditions) {
@@ -98,18 +108,16 @@ export default {
     * 按钮的权限控制
     * 用权限值(细力度)或角色(粗力度)来做。
     */
-    isShow(type) {
-      if(!this.config || !this.config.operate) {
-        return true
-      }
-      var isShow = this.config.operate[type].isShow
+    isShowAction(type) {
+      var isShow = this.operateConfig[type].isShow
       if(Array.isArray(isShow)) {
         return isShow.indexOf(this.$store.state.role) !== -1
       } else {
         return isShow
       }
     },
-    // isShow (type) {
+    // 服务器端存权限的 二进制 做法
+    // isShowAction (type) {
     //   var limit = this.$store.state.limit[this.limitKey]
     //   return (limit && limit[type]) || true // 测试
     // },
