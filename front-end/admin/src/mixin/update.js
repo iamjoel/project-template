@@ -130,10 +130,8 @@ export default {
     }
     if (!this.isAdd) {
       fetchModel(this.KEY, this.id).then(({data})=>{
-        if (!data.errcode) {
-          this.model = this.formatFetchData(Object.assign({}, this.model, data.data))
-          this.afterFectch()
-        }
+        this.model = this.formatFetchData(Object.assign({}, this.model, data.data[0]))
+        this.afterFectch()
       })
     } else {
       // 解决 model 会拿上次的值
