@@ -12,15 +12,15 @@ var routes = [
     return {
       path: item.routePath,
       component: resolve => {
-        lazyLoading(resolve, item.filePath.replace(/\.vue$/, ''), false)
+        lazyLoading(resolve, item.filePath.replace(/\.vue$/, ''), false, !item.isEjected)
       }
     }
   }),
 ]
 
-const lazyLoading = (resolve, name, index = false) => {
+const lazyLoading = (resolve, name, index = false, notEjected) => {
   require.ensure([], function(require) {
-    resolve(require(`@/views/${name}${index ? '/Index' : ''}.vue`));
+    resolve(require(`@/${notEjected ? 'auto/' : ''}views/${name}${index ? '/Index' : ''}.vue`));
   })
 }
 
