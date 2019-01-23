@@ -1,10 +1,3 @@
-/*
-例如
-{
-	"routePath": "/data/account/list",
-	"filePath": "data/account/List"
-}
-*/
-
 export default [
+  ...require('@/auto/setting/base/router').default
 ]
