@@ -1,3 +1,4 @@
+var menuId = 1
 export default {
   props: {
     menu: {
@@ -46,7 +47,7 @@ export default {
       return currMenu
     },
     currMenuId() {
-      return this.currMenu ? this.currMenu.id : ''
+      return this.currMenu ? this.currMenu.name : ''
     },
     currSubMenuId() {
       // 一级菜单
@@ -61,7 +62,7 @@ export default {
         currMenu.children.forEach(subMenu=> {
           var pathArr = subMenu.path.split('/').filter(item=> item !== 'common')// 通用页面处理成普通页面
           if(pathArr[2] === currPathArr[1]) {
-            id = subMenu.id
+            id = subMenu.name
           }
         })
       }
@@ -73,7 +74,6 @@ export default {
     }
   },
   methods: {
-      
   },
   mounted() {
   }

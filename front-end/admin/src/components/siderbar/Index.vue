@@ -2,18 +2,20 @@
 <div class="j-siderbar">
   <el-menu theme="dark" :default-openeds="[currMenuId]" :default-active="currSubMenuId || currMenuId" style="height: 100%; overflow-y: auto">
     <template v-for="item in menu">
-
-      <el-menu-item :index="item.id" v-if="!item.children"  @click="$router.push(item.path)">
-          <router-link :to="item.path">{{item.name}}</router-link>
+      <el-menu-item :index="item.name" v-if="!item.children"  @click="$router.push(item.path)">
+          <router-link :to="item.path || ''">{{item.name}}</router-link>
       </el-menu-item>
-      <el-submenu :index="item.id" v-else>
+      <el-submenu :index="item.name" v-else>
         <template slot="title">
-          <!-- <i :class="'el-icon-' + item.icon"></i> -->
           {{item.name}}
         </template>
         <el-menu-item-group title="" v-if="item.children">
-          <el-menu-item :index="subMenu.id" v-for="subMenu in item.children" :key="subMenu.id" @click="$router.push(subMenu.path)">
-            <router-link :to="subMenu.path">{{subMenu.name}}</router-link>
+          <el-menu-item 
+            v-for="subMenu in item.children" :key="item.name"
+            :index="subMenu.name"
+            @click="$router.push(subMenu.path)"
+          >
+            <router-link :to="subMenu.path || ''">{{subMenu.name}}</router-link>
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
