@@ -4,5 +4,5 @@ module.exports = {
   user: 'root',
   password: '',
   // 数据库名
-  database: 'template',
+  database: require('../auto/config').database,
 };

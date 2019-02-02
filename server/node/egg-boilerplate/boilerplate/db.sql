@@ -25,33 +25,3 @@ CREATE TABLE `account` (
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for category
--- ----------------------------
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
-  `detail` varchar(400) DEFAULT NULL,
-  `delFlg` int(1) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for item
--- ----------------------------
-DROP TABLE IF EXISTS `item`;
-CREATE TABLE `item` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
-  `detail` varchar(400) DEFAULT NULL,
-  `img` varchar(1000) DEFAULT NULL,
-  `categoryId` varchar(36) DEFAULT NULL,
-  `delFlg` int(1) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;

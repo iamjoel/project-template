@@ -1,22 +1,18 @@
-const singleTable = [ 'category' ];
+const commonTable = [];
 const publicPrefix = 'publicApi';
+const autoRouter = require('../auto/router')
+const ejectedRouter = require('../auto/ejected-router')
 module.exports = app => {
   const { router, controller } = app;
   const jwt = app.middleware.jwt();
 
-  // 单表的CRUD
-  singleTable.forEach(tableName => {
-    addCRUD(tableName, router, controller.common.index, jwt);
+  autoRouter(router, controller, jwt) // 生成工具生成
+  ejectedRouter(router, controller, jwt) // 生成工具生成
+
+  // 通用的CRUD
+  commonTable.forEach(tableName => {
+    addCRUD(tableName, router, controller.common.index, jwt, publicPrefix);
   });
-
-  // 多表的CRUD
-  router.get('/api/item/list', jwt, controller.item.item.list);
-  router.get(`/${publicPrefix}/item/list`, controller.item.item.list);
-  router.get('/api/item/detail/:id', jwt, controller.item.item.detail);
-  router.get(`/${publicPrefix}/item/detail/:id`, controller.item.item.detail);
-  router.post('/api/item/add', jwt, controller.common.index.add);
-  router.post('/api/item/edit', jwt, controller.common.index.edit);
-
 
   router.post('/api/picture/upload', controller.common.upload.uploadImg); // 图片上传
   router.post('/api/file/upload', controller.common.upload.uploadFile); // 文件上传
