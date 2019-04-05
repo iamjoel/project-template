@@ -7,6 +7,10 @@ module.exports = function(searchCondition = {}, escape, resourceName) {
   searchCondition[`${resourceName}.delFlg`] = 0; // 未被删除的
 
   for (let key in searchCondition) {
+    // 忽略没有的值 
+    if(searchCondition[key] === null || searchCondition[key] === undefined || searchCondition[key] === '') {
+      continue
+    }
     // 过滤 XSS 字符
     let value = escape(searchCondition[key]);
     if (typeof value === 'string') {
