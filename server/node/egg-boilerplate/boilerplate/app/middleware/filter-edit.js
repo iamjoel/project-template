@@ -13,7 +13,7 @@ module.exports = app => {
         const resourceName = ctx.request.path.split('/')[2];
         let data = ctx.request.body;
         var resource = require(`@/service/${modelMap[resourceName]}`)
-        let fields = [ 'id' ].concat(resource.canEditFields || resource.viewFields);
+        let fields = [ 'id' ].concat(resource.canEditFields ? [...resource.canEditFields, ...resource.viewFields] : resource.viewFields);
         for(let name in data){
             if(fields.every(a => a != name)){
                 delete data[name]
