@@ -17,8 +17,17 @@ module.exports = (info, env, type = 'list', isMulti = false) => {
 
   where = where || {};
   const whereStr = generatorWhere(where, ctx.helper.escape, resourceName);
-
   orders = orders || [];
+  // 解决多表查询时，列名会有歧义的问题。
+  if(orders.length > 0) {
+    orders = orders.map(item => {
+      var key = item[0]
+      if(!key.includes('.')) {
+        key = `${resourceName}.${key}`
+      }
+      return [key, item[1]]
+    })
+  }
   if (!isMulti) {
     orders.push([ `${resourceName}.updateTime`, 'desc' ]);
     orders.push([ `${resourceName}.id`, 'desc' ]); // 修复多条数据的更新时间一样时，数据排序是随机的问题。
