@@ -7,7 +7,7 @@ export default function (url, query, pager, order) {
       let validQuery = {}
       for (let key in query) {
         if (query.hasOwnProperty(key) && query[key] !== '' && query[key] !== undefined && query[key] !== null) {
-          validQuery[key] = encodeURIComponent(query[key])
+          validQuery[key] = typeof query[key] === 'string' ? encodeURIComponent(query[key]) : query[key]
           hasQuery = true
         }
       }

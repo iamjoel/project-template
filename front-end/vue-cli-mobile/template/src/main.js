@@ -60,9 +60,23 @@ Vue.prototype.$mock = mock
 
 import App from './App.vue'
 
+// graph 配置
+import ApolloClient from 'apollo-boost'
+const apolloClient = new ApolloClient({
+  uri: 'http://localhost:7001/graphql'
+})
+
+import VueApollo from 'vue-apollo'
+Vue.use(VueApollo)
+
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+})
+
 var vm = new Vue({
   el: '#app',
   router,
+  apolloProvider,
   template: '<App/>',
   components: { App },
   store
