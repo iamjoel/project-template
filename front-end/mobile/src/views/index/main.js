@@ -2,20 +2,22 @@ import gql from 'graphql-tag'
 export default {
   apollo: {
     user: gql`
-      query {
+      {
+        ## id 的值如何用动态的值？
         user(id: 2) {
           name,
         }
       }
     `,
-    // anotherUser: gql`
-    //   query {
-    //     user(id: 3) {
-    //       id,
-    //       name,
-    //     }
-    //   }
-    // `,
+    anotherUser: gql`
+      {
+        # 别名
+        anotherUser: user(id: 3) {
+          id,
+          name,
+        }
+      }
+    `,
   },
   data() {
     return {
