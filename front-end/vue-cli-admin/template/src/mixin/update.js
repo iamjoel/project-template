@@ -136,8 +136,20 @@ export default {
     } else {
       // 解决 model 会拿上次的值
       var initModel = modelInitValue[this.KEY]
+
       if(initModel) { // 非第一进入，拿之前存的初始化值
-        this.model = deepClone(initModel)
+        this.$nextTick(() => {
+          this.model = this.$set(this, 'model', deepClone(initModel))
+          var refs = Object.keys(this.$refs)
+          refs.forEach(key => {
+            var classList = this.$refs[key].$el.classList
+            // 重置下下拉框的值
+            if(classList && [...classList].includes('remote-select')) {
+              this.$refs[key].reset()
+            }
+          })
+        })
+
       } else { // 第一次进入，将初始化值存起来
         modelInitValue[this.KEY] = deepClone(this.model)
       }
