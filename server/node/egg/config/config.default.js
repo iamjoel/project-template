@@ -10,6 +10,7 @@ module.exports = appInfo => {
   config.middleware = [ 
     'graphql',
     // 'acl',
+    'log',
     'filterEdit'
   ]
 
