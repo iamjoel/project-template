@@ -1,4 +1,5 @@
 # 待做
+* 多tab的支持。
 * 把 router 从 dict.js 里拿出来，要改动 accout 那边的 update 和 list。
 * demo相关的，放到专门的库，这个库就是个 template，项目生成后，是不需要去移除，改动代码的。
 * element ui 验证能支持两种类型

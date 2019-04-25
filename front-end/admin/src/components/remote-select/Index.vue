@@ -24,8 +24,9 @@ export default {
     urlKey: String,
     otherQuery: null,// 调列表接口的其他查询参数。可以函数用 {name: null, someKey: name} 来自定义远程搜索的key
     autoFetch: Boolean,
-    value: null,//String // v-model
-    formatList: null
+    value: null,
+    formatList: null,
+    useLike: Boolean, // 模糊搜索
   },
   data() {
     return {
@@ -44,18 +45,16 @@ export default {
   },
   methods: {
     fetch(name) {
-      // debugger
-    //   this.list = [{
-    //     uuid: '1',
-    //     name: 'test'
-    //   }]
       var otherQuery
       if(typeof this.otherQuery === 'function') {
         otherQuery = this.otherQuery(name)
       } else {
         otherQuery = this.otherQuery
       }
-      fetchList(this.urlKey, {name: name, ...otherQuery}, {
+      fetchList(this.urlKey, {
+        [this.useLike ? 'name__like' : 'name']: name,
+        ...otherQuery
+      }, {
         current: 1,
         item: 50
       }, null).then(res => {
