@@ -13,12 +13,6 @@ module.exports = appInfo => {
     'filterEdit'
   ]
 
-  // mysql 配置
-  const mySqlConfig = require('./mysql');
-  config.mysql = {
-    client: mySqlConfig,
-  };
-
   config.graphql = {
     router: '/graphql',
     // 是否加载到 app 上，默认开启
