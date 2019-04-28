@@ -1,4 +1,3 @@
-var template = `
 const generatorList = require('@/util/sql/list');
 const Service = require('egg').Service;
 
@@ -6,7 +5,8 @@ class MainService extends Service {
   async list(resourceName, pager = { at: 1 }, where, orders) {
     const { app, ctx, config } = this;
 
-    const fields = this.ctx.helper.getFields(app, resourceName);
+    const fields = this.ctx.helper.getFields(app, resourceName)
+                        .map(field => `${resourceName}.${field} as ${field}`);
 
     // 列表数据
     const listSql = generatorList({
@@ -15,7 +15,11 @@ class MainService extends Service {
       where,
       orders,
     }, this)
-      .fields(fields)
+      .left_join('account', null, 'login_log.accountId = account.id')
+      .fields([
+        ...fields,
+        'account.name as accountName'
+      ])
       .toString();
     console.log(listSql);
     const list = await this.app.mysql.query(listSql);
@@ -49,7 +53,7 @@ class MainService extends Service {
     const sql = app.squel.select()
       .from(resourceName)
       .fields(fields)
-      .where(\`id = "\${id}"\`)
+      .where(`id = "${id}"`)
       .toString();
     console.log(sql);
 
@@ -65,15 +69,16 @@ class MainService extends Service {
 
     const checkRes = helper.checkFields(app, resourceName, data, 'add');
     if (checkRes === true) {
+      
       const insertData = Object.assign({}, data, {
         delFlg: 0,
         createTime: app.mysql.literals.now,
         updateTime: app.mysql.literals.now,
       });
 
-      var res = await this.app.mysql.insert(resourceName, insertData);
+      var res = await this.app.mysql.insert(resourceName, insertData);;
       return {
-        data: res,
+        data: {...res}
       };
     }
     // 验证报错
@@ -119,6 +124,4 @@ class MainService extends Service {
   }
 }
 
-module.exports = MainService;`
-
-module.exports = template
+module.exports = MainService;

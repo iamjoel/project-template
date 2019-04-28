@@ -18,7 +18,7 @@ module.exports = (info, env, type = 'list', isMulti = false) => {
   where = where || {};
   const whereStr = generatorWhere(where, ctx.helper.escape, resourceName);
   orders = orders || [];
-  // 解决多表的会有歧义的问题。
+  // 解决多表查询时，列名会有歧义的问题。
   if(orders.length > 0) {
     orders = orders.map(item => {
       var key = item[0]

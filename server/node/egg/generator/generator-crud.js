@@ -1,5 +1,6 @@
 /*
 * 生成 CRUD 操作。
+* npm run gen -- --name=xxx
 */
 const fs = require('fs-extra')
 const argv = require('yargs').argv

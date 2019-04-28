@@ -10,3 +10,9 @@ exports.cors = {
   enable: true,
   package: 'egg-cors',
 };
+
+// graphql
+exports.graphql = {
+  enable: true,
+  package: 'egg-graphql',
+}

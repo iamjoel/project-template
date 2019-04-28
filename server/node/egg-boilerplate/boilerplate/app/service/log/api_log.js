@@ -1,4 +1,3 @@
-var template = `
 const generatorList = require('@/util/sql/list');
 const Service = require('egg').Service;
 
@@ -49,7 +48,7 @@ class MainService extends Service {
     const sql = app.squel.select()
       .from(resourceName)
       .fields(fields)
-      .where(\`id = "\${id}"\`)
+      .where(`id = "${id}"`)
       .toString();
     console.log(sql);
 
@@ -65,15 +64,16 @@ class MainService extends Service {
 
     const checkRes = helper.checkFields(app, resourceName, data, 'add');
     if (checkRes === true) {
+      
       const insertData = Object.assign({}, data, {
         delFlg: 0,
         createTime: app.mysql.literals.now,
         updateTime: app.mysql.literals.now,
       });
 
-      var res = await this.app.mysql.insert(resourceName, insertData);
+      var res = await this.app.mysql.insert(resourceName, insertData);;
       return {
-        data: res,
+        data: {...res}
       };
     }
     // 验证报错
@@ -84,41 +84,7 @@ class MainService extends Service {
 
   }
 
-  async edit(resourceName, data) {
-    const { app, ctx, config } = this;
-    const helper = ctx.helper;
-
-    const checkRes = helper.checkFields(app, resourceName, data, 'edit');
-    if (checkRes === true) {
-      const insertData = Object.assign({}, data, {
-        updateTime: app.mysql.literals.now,
-      });
-
-      await this.app.mysql.update(resourceName, insertData);
-      return {
-        data: {
-          id: data.id,
-        },
-      };
-    }
-    // 验证报错
-    return {
-      errMsg: checkRes,
-    };
-
-  }
-
-  async del(resourceName, id) {
-    await this.app.mysql.update(resourceName, {
-      id,
-      delFlg: 1,
-      updateTime: this.app.mysql.literals.now,
-    });
-
-    return { id };
-  }
+  
 }
 
-module.exports = MainService;`
-
-module.exports = template
+module.exports = MainService;

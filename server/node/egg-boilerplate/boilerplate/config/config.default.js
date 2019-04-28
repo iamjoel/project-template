@@ -8,15 +8,19 @@ module.exports = appInfo => {
 
   // 启用的中间件
   config.middleware = [ 
-    // 'acl' 
+    'graphql',
+    // 'acl',
+    'log',
     'filterEdit'
   ]
 
-  // mysql 配置
-  const mySqlConfig = require('./mysql');
-  config.mysql = {
-    client: mySqlConfig,
-  };
+  config.graphql = {
+    router: '/graphql',
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
+  }
 
   // 跨域头
   config.cors = {

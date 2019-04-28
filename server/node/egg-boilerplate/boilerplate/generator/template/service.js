@@ -65,19 +65,15 @@ class MainService extends Service {
 
     const checkRes = helper.checkFields(app, resourceName, data, 'add');
     if (checkRes === true) {
-      const id = data.id || helper.uuid();
       const insertData = Object.assign({}, data, {
-        id,
         delFlg: 0,
         createTime: app.mysql.literals.now,
         updateTime: app.mysql.literals.now,
       });
 
-      await this.app.mysql.insert(resourceName, insertData);
+      var res = await this.app.mysql.insert(resourceName, insertData);
       return {
-        data: {
-          id,
-        },
+        data: res,
       };
     }
     // 验证报错
