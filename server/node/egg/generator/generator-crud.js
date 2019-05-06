@@ -48,7 +48,7 @@ module.exports = {
 function generatorService(info) {
   const {modelName, modelPrefix, modelSuffix} = info
 
-  let dist = line2upper(`app/service/${modelPrefix.join('/')}/${modelSuffix.join('/')}.js`)
+  let dist = `app/service/${modelPrefix.join('/')}/${modelSuffix.join('/')}.js`
   var template = require('./template/service.js')
 
   fs.outputFileSync(dist, template)
