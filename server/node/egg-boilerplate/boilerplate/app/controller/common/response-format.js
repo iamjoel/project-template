@@ -1,12 +1,11 @@
 const errorMessage = require('../../../config/error-message');
-
 module.exports = {
   fail(code, e = null) {
-    var errorMessage = e ? (e + '') : ((errorMessage[code] && errorMessage[code].message) || '未知错误')
-   this.logger.error(e) // 输出错误堆栈
+    var msg = e ? (e + '') : ((errorMessage[code] && errorMessage[code].message) || '未知错误')
+    this.logger.error(e) // 输出错误堆栈
     return {
       errorCode: code,
-      errorMessage
+      errorMessage: msg
     };
   },
   success(data) {

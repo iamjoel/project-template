@@ -3,7 +3,7 @@ const config = require('../../config/config.default.js')({});
 
 module.exports = app => {
   return async function(ctx, next) {
-    // 记录每次 api
+    // 记录每次的 api 的简化写法
     await next()
 
     ctx.logger.info(`
