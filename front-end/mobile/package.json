@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "prettier": "onchange '**/*.+(js|css|vue)' -- prettier-standard '**/*+(js|css|vue)'",
+    "watch": "onchange '**/*.+(js|css|vue)' -- prettier-standard '**/*+(js|css|vue)'",
+    "format": "prettier-standard '**/*+(js|css|vue)'",
     "start": "node build/dev-server.js",
     "build": "node build/build.js"
   },

@@ -2,11 +2,12 @@
   "name": "moblie",
   "version": "1.1.0",
   "description": "moblie template",
-  "author": "author }}",
+  "author": "{{ author }}",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "prettier": "onchange 'src/**/*.+(js|vue)' -- prettier-standard 'src/**/*+(js|vue)'",
+    "watch": "onchange '**/*.+(js|css|vue)' -- prettier-standard '**/*+(js|css|vue)'",
+    "format": "prettier-standard '**/*+(js|css|vue)'",
     "start": "node build/dev-server.js",
     "build": "node build/build.js"
   },

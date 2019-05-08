@@ -10,7 +10,7 @@
 
 2 启动 `npm run dev`
 
-3 代码格式化 `npm run prittier`
+3 开发时，运行 `npm run watch`，实时格式化代码。
 
 ## 构建
 1. `npm run build`
@@ -85,7 +85,7 @@
 * `main.js` 可选。
 * `image/` 可选。放图片。
 
-3 代码规范用 [标准 JavaScript 规范](https://standardjs.com/rules-zhcn.html)。 运行 `npm run prittier`，代码将自动转化。
+3 代码规范用 [标准 JavaScript 规范](https://standardjs.com/rules-zhcn.html)。 运行 `npm run format`，代码将格式化。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。
