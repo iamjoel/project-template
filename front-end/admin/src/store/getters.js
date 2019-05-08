@@ -5,4 +5,3 @@ export const dictObj = state => {
   })
   return res
 }
-

@@ -1,3 +1,1 @@
-export default [
-  ...require('@/auto/setting/base/router').default
-]
+export default [...require('@/auto/setting/base/router').default]

@@ -1,21 +1,15 @@
 <template>
-  <div class="main">
-    欢迎 {{$mock.Random.cname()}}
-  </div>
+  <div class="main">欢迎 {{ $mock.Random.cname() }}</div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-    }  
+  data () {
+    return {}
   },
-  
-  mounted() {
-  },
-  
-}
 
+  mounted () {}
+}
 </script>
 
 <style scoped></style>

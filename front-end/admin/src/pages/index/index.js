@@ -3,15 +3,15 @@ Vue.config.productionTip = false
 
 import App from './App'
 import router from '@/router'
-import {urls} from '@/setting'
+import { urls } from '@/setting'
 
 Vue.use(ElementUI)
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 
-Vue.prototype.getDictName = function(name, key) {
+Vue.prototype.getDictName = function (name, key) {
   var target = this.$store.getters.dictObj[name]
-  if(!target || target.length === 0) {
+  if (!target || target.length === 0) {
     return ''
   }
   var res = target.filter(item => item.key == key)[0]
@@ -22,26 +22,26 @@ Vue.prototype.getDictName = function(name, key) {
 Vue.prototype.addPicUrl = urls.addPic // 上传图片地址
 Vue.prototype.isDev = process.env.NODE_ENV === 'development' // 是否是开发环境
 // 工具方法
-import utilFns from '@/setting/base/util-fns' 
+import utilFns from '@/setting/base/util-fns'
 utilFns.forEach(fn => {
   Vue.prototype[fn.name] = new Function(...fn.args, fn.body)
 })
 
 import '@/assets/utils/error-handler' // 错误处理,收集
 
-import {Message} from 'element-ui'
+import { Message } from 'element-ui'
 Vue.prototype.$success = function (msg) {
   Message({
     type: 'success',
     message: msg
-  });
+  })
 }
 
 Vue.prototype.$error = function (msg) {
   Message({
     type: 'error',
     message: msg
-  });
+  })
 }
 
 import axios from 'axios'
@@ -64,11 +64,13 @@ var vm = new Vue({
   components: { App }
 })
 
-
 // 项目信息
 console.group()
 console.info('%c项目基本信息', 'font-size: 18px;font-weight:bold;')
-console.info(`%c当前环境: ${process.env.NODE_ENV}`, 'font-size: 16px;font-weight:bold;')
+console.info(
+  `%c当前环境: ${process.env.NODE_ENV}`,
+  'font-size: 16px;font-weight:bold;'
+)
 console.info('%c所有接口地址:', 'font-size: 16px;font-weight:bold;')
 console.info(`
 ${JSON.stringify(urls, null, '\t')}

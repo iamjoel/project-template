@@ -38,16 +38,16 @@ var config = {
 }
 
 // 用 mock 服务器的数据
-if (process.env.NODE_ENV === 'mock'){
+if (process.env.NODE_ENV === 'mock') {
   config.dev = Object.assign(config.dev, {
-    proxyTable: { //根多配置： https://github.com/chimurai/http-proxy-middleware
+    proxyTable: {
+      //根多配置： https://github.com/chimurai/http-proxy-middleware
       '/api': {
         target: 'http://127.0.0.1:10010',
-        changeOrigin: true,
+        changeOrigin: true
       }
     }
   })
 }
 
 module.exports = config
-

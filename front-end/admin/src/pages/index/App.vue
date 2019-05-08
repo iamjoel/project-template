@@ -18,7 +18,7 @@ import Sidebar from '@/components/siderbar'
 import Topbar from '@/components/topbar'
 import Breadcrumb from '@/components/breadcrumb'
 import * as types from '@/store/mutation-types'
-import {title} from '@/setting'
+import { title } from '@/setting'
 
 // var isMock = true
 // if(isMock) {
@@ -31,15 +31,15 @@ export default {
   components: {
     'j-siderbar': Sidebar,
     'j-topbar': Topbar,
-    'j-breadcrumb': Breadcrumb,
+    'j-breadcrumb': Breadcrumb
   },
-  mounted() {
+  mounted () {
     var role = localStorage.getItem('j-role') || 'admin'
     this.$store.commit(types.ROLE, role)
     this.$store.dispatch('fetchMenuAndLimit')
     this.$store.dispatch('fetchBasicData')
   },
-  created() {
+  created () {
     document.title = title
   }
 }
@@ -47,4 +47,3 @@ export default {
 <style src="@/assets/reset.css"></style>
 <style src="css-utils-collection"></style>
 <style src="@/assets/common.css"></style>
-
