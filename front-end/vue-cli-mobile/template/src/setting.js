@@ -21,13 +21,17 @@ export const urls = {
     userInfo: `${SERVER_PREFIX}/wechat/userinfo`, // 微信基本信息
     registerWechat: `${SERVER_PREFIX}/wechat/sdkinfo`, // 注册 jssdk 信息
     getOpenid: `${SERVER_PREFIX}/wechat/openid`, // 微信的 openid
-    getPayInfo: `${SERVER_PREFIX}/wechat/prepay`, // 微信支付信息
+    getPayInfo: `${SERVER_PREFIX}/wechat/prepay` // 微信支付信息
   }
 }
 
-function addUrlGroup (key, types = ['list', 'detail', 'add', 'edit','del'], others) {
+function addUrlGroup (
+  key,
+  types = ['list', 'detail', 'add', 'edit', 'del'],
+  others
+) {
   var res = {}
-  if(others && others.length > 0) {
+  if (others && others.length > 0) {
     types = [...types, ...others]
   }
   types.forEach(type => {

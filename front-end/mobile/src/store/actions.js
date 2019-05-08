@@ -13,4 +13,3 @@ export const changeActiveType = ({ commit }, type) => {
 export const changeFooterVisible = ({ commit }, isShow) => {
   commit(types.CHANGE_FOOTER_VISIBLE, isShow)
 }
-

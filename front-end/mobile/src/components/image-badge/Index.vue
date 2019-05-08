@@ -1,10 +1,14 @@
 <template>
   <div class="img-badge">
-    <img class="img-badge__img" :src="imgUrl" alt=""
+    <img
+      class="img-badge__img"
+      :src="imgUrl"
+      alt=""
       :style="{
         width: imgWidth,
-        height: imgHeight,
-      }">
+        height: imgHeight
+      }"
+    />
     <div :class="[postionClassName]">
       <slot />
     </div>
@@ -26,19 +30,19 @@ export default {
     },
     imgHeight: {
       default: 'auto'
-    },
+    }
   },
-  data() {
+  data () {
     return {
       postionClassName: ''
     }
   },
-  mounted() {
+  mounted () {
     this.postionClassName = {
       'top-left': 'pos-tl',
       'top-right': 'pos-tr',
       'bottom-left': 'pos-bl',
-      'bottom-right': 'pos-br',
+      'bottom-right': 'pos-br'
     }[this.postion]
   }
 }

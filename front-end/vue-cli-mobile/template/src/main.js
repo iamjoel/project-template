@@ -6,7 +6,7 @@ Vue.config.productionTip = false
 // vant ui
 import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
-import { Lazyload, Toast, ImagePreview } from 'vant';
+import { Lazyload, Toast, ImagePreview } from 'vant'
 Vue.use(Vant)
 // lazyLoad https://www.youzanyun.com/zanui/vant#/zh-CN/lazyload
 Vue.use(Lazyload, {
@@ -16,13 +16,13 @@ Vue.use(Lazyload, {
 
 import '@/assets/utils/error-handler' // 错误处理,收集
 
-import {IMGS_PREFIX} from '@/setting'
+import { IMGS_PREFIX } from '@/setting'
 Vue.prototype.$imgPrefix = IMGS_PREFIX
 Vue.prototype.$preview = url => {
-  if(typeof url !== 'string' ) {
+  if (typeof url !== 'string') {
     return
   }
-  if(!/^http/.test(url.trim())) {
+  if (!/^http/.test(url.trim())) {
     url = `${IMGS_PREFIX}/${url}`
   }
   ImagePreview([url])
@@ -30,7 +30,7 @@ Vue.prototype.$preview = url => {
 
 Vue.prototype.$showLoading = () => {
   Toast.loading({
-    duration: 0,       // 持续展示 toast
+    duration: 0, // 持续展示 toast
     forbidClick: true, // 禁用背景点击
     mask: true,
     loadingType: 'spinner',
@@ -51,8 +51,9 @@ require('@/filters')
 import store from '@/store'
 
 import router from './router'
-router.afterEach((to,from,next) => { // 进入新页面时，页面总是滚动到顶部
-  window.scrollTo(0,0);
+router.afterEach((to, from, next) => {
+  // 进入新页面时，页面总是滚动到顶部
+  window.scrollTo(0, 0)
 })
 
 import mock from 'mockjs'
@@ -70,7 +71,7 @@ import VueApollo from 'vue-apollo'
 Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient,
+  defaultClient: apolloClient
 })
 
 var vm = new Vue({
@@ -83,7 +84,7 @@ var vm = new Vue({
 })
 
 // 登录后才能跳转的页面
-Vue.prototype.$loginedJump = function(url) {
+Vue.prototype.$loginedJump = function (url) {
   var jumpUrl = this.$store.state.user.id ? url : '/login'
   this.$router.push(jumpUrl)
 }.bind(vm)
@@ -91,18 +92,23 @@ Vue.prototype.$loginedJump = function(url) {
 // 项目信息
 console.group()
 console.info('%c项目基本信息', 'font-size: 18px;font-weight:bold;')
-console.info(`%c当前环境: ${process.env.NODE_ENV}`, 'font-size: 16px;font-weight:bold;')
+console.info(
+  `%c当前环境: ${process.env.NODE_ENV}`,
+  'font-size: 16px;font-weight:bold;'
+)
 console.info('%c所有接口地址:', 'font-size: 16px;font-weight:bold;')
-import {urls} from '@/setting'
+import { urls } from '@/setting'
 console.info(`
 ${JSON.stringify(urls, null, '\t')}
 `)
 console.info('%c所有路由:', 'font-size: 16px;font-weight:bold;')
 import menu from '@/router/menu'
-console.table(menu.map(item => {
-  return {
-    ...item,
-    meta: JSON.stringify(item.meta)
-  }
-}))
+console.table(
+  menu.map(item => {
+    return {
+      ...item,
+      meta: JSON.stringify(item.meta)
+    }
+  })
+)
 console.groupEnd()

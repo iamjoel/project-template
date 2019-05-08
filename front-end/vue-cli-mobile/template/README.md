@@ -10,6 +10,8 @@
 
 2 启动 `npm run dev`
 
+3 代码格式化 `npm run prittier`
+
 ## 构建
 1. `npm run build`
 1. 打开 `dist` 下的 `index.html` 来查看效果。
@@ -82,6 +84,8 @@
 * `style.css` 可选。
 * `main.js` 可选。
 * `image/` 可选。放图片。
+
+3 代码规范用 [标准 JavaScript 规范](https://standardjs.com/rules-zhcn.html)。 运行 `npm run prittier`，代码将自动转化。
 
 ## 用的主要的框架
 * [Vue](http://vuejs.org/) vue-router, vuex 等相关全家桶。

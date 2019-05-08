@@ -5,7 +5,7 @@ export default {
       {
         ## id 的值如何用动态的值？
         user(id: 2) {
-          name,
+          name
         }
       }
     `,
@@ -13,29 +13,27 @@ export default {
       {
         # 别名
         anotherUser: user(id: 3) {
-          id,
-          name,
+          id
+          name
         }
       }
-    `,
+    `
   },
-  data() {
+  data () {
     return {
       user: {},
       anotherUser: {},
       activeTypeIndex: 0,
-      searchInput: '',
-    }  
+      searchInput: ''
+    }
   },
-  mounted() {
-    
-  },
+  mounted () {},
   methods: {
-    onSearch() {
+    onSearch () {
       this.$showLoading()
-      setTimeout(()=> {
+      setTimeout(() => {
         this.$hideLoading()
       }, 2000)
     }
-  },
+  }
 }

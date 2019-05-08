@@ -1,6 +1,9 @@
 <template>
   <div>
-    <img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png">
+    <img
+      class="user-poster"
+      src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png"
+    />
     <van-row class="user-links">
       <van-col span="6">
         <van-icon name="pending-payment" />
@@ -32,9 +35,7 @@
   </div>
 </template>
 
-<script src="./main.js">
-
-</script>
+<script src="./main.js"></script>
 
 <style>
 .user-poster {
@@ -44,7 +45,7 @@
 }
 
 .user-group {
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
 }
 
 .user-links {
@@ -59,5 +60,4 @@
   display: block;
   font-size: 24px;
 }
-
 </style>

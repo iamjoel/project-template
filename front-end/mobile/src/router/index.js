@@ -4,7 +4,6 @@ import menu from './menu'
 
 Vue.use(Router)
 
-
 export default new Router({
   routes: [
     ...menu,
@@ -15,5 +14,3 @@ export default new Router({
     }
   ]
 })
-
-

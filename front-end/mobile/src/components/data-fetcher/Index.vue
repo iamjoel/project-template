@@ -1,23 +1,23 @@
 <template>
   <div class="data-fetcher">
-    <slot :data="data"/>
+    <slot :data="data" />
   </div>
 </template>
 
 <script>
-import {fetchModel} from '@/service/api'
+import { fetchModel } from '@/service/api'
 export default {
   props: {
     config: {
-      type: [Object, Array],
-    } 
+      type: [Object, Array]
+    }
   },
-  data() {
+  data () {
     return {
       data: Array.isArray(this.config) ? fillEmptyObj(this.config.length) : {}
     }
   },
-  mounted() {
+  mounted () {
     var isMulti = Array.isArray(this.config)
     var config = isMulti ? this.config : [this.config]
 
@@ -26,23 +26,25 @@ export default {
     var res = []
 
     config.forEach((item, i) => {
-      fetchModel(item.key, item.id).then(({data})=> {
-        loaded++;
-        res[i] = data.data
-        if(loaded === len) {
-          this.data = isMulti ? res : res[0]
+      fetchModel(item.key, item.id).then(
+        ({ data }) => {
+          loaded++
+          res[i] = data.data
+          if (loaded === len) {
+            this.data = isMulti ? res : res[0]
+          }
+        },
+        e => {
+          this.$emit('error', e)
         }
-      }, (e) => {
-        this.$emit('error', e)
-      })
+      )
     })
-    
   }
 }
 
-function  fillEmptyObj(len) {
+function fillEmptyObj (len) {
   var res = []
-  for(var i = 0; i < len; i++) {
+  for (var i = 0; i < len; i++) {
     res.push({})
   }
   return res

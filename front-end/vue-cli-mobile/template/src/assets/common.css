@@ -3,23 +3,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* 使用与当前操作系统一致的字体 https://devhints.io/css-system-font-stack  */
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 html {
   font-size: 50px;
 }
 body {
   font-size: 12px;
-  padding-bottom: 80px;/* 空出底部 Toolbar 的距离*/
+  padding-bottom: 80px; /* 空出底部 Toolbar 的距离*/
 }
 /* 底部无 Toolbar 的页面 */
 body.no-foot-tabbar {
   padding-bottom: 20px;
 }
-
 
 /* 左右两侧带线的标题 */
 .title-with-line {
@@ -28,17 +26,17 @@ body.no-foot-tabbar {
 
 .title-with-line__text {
   position: relative;
-  padding: 0 .7rem;
-  height: .6rem;
-  line-height: .6rem;
+  padding: 0 0.7rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
 .title-with-line__text:before,
 .title-with-line__text:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 49%;
-  width: .5rem;
-  height: .04rem;
+  width: 0.5rem;
+  height: 0.04rem;
   background-color: #666;
 }
 
@@ -51,12 +49,12 @@ body.no-foot-tabbar {
 
 /* 带图标的导航 */
 .nav__item {
-  margin-right: .1rem;
-  margin-bottom: .2rem;
+  margin-right: 0.1rem;
+  margin-bottom: 0.2rem;
   width: 1.5rem;
   color: inherit;
 }
-.nav__item i{
+.nav__item i {
   display: block;
   font-size: 24px;
   text-align: center;
@@ -66,20 +64,20 @@ body.no-foot-tabbar {
 .notice {
   display: flex;
   align-items: center;
-  padding: 0 .2rem;
-  height: .73rem;
+  padding: 0 0.2rem;
+  height: 0.73rem;
   background-color: #fff;
 }
 .notice__icon {
-  padding-right: .13rem;
+  padding-right: 0.13rem;
 }
 .notice__icon img {
-  width: .28rem;
+  width: 0.28rem;
 }
 .notice__content {
   width: 5rem;
-  height: .4rem;
-  line-height: .4rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
 }
 .notice strong {
   color: #fd9003;

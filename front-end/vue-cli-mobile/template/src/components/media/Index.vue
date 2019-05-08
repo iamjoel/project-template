@@ -1,32 +1,26 @@
 <template>
   <div>
-    <div class="media" 
+    <div
+      class="media"
       v-if="!dirVer"
       :class="{
         'media--round': img.isCircle,
-        'media--right': img.isRight,
+        'media--right': img.isRight
       }"
     >
-      <img class="media__img" :src="img.src" alt=""
-        :style="imgStyle"
-      />
+      <img class="media__img" :src="img.src" alt="" :style="imgStyle" />
       <div class="media__body">
-        <slot/>
+        <slot />
       </div>
     </div>
     <!-- 垂直 Media -->
-    <div v-else
-      class="media-ver"
-    >
-      <img class="media__img" :src="img.src" alt=""
-        :style="imgStyle"
-        />
+    <div v-else class="media-ver">
+      <img class="media__img" :src="img.src" alt="" :style="imgStyle" />
       <div class="media__body">
-        <slot/>
+        <slot />
       </div>
     </div>
   </div>
-  
 </template>
 
 <script src="./main.js"></script>
