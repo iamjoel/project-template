@@ -1,3 +1,1 @@
-export default [
-  ...require('@/auto/setting/base/entities').default
-]
+export default [...require('@/auto/setting/base/entities').default]

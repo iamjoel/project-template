@@ -81,8 +81,6 @@ export default {
 .collapsing {
   height: 0;
   overflow: hidden;
-  transition: height .377s ease;
+  transition: height 0.377s ease;
 }
-
-
 </style>

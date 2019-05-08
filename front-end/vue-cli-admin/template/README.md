@@ -110,6 +110,7 @@ export const PAGES = [
 * 页面： `#/一级菜单id/页面id/页面类型` 会在 `src/views` 有目录 `/一级菜单id/页面id`。
 * 页面类型: list', 'detail', 'add', 'edit' 对应 列表，详情，新增和编辑页。 列表页的内容放在 List.vue 和 list.js ；详情，新增和编辑页共用 Update.vue 和 update.js。
 
+代码规范用 [标准 JavaScript 规范](https://standardjs.com/rules-zhcn.html)。 运行 `npm run format`，代码将格式化。
 
 ## 一级菜单，页面和二级菜单页面的配置
 * 通用
