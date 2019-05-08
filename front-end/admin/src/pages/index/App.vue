@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <j-topbar></j-topbar>
+    <topbar/>
     <div class="ly" style="margin-top: 65px;">
       <div style="width: 250px;">
-        <j-siderbar :menu="$store.state.menu"></j-siderbar>
+        <siderbar :menu="$store.state.menu"></siderbar>
       </div>
       <div class="lyi-f">
-        <j-breadcrumb :menu="$store.state.menu"></j-breadcrumb>
+        <breadcrumb :menu="$store.state.menu"></breadcrumb>
         <router-view id="main-content"></router-view>
       </div>
     </div>
@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Sidebar from '@/components/siderbar'
-import Topbar from '@/components/topbar'
-import Breadcrumb from '@/components/breadcrumb'
+import Siderbar from '@/components/siderbar/Index'
+import Topbar from '@/components/topbar/Index'
+import Breadcrumb from '@/components/breadcrumb/Index'
 import * as types from '@/store/mutation-types'
 import { title } from '@/setting'
 
@@ -29,9 +29,9 @@ import { title } from '@/setting'
 export default {
   name: 'app',
   components: {
-    'j-siderbar': Sidebar,
-    'j-topbar': Topbar,
-    'j-breadcrumb': Breadcrumb
+    Siderbar,
+    Topbar,
+    Breadcrumb
   },
   mounted () {
     var role = localStorage.getItem('j-role') || 'admin'
