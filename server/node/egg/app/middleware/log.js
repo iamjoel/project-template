@@ -35,8 +35,11 @@ body: ${decodeURIComponent(JSON.stringify(ctx.request.body))}
     //         requestTime: requestTime,
     //         responseTime: responseTime
     //     };
+        try {
+         await ctx.service.log.apiLog.add('api_log', insertData)
+        } catch(e) { // 内部返回的数据太长的问题
 
-    //     await ctx.service.log.apiLog.add('api_log', insertData)
+        }
     // }
 
     // if(
