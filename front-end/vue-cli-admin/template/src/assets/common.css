@@ -16,6 +16,10 @@
   height: 32px;
   line-height: 32px;
 }
+/* 选日期的 和 input 保持一致 */
+.el-date-editor.el-input {
+  width: 100% !important;
+}
 
 .image-uploader .el-upload {
   border: 1px solid #d9d9d9;
