@@ -9,6 +9,8 @@
     * [代码生成工具](https://iamjoel.github.io/admin-fe-generator/src/)
   * React
     * [react boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+* 多页面
+  * Vue [源码](front-end/multi-page)
 * [移动端](front-end/mobile)
   * Vue
     * [源码](front-end/mobile)。 [代码库](https://github.com/iamjoel/mobile-codes-collection)。
