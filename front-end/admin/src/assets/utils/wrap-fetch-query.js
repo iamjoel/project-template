@@ -20,7 +20,7 @@ export default function (url, query, pager, order) {
         }
       }
       if (hasQuery) {
-        res += 'where=' + JSON.stringify(validQuery)
+        res += 'where=' + encodeURIComponent(JSON.stringify(validQuery))
       }
     }
 
