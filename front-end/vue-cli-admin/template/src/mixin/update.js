@@ -134,7 +134,7 @@ export default {
     if (!this.isAdd) {
       fetchModel(this.KEY, this.id).then(({ data }) => {
         this.model = this.formatFetchData(
-          Object.assign({}, this.model, data.data[0])
+          Object.assign({}, this.model, data.data)
         )
         this.afterFectch()
       })
