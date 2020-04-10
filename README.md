@@ -1,4 +1,6 @@
 # 项目模板
+已不维护。 每种项目，单独放了个库。
+
 * 管理后台
   * Vue
     * [源码](front-end/admin)。 [代码库](https://github.com/iamjoel/admin-codes-collection)。
