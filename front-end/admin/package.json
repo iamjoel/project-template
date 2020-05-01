@@ -20,7 +20,7 @@
     "element-ui": "^2.7.2",
     "fundebug-javascript": "^0.3.3",
     "glob": "^7.1.2",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "md5": "^2.2.1",
     "moment": "^2.18.1",
     "vue": "^2.6.10",
