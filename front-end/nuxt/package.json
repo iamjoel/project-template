@@ -12,7 +12,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "yarn run snyk-protect"
   },
   "config": {
     "nuxt": {
@@ -24,7 +24,7 @@
     "axios": "^0.18.0",
     "css-utils-collection": "^1.5.1",
     "nuxt": "^1.0.0",
-    "snyk": "^1.161.1"
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
