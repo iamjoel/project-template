@@ -14,7 +14,7 @@
     "analyse": "NODE_ENV=production webpack --config build/webpack.prod.conf.js --json --profile > stats.json"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "css-utils-collection": "^1.2.0",
     "jquery": "^3.2.1",
     "vue": "^2.6.10"
