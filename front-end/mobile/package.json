@@ -19,7 +19,7 @@
     "css-utils-collection": "^1.5.1",
     "graphql": "^14.2.1",
     "mockjs": "^1.0.1-beta3",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "vant": "^1.1.3",
     "vue": "^2.5.0",
     "vue-apollo": "^3.0.0-beta.28",
