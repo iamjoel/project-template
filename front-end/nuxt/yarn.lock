@@ -1725,8 +1725,8 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
 
 deep-extend@^0.6.0:
   version "0.6.0"
@@ -5183,6 +5183,10 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+snyk@^1.161.1:
+  version "1.1066.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1066.0.tgz#1a80eb8f1b694d0a9be65eedae41db0bc62ed9e2"
 
 sort-keys@^1.0.0:
   version "1.1.2"
