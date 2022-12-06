@@ -3246,7 +3246,7 @@ mixin-deep@^1.2.0:
 
 mockjs@^1.0.1-beta3:
   version "1.0.1-beta3"
-  resolved "http://registry.npmjs.org/mockjs/-/mockjs-1.0.1-beta3.tgz#d234f3c27256397564f2c955142e891909537209"
+  resolved "https://registry.npmjs.org/mockjs/-/mockjs-1.0.1-beta3.tgz#d234f3c27256397564f2c955142e891909537209"
   dependencies:
     commander "*"
 
@@ -4138,8 +4138,8 @@ qs@6.5.1:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
 qs@~6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.1.tgz#2bad97710a5b661c366b378b1e3a44a592ff45e6"
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -4618,6 +4618,10 @@ sntp@1.x.x:
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
   dependencies:
     hoek "2.x.x"
+
+snyk@^1.161.1:
+  version "1.1069.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1069.0.tgz#8d229aba5994e2dcca0ce14c7a90f6dae0d0e543"
 
 sort-keys@^1.0.0:
   version "1.1.2"
